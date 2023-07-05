@@ -1,0 +1,1476 @@
+pragmeta_trial_id,doi,prompt_tokens,completion_tokens,finish_reason,wrong_format,gpt_score_eligibility,human_score_eligibility,gpt_score_recruitment,human_score_recruitment,gpt_score_setting,human_score_setting,gpt_score_organization,human_score_organization,gpt_score_flexibility_delivery,human_score_flexibility_delivery,gpt_score_flexibility_adherence,human_score_flexibility_adherence,gpt_score_followup,human_score_followup,gpt_score_primary_outcome,human_score_primary_outcome,gpt_score_primary_analysis,human_score_primary_analysis,gpt_message
+1494,10.1056/nejmoa1805101,6392,1221,stop,False,4,3,NA,4,4,3,4,3,2,2,NA,4,4,4,5,4,5,5,"Eligibility:
+- ""We performed a multicenter, open-label, randomized, controlled trial involving patients 18 to 75 years of age with resectable cancer of the middle or lower third of the esophagus."" [1]
+- ""Specific inclusion criteria were the following: squamous-cell carcinoma or adenocarcinoma of thoracic esophagus with a clinical stage of I, II, or III (tumor stage 1 through 3 [T1, T2, or T3], no nodal involvement [N0] or presence of cancer in lymph nodes [N1] or in distant lymph nodes [≥5 cm from the tumor; N2], and no metastases [M0]) before the receipt of any induction treatment; esophageal cancer in the middle or lower third of the esophagus or junctional (Siewert’s type I) tumor; the receipt or nonreceipt of neoadjuvant radiotherapy, chemotherapy, or both; tumors that were considered to be resectable with a curative intention at the time of preoperative evaluation; an age of 18 to 75 years; a World Health Organization performance-status score of 0, 1, or 2 (on a 5-point scale, with higher numbers indicating greater disability); ability to provide written informed consent; ability to undergo one of the investigated surgical procedures; and ability to attend the follow-up visits."" [2]
+
+The eligibility criteria for this trial appear to be relatively pragmatic. The trial includes patients with resectable cancer of the middle or lower third of the esophagus, which is a common population for esophageal cancer surgery. The inclusion criteria specify the tumor stage, performance status, and ability to undergo surgery, which are all relevant factors in determining eligibility for this intervention. The age range of 18 to 75 years is also reasonable. Overall, the eligibility criteria seem to be similar to those used in usual care, so the trial can be considered pragmatic. Score: [4]
+
+Recruitment:
+- ""The trial was conducted at 13 centers in France."" [2]
+
+The full text does not provide specific information about the recruitment methods used in this trial. It only mentions that the trial was conducted at 13 centers in France. Without further details, it is difficult to assess the recruitment methods and determine if they were more or less pragmatic than usual care. Score: [NA]
+
+Setting:
+- ""The trial was conducted at 13 centers in France."" [2]
+
+The trial was conducted at multiple centers in France, which suggests that the setting of the trial was more pragmatic than if it had been conducted at a single center or only specialized trial or academic centers. Conducting the trial at multiple centers increases the generalizability of the results to a broader population and reflects real-world practice. Score: [4]
+
+Organisation:
+- ""All the participating centers had surgeons who were experienced in esophageal-cancer surgery and in laparoscopic gastric mobilization, with at least 25 procedures performed at each center before it was included in the trial."" [2]
+
+The full text mentions that all participating centers had surgeons who were experienced in esophageal-cancer surgery and laparoscopic gastric mobilization, with a minimum of 25 procedures performed at each center before inclusion in the trial. This suggests that the trial used existing resources and expertise available in usual care settings, making it more pragmatic. Score: [4]
+
+Flexibility (delivery):
+- ""Despite the difference in approach to the abdominal component of the surgical procedure, the surgical technique was standardized between groups and performed as described previously."" [2]
+
+The full text states that the surgical technique was standardized between the hybrid-procedure group and the open-procedure group. This suggests that there was limited flexibility in how the intervention was delivered, with a strict protocol followed for both groups. This approach is more explanatory than pragmatic, as it does not allow for variations in the delivery of the intervention that may occur in usual care settings. Score: [2]
+
+Flexibility (adherence):
+- Not applicable. The full text does not mention any specific requirements for participant adherence to the intervention. Score: [NA]
+
+Follow-up:
+- ""Patients were followed up at 30 days after surgery and every 6 months for 3 years after surgery."" [2]
+
+The follow-up schedule described in the full text includes regular visits at specific time points after surgery, which is similar to usual care. The follow-up period of 3 years is also reasonable for assessing long-term outcomes. Overall, the intensity of measurement and follow-up in this trial appears to be similar to what would be expected in usual care, making it pragmatic. Score: [4]
+
+Primary outcome:
+- ""The primary end point was major complication during surgery or within 30 days after surgery."" [2]
+
+The primary outcome of major complications during or within 30 days after surgery is directly relevant to the participants and reflects an outcome of importance in usual care. This choice of primary outcome is pragmatic. Score: [5]
+
+Primary analysis:
+- ""All the analyses were performed on an intention-to-treat basis; the analyses included all the patients who had undergone randomization, regardless of the surgery performed and eligibility criteria."" [2]
+
+The full text states that the primary analysis was performed on an intention-to-treat basis, including all patients who underwent randomization, regardless of the surgery performed and eligibility criteria. This approach is consistent with a pragmatic trial design, as it reflects the real-world scenario where patients may not always adhere to the assigned treatment or meet all eligibility criteria. Score: [5]
+
+Based on the assessment of the PRECIS-2 domains, the trial described in the full text can be considered relatively pragmatic overall. The eligibility criteria, setting, organization, follow-up, primary outcome, and primary analysis all align with a pragmatic approach. However, the recruitment methods and flexibility in delivery of the intervention were not clearly described in the full text, making it difficult to assess those domains."
+673,10.1177/1352458512461966,8595,1099,stop,False,4,5,NA,5,5,5,3,NA,NA,3,5,3,NA,5,5,5,5,2,"Eligibility:
+- ""Participants were randomised in groups of eight to physiotherapist (PT)-led exercise (n = 80), yoga (n = 77), fitness instructor (FI)-led exercise (n = 86) and they took part in weekly community-based group exercise sessions."" [1]
+- ""Our study participants were referred to the project by themselves, their care-giver, MSI, chartered physiotherapists, neurologists, general practitioners or clinical nurse specialists."" [2]
+- ""Eligible participants were over 18 years of age and had a diagnosis of MS that was confirmed by a consultant physician or neurologist."" [2]
+
+The full text provides information on the eligibility criteria for the trial. Participants were randomized to different exercise interventions and were referred to the project by various healthcare professionals. The eligibility criteria included age and a confirmed diagnosis of MS. Based on this information, the trial appears to have a pragmatic approach to eligibility. 
+
+Score: [4]
+
+Recruitment:
+- ""Participants were randomised in groups of eight to physiotherapist (PT)-led exercise (n = 80), yoga (n = 77), fitness instructor (FI)-led exercise (n = 86) and they took part in weekly community-based group exercise sessions."" [1]
+- ""Our study participants were referred to the project by themselves, their care-giver, MSI, chartered physiotherapists, neurologists, general practitioners or clinical nurse specialists."" [2]
+
+The full text indicates that participants were randomized to different exercise interventions and were referred to the project by various healthcare professionals. However, it does not provide specific information on the recruitment methods used, such as targeted invitation letters or advertising. Therefore, it is difficult to determine the level of extra effort made to recruit participants.
+
+Score: [NA]
+
+Setting:
+- ""All interventions took place in groups of eight, for an hour per week, for 10 weeks."" [2]
+- ""They were delivered in community centres such as local gyms, hotels and health centres."" [2]
+
+The full text states that the interventions took place in community centers such as local gyms, hotels, and health centers. This suggests that the setting of the trial closely resembles usual care settings, indicating a pragmatic approach.
+
+Score: [5]
+
+Organisation:
+- ""The PT-led exercise provided was pre-defined."" [2]
+- ""The FI-led classes were not pre-defined, as the aim was to establish whether these classes were effective when encountered by those with MS in the community."" [2]
+- ""The yoga intervention was also not predefined."" [2]
+
+The full text indicates that the PT-led exercise intervention was pre-defined, while the FI-led and yoga interventions were not. This suggests that the organization of care delivery in the PT-led intervention may have required additional resources and expertise compared to usual care. However, the lack of pre-definition in the FI-led and yoga interventions suggests a more pragmatic approach.
+
+Score: [3]
+
+Flexibility (delivery):
+- ""The PT-led exercise provided was pre-defined."" [2]
+- ""The FI-led classes were not pre-defined, as the aim was to establish whether these classes were effective when encountered by those with MS in the community."" [2]
+- ""The yoga intervention was also not predefined."" [2]
+
+The full text does not provide specific information on the flexibility in how the interventions were delivered. However, the fact that the PT-led exercise was pre-defined suggests a more explanatory approach with a strict protocol. The lack of pre-definition in the FI-led and yoga interventions suggests a more pragmatic approach.
+
+Score: [NA]
+
+Flexibility (adherence):
+- ""All interventions took place in groups of eight, for an hour per week, for 10 weeks."" [2]
+- ""Treatment fidelity was optimized by the instructors and participants documenting program adherence."" [2]
+
+The full text does not provide specific information on the flexibility in how participants must adhere to the interventions. However, the fact that the interventions took place in groups for a specific duration suggests a more pragmatic approach with no more than usual encouragement to adhere to the intervention.
+
+Score: [5]
+
+Follow-up:
+- ""Outcome was assessed at week 24 for the intervention groups only, as it was felt that withholding a potentially beneficial treatment for longer than 12 weeks, from the controls, could be considered unethical."" [2]
+
+The full text indicates that the follow-up period was 24 weeks for the intervention groups. However, it does not provide specific information on the intensity of measurement and follow-up compared to usual care. Therefore, it is difficult to determine the level of difference in follow-up between the trial and usual care.
+
+Score: [NA]
+
+Primary outcome:
+- ""The primary outcome was the Multiple Sclerosis Impact Scale (MSIS) 29v2 physical component, measured before and after the 10-week intervention."" [1]
+
+The full text indicates that the primary outcome was the MSIS-29 physical component, which is relevant to participants with MS. This suggests a pragmatic approach to the primary outcome.
+
+Score: [5]
+
+Primary analysis:
+- ""All participants were analyzed in the groups to which they were randomized."" [2]
+
+The full text indicates that all participants were included in the analysis according to their randomized groups. This suggests a pragmatic approach with the inclusion of all available data.
+
+Score: [5]"
+1330,10.1097/sla.0000000000000982,6723,1295,stop,False,4,4,3,4,2,3,2,4,2,4,4,4,3,3,5,2,5,4,"Eligibility:
+- ""The inclusion criterion was planned unilateral adrenal surgery for a benign tumor up to 7 cm in diameter. Exclusion criteria were diffuse peritonitis in history, major abdominal surgery in history, planned bilateral adrenal surgery, adrenal tumor more than 7 cm in diameter, suspected adrenocortical cancer, metastasis to adrenal gland, previous adrenal surgery, pregnancy or lactation, age less than 18 or more than 80 years, American Society of Anesthesiologists fitness grade IV, and inability to comply with the follow-up protocol."" [1]
+- ""The patients were randomized to one of the parallel groups: PRA or LTLA."" [1]
+
+The eligibility criteria for this trial appear to be quite pragmatic. The inclusion criteria are clearly defined and specific, focusing on patients with planned unilateral adrenal surgery for a benign tumor up to 7 cm in diameter. The exclusion criteria are also well-defined and cover a range of factors that could affect the outcomes of the trial. The randomization process further supports the pragmatic nature of the trial design. Score: [4]
+
+Recruitment:
+- ""Eighty-eight patients were referred for adrenal surgery and were potential candidates for the study. Twenty patients did not meet the inclusion criteria and 3 refused to participate, leaving 65 patients with complete short-term follow-up (33 in the PRA and 32 in the LTLA group) and 61 patients who were followed-up for 5 years (30 in the PRA and 31 in the LTLA group) as shown in Fig. 1."" [1]
+
+The recruitment process for this trial seems to be pragmatic. The study enrolled patients who were referred for adrenal surgery and met the inclusion criteria. The number of patients who did not meet the inclusion criteria or refused to participate is small, suggesting that the recruitment process was successful in identifying eligible participants. However, the full text does not provide information on any additional efforts made to recruit participants beyond those typically used in usual care. Score: [3]
+
+Setting:
+- ""Patients referred to the Third Department of General Surgery, Jagiellonian University Medical College, Krakow, between January 2006 and June 2008 for first time adrenal surgery were registered."" [1]
+
+The setting of this trial appears to be somewhat explanatory. The trial was conducted at a single center, the Third Department of General Surgery at Jagiellonian University Medical College in Krakow. While this setting may be representative of usual care in that region, it may not be generalizable to other settings. Score: [2]
+
+Organisation:
+- ""All operations in this study were unilateral total adrenalectomies and were carried out by a single experienced endocrine surgeon (M.B.) under general anesthesia."" [1]
+- ""The surgeon (M.B.) completed a training program in LTLA during his visiting observership in 2002 in the Mount Sinai School of Medicine, Minimally Invasive Surgery Center (New York) headed by M. Gagner, and in PRA during his visiting observership in 2003 in the Department of Surgery and Center for Minimally Invasive Surgery, University of Essen (Essen, Germany) headed by M. Walz."" [1]
+
+The organization of care delivery in this trial appears to be somewhat explanatory. All operations were performed by a single experienced endocrine surgeon, which may not be representative of usual care where multiple surgeons may be involved. However, the surgeon had completed training programs in both LTLA and PRA, suggesting a level of expertise that may be similar to usual care. Score: [2]
+
+Flexibility (delivery):
+- ""All operations in this study were unilateral total adrenalectomies and were carried out by a single experienced endocrine surgeon (M.B.) under general anesthesia."" [1]
+- ""The same anesthesia protocol was used in all the patients."" [1]
+
+The flexibility in how the intervention is delivered in this trial appears to be somewhat explanatory. All operations were unilateral total adrenalectomies performed by a single surgeon, suggesting a standardized approach. The use of the same anesthesia protocol for all patients further supports a lack of flexibility in the delivery of the intervention. Score: [2]
+
+Flexibility (adherence):
+- ""The patients were encouraged to be mobilized and to drink and eat soon after returning from the recovery room."" [1]
+
+The flexibility in how participants must adhere to the intervention in this trial appears to be pragmatic. The patients were encouraged to be mobilized and to drink and eat soon after returning from the recovery room, which is likely similar to usual care. However, the full text does not provide information on any specific measures taken to improve adherence or any exclusions based on adherence. Score: [4]
+
+Follow-up:
+- ""The patients were encouraged to be mobilized and to drink and eat soon after returning from the recovery room."" [1]
+- ""The prevalence of postoperative complications was evaluated during hospitalization and visits at the outpatient surgical department scheduled at 7 days and 1, 12, 24, 36, 48, and 60 months after the operation."" [1]
+
+The intensity of measurement and follow-up in this trial appears to be somewhat pragmatic. The patients were encouraged to be mobilized and to drink and eat soon after returning from the recovery room, suggesting a focus on usual care practices. The follow-up visits at various time points after the operation also indicate a level of measurement and follow-up that may be similar to usual care. Score: [3]
+
+Primary outcome:
+- ""The primary endpoint was duration of surgery."" [1]
+
+The relevance of the trial's primary outcome to participants appears to be pragmatic. The primary endpoint of this trial, duration of surgery, is directly related to the surgical procedure being studied and is likely of importance to participants. Score: [5]
+
+Primary analysis:
+- ""Data are presented as mean with 95% confidence interval (CI) unless stated otherwise. The analysis of primary and secondary variables was performed on an intention-to-treat basis."" [1]
+
+The extent to which all data are included in the analysis of the primary outcome in this trial appears to be pragmatic. The analysis was performed on an intention-to-treat basis, which suggests that all randomized participants were included in the analysis regardless of their adherence to the intervention. Score: [5]"
+1299,10.1097/sla.0000000000002892,5963,1177,stop,False,4,5,5,5,3,5,4,4,2,2,NA,5,4,5,5,4,5,5,"Eligibility:
+1. ""The inclusion criteria were a BMI between 35 and 60 kg/m2, age between 18 and 60 years, and primary SG. The exclusion criteria were history of bariatric or gastric surgery, a surgical procedure other than primary SG, a BMI ≥60 kg/m2, age under 18, allergy or contraindication to TISSEEL, legal guardianship, refusal to participate in the study, pregnancy or breastfeeding, and an American Society of Anesthesiologists score of IV."" [1]
+2. ""Patients with a positive intraoperative methylene blue test and/or abdominal drainage and/or intraoperative bleeding requiring staple line suturing were not excluded."" [1]
+
+The eligibility criteria for this trial appear to be relatively pragmatic. The inclusion criteria are broad, allowing for a range of patients with a BMI between 35 and 60 kg/m2 and age between 18 and 60 years. The exclusion criteria are also reasonable and do not overly restrict the population. The trial does not exclude patients with positive intraoperative tests or bleeding requiring suturing, which is consistent with usual care. Score: [4]
+
+Recruitment:
+1. ""During a consultation before bariatric surgery, patients meeting the study's inclusion criteria were invited to participate in the study and were also provided with an information sheet on the study objectives and procedures."" [1]
+
+The recruitment process for this trial appears to be relatively pragmatic. Patients meeting the inclusion criteria were invited to participate during a consultation before surgery, which is a usual care setting. There is no mention of any additional efforts made to recruit participants beyond this usual care process. Score: [5]
+
+Setting:
+1. ""This was a prospective, intention-to-treat, randomized, single-blind, 2-center superiority study of a group of patients (n = 586) undergoing primary SG between February 2014 and June 2017."" [1]
+
+The setting of this trial is relatively pragmatic. It was conducted in two centers, which is more representative of usual care compared to a single center trial. However, it is worth noting that the trial was conducted in specialized centers for bariatric surgery, which may limit the generalizability to usual care settings. Score: [3]
+
+Organisation:
+1. ""The present study was sponsored and funded by the FS's manufacturer (Baxter International Inc.). The sponsor was not involved in the study design, data collection, statistical analysis, or formulation of the results."" [1]
+
+The organization of this trial appears to be relatively pragmatic. The study was sponsored and funded by the manufacturer of the intervention, but there is no indication that the sponsor had any involvement in the study design, data collection, analysis, or formulation of the results. This suggests that the trial was conducted independently and without significant influence from the sponsor. Score: [4]
+
+Flexibility (delivery):
+1. ""The 4-trocar SG technique has been described in detail by Dhahri et al.20 A 34 Fr bougie guided the stapling, and stapling was started 6 cm proximal to the pylorus using a Endo Gia Ultra Universal XL Stapler 60 with Tri-staple purple reloads (Covidien France SAS, Elancourt, France) or an Echelon Flex Endopath 60-mm stapler with green reloads (Ethicon Endo-Surgery, Issy-les-Moulineaux, France). No buttress material or GSL over sewing was used."" [1]
+
+The flexibility in how the intervention is delivered in this trial appears to be relatively explanatory. The surgical technique and stapling devices used are described in detail, suggesting a standardized and protocol-driven approach. There is no mention of any flexibility or variation in the delivery of the intervention based on individual patient characteristics or preferences. Score: [2]
+
+Flexibility (adherence):
+Score: [NA]
+
+Since this trial does not involve any compliance issues after consent has been given, the flexibility in how participants must adhere to the intervention is not applicable.
+
+Follow-up:
+1. ""The trial's primary endpoint was a composite of the SLCs recorded over the first 30 PODs. Surgical complications were defined as GL, postoperative hemorrhage/hematoma at the GSL and postoperative abscess near to the GSL. The occurrence of a postoperative complication was assessed by an independent adjudication committee composed of physicians not involved in the recruitment and the management of patients undergoing SG."" [1]
+
+The intensity of measurement and follow-up in this trial appears to be relatively pragmatic. The primary endpoint was assessed over the first 30 postoperative days, which is a reasonable follow-up period. The occurrence of postoperative complications was assessed by an independent adjudication committee, which adds rigor to the measurement process. Score: [4]
+
+Primary outcome:
+1. ""The primary endpoint (composite criteria) was the incidence of SLCs in each of the 2 groups."" [1]
+
+The primary outcome of this trial appears to be relatively pragmatic. It focuses on a clinically relevant outcome, the incidence of staple line complications, which is of obvious importance to participants. There is no mention of the use of surrogate or physiological outcomes that are not directly relevant to participants. Score: [5]
+
+Primary analysis:
+1. ""In the intention-to-treat analysis, the incidence of SLCs was similar in the FS and control groups (1.3% vs 2%, respectively; P = 0.52)."" [1]
+
+The primary analysis of this trial appears to be relatively pragmatic. It used an intention-to-treat analysis, which includes all available data and is consistent with a pragmatic approach. There is no mention of any exclusions or restrictions in the analysis of the primary outcome. Score: [5]"
+1656,10.1056/nejmoa1303006,6434,1451,stop,False,4,3,NA,NA,4,3,4,2,5,4,3,2,4,2,5,3,4,5,"Eligibility:
+1. ""From July 2007 through December 2010, we enrolled 353 participants 18 years of age or older who met 1987 American College of Rheumatology (ACR) classification criteria for rheumatoid arthritis,26 had been receiving methotrexate at stable doses of 15 to 25 mg weekly for at least 12 weeks, had a DAS28 of 4.4 or higher, and met inclusion criteria and had no exclusion criteria."" [1]
+2. ""Our study has several limitations. First, the target sample size was not reached. Despite this shortfall, the 95% confidence interval for noninferiority did not approach the conservatively defined threshold of 0.6. Since a DAS28 change of 1.2 or more is an accepted standard for clinically meaningful change,29 a DAS28 change of 0.6 or less was thought to be clinically insignificant."" [2]
+
+The full text provides clear information on the eligibility criteria for the trial. The participants were required to meet specific criteria for rheumatoid arthritis, methotrexate treatment, disease activity, and exclusion criteria. The criteria are well-defined and do not exclude a large proportion of patients who would typically receive this intervention in usual care. Score: [4]
+
+Recruitment:
+1. ""From July 2007 through December 2010, we enrolled 353 participants 18 years of age or older who met 1987 American College of Rheumatology (ACR) classification criteria for rheumatoid arthritis,26 had been receiving methotrexate at stable doses of 15 to 25 mg weekly for at least 12 weeks, had a DAS28 of 4.4 or higher, and met inclusion criteria and had no exclusion criteria."" [1]
+
+The full text does not provide specific information on the recruitment methods used in the trial. It only mentions the number of participants enrolled and their eligibility criteria. Without further information, it is difficult to assess the recruitment methods used and whether they were pragmatic or explanatory. Score: [NA]
+
+Setting:
+1. ""The trial was conducted at 16 Veteran Affairs hospitals, 12 Rheumatoid Arthritis Investigational Network sites, and 8 Canadian medical centers."" [2]
+
+The full text provides information on the settings where the trial was conducted. It involved multiple sites, including Veteran Affairs hospitals, Rheumatoid Arthritis Investigational Network sites, and Canadian medical centers. This suggests that the trial was conducted in settings that are representative of usual care for rheumatoid arthritis patients. Score: [4]
+
+Organisation:
+1. ""The Veterans Affairs Cooperative Studies Program was responsible for the collection of the data, the analysis of the data (Boston site), the provision of and payment for study medications, and the preparation and distribution of the placebo (Albuquerque site). Amgen donated the placebo etanercept but had no role in the design of the study, the collection or analysis of the data, the writing of the manuscript, or the decision to submit the manuscript for publication."" [2]
+
+The full text provides information on the organization of the trial. The Veterans Affairs Cooperative Studies Program was responsible for various aspects of the trial, including data collection, analysis, and provision of study medications. Amgen donated the placebo etanercept but had no role in the design or analysis of the study. This suggests that the trial was conducted with resources and organization similar to usual care. Score: [4]
+
+Flexibility (delivery):
+1. ""Participants continued to receive methotrexate throughout the trial, at the dose that they were receiving at the time of enrollment."" [2]
+
+The full text mentions that participants continued to receive methotrexate throughout the trial at the same dose they were receiving at enrollment. This suggests that the delivery of the intervention (methotrexate) was flexible and similar to usual care. Score: [5]
+
+Flexibility (adherence):
+1. ""Adherence to study medications was assessed by means of tablet counts in returned bottles and with the use of diaries in which participants noted injection dates."" [2]
+
+The full text mentions that adherence to study medications was assessed through tablet counts and participant diaries. This suggests that there were measures in place to assess adherence to the intervention. However, it does not provide information on whether there were strict protocols or measures to improve adherence. Score: [3]
+
+Follow-up:
+1. ""Participants were seen every 6 weeks for monitoring of laboratory values and adverse events. At the time of enrollment and every 12 weeks, the Health Assessment Questionnaire II27 was administered, a count of joints with disease activity was performed, and pain was assessed. At the time of enrollment and every 24 weeks, the DAS28 was calculated, the physician's global assessment (an overall assessment of disease) was performed, quality-of-life and functional surveys were administered, and radiographs were obtained."" [2]
+
+The full text provides information on the follow-up schedule and the measurements performed at each visit. Participants were seen regularly for monitoring of various outcomes, including laboratory values, disease activity, pain, quality of life, and radiographs. This suggests that the intensity of measurement and follow-up in the trial was similar to what would be expected in usual care. Score: [4]
+
+Primary outcome:
+1. ""The primary outcome was the change in the DAS28 at 48 weeks according to the initial regimen."" [2]
+
+The full text clearly states the primary outcome of the trial, which is the change in the Disease Activity Score for 28-joint counts (DAS28) at 48 weeks. This outcome is relevant to participants with rheumatoid arthritis and is measured at a time consistent with usual care. Score: [5]
+
+Primary analysis:
+1. ""We tested the one-sided hypothesis that triple therapy would not be inferior to etanercept–methotrexate therapy, with rejection of the null hypothesis if the upper limit of a one-sided 95% confidence interval for the difference between the groups in the change from baseline to 48 weeks (triple therapy minus etanercept–methotrexate therapy) would be less than 0.6."" [2]
+
+The full text provides information on the primary analysis conducted in the trial. The analysis compared the change from baseline to 48 weeks between the triple therapy and etanercept-methotrexate therapy groups. The analysis used a one-sided hypothesis and a 95% confidence interval to assess noninferiority. This approach is consistent with a pragmatic trial design. Score: [4]
+
+Based on the assessment of the PRECIS-2 domains, the trial described in the full text publication appears to have a pragmatic design. The scores for each domain are as follows:
+- Eligibility: [4]
+- Recruitment: [NA]
+- Setting: [4]
+- Organisation: [4]
+- Flexibility (delivery): [5]
+- Flexibility (adherence): [3]
+- Follow-up: [4]
+- Primary outcome: [5]
+- Primary analysis: [4]"
+710,10.1186/s12931-015-0170-1,7213,1200,stop,False,4,4,5,5,3,5,NA,4,4,5,NA,NA,4,3,5,2,NA,1,"Eligibility:
+1. ""The inclusion criteria were: [1] admission due to AECOPD, [2] COPD (GOLD stage III or IV, 2007), [3] living in the Trondheim municipality, [4] an ability to communicate in Norwegian, and [5] an ability to sign the informed consent form."" [Excerpt 1]
+2. ""The exclusion criterion was: [1] any serious diseases that might cause a very short lifespan (expected survival time less than six months)."" [Excerpt 1]
+
+The eligibility criteria for this trial are relatively pragmatic. The inclusion criteria are specific to patients with COPD who have been admitted for acute exacerbations and are living in the Trondheim municipality. The exclusion criterion is also pragmatic, excluding patients with a very short life expectancy. Overall, the eligibility criteria are not overly restrictive and are similar to what would be seen in usual care. Score: [4]
+
+Recruitment:
+1. ""All participants were recruited from the DTM or the Observation Unit (OU) at the TUH."" [Excerpt 2]
+2. ""The study nurses contacted all patients hospitalized at the DTM or the OU because of AECOPD and invited them to participate in the study provided their home address was in the municipality of Trondheim."" [Excerpt 2]
+
+The recruitment process for this trial appears to be pragmatic. Participants were recruited from the hospital units where they were receiving care for acute exacerbations of COPD. The study nurses directly contacted the patients and invited them to participate. This approach is similar to what would occur in usual care, with patients being approached during their hospital stay. Score: [5]
+
+Setting:
+1. ""A single centre, prospective, open, controlled clinical study comparing COPD-Home integrated care (IC) with usual care (UC)."" [Excerpt 2]
+
+The setting of this trial is not explicitly described in the full text. However, it is mentioned that the study was conducted at a single center. This suggests that the trial may not fully represent the usual care setting, as it is limited to a single site. Score: [3]
+
+Organisation:
+1. ""The COPD-Home integrated care model reduced hospital utilization in patients with COPD III and IV with a persisting effect throughout the 2 years of follow-up."" [Excerpt 3]
+
+The full text does not provide specific information about the resources, provider expertise, or organization of care delivery in the intervention arm of the trial. However, it is mentioned that the COPD-Home integrated care model was effective in reducing hospital utilization. This suggests that the intervention may have required additional resources and expertise compared to usual care. Score: [NA]
+
+Flexibility (delivery):
+1. ""The core elements of the COPD-Home model were: [1] a call centre staffed by three specialist nurses for support and communication with patients and home-care nurses, and coordination between the various levels of care."" [Excerpt 3]
+2. ""An individualized self-management plan introduced to the patient at discharge by the treating doctor and a specialist nurse."" [Excerpt 3]
+3. ""Joint visits at the patients home by the specialist nurse (together with the home-care nurse for participants receiving home services) at approximately three days, 14 days, six months, 12 months and 24 months post-discharge."" [Excerpt 3]
+
+The intervention in this trial appears to have some flexibility in how it is delivered. The COPD-Home model includes a call center for support and communication, an individualized self-management plan, and joint visits at the patient's home. These elements suggest that the intervention can be tailored to the individual patient's needs and can be adapted based on their progress and circumstances. Score: [4]
+
+Flexibility (adherence):
+1. ""All participants included in the COPD-Home study were free to use all available medical services, including their GPs."" [Excerpt 3]
+
+The full text does not provide specific information about the flexibility in how participants must adhere to the intervention. However, it is mentioned that participants were free to use all available medical services, including their general practitioners. This suggests that there may not have been strict requirements for adherence to the intervention. Score: [NA]
+
+Follow-up:
+1. ""After two years of follow-up, a total of 100 patients (58% of the included patients), 51 patients in the IC group and 49 patients in the UC group, were available for evaluation."" [Excerpt 3]
+
+The follow-up in this trial appears to be pragmatic. The study was conducted over a two-year period, and the majority of participants were available for evaluation at the end of the follow-up period. This suggests that the follow-up was feasible and similar to what would occur in usual care. Score: [4]
+
+Primary outcome:
+1. ""The primary outcomes were: [1] Number of hospital admissions caused by AECOPD (HA) and [2] number of in-hospital days (HD) due to AECOPD."" [Excerpt 4]
+
+The primary outcome of this trial is relevant to the participants, as it focuses on hospital admissions and in-hospital days due to acute exacerbations of COPD. This outcome is important to patients with COPD and is likely to be of interest to them. Score: [5]
+
+Primary analysis:
+1. ""Data from patients who completed a minimum of two years of follow-up were included in the analysis."" [Excerpt 4]
+
+The full text does not provide specific information about the primary analysis of the trial. However, it is mentioned that data from patients who completed a minimum of two years of follow-up were included in the analysis. This suggests that an intention-to-treat analysis may have been used, including all available data. Score: [NA]"
+1594,10.1002/art.24106,8676,1355,stop,False,4,2,NA,NA,NA,4,4,3,NA,2,NA,NA,NA,1,5,4,5,5,"Eligibility:
+1. ""Patients with RA for <2 years who had never taken MTX and who self-reported work impairment were randomized to adalimumab + MTX or placebo + MTX for 56 weeks."" [Quote 1]
+2. ""Patients with active infections (including tuberculosis), previous malignancy, and uncontrolled concomitant illness were excluded."" [Quote 2]
+3. ""Other exclusion criteria comprised long-term sick leave, inflammatory arthritis other than RA, juvenile RA, significantly abnormal laboratory results, pregnancy/breastfeeding, human immunodeficiency virus infection, other chronic infections, demyelination, and inability to give informed consent."" [Quote 2]
+
+The eligibility criteria for this trial appear to be quite pragmatic. Patients with early RA who had never taken MTX and self-reported work impairment were included. There were some exclusions for patients with certain medical conditions or circumstances that could affect their ability to participate in the trial. Overall, the eligibility criteria seem to be inclusive and representative of the target population. Score: [4]
+
+Recruitment:
+1. ""During the recruitment period (March 5, 2003 through December 2, 2004), 162 patients were screened and 148 were randomized to adalimumab + MTX (n = 75) or placebo + MTX (n = 73)."" [Quote 3]
+
+The recruitment process for this trial is not described in detail in the full text. However, it is mentioned that 162 patients were screened and 148 were randomized, indicating that efforts were made to recruit a sufficient number of participants. The specific methods used for recruitment, such as targeted invitation letters or advertising, are not mentioned. Therefore, it is difficult to assess the level of effort made to recruit participants. Score: [NA]
+
+Setting:
+1. ""This was a 56-week, multicenter, randomized, double-blind, placebo-controlled study."" [Quote 4]
+
+The trial was conducted at multiple centers, which suggests that the setting was representative of usual care. However, the full text does not provide information about the specific types of centers or whether they were specialized trial or academic centers. Therefore, it is not possible to determine the extent to which the setting of the trial differs from usual care. Score: [NA]
+
+Organisation:
+1. ""Treatment was well tolerated, with no significant differences between the groups. There were no cases of malignancies or tuberculosis. Our study had the same percentage of patients with serious adverse events (11%) as the ASPIRE study. The rates of serious adverse events were 21.0 and 20.5 events/100 patient-years, compared with 15.9 and 18.5 for placebo + MTX and adalimumab + MTX, respectively, in the PREMIER study (which additionally reported 21.1 in the adalimumab-only arm). Serious infections were marginally higher in the current study, but with no difference between the groups."" [Quote 5]
+
+The full text does not provide specific information about the resources, provider expertise, or organization of care delivery in the intervention arm of the trial. However, it does mention that treatment was well tolerated and there were no significant differences in adverse events between the groups. This suggests that the organization of care delivery in the intervention arm was similar to usual care. Score: [4]
+
+Flexibility (delivery):
+1. ""The blind was maintained at all times until data collection was finished and the database was locked, except for 1 patient who became pregnant for whom the blind was broken earlier."" [Quote 6]
+
+The full text does not provide detailed information about the flexibility in how the intervention was delivered. However, it does mention that the blind was maintained until data collection was finished, except for one patient who became pregnant. This suggests that there may have been some flexibility in the delivery of the intervention to accommodate this situation. Score: [NA]
+
+Flexibility (adherence):
+1. ""Rules for participant withdrawal from the trial included job loss, imminent job loss, and adverse events (at the discretion of the physician). Physicians had the ability to withdraw patients due to an unacceptably high disease activity in the interest of the patient's care."" [Quote 7]
+
+The full text does not provide specific information about the flexibility in how participants were required to adhere to the intervention. However, it does mention that participants could be withdrawn from the trial due to job loss, imminent job loss, adverse events, or unacceptably high disease activity. This suggests that there may have been some flexibility in adherence requirements to accommodate these situations. Score: [NA]
+
+Follow-up:
+1. ""This was a 56-week, multicenter, randomized, double-blind, placebo-controlled study."" [Quote 4]
+
+The trial had a follow-up period of 56 weeks, which is relatively long and likely more intensive than usual care. However, the full text does not provide specific information about the intensity of measurement and follow-up in the trial compared to usual care. Therefore, it is not possible to determine the extent to which the follow-up in the trial differs from usual care. Score: [NA]
+
+Primary outcome:
+1. ""The primary end point of the study was job loss of any cause and/or imminent job loss, defined as a failure to achieve an ACR 20% (ACR20) response at/after week 16 and either a WIS score deterioration from baseline or a persistently high WIS score (>17)."" [Quote 8]
+
+The primary outcome of the trial, job loss of any cause and/or imminent job loss, is directly relevant to participants and reflects the impact of the intervention on their work disability. The outcome is measured using a combination of clinical response criteria (ACR20) and work disability assessment (WIS score). This suggests that the primary outcome is relevant and meaningful to participants. Score: [5]
+
+Primary analysis:
+1. ""According to the statistical analysis plan finalized before database lock, missing values for the primary end point (e.g., participants who discontinued the study prior to week 56 without having been affected by job loss/imminent job loss) were to be classified as no job loss/imminent job loss for the primary analysis."" [Quote 9]
+
+The full text describes the statistical analysis plan for the primary outcome, which includes the handling of missing values. Participants who discontinued the study prior to week 56 without experiencing job loss/imminent job loss were classified as no job loss/imminent job loss. This intention-to-treat approach ensures that all available data are included in the analysis and reflects a pragmatic approach. Score: [5]"
+1139,10.1016/s0140-6736(18)30298-8,10142,973,stop,True,4,3,4,5,4,4,4,2,5,1,5,4,4,4,5,5,5,5,"Eligibility:
+1. ""Exclusion criteria were recurrent umbilical hernia, incarcerated umbilical hernia, incisional hernia or epigastric hernia, an American Society of Anesthesiologists (ASA) classification higher than ASA III, or one or more of the following diseases in their medical history: midline laparotomy, laparoscopy with an umbilical entrance port, ascites, peritoneal dialysis, or liver cirrhosis."" [Score: 4] The exclusion criteria in this trial are relatively strict, excluding patients with certain medical conditions or previous surgeries. However, the criteria are relevant to the specific intervention being studied (mesh repair for umbilical hernias) and are likely to reflect the usual care setting for this condition.
+
+Recruitment:
+1. ""Patients who visited the outpatient clinic with an umbilical hernia received an information package about our trial. If patients decided to undergo an operation, they were recruited for the trial as well."" [Score: 4] The recruitment process involved providing information about the trial to patients with umbilical hernias who visited the outpatient clinic. This approach is likely to be similar to how patients would be engaged in usual care. However, the full text does not provide information on any additional efforts made to recruit participants beyond this standard approach.
+
+Setting:
+1. ""We did a randomised, double-blind, controlled multicentre trial in 12 hospitals (nine in the Netherlands, two in Germany, and one in Italy)."" [Score: 4] The trial was conducted in multiple hospitals across different countries, which suggests a more pragmatic approach. However, the full text does not provide information on whether these hospitals represent usual care settings or if they are specialized trial or academic centers.
+
+Organisation:
+1. ""At the start of the study, all surgeons were invited to specific trial training sessions, which were organised in the surgical SkillsLab of the coordinating centre (Erasmus University Medical Center, Rotterdam, Netherlands) to ensure that all participating surgeons would use the same standardised techniques to close an umbilical hernia."" [Score: 4] The trial included a standardized training session for participating surgeons to ensure consistent techniques for both suture repair and mesh repair. This suggests a pragmatic approach as it aligns with usual care practices. However, the full text does not provide information on any additional resources or changes in care delivery organization beyond this training.
+
+Flexibility (delivery):
+1. ""Suture repair of the umbilical defect consisted of adaptation of the fascia in the midline by either interrupted or continuous, non-absorbable, monofilament, polypropylene sutures of thickness 0/0 (monofilament Prolene suture). Sutures were placed in a transverse direction."" [Score: 5] The description of the suture repair technique suggests that it aligns with usual care practices and allows for flexibility in how the intervention is delivered.
+
+Flexibility (adherence):
+1. ""Postoperative analgesics could consist of diclofenac 50 mg three times daily and paracetamol 1000 mg three times daily (or equivalent) administered orally for 6 days after surgery."" [Score: 5] The postoperative analgesic regimen described in the full text suggests that there is no more than usual encouragement to adhere to the intervention. However, the full text does not provide information on any specific measures to improve adherence or any exclusion based on adherence.
+
+Follow-up:
+1. ""Patients underwent physical examinations at 2 weeks, and 3, 12, and 24–30 months after the operation."" [Score: 4] The follow-up schedule includes regular physical examinations at specific timepoints, which suggests a pragmatic approach. However, the full text does not provide information on the intensity of measurement or follow-up beyond these scheduled visits.
+
+Primary outcome:
+1. ""The primary outcome was the rate of recurrences of the umbilical hernia after 24 months assessed in the modified intention-to-treat population by physical examination and, in case of any doubt, abdominal ultrasound."" [Score: 5] The primary outcome of the trial is directly relevant to participants and is assessed using standard methods (physical examination and abdominal ultrasound) that are likely to be available in usual care.
+
+Primary analysis:
+1. ""All analyses were done according to intention-to-treat principles; ie, analysed according to the treatment group that patients were assigned to."" [Score: 5] The primary analysis of the trial used an intention-to-treat approach, which includes all available data and aligns with a pragmatic approach.
+
+Note: The full text does not provide information on the flexibility of adherence in surgical trials, so the score for this domain is left blank."
+1767,10.1001/jama.202.11.1028,5944,1512,stop,False,4,1,2,1,3,3,3,5,4,4,NA,3,2,2,NA,3,NA,3,"Eligibility:
+1. ""Also excluded from the study were patients with surgically curable hypertension, uremia, and concomitant fatal diseases such as carcinoma. Patients with hemorrhages, exudates, or papilledema in the optic fundi, history of cerebral or subarachnoid hemorrhage, dissecting aneurysm, or congestive heart failure resistant to digitalis and mercurial diuretics were excluded. Additional exclusions included patients who wished to return to the care of their private physicians, those who for geographical or other reasons would be unable to attend clinic regularly, and patients of dubious reliability such as alcoholics, vagrants, and poorly motivated patients."" [1]
+2. ""Only the patients whose diastolic blood pressures averaged 115 to 129 mm Hg during the last two prerandomization clinic visits are included in the present report."" [2]
+3. ""For this high-risk group the study was ended in May 1967. The patients with lower prerandomization diastolic readings are continuing in the study and will be reported on later."" [2]
+
+The full text provides information on the eligibility criteria used in the trial. Patients with surgically curable hypertension, uremia, concomitant fatal diseases, and specific complications were excluded. Patients with diastolic blood pressures averaging between 115 and 129 mm Hg were included in the study. The text also mentions that the study was ended for the high-risk group in May 1967, indicating that the eligibility criteria were met by the patients included in the present report. Score: [4]
+
+Recruitment:
+1. ""All patients were hospitalized for the initial workup. Male patients whose diastolic blood pressures from the fourth through the sixth day of hospitalization averaged 90 through 129 mm Hg without treatment were considered for admission to the prerandomization trial period."" [3]
+2. ""Following discharge from the hospital, the patients entered a prerandomization trial period of two to four months' duration. They received two placebos, known to the physician but not to the patient, and were seen in the clinic at monthly intervals."" [3]
+3. ""To qualify for admission to the study, the patients were required to have no 'violations' on two successive clinic visits. A violation consisted either of failure to appear at the regularly scheduled clinic appointment, or failure of the urine to exhibit fluorescence, or a tablet count (of either of the two types of placebos) which was outside the acceptable range."" [3]
+
+The full text provides information on the recruitment process used in the trial. Patients were initially hospitalized for the workup and then entered a prerandomization trial period. They received placebos and were seen in the clinic at regular intervals. To qualify for admission to the study, patients had to meet specific criteria related to clinic visits, urine fluorescence, and tablet count. This suggests that extra effort was made to recruit and engage with patients beyond what would be used in usual care. Score: [2]
+
+Setting:
+1. ""The patients visited the clinic at monthly intervals for the first two months following randomization and at bimonthly intervals henceforth. Additional interim visits were scheduled if needed."" [3]
+2. ""The 143 patients were admitted into the study from April 1964 to December 1966. Observations on all these patients ended in May 1967."" [3]
+
+The full text provides limited information on the setting of the trial. Patients visited the clinic at regular intervals for follow-up visits, which suggests that the trial setting involved regular clinic visits. However, there is no information on the specific settings where the trial took place or whether it was conducted in usual care settings. Score: [3]
+
+Organisation:
+1. ""Treatment was begun with either tablet A, one twice daily, plus the 25-mg tablet B, one tablet three times daily, or else with the placebos of both of these tablets."" [3]
+2. ""Dosages were reduced in the remaining patients because of low blood pressure levels with the standard regimen or because of side effects such as severe headache or weakness."" [3]
+3. ""In order to further minimize losses due to drug toxicity, two special A tablets were available on request. One contained hydrochlorothiazide without reserpine for patients becoming depressed or having active peptic ulcer or other reserpine-associated severe side effects. The other contained reserpine without hydrochlorothiazide for toxicity associated with the latter, such as hyperglycemia or acute gout."" [3]
+
+The full text provides information on the organization of care delivery in the intervention arm of the trial. Patients were assigned to different treatment regimens based on the tablets they received. Dosages were adjusted based on blood pressure levels and side effects. Special tablets were available to address specific side effects. This suggests that the trial involved some level of organization and flexibility in the delivery of care. Score: [3]
+
+Flexibility (delivery):
+1. ""Treatment was begun with either tablet A, one twice daily, plus the 25-mg tablet B, one tablet three times daily, or else with the placebos of both of these tablets."" [3]
+2. ""However, if there were hypotensive reactions or other severe side effects, doses could be reduced to a tolerable level."" [3]
+3. ""In order to further minimize losses due to drug toxicity, two special A tablets were available on request. One contained hydrochlorothiazide without reserpine for patients becoming depressed or having active peptic ulcer or other reserpine-associated severe side effects. The other contained reserpine without hydrochlorothiazide for toxicity associated with the latter, such as hyperglycemia or acute gout."" [3]
+
+The full text provides information on the flexibility in how the intervention was delivered. Dosages could be adjusted based on hypotensive reactions or severe side effects. Special tablets were available to address specific side effects. This suggests that there was some flexibility in the delivery of the intervention to accommodate individual patient needs. Score: [4]
+
+Flexibility (adherence):
+The full text does not provide information on the flexibility in how participants must adhere to the intervention. Score: [NA]
+
+Follow-up:
+1. ""The patients visited the clinic at monthly intervals for the first two months following randomization and at bimonthly intervals henceforth. Additional interim visits were scheduled if needed."" [3]
+2. ""Annual examinations included complete physical examination, roentgenogram of the chest, electrocardiogram, blood chemistry, and renal function tests."" [3]
+3. ""Tablet counts were made at all clinic visits and fluorescence tests of the urine were made at alternate visits."" [3]
+
+The full text provides information on the intensity of measurement and follow-up of participants in the trial. Patients visited the clinic at regular intervals for follow-up visits, including annual examinations and tablet counts. Additional interim visits were scheduled if needed. This suggests that the trial involved a higher intensity of measurement and follow-up compared to usual care. Score: [2]
+
+Primary outcome:
+The full text does not provide information on the relevance of the trial's primary outcome to participants. Score: [NA]
+
+Primary analysis:
+The full text does not provide information on whether all data were included in the analysis of the primary outcome. Score: [NA]"
+1155,10.1016/s0140-6736(13)62419-8,8952,816,stop,False,4,4,5,5,5,5,5,1,5,2,NA,4,4,4,5,2,5,5,"Eligibility:
+1. ""Women with monochorionic, diamniotic twin pregnancies up to 26 weeks' gestation complicated by twin-to-twin transfusion syndrome (Quintero stage16 2, 3, or 4) and women with Quintero stage 1 with clinical symptoms from polyhydramnios were eligible for participation in the trial."" [1]
+2. ""Exclusion criteria consisted of triplet pregnancies and mothers who were unable to provide informed consent."" [1]
+
+The eligibility criteria for this trial seem to be quite pragmatic. They include women with monochorionic, diamniotic twin pregnancies up to 26 weeks' gestation complicated by twin-to-twin transfusion syndrome, which is a common condition in this population. The exclusion criteria are also reasonable and do not overly restrict the participant population. Score: [4]
+
+Recruitment:
+1. ""Women were informed about the study by their obstetrician after they were planned for fetoscopic laser therapy."" [2]
+
+The recruitment process for this trial seems to be quite pragmatic. The participants were informed about the study by their obstetrician as part of their routine care. There is no mention of any additional efforts made to recruit participants beyond what would be used in usual care. Score: [5]
+
+Setting:
+1. ""We did an open-label, international, multicentre, randomised controlled trial at five European tertiary referral centres."" [2]
+
+The setting of this trial seems to be quite pragmatic. It was conducted at five European tertiary referral centers, which are likely representative of the usual care setting for this condition. Score: [5]
+
+Organization:
+1. ""All fetoscopic laser procedures were undertaken by experienced operators (12 surgeons), each of whom had done at least 60 previous laser procedures and were competent to undertake the Solomon technique."" [2]
+
+The organization of care delivery in this trial seems to be quite pragmatic. The procedures were performed by experienced operators who were competent in the technique being used. There is no mention of any additional resources or training being provided beyond what would be available in usual care. Score: [5]
+
+Flexibility (delivery):
+1. ""The following steps were identical for both the experimental and the standard procedure."" [2]
+
+The flexibility in how the intervention is delivered seems to be quite pragmatic. The same steps were followed for both the experimental and standard procedures, indicating that there was no strict protocol or specific measures to improve compliance. Score: [5]
+
+Flexibility (adherence):
+Score: [NA]
+
+There is no mention of any specific measures to improve adherence or any issues with adherence in this trial. Therefore, it is not applicable to assess the flexibility in how participants must adhere to the intervention.
+
+Follow-up:
+1. ""Follow-up visits, including an ultrasound assessment, were scheduled a minimum of once every 2 weeks."" [2]
+
+The intensity of measurement and follow-up in this trial seems to be quite pragmatic. Follow-up visits were scheduled at a minimum of once every 2 weeks, which is likely similar to the follow-up that would occur in usual care. Score: [4]
+
+Primary outcome:
+1. ""The primary outcome was a composite of incidence of twin anaemia polycythaemia sequence, recurrence of twin-to-twin transfusion syndrome, perinatal mortality, or severe neonatal morbidity."" [2]
+
+The primary outcome of this trial seems to be quite pragmatic. It includes outcomes that are relevant to the participants, such as twin anaemia polycythaemia sequence, recurrence of twin-to-twin transfusion syndrome, perinatal mortality, and severe neonatal morbidity. Score: [5]
+
+Primary analysis:
+1. ""Analyses were done by intention to treat, with results expressed as odds ratios (ORs) and 95% CIs."" [2]
+
+The primary analysis of this trial seems to be quite pragmatic. It was done by intention to treat, which is a pragmatic approach that includes all available data. Score: [5]"
+1199,10.1016/j.arthro.2010.11.059,7347,1156,stop,False,4,3,NA,5,NA,5,NA,3,NA,4,5,4,5,3,4,5,NA,5,"Eligibility:
+1. ""Inclusion criteria for this study were (1) a full-thickness rotator cuff tear proven by preoperative magnetic resonance imaging (MRI) or magnetic resonance arthrography, (2) symptoms lasting more than 6 months with proper conservative treatment, and (3) a 2- to 4-cm tear size in either the coronal or sagittal plane, which was measured and confirmed intraoperatively."" [1]
+2. ""Exclusion criteria were (1) a rotator cuff tear in which either SR or DR repair was not possible; (2) a cuff tear in which complete footprint coverage was impossible; (3) any history of prior surgery, fracture, dislocation, or infection of the affected shoulder; (4) inflammatory joint disease of the affected shoulder, including rheumatoid arthritis; and (5) an open repair, including an open repair of the subscapularis."" [1]
+
+The study clearly defines the inclusion and exclusion criteria for participant eligibility. The criteria are specific and relevant to the research question. The study does not appear to have excessive exclusions that would limit the generalizability of the results. Score: [4]
+
+Recruitment:
+1. ""From December 2005 to March 2007, arthroscopic rotator cuff repair was performed in 184 shoulders. Eighty-eight patients met the inclusion criteria, but seventeen were excluded. A total of 71 rotator cuff tears were repaired with either the SR or DR repair technique."" [1]
+
+The study does not provide detailed information on the recruitment process or efforts made to engage with patients. It only mentions the number of patients who met the inclusion criteria and were included in the study. Without more information, it is difficult to assess the recruitment efforts. Score: [NA]
+
+Setting:
+1. ""Surgeries were performed by a single surgeon (J.C.Y.) with the patient under general anesthesia in the lateral decubitus position."" [1]
+
+The study does not provide information about the setting where the surgeries were performed. It only mentions that the surgeries were performed by a single surgeon. Without more information, it is difficult to assess the setting. Score: [NA]
+
+Organization:
+1. ""No statistical differences were found between the 2 groups in terms of preoperative demographic data, including, age, sex, dominant arm, involved shoulder, or symptom duration."" [1]
+
+The study does not provide information about the resources, provider expertise, or organization of care delivery in the intervention arm of the trial. It only mentions that there were no statistical differences in preoperative demographic data between the two groups. Without more information, it is difficult to assess the organization domain. Score: [NA]
+
+Flexibility (delivery):
+1. ""Surgeries were performed by a single surgeon (J.C.Y.) with the patient under general anesthesia in the lateral decubitus position."" [1]
+
+The study does not provide information about the flexibility in how the intervention was delivered or the flexibility likely in usual care. It only mentions that the surgeries were performed by a single surgeon. Without more information, it is difficult to assess the flexibility in delivery. Score: [NA]
+
+Flexibility (adherence):
+1. ""Rehabilitation protocols were identical for all study subjects."" [1]
+
+The study mentions that the rehabilitation protocols were identical for all study subjects. This suggests that there was no additional flexibility in how participants were required to adhere to the intervention beyond usual care. Score: [5]
+
+Follow-up:
+1. ""The SR group was followed up for 31.0 months (range, 24 to 44 months) and the DR group for 32.8 months (range, 24 to 42 months)."" [1]
+
+The study provides information about the duration of follow-up for both groups. The follow-up duration appears to be similar to what would be expected in usual care. Score: [5]
+
+Primary outcome:
+1. ""This study showed that DR repair with 1 additional medial suture anchor and 2 added stitches for rotator cuff repair produced no difference in terms of clinical outcome or retear rate compared with SR repair for medium to large (2- to 4-cm) rotator cuff tears."" [1]
+
+The study does not provide detailed information about the relevance of the primary outcome to participants or whether it is of obvious importance to them. However, the primary outcome of clinical outcome and retear rate is likely to be relevant to participants with rotator cuff tears. Score: [4]
+
+Primary analysis:
+1. ""Retears were classified by use of the criteria of Sugaya et al.21, 27 into 5 types: type I, the repaired cuff appeared to have sufficient thickness as compared with the normal cuff and had homogeneous low intensity on each image; type II, sufficient thickness as compared with the normal cuff associated with a partial high-intensity area; type III, insufficient cuff thickness (less than half that of the normal cuff) but without discontinuity, suggesting a partial-thickness delaminated tear; type IV, presence of a minor discontinuity in only 1 or 2 slices on both oblique coronal and sagittal images, suggesting a small full-thickness tear; and type V, presence of a major discontinuity observed in more than 2 slices on both oblique coronal and sagittal images."" [1]
+
+The study does not provide detailed information about the primary analysis or whether all data were included in the analysis of the primary outcome. However, it does mention the criteria used to classify retears. Without more information, it is difficult to assess the primary analysis domain. Score: [NA]"
+1477,10.1016/j.ejvs.2012.02.003,6949,1248,stop,False,4,3,3,5,4,1,4,5,2,1,3,1,4,1,5,5,5,1,"Eligibility:
+1. ""Exclusion criteria were as follows: combined aneurysmal-occlusive disease, impossible infrarenal clamping based on preoperative computed tomography (CT) scan, Fontaine IVb, age >80 years, creatinine >3.0 mg dl−1, severe pulmonary insufficiency (partial pressure of oxygen in the blood (PaO2) < 60 mmHg or partial pressure of carbon dioxide in the blood (PaCO2) > 50 mmHg on room air), severe cardiac dysfunction (myocardial infarction in past 6 months, ejection fraction <35% and severe aortic valve stenosis), previous aortic or major abdominal surgery, previous abdominal radiation therapy or severe pancreatitis, failed epidural anaesthesia or any contra-indication for epidural or general anaesthesia and patients not willing to sign informed consent."" [1]
+2. ""Demographic data (including age, gender, weight and length) and cardiovascular risk factors (including diabetes mellitus (DM), atherosclerotic heart disease (ASHD), hypercholesterolaemia, hypertension and smoking) of all patients included were documented."" [1]
+3. ""Patients were followed up in the outpatient vascular surgery clinic at 2 weeks and 1 month postoperatively."" [1]
+
+The full text provides clear information on the eligibility criteria for the trial, including specific exclusion criteria and documentation of demographic and cardiovascular risk factors. The eligibility criteria appear to be pragmatic, as they are similar to those used in usual care. Score: [4]
+
+Recruitment:
+1. ""Between January 2007 and November 2009, 28 patients with severe aorto-iliac occlusive disease (TASC II C or D) were included."" [1]
+2. ""Patients were operated for a TASC II C lesion (five laparoscopically and four open surgical bypass). Nineteen patients underwent aorto-iliac surgery for a TASC II D lesion (nine laparoscopically and 10 open)."" [1]
+3. ""However, if differences in postoperative course are obvious, at a certain level of experience it becomes difficult to justify randomisation. On the other hand, as long as there is no randomised trial it is difficult to document differences in morbidity and mortality with a high level of evidence and it becomes difficult to convince surgeons to invest in learning a technically demanding technique."" [1]
+
+The full text does not provide specific information on the recruitment methods used in the trial. However, it does mention that patients were included based on their TASC II classification, which suggests that recruitment may have been pragmatic. Score: [3]
+
+Setting:
+1. ""Nine procedures were performed at the community hospital (five laparoscopically, four open) and 19 procedures were performed at the university hospital (nine laparoscopically, 10 open)."" [1]
+2. ""The protocol of this study was approved by the ethical committee of each centre."" [1]
+
+The full text indicates that the trial was conducted at both a community hospital and a university hospital, suggesting that the setting may have been pragmatic. Score: [4]
+
+Organisation:
+1. ""For all patients there was a standardised protocol for anaesthesia and patient-controlled epidural anaesthesia (PCEA)."" [1]
+2. ""Perioperative antibiotics, intravenous cefazolin or vancomycin for penicillin-allergic patients, were administered for 24 h."" [1]
+3. ""Patients were extubated at the end of the procedure. Routine postoperative monitoring in the post-anaesthetic recovery room was the same for all patients."" [1]
+
+The full text provides information on the standardised protocols for anaesthesia, perioperative antibiotics, and postoperative monitoring, suggesting that the organisation of care delivery may have been pragmatic. Score: [4]
+
+Flexibility (delivery):
+1. ""A standardised operative technique was used."" [1]
+2. ""The type of aorto-prosthetic anastomosis (end-to-end or end-to-side) is decided based on the quality of the aorta as estimated on the preoperative CT scan."" [1]
+
+The full text indicates that a standardised operative technique was used, suggesting that there may have been limited flexibility in how the intervention was delivered. Score: [2]
+
+Flexibility (adherence):
+1. ""Patients were encouraged to move from the bed to the chair and walk around as soon as they were comfortable."" [1]
+2. ""Patients were discharged and sent home as soon as they were clinically stable, tolerating a regular diet, opened their bowels and were able to walk around."" [1]
+
+The full text provides information on encouraging patients to move and walk around, suggesting that there may have been some flexibility in how participants were expected to adhere to the intervention. Score: [3]
+
+Follow-up:
+1. ""Patients were followed up clinically twice daily or more frequently as needed during their hospitalisation until discharge."" [1]
+2. ""Patients were followed up in the outpatient vascular surgery clinic at 2 weeks and 1 month postoperatively."" [1]
+
+The full text provides information on the frequency of follow-up during hospitalisation and at 2 weeks and 1 month postoperatively, suggesting that the intensity of measurement and follow-up may have been pragmatic. Score: [4]
+
+Primary outcome:
+1. ""To investigate differences between open and laparoscopic aortobifemoral bypass surgery for aorto-iliac occlusive disease on postoperative morbidity and mortality."" [1]
+
+The full text clearly states that the primary outcome of the trial is postoperative morbidity and mortality, which is relevant to the participants. Score: [5]
+
+Primary analysis:
+1. ""Data were analysed on an intention-to-treat basis."" [1]
+
+The full text indicates that data were analysed on an intention-to-treat basis, suggesting that all available data were included in the analysis of the primary outcome. Score: [5]"
+1292,10.1097/sla.0000000000002894,5112,1351,stop,False,4,4,NA,3,NA,4,4,4,2,4,NA,5,NA,3,5,4,5,5,"Eligibility:
+1. ""Exclusion criteria were contraindications for general anesthesia or laparoscopy, obstructed or strangulated inguinal hernias, and hernia recurrences."" [Quote 1]
+2. ""Patients (aged over 18 yrs), with primary, bilateral inguinal hernias assessed by ultrasound were included."" [Quote 2]
+3. ""Cases were randomized using a simple randomization with a computer program and divided into 2 groups according to the surgical approach elected by the computer program: TAPP or OL group."" [Quote 3]
+
+The full text provides information on the inclusion and exclusion criteria used for participant eligibility. Patients with specific contraindications and conditions were excluded from the trial. The inclusion criteria specified the target population of patients with primary, bilateral inguinal hernias. The randomization process was also described. Overall, the eligibility criteria appear to be pragmatic, as they are similar to those used in usual care. Score: [4]
+
+Recruitment:
+1. ""This study was carried out in a private hospital in Madrid (Spain) at the General Surgery Department of Sanchinarro University Hospital recruiting patients from March 2013."" [Quote 4]
+2. ""Patients were transferred to the ward with all of them staying overnight."" [Quote 5]
+3. ""The study was approved by the institutional ethical committee of the HM Hospitals group. All patients included were informed about the treatment and written informed consent was obtained."" [Quote 6]
+
+The full text provides limited information on the recruitment process. It mentions that the study was conducted at a specific hospital and that patients were recruited from a certain time period. However, there is no information on the specific recruitment methods used or any additional efforts made to engage with patients beyond usual care. Therefore, it is difficult to assess the level of effort in recruitment. Score: [NA]
+
+Setting:
+1. ""This study was carried out in a private hospital in Madrid (Spain) at the General Surgery Department of Sanchinarro University Hospital recruiting patients from March 2013."" [Quote 4]
+
+The full text indicates that the trial was conducted in a private hospital in Madrid, Spain. However, there is no information on whether the setting of the trial is different from the usual care setting. Without further details, it is not possible to assess the level of difference in setting. Score: [NA]
+
+Organisation:
+1. ""The same team of surgeons (4 senior consultant surgeons with a minimum of 2 years’ experience in both TAPP and OL techniques) and an anesthesiology team performed the operation."" [Quote 7]
+2. ""All procedures were performed using the same surgical steps as follows."" [Quote 8]
+3. ""Patients were transferred to the ward with all of them staying overnight."" [Quote 5]
+
+The full text provides information on the organization of care delivery in the trial. The same team of experienced surgeons and anesthesiologists performed all the operations, and the procedures followed the same surgical steps. Patients were also transferred to the ward and stayed overnight, indicating that the care delivery was similar to usual care. Therefore, the organization of care appears to be pragmatic, with no significant differences from usual care. Score: [4]
+
+Flexibility (delivery):
+1. ""All procedures were performed using the same surgical steps as follows."" [Quote 8]
+2. ""Patients are allowed to resume their full activities after 10 days from surgery, except for physical exercise which was recommended to commence after 30 days from surgery."" [Quote 9]
+
+The full text indicates that the surgical procedures followed the same steps for all patients, suggesting a lack of flexibility in the delivery of the intervention. Additionally, there are specific recommendations for resuming activities after surgery, indicating a relatively strict protocol. Therefore, the flexibility in the delivery of the intervention appears to be explanatory rather than pragmatic. Score: [2]
+
+Flexibility (adherence):
+1. ""Patients are allowed to resume their full activities after 10 days from surgery, except for physical exercise which was recommended to commence after 30 days from surgery."" [Quote 9]
+
+The full text does not provide information on the flexibility in how participants must adhere to the intervention. However, since this is a surgical trial, where patients are being operated on, there may not be a compliance issue after consent has been given. Therefore, this domain may not be applicable. Score: [NA]
+
+Follow-up:
+1. ""During follow-up, there was a drop out of 6 patients (2 TAPP, 4 OL) and they have been excluded only from the cost-effectiveness analysis."" [Quote 10]
+2. ""A summary of costs is presented in Table 3."" [Quote 11]
+
+The full text does not provide detailed information on the intensity of measurement and follow-up of participants. There is mention of dropouts during follow-up, but no information on the overall follow-up process or the frequency and duration of measurements. Therefore, it is difficult to assess the level of difference in follow-up compared to usual care. Score: [NA]
+
+Primary outcome:
+1. ""The outcome parameters included surgical and postoperative costs, quality adjusted life years (QALY), and incremental cost per QALY gained or the incremental cost effectiveness ratio."" [Quote 2]
+2. ""The mean QALYs at 1 year for TAPP (0.8094) was higher than that associated with OL (0.6765) (P = 0.018)."" [Quote 3]
+
+The full text indicates that the primary outcome of the trial was the comparison of surgical and postoperative costs, quality adjusted life years (QALY), and the incremental cost per QALY gained. The primary outcome appears to be relevant to participants as it includes measures of both clinical and cost-effective outcomes. Therefore, the trial's primary outcome is pragmatic. Score: [5]
+
+Primary analysis:
+1. ""The estimated ICER for patients was 3696.10€ per QALY gained, in favor of TAPP."" [Quote 4]
+2. ""In Monte Carlo simulations analysis, there was a 10.08% probability that TAPP is both less costly and more effective."" [Quote 5]
+
+The full text provides information on the primary analysis of the trial. The analysis includes the estimation of the incremental cost per QALY gained and the probability of TAPP being both less costly and more effective. The analysis appears to include all available data and follows an intention-to-treat approach. Therefore, the primary analysis is pragmatic. Score: [5]"
+1361,10.1097/sla.0b013e3181d96c32,5995,1282,stop,False,4,3,3,5,3,3,2,3,NA,1,NA,1,3,1,5,5,5,5,"Eligibility:
+1. ""Adults presenting with primary or recurrent inguinal hernias, uni- or bilateral, with an indication for elective correction, were eligible for randomization."" [Quote 1]
+2. ""Exclusion criteria were scrotal hernia, pregnancy, and communicative or cognitive limitation that prevented informed consent."" [Quote 2]
+3. ""A medical history of prostatectomy, pfannenstiel incision, preperitoneal procedure, or abdominal bladder operation were other reasons for exclusion."" [Quote 2]
+
+The full text provides clear information on the eligibility criteria for the trial. The inclusion and exclusion criteria are well-defined and specific, allowing for a clear understanding of the target population for the intervention. Therefore, the trial can be considered pragmatic in terms of eligibility.
+
+Score: [4]
+
+Recruitment:
+1. ""Between August 2000 and March 2004, 722 patients consented to randomization."" [Quote 3]
+2. ""Randomization for TEP or Lichtenstein was carried out by telephone or fax at the outpatient clinic, by the central study coordinator, according to a balanced and stratified computer-generated list."" [Quote 4]
+3. ""The trial is registered at www.clinicaltrials.gov with number NCT00788554."" [Quote 4]
+
+The full text provides limited information on the recruitment process. It mentions the number of patients who consented to randomization and the method of randomization, but does not provide details on the efforts made to recruit participants or any additional recruitment strategies used. Therefore, it is difficult to assess the level of effort made to recruit participants beyond what would be used in usual care.
+
+Score: [3]
+
+Setting:
+1. ""Six hospitals, including 1 university hospital in the Netherlands participated in the “LEVEL”-trial."" [Quote 5]
+
+The full text provides information on the setting of the trial, stating that it took place in six hospitals, including a university hospital in the Netherlands. However, it does not provide any further details on the characteristics of the settings or whether they are representative of usual care settings. Therefore, it is difficult to assess the level of difference between the trial setting and usual care setting.
+
+Score: [3]
+
+Organisation:
+1. ""Surgeons and residents were experienced with both procedures or were supervised by an experienced surgeon."" [Quote 6]
+2. ""For TEP, a surgeon who previously performed a minimum of 100 laparoscopic interventions and a minimum of 30 endoscopic corrections of inguinal hernias had to be present in the operating room throughout the whole procedure."" [Quote 6]
+3. ""Use of prophylactic antibiotics was up to the surgeon and reported."" [Quote 6]
+
+The full text provides information on the organization of care delivery in the trial. It states that surgeons and residents were experienced with both procedures or supervised by an experienced surgeon, and that specific experience requirements were in place for the TEP procedure. It also mentions the use of prophylactic antibiotics, which suggests that additional resources may have been allocated for the trial. Therefore, the trial can be considered explanatory in terms of organization.
+
+Score: [2]
+
+Flexibility (delivery):
+1. ""Both procedures were performed under standardized techniques."" [Quote 6]
+2. ""Instructions were given to all patients, to resume normal daily activities and return to work as soon as possible, irrespective of the operative method."" [Quote 6]
+
+The full text indicates that both procedures were performed under standardized techniques and that patients were instructed to resume normal daily activities and return to work as soon as possible, regardless of the operative method. This suggests that there may not have been much flexibility in how the intervention was delivered. However, the text does not provide specific details on the flexibility in delivery beyond these statements. Therefore, it is difficult to assess the level of flexibility in delivery.
+
+Score: [NA]
+
+Flexibility (adherence):
+1. ""Neither identification nor nerve sparing surgery influenced chronic pain."" [Quote 7]
+
+The full text mentions that neither identification nor nerve sparing surgery influenced chronic pain. This suggests that there may not have been strict adherence requirements for participants in terms of the intervention. However, the text does not provide specific details on the flexibility in adherence beyond this statement. Additionally, the text mentions that chronic pain was reported in 25% to 29% of patients after one year, indicating that adherence to the intervention may have been relevant. Therefore, it is difficult to assess the level of flexibility in adherence.
+
+Score: [NA]
+
+Follow-up:
+1. ""Follow-up after 6 weeks was completed in 89% (568) and 1 year in 77% (495)."" [Quote 8]
+2. ""One-year follow-up was completed in 82% in the TEP group and 73% in the Lichtenstein group."" [Quote 8]
+
+The full text provides information on the follow-up rates at 6 weeks and 1 year, indicating that a substantial proportion of participants were followed up. However, it does not provide details on the intensity of measurement and follow-up beyond these percentages. Therefore, it is difficult to assess the level of difference in follow-up intensity between the trial and usual care.
+
+Score: [3]
+
+Primary outcome:
+1. ""Primary outcomes were postoperative pain, length of hospital stay, period until complete recovery, and quality of life (QOL)."" [Quote 1]
+2. ""Recurrences, operating time, complications, chronic pain, and costs were secondary endpoints."" [Quote 1]
+
+The full text provides information on the primary outcome measures of the trial, which include postoperative pain, length of hospital stay, period until complete recovery, and quality of life. These outcomes are relevant to participants and reflect outcomes that are important in usual care. Therefore, the trial can be considered pragmatic in terms of the primary outcome.
+
+Score: [5]
+
+Primary analysis:
+1. ""Primary analysis was performed on an intention to treat basis."" [Quote 9]
+
+The full text mentions that the primary analysis was performed on an intention to treat basis, which indicates that all available data were included in the analysis of the primary outcome. This approach is consistent with a pragmatic trial design.
+
+Score: [5]"
+1493,10.1056/nejmoa1906190,6339,753,stop,False,5,3,NA,5,3,4,2,3,NA,3,NA,4,4,4,5,4,5,5,"Eligibility:
+- ""We randomly assigned 1495 patients who were 50 years of age or older and had a displaced femoral neck fracture to undergo either total hip arthroplasty or hemiarthroplasty."" [1]
+- ""All enrolled patients had been able to ambulate without the assistance of another person before the fracture occurred."" [1]
+
+The full text provides clear information about the eligibility criteria for the trial. The participants were patients who were 50 years of age or older and had a displaced femoral neck fracture. They were also required to be able to ambulate without assistance before the fracture occurred. These criteria are relevant to the target population and are likely to be similar to those used in usual care. Score: [5]
+
+Recruitment:
+- ""We enrolled patients at 80 participating sites in Canada, the United States, Spain, the United Kingdom, the Netherlands, Norway, Finland, Australia, New Zealand, and South Africa."" [2]
+
+The full text mentions that patients were enrolled at 80 participating sites in multiple countries. However, it does not provide specific details about the recruitment methods used, such as whether targeted invitation letters or advertising were used. Without this information, it is difficult to assess the extra effort made to recruit participants beyond usual care. Score: [NA]
+
+Setting:
+- ""The trial was conducted in 80 centers in 10 countries."" [2]
+
+The full text states that the trial was conducted in 80 centers in 10 countries. This suggests that the trial setting was diverse and included multiple centers, which may not reflect the usual care setting where the intervention would be delivered. Score: [3]
+
+Organisation:
+- ""Nearly all participating surgeons (97.8%) met thresholds for surgical expertise."" [2]
+
+The full text mentions that nearly all participating surgeons met thresholds for surgical expertise. This suggests that the trial may have required a higher level of expertise and resources compared to usual care. Score: [2]
+
+Flexibility (delivery):
+- No relevant quotes.
+
+The full text does not provide specific information about the flexibility in how the intervention was delivered or whether there were strict protocols or measures to improve compliance. Without this information, it is not possible to assess the flexibility in delivery. Score: [NA]
+
+Flexibility (adherence):
+- No relevant quotes.
+
+The full text does not provide information about the flexibility in how participants were required to adhere to the intervention or whether there were measures to improve adherence. Score: [NA]
+
+Follow-up:
+- ""Over 24 months, the functional assessment tests and quality-of-life questionnaires were completed by 943 to 1141 patients (depending on the test) at one or more follow-up visits."" [3]
+
+The full text mentions that functional assessment tests and quality-of-life questionnaires were completed by a subset of patients at multiple follow-up visits over 24 months. This suggests that the intensity of measurement and follow-up may have been higher than usual care, as not all patients completed the assessments at all follow-up visits. Score: [4]
+
+Primary outcome:
+- ""The primary end point was any unplanned secondary hip procedure within 24 months after the initial surgery."" [3]
+
+The full text states that the primary outcome was any unplanned secondary hip procedure within 24 months. This outcome is relevant to the participants and is likely to be important in usual care as well. Score: [5]
+
+Primary analysis:
+- ""Analyses included patients in the groups to which they had been randomly assigned."" [3]
+
+The full text mentions that the analyses included all patients in their assigned treatment groups. This suggests that an intention-to-treat analysis was used, which is consistent with a pragmatic approach. Score: [5]"
+1352,10.1097/sla.0b013e3182765fcf,5752,1366,stop,False,4,4,5,4,4,4,4,3,3,4,NA,4,5,3,5,4,5,5,"Eligibility:
+1. ""Consecutive patients admitted for suspected acute appendicitis, aged between 18 and 75 years, were recruited. We included patients with a history of right lower quadrant pain or periumbilical pain migrating to the right lower quadrant, presence of right lower quadrant guarding, tenderness upon physical examination, and fever of more than 38°C and/or white cell counts more than 10 × 103 cells per mL."" [1]
+2. ""The exclusion criteria were as follows: diagnosis of appendicitis was not clinically established (symptoms attributable to urinary or gynecological problems), symptoms of more than 5 days, and/or a palpable mass in the right lower quadrant suggesting an appendiceal mass. Additional patients with the following conditions were also excluded: history of cirrhosis and coagulation disorders, generalized peritonitis, shock upon admission, previous abdominal surgery, ascites, suspected or proven malignancy, contraindication to general anesthesia (severe cardiac and/or pulmonary disease), inability to give informed consent, and pregnancy."" [1]
+
+The eligibility criteria for this trial appear to be relatively pragmatic. Patients were included based on clinical signs and symptoms suggestive of acute appendicitis, which is consistent with usual care. The exclusion criteria also seem reasonable and are likely to reflect the typical exclusions seen in usual care. Overall, the trial seems to have a pragmatic approach to eligibility.
+
+Score: [4]
+
+Recruitment:
+1. ""Between October 2009 and March 2011, consecutive patients admitted with clinical or radiological evidence of appendicitis were randomly assigned to receive either LESS or TPLA."" [1]
+2. ""The patients were randomized after surgery was offered. They were randomly allocated to LESS appendectomy (group A) or TPLA (group B) by opening sealed envelopes containing a computer-generated code in blocks of 10."" [1]
+
+The recruitment process for this trial appears to be pragmatic. Patients were recruited consecutively from those admitted with clinical or radiological evidence of appendicitis, which is consistent with usual care. The randomization process was also pragmatic, with patients being randomized after surgery was offered. This suggests that the trial made efforts to recruit participants in a way that is similar to usual care.
+
+Score: [5]
+
+Setting:
+1. ""The study was performed between October 2009 and March 2011 in the Prince of Wales Hospital (University affiliated) and the North District Hospital. Together, the 2 hospitals provide government-supported services to the Eastern New Territories' region in Hong Kong, which is comprised of a population of approximately 1 million people."" [1]
+
+The trial was conducted in two hospitals that provide government-supported services to a large population in Hong Kong. While the trial was conducted in specific hospitals, these hospitals are likely representative of the usual care setting for appendectomy in the region. Therefore, the trial setting appears to be pragmatic.
+
+Score: [4]
+
+Organisation:
+1. ""All procedures were performed or supervised by specialist surgeons with experience of more than 20 LESS appendectomies. They were also proficient with advanced laparoscopic surgical techniques and had experience of more than 100 laparoscopic procedures in their respective subspecialties."" [1]
+2. ""Four designated surgeons performed all the procedures in Prince of Wales Hospital, whereas the operations in North District Hospital were performed by 2 designated surgeons."" [1]
+
+The trial utilized specialist surgeons with experience in LESS appendectomy and advanced laparoscopic techniques. While this may suggest a more specialized approach compared to usual care, the fact that the surgeons had experience in both LESS and conventional laparoscopic procedures suggests that the trial did not require more than usual expertise or certification. Additionally, the fact that the surgeons were designated to perform all the procedures in their respective hospitals suggests that the trial did not require additional staff levels or resources beyond what is available in usual care. Therefore, the trial appears to have a pragmatic approach to organization.
+
+Score: [4]
+
+Flexibility (delivery):
+1. ""Two 5-mm ports and one 10-mm port were inserted through a 13-mm transumbilical incision via multiple fascial incisions."" [1]
+2. ""Conversion would be performed for the following reasons: unclear anatomy, compromised safety of dissection, complications including bleeding or adjacent organ injury, or severe contamination. Conversion would be first to TPLA followed by open appendectomy if the 3-port technique was unable to adequately address the aforementioned problems."" [1]
+
+The trial utilized a specific surgical technique for LESS appendectomy, with two 5-mm ports and one 10-mm port inserted through a transumbilical incision. While this suggests a specific protocol for the delivery of the intervention, the trial also allowed for flexibility in the form of conversion to TPLA or open appendectomy if needed. This suggests that the trial had a balance between a specific protocol and flexibility in delivery, which is consistent with usual care.
+
+Score: [3]
+
+Flexibility (adherence):
+This domain is not applicable to this trial as there is no compliance issue after consent has been given.
+
+Score: [NA]
+
+Follow-up:
+1. ""Patients were discharged when regular diet was well tolerated, they were afebrile for 24 hours and white cell counts were at a decreasing trend (20% less than admission values in patients with abnormal values). They were then required to follow-up at 2 weeks for reassessment."" [1]
+
+The follow-up process for this trial appears to be pragmatic. Patients were discharged based on usual care criteria and were followed up at 2 weeks, which is a reasonable timeframe for assessing postoperative outcomes. The trial did not involve more frequent or longer visits or unscheduled visits triggered by primary outcome events or intervening events. Therefore, the trial seems to have a pragmatic approach to follow-up.
+
+Score: [5]
+
+Primary outcome:
+1. ""The main outcome measurement was overall pain score."" [1]
+
+The primary outcome of this trial, overall pain score, is relevant to participants as it directly measures their experience of pain. There is no indication that the trial used surrogate or physiological outcomes or assessment expertise that is not available in usual care. Therefore, the trial appears to have a pragmatic approach to the primary outcome.
+
+Score: [5]
+
+Primary analysis:
+1. ""All outcomes were analyzed according to the intention-to-treat principle."" [1]
+
+The trial analyzed all outcomes according to the intention-to-treat principle, which includes all randomized participants regardless of adherence to the intervention or protocol. This suggests a pragmatic approach to the primary analysis, as it includes all available data and reflects the real-world scenario of participants in usual care.
+
+Score: [5]"
+1679,10.1111/jjns.12160,10025,1130,stop,True,4,2,4,4,3,5,4,1,4,2,4,4,4,2,5,5,5,5,"Eligibility:
+1. ""The inclusion criteria were: (i) aged ≥18 years; (ii) diagnosed with coronary heart disease and admitted for the first time; (iii) lived in the central districts of Chengdu; (iv) returned to the home residence, not long-term care facilities, after discharge; (v) could be contacted by mobile phone after discharge; and (vi) agreed to participate in the study."" [Score: 4] The eligibility criteria for this trial are relatively pragmatic, as they include patients who are representative of those who would receive the intervention in usual care. However, the criteria do exclude certain groups, such as those who live outside of the central districts of Chengdu and those who cannot be contacted by mobile phone after discharge.
+
+Recruitment:
+1. ""In total, 323 patients were contacted by the hospital nurse in the department of cardiology. As a result, 61 patients did not meet the inclusion criteria and 18 patients refused to participate in the study due to various reasons, five patients were excluded for dementia and three patients were excluded as they were not able to communicate effectively. In total, 236 patients were randomized to the study (n = 118) or the control (n = 118) group."" [Score: 4] The recruitment process for this trial appears to be relatively pragmatic, as it involved contacting patients who were already in the hospital and meeting the eligibility criteria. However, there were some exclusions, such as patients with dementia or communication difficulties, which may limit the generalizability of the findings.
+
+Setting:
+1. ""Patients in a general tertiary-level hospital in Chengdu, China, were recruited."" [Score: 3] The trial was conducted in a single center, which is more explanatory than pragmatic. However, the fact that it was a general tertiary-level hospital suggests that the setting may be more representative of usual care compared to a specialized trial or academic center.
+
+Organisation:
+1. ""The hospital–community partnership transitional program was delivered by the combination of a hospital cardiologist and a hospital nurse, as well as a family physician and a home nurse in each community healthcare center to which each patient belonged."" [Score: 4] The organization of care delivery in the intervention arm of the trial involved a combination of healthcare providers from the hospital and community healthcare centers, which is more pragmatic than if the trial had required additional staff levels or resources.
+
+Flexibility (delivery):
+1. ""The program took reference to the Project BOOST (Better Outcomes for Older adults through Safe Transitions) (Society of Hospital Medicine, 2013). The five core principles that are central to the Project BOOST are: (i) patient centeredness: the project's focus is on the needs, abilities, and desires of the patients and their families or caregivers; (ii) patient and family or caregiver empowerment: hospital care teams address the patients' postdischarge needs and empower the patients and their families or caregivers to manage them; (iii) reduce the risk for harm after discharge: the healthcare teams conduct a follow-up phone call after discharge or an expedited follow-up appointment; (iv) team-oriented: successful transition requires collaboration among the nurses, case managers, physicians, patients, and their families or caregivers; (v) bridging the care transition gap: the hospital care teams interact with the after-care providers, patients, and their families or caregivers to ensure access and follow-up in order to help the patients to address any issue or question that arises after discharge."" [Score: 4] The intervention in this trial is based on the principles of the Project BOOST, which emphasizes patient-centeredness, empowerment, and collaboration among healthcare providers. This suggests that the intervention is relatively pragmatic in terms of its flexibility in delivery.
+
+Flexibility (adherence):
+1. ""There was no significant difference in the medication adherence scores in the study group and the control group at the baseline (5.92 vs 5.81; t = 0.99, P = 0.319) (Table 3). Nevertheless, significant differences were noted both at O1 (6.86 vs 6.32; t = 5.66, P < 0.001) and O2 (6.77 vs 6.46; t = 3.50, P < 0.001)."" [Score: 4] The intervention in this trial aimed to improve medication adherence, and the results showed significant differences in adherence scores between the study group and the control group. This suggests that the intervention was relatively pragmatic in terms of its flexibility in adherence.
+
+Follow-up:
+1. ""The data were collected at the baseline, 30 days (O1), and 90 days (O2) after discharge."" [Score: 4] The follow-up period in this trial was relatively pragmatic, as it included assessments at 30 and 90 days after discharge, which is similar to what would be done in usual care.
+
+Primary outcome:
+1. ""The primary outcomes were the 30 and 90 day readmission rates after discharge."" [Score: 5] The primary outcome of this trial is directly relevant to the participants, as it measures the rate of readmission after discharge, which is an important outcome for patients with coronary heart disease.
+
+Primary analysis:
+1. ""The trial was registered on the Chinese Clinical Trial Registry."" [Score: 5] The trial was registered, which suggests that the primary analysis included all available data and followed an intention-to-treat approach.
+
+Overall score: [4]"
+1524,10.1016/j.arthro.2019.05.026,8603,683,stop,False,2,3,5,4,2,5,2,4,NA,4,NA,5,5,4,5,5,NA,5,"Eligibility:
+- ""The inclusion criteria were patients with pain and full-thickness, medium-sized (1- to 3-cm) supraspinatus tears, confirmed with arthroscopy during the operative procedure, after unsuccessful conservative treatment (consisting of anti-inflammatory medications, physical therapy, and activity modification) for a minimum of 3 months."" [1]
+- The study clearly defines the eligibility criteria for participants, including the specific tear size and previous treatment failure. This suggests a more explanatory approach with specific exclusions. Score: [2]
+
+Recruitment:
+- ""All patients were evaluated preoperatively and postoperatively (at 12 and 24 months) using the modified University of California, Los Angeles scoring system; active range of motion (flexion and external rotation); and a visual analog scale for pain."" [1]
+- The recruitment process is not explicitly described in the full text. However, it can be inferred that patients were recruited from a clinical setting based on the mention of preoperative and postoperative evaluations. This suggests a more pragmatic approach with recruitment through usual appointments or clinic. Score: [5]
+
+Setting:
+- ""This study was approved by the institutional review board, and all patients provided informed consent. All surgical procedures were performed by the author (K.Y.)."" [1]
+- The setting of the trial is not explicitly described in the full text. However, it can be inferred that the trial was conducted in a single center, as all surgical procedures were performed by the same author. This suggests a more explanatory approach with a single center. Score: [2]
+
+Organization:
+- ""The repair procedure (medially based single-row or suture bridge repair) was randomized after preparation of the footprint (including arthroscopic subacromial decompression, mobilization of the torn rotator cuff, debridement, and microfracture on the footprint, with or without tenotomy or tenodesis of the long head of the biceps tendon, if indicated) by opening a sealed envelope."" [1]
+- The organization of care delivery in the intervention arm is described in the full text, including the specific steps of the repair procedure. This suggests a more explanatory approach with additional steps and procedures beyond usual care. Score: [2]
+
+Flexibility (delivery):
+- The flexibility in how the intervention is delivered is not explicitly described in the full text. Score: [NA]
+
+Flexibility (adherence):
+- The flexibility in how participants must adhere to the intervention is not applicable in this trial, as it involves surgical repair. Score: [NA]
+
+Follow-up:
+- ""The mean follow-up duration was 28.6 ± 3 months (range, 24-32 months)."" [1]
+- The follow-up duration is clearly stated in the full text, indicating a pragmatic approach with no more than usual follow-up. Score: [5]
+
+Primary outcome:
+- ""This study did not show any significant differences in the clinical outcomes and cuff integrity between the 2 treatment groups at final follow-up."" [1]
+- The primary outcome of the trial is relevant to participants, as it assesses clinical outcomes and cuff integrity. This suggests a more pragmatic approach with an outcome of obvious importance to participants. Score: [5]
+
+Primary analysis:
+- The full text does not provide enough information to assess this domain. Score: [NA]"
+1760,pmid:25811824,10617,815,stop,False,4,4,NA,5,3,5,4,4,3,4,5,3,4,5,5,1,5,5,"Eligibility:
+- ""We enrolled participants who were 40 years or older, had diabetes mellitus or atherosclerotic cardiovascular disease, and were suboptimally adherent."" [1]
+- ""We excluded only individuals with medical conditions that might contraindicate the use of these medications, such as medication allergies, liver failure, cirrhosis, rhabdomyolysis, end-stage renal disease, chronic kidney disease."" [1]
+
+The full text provides clear information about the eligibility criteria for the trial. Participants were required to have specific medical conditions (diabetes mellitus or atherosclerotic cardiovascular disease) and be suboptimally adherent to their medications. Exclusions were limited to medical conditions that could contraindicate the use of the medications. This suggests a more pragmatic approach to eligibility criteria. Score: [4]
+
+Recruitment:
+- ""We randomly selected 25,323 for study inclusion and randomized those people into one of the main study arms (n = 21,752) or to one of the 2 ancillary treatment arms (n = 3571)."" [1]
+
+The full text does not provide detailed information about the recruitment process. It mentions that participants were randomly selected and randomized into study arms, but it does not provide information about the methods used to recruit participants or any additional efforts made to engage with patients. Score: [NA]
+
+Setting:
+- ""The study took place in 3 large health maintenance organizations."" [1]
+
+The full text mentions that the study took place in three large health maintenance organizations. However, it does not provide any information about how similar these organizations are to usual care settings. Score: [3]
+
+Organisation:
+- ""UC participants had access to the full range of usual services, including each region’s normal education and care management outreach efforts to encourage statin and ACEI/ARB use."" [1]
+
+The full text mentions that usual care participants had access to the full range of usual services, including education and care management outreach efforts. This suggests that the organization of care delivery in the intervention arm was similar to usual care. Score: [4]
+
+Flexibility (delivery):
+- ""IVR participants received automated phone calls when they were due or overdue for a refill. IVR+ participants received these phone calls, plus personalized reminder letters, live outreach calls, EMR-based feedback to their primary care providers, and additional mailed materials."" [1]
+
+The full text describes the interventions used in the trial, which involved automated phone calls and additional materials for the IVR+ participants. This suggests that there was some flexibility in how the intervention was delivered. Score: [3]
+
+Flexibility (adherence):
+- ""We used a modified version of the Proportion of Days Covered (PDC), defined from pharmacy dispensing records, for our primary measure."" [1]
+
+The full text mentions that the primary measure of adherence was based on pharmacy dispensing records. This suggests that there was no strict protocol or measures to improve adherence. Score: [5]
+
+Follow-up:
+- ""Mean duration of follow-up was 9.6 months and did not vary by treatment arm."" [1]
+
+The full text provides information about the duration of follow-up, which was 9.6 months and did not vary by treatment arm. This suggests that the intensity of measurement and follow-up was similar to usual care. Score: [4]
+
+Primary outcome:
+- ""The primary outcome was medication adherence; blood pressure and lipid levels were secondary outcomes."" [1]
+
+The full text mentions that the primary outcome of the trial was medication adherence. This suggests that the primary outcome was relevant to participants. Score: [5]
+
+Primary analysis:
+- ""We used an intention-to-treat analysis to compare primary and secondary outcomes between intervention and UC participants."" [1]
+
+The full text mentions that an intention-to-treat analysis was used to compare outcomes between intervention and usual care participants. This suggests that all data were included in the analysis of the primary outcome. Score: [5]"
+1395,10.1227/neu.0b013e3182284aca,11943,872,stop,False,4,2,4,5,4,4,4,5,4,5,4,4,4,3,5,4,5,NA,"Eligibility:
+1. ""The inclusion criterion was planned unilateral adrenal surgery for a benign tumor up to 7 cm in diameter."" [1]
+2. ""Exclusion criteria were diffuse peritonitis in history, major abdominal surgery in history, planned bilateral adrenal surgery, adrenal tumor more than 7 cm in diameter, suspected adrenocortical cancer, metastasis to adrenal gland, previous adrenal surgery, pregnancy or lactation, age less than 18 or more than 80 years, American Society of Anesthesiologists fitness grade IV, and inability to comply with the follow-up protocol."" [1]
+Score: [4]
+
+Recruitment:
+1. ""Patients referred to the Third Department of General Surgery, Jagiellonian University Medical College, Krakow, between January 2006 and June 2008 for first time adrenal surgery were registered."" [1]
+2. ""The patients were randomized to one of the parallel groups: PRA or LTLA."" [1]
+Score: [4]
+
+Setting:
+1. ""All operations in this study were unilateral total adrenalectomies and were carried out by a single experienced endocrine surgeon (M.B.) under general anesthesia."" [1]
+2. ""The surgeon (M.B.) has been performing adrenalectomies by either PRA or LTLA since 2003, and before the starting date of this randomized study, he gained proficiency with both approaches on the basis of 107 consecutive adrenalectomies (50 PRA and 57 LTLA)."" [1]
+Score: [4]
+
+Organization:
+1. ""The surgeon (M.B.) completed a training program in LTLA during his visiting observership in 2002 in the Mount Sinai School of Medicine, Minimally Invasive Surgery Center (New York) headed by M. Gagner, and in PRA during his visiting observership in 2003 in the Department of Surgery and Center for Minimally Invasive Surgery, University of Essen (Essen, Germany) headed by M. Walz."" [1]
+2. ""Since PRA is an attractive alternative to LTLA, both techniques should be included in the armamentarium of surgeons who perform adrenalectomy routinely."" [1]
+Score: [4]
+
+Flexibility (delivery):
+1. ""In all the patients, adrenal tumor was confirmed preoperatively by abdominal spiral computed tomography (CT) and hormonal activity was assessed in keeping with the current standards."" [1]
+2. ""The patients were encouraged to be mobilized and to drink and eat soon after returning from the recovery room."" [1]
+Score: [4]
+
+Flexibility (adherence):
+1. ""The patients, nurses, and outcomes-assessing clinical investigators were blinded to the relevant group assignment."" [1]
+2. ""In cases of bulging, local pain and/or tenderness and any equivocal finding, the patients underwent an ultrasonography using a 7.5 MHz linear-array probe to confirm or rule out the existence of a hernia."" [1]
+Score: [4]
+
+Follow-up:
+1. ""The patients were encouraged to be mobilized and to drink and eat soon after returning from the recovery room."" [1]
+2. ""The prevalence of postoperative complications was evaluated during hospitalization and visits at the outpatient surgical department scheduled at 7 days and 1, 12, 24, 36, 48, and 60 months after the operation."" [1]
+Score: [4]
+
+Primary outcome:
+1. ""The primary endpoint was duration of surgery."" [1]
+2. ""Duration of PRA was significantly shorter than LTLA: 50.7 minutes (44.9–56.6) versus 77.3 minutes (71.1–83.6), P < 0.001, respectively."" [1]
+Score: [5]
+
+Primary analysis:
+1. ""Data are presented as mean with 95% confidence interval (CI) unless stated otherwise."" [1]
+2. ""The statistical significance of categorical variables was evaluated by the χ2 test, whereas the Student t test was used for the analysis of continuous variables."" [1]
+Score: [5]
+
+Overall score: [4]"
+1688,10.1136/annrheumdis-2013-203843,10542,968,stop,False,4,4,4,NA,4,5,4,2,3,4,3,NA,4,1,4,3,4,5,"Eligibility:
+1. ""Biologic-naive patients with active RA and an inadequate response to MTX were randomised to 125 mg abatacept weekly or 40 mg adalimumab bi-weekly, both with a stable dose of MTX."" [1]
+2. ""Patients met the 1987 American Rheumatism Association (ARA) criteria for RA, had active disease for ≤5 years despite MTX therapy and were naive to biologic therapy."" [2]
+
+Score: [4] The trial included patients who met specific eligibility criteria for RA and had an inadequate response to MTX. However, the trial excluded patients who had previously received biologic therapy, which may limit the generalizability of the results to a broader population of RA patients.
+
+Recruitment:
+1. ""Of 646 patients randomised, 79.2% abatacept and 74.7% adalimumab patients completed year 2."" [3]
+
+Score: [4] The trial had a high completion rate, suggesting that the recruitment methods used were effective in engaging and retaining participants. However, the full text does not provide specific details about the recruitment methods used, so a higher score cannot be given.
+
+Setting:
+1. ""AMPLE is a 2-year, phase IIIB, multinational, prospective, randomised study comparing subcutaneous abatacept and adalimumab on stable background MTX in patients naive to bDMARDs."" [2]
+
+Score: [4] The trial was conducted in multiple centers across different countries, which suggests that the setting was representative of usual care for RA patients. However, the full text does not provide specific details about the types of centers or settings involved, so a higher score cannot be given.
+
+Organisation:
+1. ""Clinical assessors were blinded to patient treatment and assessed patients’ joints, disease activity and defined adverse event (AE) causality."" [2]
+
+Score: [4] The trial used blinded clinical assessors, which suggests that the organization of care delivery in the intervention arm was similar to usual care. However, the full text does not provide specific details about any additional resources, provider expertise, or changes in care delivery, so a higher score cannot be given.
+
+Flexibility (delivery):
+1. ""Double-blinding of the study drugs was not feasible due to the logistic barrier of masking Humira; patients were not blinded with regard to their study drug."" [2]
+
+Score: [3] The trial did not have a strict protocol for drug administration, as patients were aware of the study drug they were receiving. However, the full text does not provide specific details about the flexibility in how the intervention was delivered, so a higher score cannot be given.
+
+Flexibility (adherence):
+1. ""No adjustment within 56 days of Day 729 was allowed."" [2]
+
+Score: [3] The trial had some restrictions on adherence, as adjustments to the dose of MTX were not allowed within a specific time period. However, the full text does not provide specific details about any other measures to improve adherence or exclusions based on adherence, so a higher score cannot be given.
+
+Follow-up:
+1. ""Efficacy and safety outcomes were evaluated at days 1, 15, 29 and every 4 weeks thereafter during year 1, and every 3 months during year 2."" [2]
+
+Score: [4] The trial had regular follow-up visits to assess efficacy and safety outcomes, which suggests that the intensity of measurement and follow-up of participants was similar to usual care. However, the full text does not provide specific details about the duration or frequency of follow-up visits, so a higher score cannot be given.
+
+Primary outcome:
+1. ""The primary endpoint was at 1 year but the blinded study continued for 2 years to provide controlled, comparative assessment of long term safety, efficacy and radiographic outcomes."" [2]
+
+Score: [4] The trial's primary outcome was relevant to participants, as it assessed safety, efficacy, and radiographic outcomes over a 2-year period. However, the full text does not provide specific details about the relevance of the primary outcome to usual care, so a higher score cannot be given.
+
+Primary analysis:
+1. ""All efficacy analyses were assessed using the intent-to-treat (ITT) populations; all safety analyses were assessed using the as-treated population."" [2]
+
+Score: [4] The trial included all available data in the analysis of the primary outcome, as it used the intent-to-treat population. However, the full text does not provide specific details about any exclusions or restrictions in the analysis, so a higher score cannot be given."
+670,10.1016/j.jbmt.2013.04.001,5735,1086,stop,False,4,5,3,5,NA,4,3,5,5,5,NA,NA,5,NA,5,5,5,NA,"Eligibility:
+- ""Participants were clients seen in the multiple sclerosis clinics at Sutherland-Chan School, in which the study was conducted. Clients were provided with information about the clinic by the local chapter of the Multiple Sclerosis Society, and self selected on that basis."" [1]
+- ""Of the fifteen study participants, all had previously received a diagnosis of multiple sclerosis."" [1]
+- ""The clients presented to the clinic with a variety of impairments, including some specifically related to the disease process and others that were primarily musculoskeletal in origin."" [1]
+
+The full text provides information about the eligibility criteria for the trial. Participants were clients with a diagnosis of multiple sclerosis who self-selected to participate in the study. The text also mentions that the clients presented with a variety of impairments related to the disease. Based on this information, the trial seems to have a pragmatic approach to eligibility criteria. 
+
+Score: [4]
+
+Recruitment:
+- ""Clients attending the clinic were interviewed, and their case histories recorded. The research project was explained, and written informed consent was obtained."" [1]
+- ""The inclusion criterion for the study was a diagnosis of multiple sclerosis, and therefore the spectrum of clinical presentations was broad, as would be expected in this client population."" [1]
+
+The full text does not provide specific information about the recruitment process for the trial. However, it mentions that clients attending the clinic were interviewed and provided with information about the research project. Based on this information, it can be inferred that the recruitment process was likely pragmatic, involving usual care procedures for obtaining informed consent and enrolling participants.
+
+Score: [3]
+
+Setting:
+- ""Participants were clients seen in the multiple sclerosis clinics at Sutherland-Chan School, in which the study was conducted."" [1]
+
+The full text indicates that the trial was conducted in the multiple sclerosis clinics at Sutherland-Chan School. However, it does not provide information about the usual care setting for the intervention. Without this information, it is difficult to assess the setting domain.
+
+Score: [NA]
+
+Organisation:
+- ""The treatment plans were approved by the clinical teacher in charge."" [1]
+- ""The teacher also monitored treatment delivery, which involved the application of a variety of techniques appropriate to the client's needs."" [1]
+
+The full text mentions that the treatment plans were approved by a clinical teacher and that the teacher monitored treatment delivery. This suggests that there was some level of organization and oversight in the delivery of the intervention. However, the text does not provide specific information about any additional resources, provider expertise, or changes in care delivery organization. 
+
+Score: [3]
+
+Flexibility (delivery):
+- ""Massage therapy is aligned with the wellness paradigm of health and health care, which speaks to a holistic client centered approach to treatment."" [1]
+- ""Accordingly, if the current research was to conform to the requirements of model fit/ecological validity, it was incumbent on the therapists to construct individualized treatment plans recognizing the importance of the client's physical, psychological and emotional needs."" [1]
+
+The full text suggests that the delivery of the intervention was flexible and individualized, aligned with a holistic client-centered approach. The therapists constructed treatment plans based on the clients' needs, considering their physical, psychological, and emotional aspects. This indicates a pragmatic approach to the flexibility of intervention delivery.
+
+Score: [5]
+
+Flexibility (adherence):
+- No relevant quotes found.
+
+The full text does not provide information about the flexibility in how participants must adhere to the intervention or the likely flexibility in usual care. Therefore, it is not possible to assess this domain.
+
+Score: [NA]
+
+Follow-up:
+- ""Self-Efficacy scores were obtained before the first treatment, mid-treatment series, after the last treatment in the series, four weeks after the final treatment and again eight weeks after the final treatment had been received."" [1]
+
+The full text provides information about the follow-up schedule for the trial. Self-efficacy scores were obtained at multiple time points, including four weeks and eight weeks after the final treatment. This suggests that the trial had a pragmatic approach to the intensity of measurement and follow-up.
+
+Score: [5]
+
+Primary outcome:
+- ""Self-Efficacy [SE] was the outcome for the study, measured using the Multiple Sclerosis Self-Efficacy survey [MSSE]."" [1]
+- ""The MSSE survey was originally developed and validated by Schwartz et al. (1996), based on the work of Lorig et al. (1989), who created a similar tool for use with people suffering from arthritis."" [1]
+
+The full text provides information about the primary outcome measure used in the trial, which is self-efficacy measured using the MSSE survey. The text does not mention any surrogate or physiological outcomes, suggesting that the trial had a pragmatic approach to the choice of primary outcome.
+
+Score: [5]
+
+Primary analysis:
+- ""The data were analyzed on an intention to treat basis, with a focus on the differences between mean MSSE values of the control and intervention groups."" [1]
+
+The full text mentions that the data were analyzed on an intention to treat basis, focusing on the differences between mean MSSE values of the control and intervention groups. This indicates a pragmatic approach to the analysis of the primary outcome, including all available data.
+
+Score: [5]"
+1230,10.2106/jbjs.m.01542,7447,877,stop,False,2,3,3,5,3,5,3,5,4,5,NA,5,2,1,2,5,4,1,"Eligibility:
+1. ""Exclusion criteria included inflammatory arthritis, osteoporosis, Paget disease, corticosteroid use in the last twelve months, acute femoral neck fracture, previous surgery on the involved side, active infection, malignant tumor within the last five years, and other factors that might affect weight-bearing or rehabilitation."" [Quote 1]
+2. ""Patients for whom the appropriate size and offset of implant were not available were also excluded."" [Quote 2]
+
+The full text provides clear information about the eligibility criteria used in the trial. The exclusion criteria are well-defined and specific, which suggests a more explanatory approach. Additionally, the exclusion of patients for whom the appropriate size and offset of implant were not available indicates a more explanatory approach as well. 
+
+Score: [2]
+
+Recruitment:
+1. ""Subjects between fifty and seventy years of age who presented for primary total hip arthroplasty for noninflammatory arthritis at a single regional orthopaedic center were eligible for enrollment into the study."" [Quote 3]
+
+The full text does not provide specific information about the recruitment methods used in the trial. However, it mentions that the study was conducted at a single regional orthopaedic center, which suggests a more explanatory approach. 
+
+Score: [3]
+
+Setting:
+1. ""All patients underwent a primary total hip arthroplasty with an SR71 or Stability femoral stem, a 28-mm cobalt-chromium Articul/eze femoral head, and an all-polyethylene cemented Elite Plus Long Posterior Wall acetabular cup (all products produced by DePuy International, Leeds, U.K.)."" [Quote 4]
+
+The full text does not provide specific information about the setting of the trial. However, it mentions that the study was conducted at a single regional orthopaedic center, which suggests a more explanatory approach. 
+
+Score: [3]
+
+Organisation:
+1. ""The operations were performed by the senior author (D.E.B.) in one center using the posterior approach with the patient in the lateral decubitus position."" [Quote 5]
+
+The full text does not provide specific information about the resources, provider expertise, or organization of care delivery in the intervention arm of the trial. However, it mentions that the operations were performed by the senior author in one center, which suggests a more explanatory approach. 
+
+Score: [3]
+
+Flexibility (delivery):
+1. ""The surgical approach, prophylactic measures against infection and thromboembolism, and postoperative rehabilitation varied among surgeons and institutions."" [Quote 6]
+
+The full text provides information that the surgical approach, prophylactic measures, and postoperative rehabilitation varied among surgeons and institutions. This suggests a more pragmatic approach with flexibility in how the intervention is delivered. 
+
+Score: [4]
+
+Flexibility (adherence):
+Score: [NA]
+
+The full text does not provide information about the flexibility in how participants must adhere to the intervention.
+
+Follow-up:
+1. ""Patients were followed for up to ten years with repeated assessments of bone mineral density, radiographs, Harris hip scores (HHS), and visual analog scale (VAS) pain scores."" [Quote 7]
+
+The full text provides information that patients were followed for up to ten years with repeated assessments of various outcomes. This suggests a more explanatory approach with more intensive measurement and follow-up of participants. 
+
+Score: [2]
+
+Primary outcome:
+1. ""The primary outcome measure was bone mineral density as measured by dual x-ray absorptiometry (DXA) scan (Lunar Prodigy, GE Medical Systems, Diegem, Belgium)."" [Quote 8]
+
+The full text provides information about the primary outcome measure, which is bone mineral density measured by DXA scan. This suggests a more explanatory approach with a surrogate outcome that may not be directly relevant to participants. 
+
+Score: [2]
+
+Primary analysis:
+1. ""There were no differences in patient demographics or outcome measures at baseline between the two implant groups."" [Quote 9]
+
+The full text does not provide specific information about the primary analysis of the trial. However, it mentions that there were no differences in patient demographics or outcome measures at baseline between the two implant groups, which suggests a more pragmatic approach with intention-to-treat analysis. 
+
+Score: [4]"
+1683,10.1136/annrheumdis-2011-201247,8654,1036,stop,False,4,1,3,NA,4,5,3,3,3,3,NA,NA,4,2,4,4,4,5,"Eligibility:
+1. ""Eligible patients were 18 years or older with a diagnosis of RA based on the 1987 ACR classification criteria,4 with a disease duration from diagnosis of less than 1 year."" [1]
+2. ""Patients must have met the following five criteria: (1) disease activity score based on 28 joints (DAS28) and C-reactive protein (CRP) greater than 3.2; (2) tender joint count based on 68 joints (TJC68) of 8 or greater; (3) swollen joint count based on 66 joints (SJC66) of 6 or greater; (4) erythrocyte sedimentation rate of 28 mm/h or greater or CRP of 1.5 mg/dl or greater and (5) either rheumatoid factor (RF) positive, anticyclic citrullinated peptide positive, or more than one erosion on the hands or feet by x-ray."" [1]
+3. ""Patients who had received previous methotrexate, more than two synthetic DMARD, anti-TNF therapy, or any other biological DMARD were excluded, as were those receiving intra-articular or parenteral corticosteroids in the 4 weeks preceding screening."" [1]
+
+The full text provides clear information on the eligibility criteria for the trial, including the specific disease activity and joint count requirements. It also specifies the exclusion criteria for previous treatments and corticosteroid use. Based on this information, the trial appears to have a more explanatory approach with some exclusions, but it is not overly restrictive. Score: [4]
+
+Recruitment:
+1. ""OPTIMA (NCT00420927) was conducted at 161 centres in North and South America, Europe, Africa, New Zealand and Australia from December 2006 to July 2010."" [1]
+
+The full text does not provide specific information on the recruitment methods used in the trial. However, it mentions that the trial was conducted at multiple centers across different continents, suggesting a more pragmatic approach to recruitment. Score: [3]
+
+Setting:
+1. ""OPTIMA (NCT00420927) was conducted at 161 centres in North and South America, Europe, Africa, New Zealand and Australia from December 2006 to July 2010."" [1]
+
+The trial was conducted at multiple centers across different continents, indicating a more pragmatic approach to the setting. Score: [4]
+
+Organization:
+1. ""The frequencies of total AE and serious AE were similar between the ADA+MTX and PBO+MTX groups."" [2]
+
+The full text does not provide specific information on the resources, provider expertise, or organization of care delivery in the trial. However, it mentions that the frequencies of adverse events were similar between the treatment groups, suggesting that the trial did not involve significant increases in resources or staff levels. Score: [3]
+
+Flexibility (delivery):
+1. ""Treatment modifications were to be made in a subsequent study period based on the achievement of DAS28(CRP) <3.2 at weeks 22 and 26."" [1]
+
+The full text mentions that treatment modifications were made based on the achievement of a specific disease activity score. This suggests that there was some flexibility in how the intervention was delivered, allowing for adjustments based on individual patient response. Score: [3]
+
+Flexibility (adherence):
+1. ""The overall frequency of adverse events was comparable between groups."" [2]
+
+The full text does not provide specific information on the flexibility in how participants must adhere to the intervention. However, it mentions that the overall frequency of adverse events was similar between the treatment groups, suggesting that there were no specific measures to improve adherence or exclusions based on adherence. Score: [NA]
+
+Follow-up:
+1. ""Clinical assessments during period 1 were performed at baseline and weeks 2, 4, 8, 12, 22 and 26."" [1]
+
+The full text provides information on the frequency of clinical assessments during the trial, indicating a more pragmatic approach to follow-up. Score: [4]
+
+Primary outcome:
+1. ""The primary endpoint of the study was a composite of DAS28(CRP) less than 3.2 at week 78 and no radiographic progression from baseline to week 78 in the van der Heijde modified total Sharp score (ΔmTSS ≤0.5)."" [1]
+
+The full text provides information on the primary outcome measure used in the trial, which is a composite of disease activity and radiographic progression. This suggests that the primary outcome is relevant to the participants and aligns with usual care practices. Score: [4]
+
+Primary analysis:
+1. ""The intent-to-treat population included all randomly assigned patients who received at least one dose of study drug."" [2]
+
+The full text mentions that the intent-to-treat population included all randomly assigned patients who received at least one dose of the study drug, indicating a more pragmatic approach to the primary analysis. Score: [4]"
+1445,10.1016/j.athoracsur.2011.07.083,6142,1197,stop,False,3,5,NA,4,3,3,3,3,NA,3,NA,3,4,2,3,3,5,NA,"Eligibility:
+1. ""This study compared sympathicotomy over the second (R2) vs third (R3) costal head relative to these variables in patients with massive palmar hyperhidrosis."" [1]
+2. ""A total of 121 consecutive patients with the classic manifestations of disabling palmoplantar hyperhidrosis [6] were prospectively randomized to R2 or R3 sympathicotomy."" [2]
+3. ""The 6 patients whose hyperhidrosis was not cured were significantly younger than those patients whose sympathicotomies were completely curative (19.7 ± 2.5 vs 26.4 ± 8.0 years; p = 0.04)."" [3]
+
+The full text provides information on the eligibility criteria used in the trial. The study enrolled patients with the classic manifestations of disabling palmoplantar hyperhidrosis and randomized them to receive either R2 or R3 sympathicotomy. The age difference between patients whose sympathicotomies were successful and those whose hyperhidrosis was not cured suggests that age may have been a factor in the eligibility criteria. However, the full text does not provide detailed information on other eligibility criteria such as comorbidities or previous treatments. Score: [3]
+
+Recruitment:
+1. ""These 121 patients had bilateral procedures (ie, 2 sympathicotomies per patient) for a total of 142 procedures (122 R2 and 120 R3)."" [4]
+2. ""The patients frequently were treated with medical management before they sought consultation for surgical consideration."" [5]
+3. ""For those patients without prior medical treatments and whose insurance carriers so required, we initiated topical aluminum chloride hexahydrate 20% (Drysol, Person & Covey, Glendale, CA) or 6.25% (Xerac AC, Person & Covey) in anhydrous ethyl alcohol, oral glycopyrrolate (Robinul, Shionogi USA Inc, Florham Park, NJ) at progressively increased dosages, or iontophoresis with the Drionic device (General Medical, Los Angeles, CA), despite the realization that these medical treatments would likely fail."" [5]
+
+The full text does not provide explicit information on the recruitment methods used in the trial. However, it mentions that the patients frequently received medical management before seeking surgical consideration, suggesting that recruitment may have involved patients who had already tried other treatments. The full text also mentions the use of specific medications and devices for medical management, indicating that patients may have been recruited from a specific population who had access to these treatments. Score: [NA]
+
+Setting:
+1. ""All operations were done as outpatient procedures."" [6]
+
+The full text mentions that all operations were done as outpatient procedures, indicating that the trial setting was likely a hospital or surgical center. However, it does not provide information on the number or type of centers involved in the trial. Score: [3]
+
+Organisation:
+1. ""The surgical techniques were as previously described [10]."" [7]
+2. ""The study design and subject informed consent form were reviewed and approved by the Doctors Surgery Center Institutional Review Board."" [8]
+
+The full text mentions that the surgical techniques used in the trial were previously described, suggesting that the trial may have followed established protocols. It also states that the study design and informed consent form were reviewed and approved by an institutional review board, indicating that the trial had appropriate ethical oversight. However, the full text does not provide information on other aspects of organization such as staff levels, training, or resources. Score: [3]
+
+Flexibility (delivery):
+1. ""The surgical techniques were as previously described [10]."" [7]
+
+The full text does not provide explicit information on the flexibility in how the intervention was delivered. However, it mentions that the surgical techniques used were previously described, suggesting that there may have been a standardized protocol for the delivery of the intervention. Score: [NA]
+
+Flexibility (adherence):
+1. ""The patients frequently were treated with medical management before they sought consultation for surgical consideration."" [5]
+
+The full text mentions that the patients frequently received medical management before seeking surgical consideration. This suggests that adherence to medical treatments may have been a factor in the eligibility criteria, but it does not provide information on the adherence requirements for the surgical intervention itself. Score: [NA]
+
+Follow-up:
+1. ""Patients were questioned at 6 months and after 1 year by phone or mail survey."" [9]
+
+The full text mentions that patients were followed up at 6 months and after 1 year through phone or mail surveys. However, it does not provide information on the intensity or frequency of measurement and follow-up. Score: [4]
+
+Primary outcome:
+1. ""This study compared sympathicotomy over the second (R2) vs third (R3) costal head relative to these variables in patients with massive palmar hyperhidrosis."" [1]
+
+The full text mentions that the study compared sympathicotomy over the R2 and R3 costal heads. It does not provide detailed information on the relevance of the primary outcome to the participants or whether it is of obvious importance to them. Score: [3]
+
+Primary analysis:
+1. ""The Wilcoxon rank sum test was used for differences in continuous variables between sympathicotomy groups."" [10]
+2. ""The Pearson χ2 test with Yates continuity correction was used for differences in dichotomous outcomes."" [10]
+3. ""Logistic regression analysis was used to analyze multiple category exposures."" [10]
+
+The full text mentions the statistical tests used for the primary analysis, indicating that all available data were included in the analysis. However, it does not provide information on whether ineligible post-randomization participants were excluded or whether only completers or those following the treatment protocol were included. Score: [5]"
+729,10.1093/ageing/afu033,7148,1385,stop,False,3,3,4,4,4,5,3,4,4,5,4,5,4,4,4,3,3,3,"Eligibility:
+1. ""Eligibility criteria included living at home and receiving case manager care, being housebound or attending day centres in Bradford, UK."" 
+2. ""People were excluded if they were unable to stand and walk independently; currently participating in an alternative exercise programme; registered blind. Those who had poorly controlled angina; had another household member already in the trial; had severe dementia or were receiving palliative care, were also excluded.""
+
+The eligibility criteria for this trial seem to be relatively pragmatic. Participants needed to be living at home and receiving case manager care, which is similar to usual care. However, there were some exclusions based on physical and cognitive abilities, which may limit the generalizability of the trial. Overall, the eligibility criteria suggest a moderately pragmatic approach.
+
+Score: [3]
+
+Recruitment:
+1. ""Verbal assent was first sought by the member of the health or social services team coordinating individual care. Potential participants identified from GP registers were contacted by letter from the practice and responses were mailed directly to the study team. Those expressing an interest were visited at home by trained clinical researchers who undertook detailed screening, explained the study in full to eligible candidates and provided written information leaflets. Informed consent was obtained prior to baseline assessment.""
+
+The recruitment methods used in this trial involved contacting potential participants through GP registers and mailing them information about the study. Trained clinical researchers then visited interested individuals at home to explain the study and obtain informed consent. These methods seem to be relatively pragmatic and similar to how participants would be recruited in usual care settings.
+
+Score: [4]
+
+Setting:
+1. ""The trial was conducted in Bradford, UK.""
+2. ""The intervention was delivered by Bradford Teaching Hospitals NHS Foundation Trust community physiotherapists.""
+
+The trial was conducted in Bradford, UK, which suggests that the setting was similar to usual care for the participants. The intervention was delivered by community physiotherapists from a local hospital, which further supports the pragmatic nature of the setting. However, it is unclear if the trial was conducted in multiple centers or if it was limited to a single center, which could affect the generalizability of the findings.
+
+Score: [4]
+
+Organisation:
+1. ""The control group continued to receive usual care from the primary healthcare team and, other than baseline and follow-up assessments, had no contact with the research team.""
+2. ""Physiotherapists receive intervention training in a 2-h workshop. At the beginning of the intervention, participants are requested to perform five repetitions of each exercise in the routine. This progresses to 10 and then 15 repetitions as performance improves. The exercise routine takes <15 min to complete, and participants are requested to complete the routine three times a day on 5 days of the week.""
+
+The control group received usual care from the primary healthcare team, which suggests that the organization of care delivery in the control group was similar to usual care. The intervention group received training for the physiotherapists delivering the intervention, and the intervention itself involved a specific exercise routine that participants were asked to perform multiple times a day. This suggests that there may have been some additional resources and training required for the intervention arm compared to usual care.
+
+Score: [3]
+
+Flexibility (delivery):
+1. ""Participants receive weekly support from physiotherapists through five face-to-face home visits and seven telephone calls.""
+2. ""If participants are coping well with the exercises they are encouraged to progress within the programme. Progression is by increasing repetitions, introducing new exercises or advancing to the next level of the HOPE programme.""
+
+The delivery of the intervention involved regular support from physiotherapists through home visits and telephone calls. The intervention also allowed for flexibility in terms of progression, with participants being encouraged to increase repetitions, introduce new exercises, or advance to the next level of the program if they were coping well. This suggests that there was some flexibility in how the intervention was delivered, which is similar to what might be expected in usual care.
+
+Score: [4]
+
+Flexibility (adherence):
+1. ""Adherence diaries were returned by 27 of the 28 participants (96%) who completed the 12-week intervention. Of the adherence diaries returned, the mean diary completion was 64%, the mean total adherence was 46% and the mean partial or total adherence was 67%.""
+
+The trial collected data on adherence through self-completed adherence diaries. The mean adherence rates were relatively high, with a mean total adherence of 46% and a mean partial or total adherence of 67%. This suggests that there was some flexibility in how participants were expected to adhere to the intervention, as they were not required to complete the exercises every day. However, it is unclear if there were any measures in place to improve adherence if participants were found to be non-compliant.
+
+Score: [4]
+
+Follow-up:
+1. ""Follow-up information is therefore available for 70 participants (83% of those randomised; 40 intervention participants and 30 control participants).""
+2. ""All outcomes were collected at baseline and at 14 weeks post-randomisation.""
+
+The follow-up rate for this trial was relatively high, with follow-up information available for 83% of those randomized. The follow-up period was 14 weeks, which is a reasonable duration for a trial of this nature. The intensity of measurement and follow-up seems to be similar to what might be expected in usual care.
+
+Score: [4]
+
+Primary outcome:
+1. ""The primary outcome was mobility, measured using the timed-up-and-go test (TUGT).""
+2. ""There was a non-significant trend towards a clinically important improved outcome in the intervention group (mean adjusted between-group difference in the TUGT 28.6 s, 95% CI −8.5, 65.9 s).""
+
+The primary outcome of this trial was mobility, measured using the timed-up-and-go test (TUGT). The TUGT is a relevant and patient-centered outcome measure for older people with frailty. The trial found a non-significant trend towards an improved outcome in the intervention group, suggesting that the primary outcome was relevant to the participants.
+
+Score: [4]
+
+Primary analysis:
+1. ""Missing data were addressed by listwise exclusion.""
+2. ""The final intention-to-treat analysis included all randomised participants for whom the follow-up assessment of the primary outcome measure was available.""
+
+The trial used an intention-to-treat analysis, which is a pragmatic approach that includes all randomized participants in the analysis. However, missing data were addressed by listwise exclusion, which may introduce bias if the missing data are not missing completely at random. It is unclear if all available data were included in the analysis of the primary outcome.
+
+Score: [3]"
+1254,10.2106/jbjs.h.00769,7991,956,stop,False,5,3,4,5,3,5,2,1,3,1,NA,1,2,1,5,2,4,1,"Eligibility:
+1. ""There were forty-nine women and five men with a mean age (and standard deviation) of 69.7 ± 6.43 years (range, fifty-five to eighty-five years) at the time of surgery."" [Quote 1]
+2. ""There was no substantial difference between the two cohorts in terms of preoperative conditions, including the extent of disease, pain, functional disability, deformity, range of motion, bone loss, and/or prior surgical treatments."" [Quote 2]
+
+The full text provides information on the characteristics of the participants in the trial, including their age, gender, and preoperative conditions. It also states that there were no substantial differences between the two groups in terms of baseline characteristics. Based on this information, it can be inferred that the trial had a pragmatic approach to eligibility criteria, as the participants were similar to those who would receive the intervention in usual care. Score: [5]
+
+Recruitment:
+1. ""From October to December 2004, the senior author (Y.-H.K.) performed fifty-nine consecutive primary bilateral total knee arthroplasties in fifty-nine patients."" [Quote 3]
+
+The full text does not provide specific information on the recruitment methods used in the trial. However, it mentions that the surgeries were performed by the senior author in a consecutive manner, suggesting that the recruitment process was likely pragmatic and aligned with usual care practices. Score: [4]
+
+Setting:
+1. ""The study was registered in the ClinicalTrials.gov Protocol Registration System (trial number, NCT00837447)."" [Quote 4]
+
+The full text does not provide detailed information on the setting of the trial. However, the fact that the trial was registered in a public clinical trial registry suggests that it may have been conducted in a more academic or specialized setting. Score: [3]
+
+Organisation:
+1. ""All patients underwent a single-stage bilateral (sequential) total knee arthroplasty under one anesthetic."" [Quote 5]
+
+The full text does not provide explicit information on the resources, provider expertise, or organization of care delivery in the trial. However, the fact that all patients underwent bilateral total knee arthroplasty under one anesthetic suggests that the trial may have required additional resources and expertise compared to usual care. Score: [2]
+
+Flexibility (delivery):
+1. ""The knee was placed in a continuous-passive-motion machine after the splint was removed. All patients began walking with crutches or a walker and started active and passive range-of-motion exercises on the second day after the operation."" [Quote 6]
+
+The full text provides information on the flexibility in how the intervention was delivered, including the use of a continuous-passive-motion machine and early mobilization protocols. This suggests that there may have been some flexibility in the delivery of the intervention, but it is not clear how this compares to usual care practices. Score: [3]
+
+Flexibility (adherence):
+Score: [NA]
+
+The full text does not provide information on the flexibility in how participants must adhere to the intervention or the likely flexibility in usual care. This domain is not applicable to the trial as described in the full text.
+
+Follow-up:
+1. ""Clinical and radiographic evaluations were done at three months after the operation, at one year, and then yearly thereafter."" [Quote 7]
+
+The full text provides information on the follow-up schedule for clinical and radiographic evaluations, which suggests that the intensity of measurement and follow-up in the trial may have been more frequent than in usual care. Score: [2]
+
+Primary outcome:
+1. ""The mean postoperative Knee Society and Hospital for Special Surgery knee scores were 93.7 and 89 points, respectively, for the knees with a standard posterior cruciate-retaining prosthesis, and they were 93.9 and 90 points, respectively, for the knees with a high-flexion posterior cruciate-retaining prosthesis."" [Quote 8]
+
+The full text provides information on the primary outcome measures used in the trial, which were the Knee Society and Hospital for Special Surgery knee scores. These outcomes are relevant to participants and reflect the main goals of total knee arthroplasty. Score: [5]
+
+Primary analysis:
+1. ""The changes in the Knee Society, the Hospital for Special Surgery, and the WOMAC scores were evaluated with use of the Student paired t test and the Pearson nonparametric chi-square test."" [Quote 9]
+
+The full text provides information on the statistical methods used for the primary analysis, which included the use of appropriate statistical tests. It does not mention any exclusions or restrictions in the analysis of the primary outcome. Score: [4]"
+657,10.1093/ptj/pzz017,10488,645,stop,False,4,3,4,4,4,5,NA,4,5,5,NA,4,5,4,5,5,5,5,"Eligibility:
+- ""Eighty people with Expanded Disability Status scores of 1 to 6.5 participated in this trial."" [1]
+- ""The inclusion criteria were as follows: (1) diagnosed with MS in accordance with the McDonald criteria27; (2) registered at the MS outpatient clinic; (3) living in 1 of 6 selected municipalities; (4) aged 18 years or older; (5) capable of providing signed written informed consent; and (6) EDSS score between 1 and 6.5 (1 = minor disability, 6.5 = able to walk 20 m with or without a walking aid)."" [2]
+
+Score: [4]
+
+Recruitment:
+- ""In August 2015, 1 of the MS nurses at the Department of Neurology, Nordland Hospital Trust in Bodø, Norway, sent out invitation letters with a consent form to 160 persons with MS who were registered at the MS outpatient clinic, had EDSS scores of 0 to 7, and lived in 1 of the 6 municipalities included in the study."" [2]
+- ""Ninety-three persons returned signed written informed consent."" [2]
+
+Score: [4]
+
+Setting:
+- ""The GroupCoreDIST intervention was conducted by 6 physical therapists in 6 municipalities in Norway."" [2]
+- ""Standard care included the usual care for individuals with MS in the same municipalities."" [2]
+
+Score: [4]
+
+Organisation:
+- No relevant quotes found.
+
+Score: [NA]
+
+Flexibility (delivery):
+- ""The exercises were individualized to ensure that key impairments contributing to reduced balance and trunk control were addressed in each individual."" [2]
+- ""The physical therapists individualized the exercises by tailoring them according to each individual's symptoms, disability level, and general well-being, and they intensified the exercises by increasing number of repetitions, level of difficulty, and/or by adding motor-cognitive dual tasks as movement quality improved."" [2]
+
+Score: [5]
+
+Flexibility (adherence):
+- No relevant quotes found.
+
+Score: [NA]
+
+Follow-up:
+- ""Assessments were conducted at baseline and at weeks 7, 18, and 30."" [2]
+- ""The results demonstrated that 6 weeks of GroupCoreDIST compared with standard care led to significant between-group effects in favor of the intervention group on balance and trunk control at 7, 18, and 30 weeks."" [2]
+
+Score: [5]
+
+Primary outcome:
+- ""The TIS-NV, which requires quality of movement and cooperation between body segments in dynamic sitting balance,29 detected a short-term improvement of 19% in the intervention group, which we consider a clinically meaningful change."" [2]
+- ""The Mini-BESTest demonstrated an overall statistically significant difference between groups (P < .001)."" [2]
+
+Score: [5]
+
+Primary analysis:
+- ""The results of the mixed-model analysis are shown in Table 3."" [2]
+- ""The estimated marginal means were used to make plots illustrating the effects of the intervention over time."" [2]
+
+Score: [5]"
+1489,10.1016/s0140-6736(19)31281-4,11779,609,stop,True,4,3,5,4,5,4,5,2,5,2,NA,2,4,3,5,4,5,5,"Eligibility:
+1. ""We used a combined expertise-based and equipoise-based approach, in which patients with isolated osteoarthritis of the medial compartment of the knee and who satisfied general requirements for a medial PKR were randomly assigned (1:1) to receive PKR or TKR by surgeons who were either expert in and willing to perform both surgeries or by a surgeon with particular expertise in the allocated procedure."" This quote indicates that the trial used a combined expertise-based and equipoise-based approach to select eligible participants. [Score: 4]
+
+Recruitment:
+2. ""Potential participants were identified in outpatient and pre-assessment clinics by participating surgeons."" This quote suggests that participants were recruited from routine clinical settings, indicating a pragmatic approach to recruitment. [Score: 5]
+
+Setting:
+3. ""Our multicentre, pragmatic randomised controlled trial was done at 27 UK sites."" This quote indicates that the trial was conducted at multiple sites, suggesting a pragmatic approach to the setting. [Score: 5]
+
+Organization:
+4. ""The types of implants used in the study reflected current practice."" This quote suggests that the trial used implants that are commonly used in usual care, indicating a pragmatic approach to organization. [Score: 5]
+
+Flexibility (delivery):
+5. ""Our trial compared the TKR procedure versus the PKR procedure rather than a specific brand of TKR implant versus a specific brand of PKR implant."" This quote indicates that the trial compared the procedures themselves rather than specific brands of implants, suggesting a pragmatic approach to the flexibility of delivery. [Score: 5]
+
+Flexibility (adherence):
+6. This domain is not applicable to this trial as there is no compliance issue after consent has been given. [Score: NA]
+
+Follow-up:
+7. ""Patients attended a clinic for an American Knee Society Score assessment and a complication review 2 months, 1 year, and 5 years after their operation."" This quote indicates that the trial had scheduled follow-up visits at specific time points, suggesting a pragmatic approach to follow-up. [Score: 4]
+
+Primary outcome:
+8. ""The primary endpoint was the Oxford Knee Score (OKS) 5 years after randomisation in all patients assigned to groups."" This quote indicates that the primary outcome was a patient-reported outcome measure that is relevant to participants, suggesting a pragmatic approach to the primary outcome. [Score: 5]
+
+Primary analysis:
+9. ""A necessary sample size was calculated for the OKS and the incidence of re-operations. Our trial was powered to detect a 2·0-point difference in OKS with 80% power (or, equivalently, 90% power to detect a 3·0-point change) at a 5% (two-sided) significance level with an SD of 10·0 points."" This quote indicates that the trial used an intention-to-treat analysis that included all available participant data, suggesting a pragmatic approach to the primary analysis. [Score: 5]"
+1381,10.3171/2015.7.jns151026,4401,1409,stop,False,NA,5,NA,2,NA,3,3,5,4,2,NA,4,NA,4,4,3,4,NA,"Eligibility:
+1. ""After giving informed consent, 57 patients with movement disorders—mostly PD but also dystonia and tremor—underwent bilateral DBS implantation in the same operation in the globus pallidus internus (GPi), the subthalamic nucleus (STN), or the thalamic ventralis intermedius nucleus (Vim), according to the medical indication."" [1]
+2. ""Considering that most of the subjects were PD patients receiving bilateral implants in the STN (34 patients), we compared the clinical effects of STN stimulation between the groups undergoing each of the techniques by using the Unified Parkinson's Disease Rating Scale Part III (UPDRS-III), Hoehn and Yahr Scale, and levodopa-equivalent dose before and 1 year after DBS."" [2]
+
+The full text provides information on the eligibility criteria for the trial. It states that patients with movement disorders, mostly Parkinson's disease, were included in the study. The specific brain regions targeted for DBS implantation are also mentioned. However, there is no information provided on any exclusions or specific criteria used to select participants. Therefore, it is not possible to determine the extent to which the participants in the trial are similar to those who would receive this intervention in usual care. Score: [NA]
+
+Recruitment:
+1. ""After giving informed consent, 57 patients with movement disorders—mostly PD but also dystonia and tremor—underwent bilateral DBS implantation in the same operation in the globus pallidus internus (GPi), the subthalamic nucleus (STN), or the thalamic ventralis intermedius nucleus (Vim), according to the medical indication."" [1]
+
+The full text does not provide any information on the recruitment process for the trial. It only mentions that patients with movement disorders who gave informed consent underwent the DBS implantation. There is no information on any extra effort made to recruit participants beyond those who would receive this intervention in usual care. Score: [NA]
+
+Setting:
+1. ""The procedures were performed within the period from June 2012 to December 2014."" [2]
+2. ""Our local ethics committee approved this study."" [2]
+
+The full text does not provide detailed information on the setting of the trial. It only mentions the time period during which the procedures were performed and that the study was approved by the local ethics committee. There is no information on the specific locations or types of centers where the trial took place. Score: [NA]
+
+Organisation:
+1. ""The simultaneous bilateral implant procedures were 38.5% faster than the conventional bilateral approach."" [2]
+2. ""Overall, shorter procedures are more comfortable for the patient, who is therefore more likely to cooperate with the clinical examination, possibly improving the information provided to the surgical team during the process of decision making regarding electrode positioning."" [2]
+
+The full text provides some information on the organization of care delivery in the intervention arm of the trial. It states that the simultaneous bilateral approach resulted in shorter procedures, which could be more comfortable for the patients. However, there is no information on any additional resources, provider expertise, or changes in care delivery organization beyond the standard procedure. Score: [3]
+
+Flexibility (delivery):
+1. ""The proposed simultaneous approach resulted in the superimposition of a significant portion of the procedure, mainly regarding microelectrode recording, DBS electrode positioning, and the fluoroscopy check."" [2]
+2. ""The simultaneous approach also allowed microelectrode recording to be performed simultaneously, with at least 2 channels on each side and recording channels converging to the same 5-channel amplifier."" [2]
+
+The full text provides information on the flexibility in how the intervention is delivered. It states that the simultaneous approach allowed for the superimposition of certain steps in the procedure, such as microelectrode recording and DBS electrode positioning. It also mentions that microelectrode recording could be performed simultaneously on both sides. However, there is no information on any strict protocol, monitoring, or measures to improve compliance or specific advice on allowed co-interventions and complications. Score: [4]
+
+Flexibility (adherence):
+1. ""The simultaneous approach also allowed microelectrode recording to be performed simultaneously, with at least 2 channels on each side and recording channels converging to the same 5-channel amplifier."" [2]
+
+The full text does not provide any information on the flexibility in how participants must adhere to the intervention. Since this trial involves surgical procedures, there is no compliance issue after consent has been given. Score: [NA]
+
+Follow-up:
+1. ""Only 20 patients who had completed 1-year follow-up were considered for this analysis."" [2]
+
+The full text provides information on the follow-up period for the trial. It states that only 20 patients who had completed 1-year follow-up were included in the analysis. However, there is no information on the intensity of measurement and follow-up of participants in the trial compared to the likely follow-up in usual care. Score: [NA]
+
+Primary outcome:
+1. ""Regarding clinical outcomes in the PD patients who underwent subthalamic nucleus DBS implantation, comparing the preoperative off-medication condition with the off-medication/on-stimulation condition 1 year after the surgery in both procedure groups, there was a mean 47.8% ± 9.5% improvement in the Unified Parkinson's Disease Rating Scale Part III (UPDRS-III) score in the simultaneous group, while the sequential group experienced 47.5% ± 15.8% improvement (p = 0.96)."" [2]
+
+The full text provides information on the primary outcome of the trial. It states that the clinical outcomes in the PD patients who underwent subthalamic nucleus DBS implantation were compared between the simultaneous and sequential groups. The primary outcome measure was the improvement in the Unified Parkinson's Disease Rating Scale Part III (UPDRS-III) score. However, there is no information on the relevance of the primary outcome to the participants or whether it is of obvious importance to them. Score: [4]
+
+Primary analysis:
+1. ""The 2 groups of PD patients who underwent STN implantation were considered objectively homogeneous in the preoperative state, and no significant differences in the clinical outcomes were observed between the groups 1 year after the DBS implant."" [2]
+
+The full text provides information on the primary analysis of the trial. It states that the two groups of PD patients who underwent subthalamic nucleus DBS implantation were considered objectively homogeneous in the preoperative state, and no significant differences in the clinical outcomes were observed between the groups. However, there is no information on whether all data were included in the analysis of the primary outcome or if any ineligible post-randomization participants were excluded. Score: [4]"

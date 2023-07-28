@@ -1,0 +1,223 @@
+---
+title: "Minozzi et al. 2020: RoB-2 Inter-Rater Reliability"
+author: "Tim Woelfle"
+date: "2023-07-11"
+format:
+  html:
+    code-fold: true
+    toc: true
+    toc-location: left
+    toc-depth: 4
+    embed-resources: true
+    standalone: true
+---
+
+```{r}
+suppressPackageStartupMessages(library(tidyr))
+suppressPackageStartupMessages(library(psych))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(patchwork))
+
+# Combine Y/PY and N/PN as suggested in the RoB 2 tool guide
+factorize_question = function(x) factor(x, labels=c("Y", "Y", "N", "N", "NI", "NA"), levels=c("Y", "PY", "N", "PN", "NI", "NA"))
+factorize_judgement = function(x) factor(x, levels=c("High", "Some concerns", "Low", "NA"))
+
+questions = list(
+  "dim1" = c("1.1" = "sequence_random", "1.2" = "allocation_concealed", "1.3" = "baseline_differences"),
+  "dim2_assignment" = c("2.1" = "participants_aware", "2.2" = "carers_aware", "2.3_ass" = "deviations_intended_intervention", "2.4_ass" = "deviations_balanced", "2.5_ass" = "deviations_affected_outcome", "2.6" = "appropriate_analysis", "2.7_ass" = "ITT_failure"),
+  "dim2_adhering" = c("2.1" = "participants_aware", "2.2" = "carers_aware", "2.3_adh" = "cointerventions_balanced", "2.4_adh" = "failures_implementing_interv", "2.5_adh" = "participants_adherence", "2.6" = "appropriate_analysis"),
+  "dim3" = c("3.1" = "outcome_available", "3.2" = "missing_outcome_data", "3.3" = "missingness_could", "3.4" = "missing_differences", "3.5" = "missingness_likely"),
+  "dim4" = c("4.1" = "measuring_outcome", "4.2" = "outcome_differences", "4.3" = "assessors_aware", "4.4" = "assessment_influenced_could", "4.5" = "assessment_influenced_likely"),
+  "dim5" = c("5.1" = "SAP", "5.2" = "result_selected_multiple_outcome", "5.3" = "result_selected_mult_analyses")
+)
+all_questions = unique(unname(unlist(questions)))
+judgements = c("rob_dim1", "rob_dim2", "rob_dim3", "rob_dim4", "rob_dim5", "overall")
+
+results = read.csv2("../../data/RoB-2/Database_Minozzi_TW.csv")
+results = as.data.frame(pivot_wider(results, id_cols=ID, names_from=rater, values_from=all_of(c(all_questions, judgements, "Time"))))[2:129] # remove ID (rquals rownames 1:70) and Time columns
+results[is.na(results)] = "NA"
+
+# Reproduce kappa values from paper
+cohen.kappa(apply(results[,paste0(questions[["dim1"]]["1.1"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(questions[["dim1"]]["1.2"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(questions[["dim1"]]["1.3"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(judgements[1], "_", 1:4)], 2, factorize_judgement))$av.kappa
+
+assignments = which(rowSums(results[,paste0(questions[["dim2_adhering"]]["2.5_adh"], "_", 1:4)] == "NA")==4) # turns out to be 1:37
+adhering = which(rowSums(results[,paste0(questions[["dim2_adhering"]]["2.5_adh"], "_", 1:4)] == "NA")!=4) # turns out to be 38:70
+
+cohen.kappa(apply(results[assignments, paste0(questions[["dim2_assignment"]]["2.1"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[assignments, paste0(questions[["dim2_assignment"]]["2.2"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[assignments, paste0(questions[["dim2_assignment"]]["2.3_ass"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[assignments, paste0(questions[["dim2_assignment"]]["2.4_ass"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[assignments, paste0(questions[["dim2_assignment"]]["2.5_ass"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[assignments, paste0(questions[["dim2_assignment"]]["2.6"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[assignments, paste0(questions[["dim2_assignment"]]["2.7_ass"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[assignments, paste0(judgements[2], "_", 1:4)], 2, factorize_judgement))$av.kappa
+
+cohen.kappa(apply(results[adhering, paste0(questions[["dim2_adhering"]]["2.1"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[adhering, paste0(questions[["dim2_adhering"]]["2.2"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[adhering, paste0(questions[["dim2_adhering"]]["2.3_adh"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[adhering, paste0(questions[["dim2_adhering"]]["2.4_adh"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[adhering, paste0(questions[["dim2_adhering"]]["2.5_adh"], "_", 1:4)], 2, factorize_question))$av.kappa # 1 in paper, but 0.19 on re-analysis?
+cohen.kappa(apply(results[adhering, paste0(questions[["dim2_adhering"]]["2.6"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[adhering, paste0(judgements[2], "_", 1:4)], 2, factorize_judgement))$av.kappa
+
+cohen.kappa(apply(results[,paste0(questions[["dim3"]]["3.1"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(questions[["dim3"]]["3.2"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(questions[["dim3"]]["3.3"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(questions[["dim3"]]["3.4"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(questions[["dim3"]]["3.5"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(judgements[3], "_", 1:4)], 2, factorize_judgement))$av.kappa
+
+#cohen.kappa(apply(results[,paste0(questions[["dim4"]]["4.1"], "_", 1:4)], 2, factorize_question))$av.kappa # 1 in paper, NaN on re-analysis because of no variance
+cohen.kappa(apply(results[,paste0(questions[["dim4"]]["4.2"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(questions[["dim4"]]["4.3"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(questions[["dim4"]]["4.4"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(questions[["dim4"]]["4.5"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(judgements[4], "_", 1:4)], 2, factorize_judgement))$av.kappa
+
+cohen.kappa(apply(results[,paste0(questions[["dim5"]]["5.1"], "_", 1:4)], 2, factorize_question))$av.kappa # 0.23 in paper but 0.33 on re-analysis?
+cohen.kappa(apply(results[,paste0(questions[["dim5"]]["5.2"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(questions[["dim5"]]["5.3"], "_", 1:4)], 2, factorize_question))$av.kappa
+cohen.kappa(apply(results[,paste0(judgements[5], "_", 1:4)], 2, factorize_judgement))$av.kappa
+```
+
+# Define consensus
+
+TODO resolve 8 ties
+
+```{r}
+getmode <- function(v) {
+   uniqv <- unique(v)
+   tab <- tabulate(match(v, uniqv))
+   # If 4 different values
+   if (length(uniqv) == 4) if (sum(tab) == 4) return(NA)
+   # If 2 same values
+   if (length(uniqv[!is.na(uniqv)]) == 2) if (uniqv[1] == uniqv[2]) return(NA)
+   uniqv[which.max(tab)]
+}
+
+# only 8 / (70*26 = 1820) questions with ties
+for (question in all_questions) {
+  consensus = apply(apply(results[,paste0(question, "_", 1:4)], 2, factorize_question), 1, getmode)
+  results[,paste0(question, "_Consensus")] = consensus
+  if (sum(is.na(consensus))) {
+    print(question)
+    print(table(is.na(consensus)))
+  }
+}
+# no judgement with tie
+for (judgement in judgements) {
+  consensus = apply(apply(results[,paste0(judgement, "_", 1:4)], 2, factorize_judgement), 1, getmode)
+  results[,paste0(judgement, "_Consensus")] = consensus
+  if (sum(is.na(consensus))) {
+    print(question)
+    print(table(is.na(consensus)))
+  }
+}
+```
+
+# Rater1
+
+```{r, fig.width=18, fig.height=10, warning=FALSE, message=F}
+plot_metrics_overview = function(results, domains, x_rater, y_rater, max_all_domains, max_single_domains, factorize=factorize_judgement, useNA="no", weight_matrix=matrix(c(0,1,4,1, 1,0,1,1, 4,1,0,1, 1,1,1,0), nrow=4)) {
+  plot_heatmap = function(data, title, limit_max) {
+    ggplot(
+      data, 
+      aes(x, y)
+    ) +
+      geom_tile(aes(fill=Freq)) + xlab(x_rater) + ylab(y_rater) +
+      geom_abline(slope=1, linewidth=0.3, color="lightgrey") +
+      geom_text(aes(label=ifelse(Freq==0,"",Freq))) +
+      scale_fill_gradient(low="white", high="red", limits=c(0, limit_max)) +
+      ggtitle(title) +
+      theme_bw() +
+      theme(legend.position="none")
+  }
+  results_integer = apply(results, 2, function(x) as.integer(factor(x, labels=c(2,1,0), levels=c("High", "Some concerns", "Low"))))
+  
+  all_domains_table = table(x=factorize(unlist(results[,paste0(domains, "_", x_rater)])), y=factorize(unlist(results[,paste0(domains, "_", y_rater)])), useNA = useNA)
+
+  all_domains_cohen_kappa_w = cohen.kappa(all_domains_table, w=weight_matrix)$weighted.kappa
+  all_domains_heatmap = plot_heatmap(as.data.frame(all_domains_table), paste0("all domains (Cohen κ=", round(all_domains_cohen_kappa_w, 2), ")"), max_all_domains)
+  
+  domain_tables = list()
+  domain_cohen_kappa_w = list()
+  domain_icc = list()
+  domain_heatmaps = list()
+  for (domain in domains) {
+    domain_tables[[domain]] = table(x=factorize(results[,paste0(domain, "_", x_rater)]), y=factorize(results[,paste0(domain, "_", y_rater)]), useNA = useNA)
+    domain_cohen_kappa_w[[domain]] = cohen.kappa(domain_tables[[domain]], w=weight_matrix)$weighted.kappa
+    domain_icc[[domain]] = ICC(results_integer[,c(paste0(domain, "_", x_rater), paste0(domain, "_", y_rater))])$results["Average_random_raters", "ICC"]
+    domain_heatmaps[[domain]] = plot_heatmap(as.data.frame(domain_tables[[domain]]), paste0(domain, " (κ=", round(domain_cohen_kappa_w[[domain]],2), ", ICC=", round(domain_icc[[domain]],2), ")"), max_single_domains)
+  }
+  
+  all_domains_kappa_vs_icc = qplot(unlist(domain_cohen_kappa_w), unlist(domain_icc), xlab="Weighted Cohen kappa", ylab="ICC(2,k)", xlim=c(-0.2,1), ylim=c(0,1), size=I(3)) + theme_bw()
+  
+  bar_data = rbind(
+    cbind(as.data.frame(table(Score=unlist(results[,paste0(domains, "_", x_rater)]), useNA = useNA)), Rater="x"),
+    cbind(as.data.frame(table(Score=unlist(results[,paste0(domains, "_", y_rater)]), useNA = useNA)), Rater="y")
+  )
+  bar_plot = ggplot(bar_data, aes(x=Score, y=Freq, fill=Rater)) +
+    geom_bar(stat="identity", position="dodge") + scale_fill_manual(values=c("x"="#2780e3", "y"="#ff9e81")) + theme_bw() + xlab(NULL) + ggtitle(paste0(x_rater, " (blue) vs ", y_rater, " (red)")) + theme(legend.position="none")
+  
+  results$sse = rowSums(abs(results_integer[,paste0(domains, "_", x_rater)]-results_integer[,paste0(domains, "_", y_rater)])**2)
+  for (i in seq_len(nrow(results))) {
+    results[i, "cohen_kappa_w"] = cohen.kappa(table(factorize(unlist(results[i,paste0(domains, "_", x_rater)])), factorize(unlist(results[i, paste0(domains, "_", y_rater)])), useNA=useNA), w=weight_matrix)$weighted.kappa
+  }
+  individual_publications = qplot(results$cohen_kappa_w, results$sse, xlab="Weighted Cohen kappa", ylab="Sum of squared errors", xlim=c(-0.5,1), size=I(3), alpha=I(0.8)) + theme_bw() + ggtitle(paste0("individual publications' ratings (n=", nrow(results), ")"))
+  
+  wrap_plots(
+    wrap_plots(
+      bar_plot, 
+      wrap_plots(all_domains_heatmap, all_domains_kappa_vs_icc, ncol=2),
+      individual_publications, 
+      nrow=3
+    ),
+    wrap_plots(domain_heatmaps, ncol=2, nrow=3),
+    ncol=2,
+    widths=c(0.4,0.6)
+  )
+}
+
+plot_metrics_overview(results, judgements, "1", "Consensus", 252, 58)
+plot_metrics_overview(results, judgements, "1", "2", 252, 58)
+plot_metrics_overview(results, judgements, "1", "3", 252, 58)
+plot_metrics_overview(results, judgements, "1", "4", 252, 58)
+```
+
+# Rater2
+
+```{r, fig.width=18, fig.height=10, warning=FALSE, message=F}
+plot_metrics_overview(results, judgements, "2", "Consensus", 252, 58)
+plot_metrics_overview(results, judgements, "2", "3", 252, 58)
+plot_metrics_overview(results, judgements, "2", "4", 252, 58)
+```
+
+# Rater2
+
+```{r, fig.width=18, fig.height=10, warning=FALSE, message=F}
+plot_metrics_overview(results, judgements, "2", "Consensus", 252, 58)
+plot_metrics_overview(results, judgements, "2", "3", 252, 58)
+plot_metrics_overview(results, judgements, "2", "4", 252, 58)
+```
+
+# Rater3
+
+```{r, fig.width=18, fig.height=10, warning=FALSE, message=F}
+plot_metrics_overview(results, judgements, "3", "Consensus", 252, 58)
+plot_metrics_overview(results, judgements, "3", "4", 252, 58)
+```
+
+# Rater4
+
+```{r, fig.width=18, fig.height=10, warning=FALSE, message=F}
+plot_metrics_overview(results, judgements, "4", "Consensus", 252, 58)
+```
+
+# Session info
+
+```{r}
+sessionInfo()
+```

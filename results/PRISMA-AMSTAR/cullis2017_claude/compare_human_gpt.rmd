@@ -1,0 +1,198 @@
+---
+title: "PRISMA / AMSTAR: Human vs LLM (Claude)"
+author: "Tim Woelfle"
+date: "2023-07-26"
+output: 
+  flexdashboard::flex_dashboard:
+    source_code: ""
+    mathjax: NULL
+    self_contained: TRUE
+---
+
+```{css}
+table {
+  margin: auto;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+
+/* Hack to make prompt-tab scrollable again */
+#llm-prompt .chart-stage {
+  overflow: scroll;
+}
+```
+
+```{r}
+library(ggplot2)
+library(patchwork)
+library(psych) # cohen.kappa, ICC
+library(DT)
+
+score = "AMSTAR-PRISMA"
+experiment = "PRISMA-AMSTAR/cullis2017_claude"
+
+amstar = paste0("A", 1:11)
+prisma = paste0("P", 1:27)
+
+human = read.csv2(paste0("../../../data/PRISMA-AMSTAR/S1Dataset_TW.csv"))
+human = human[human$X != "" & !duplicated(human$X),]
+rownames(human) = human$X
+
+results = read.csv("results.csv", row.names = 1)
+
+# Retrieve human consensus ground truth
+results[paste0(amstar, "_human")] = human[rownames(results), amstar]
+results[paste0(prisma, "_human")] = human[rownames(results), prisma]
+
+# Individual publications' ratings
+factorize = function(x) factor(x, levels=c(0,1,NA))
+weight_matrix=matrix(c(0,1,1,1,0,1,1,1,0),nrow=3)
+for (i in rownames(results)) {
+  results[i, "amstar_cohen_kappa"] = cohen.kappa(table(factorize(unlist(results[i, paste0(amstar, "_human")])), factorize(unlist(results[i, paste0(amstar, "_gpt")])), useNA="always"))$kappa
+  results[i, "amstar_agreement"] = sum(diag(table(factorize(unlist(results[i, paste0(amstar, "_human")])), factorize(unlist(results[i, paste0(amstar, "_gpt")])), useNA="always"))) / length(amstar)
+  results[i, "prisma_cohen_kappa"] = cohen.kappa(table(factorize(unlist(results[i, paste0(prisma, "_human")])), factorize(unlist(results[i, paste0(prisma, "_gpt")])), useNA="always"))$kappa
+  results[i, "prisma_agreement"] = sum(diag(table(factorize(unlist(results[i, paste0(prisma, "_human")])), factorize(unlist(results[i, paste0(prisma, "_gpt")])), useNA="always"))) / length(prisma)
+}
+
+#plot(results$amstar_agreement, results$amstar_cohen_kappa)
+#plot(results$prisma_agreement, results$prisma_cohen_kappa)
+#plot(results$amstar_agreement, results$prisma_agreement)
+
+results = results[order(results$prisma_cohen_kappa, decreasing = T),]
+```
+
+Column {data-width=55}
+-------------------------------------
+
+### Score comparisons of `r nrow(results)` publications
+
+```{r}
+results$X = human[rownames(results), "X"]
+results$Review.title = paste0("<a href='#", rownames(results), "' title='Jump to individual results on the right'>", human[rownames(results), "Review.title"], "</a>")
+
+datatable(
+  results[c("Review.title", "prisma_cohen_kappa", "prisma_agreement", "amstar_cohen_kappa", "amstar_agreement")],
+  colnames=c("Author", "PRISMA κ", "PRISMA agreement", "AMSTAR κ", "AMSTAR agreement"),
+  escape=F, 
+  options=list(bPaginate=F, dom="t", order=list(list(2, "desc")))
+) %>% formatRound(2:5)
+```
+
+### Score heatmaps
+
+```{r, fig.width=18, fig.height=10}
+no_x = theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank())
+no_y = theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())
+
+plot_heatmap = function(data, x_rater, y_rater, title, limit_max=NULL) {
+  if (is.null(limit_max)) limit_max = max(data$Freq)
+  ggplot(
+    data, 
+    aes(x, y)
+  ) +
+    geom_tile(aes(fill=Freq)) + xlab(x_rater) + ylab(y_rater) +
+    geom_abline(slope=1, linewidth=0.3, color="lightgrey") +
+    geom_text(aes(label=ifelse(Freq==0,"",Freq))) +
+    scale_fill_gradient(low="white", high="red", limits=c(0, limit_max)) +
+    ggtitle(title) +
+    theme_bw() +
+    theme(legend.position="none")
+}
+
+plot_metrics_overview = function(results, domains, x_rater, y_rater, factorize, weight_matrix, individual_publications_x, individual_publications_y, useNA="always", ncol=3, nrow=3) {
+  all_domains_table = table(x=factorize(unlist(results[,paste0(domains, "_", x_rater)])), y=factorize(unlist(results[,paste0(domains, "_", y_rater)])), useNA=useNA)
+
+  all_domains_cohen_kappa_w = cohen.kappa(all_domains_table, w=weight_matrix)$weighted.kappa
+  all_domains_agreement = sum(diag(all_domains_table)) / (length(domains)*nrow(results))
+  all_domains_heatmap = plot_heatmap(as.data.frame(all_domains_table), x_rater, y_rater, paste0("all domains (κ=", round(all_domains_cohen_kappa_w, 2), ", a=", round(all_domains_agreement, 2), ")"), max(all_domains_table))
+  
+  domain_tables = list()
+  domain_cohen_kappa_w = list()
+  domain_agreement = list()
+  domain_heatmaps = list()
+  for (domain in domains) {
+    domain_tables[[domain]] = table(x=factorize(results[,paste0(domain, "_", x_rater)]), y=factorize(results[,paste0(domain, "_", y_rater)]), useNA=useNA)
+    domain_cohen_kappa_w[[domain]] = cohen.kappa(domain_tables[[domain]], w=weight_matrix)$weighted.kappa
+    domain_agreement[[domain]] = sum(diag(domain_tables[[domain]])) / nrow(results)
+    domain_heatmaps[[domain]] = plot_heatmap(as.data.frame(domain_tables[[domain]]), x_rater, y_rater, paste0(domain, " (κ=", round(domain_cohen_kappa_w[[domain]],2), ", a=", round(domain_agreement[[domain]],2), ")"), max(sapply(domain_tables, max))) + xlab(NULL) + ylab(NULL) + no_x + no_y
+  }
+  
+  all_domains_kappa_vs_agreement = qplot(unlist(domain_cohen_kappa_w), unlist(domain_agreement), xlab="Kappa", ylab="Agreement", xlim=c(-0.2,1), ylim=c(0,1), size=I(3)) + theme_bw()
+  
+  bar_data = rbind(
+    cbind(as.data.frame(table(Score=factorize(unlist(results[,paste0(domains, "_", x_rater)])), useNA = useNA)), Rater="x"),
+    cbind(as.data.frame(table(Score=factorize(unlist(results[,paste0(domains, "_", y_rater)])), useNA = useNA)), Rater="y")
+  )
+  bar_plot = ggplot(bar_data, aes(x=Score, y=Freq, fill=Rater)) +
+    geom_bar(stat="identity", position="dodge") + scale_fill_manual(values=c("x"="#2780e3", "y"="#ff9e81")) + theme_bw() + xlab(NULL) + ggtitle(paste0(x_rater, " (blue) vs ", y_rater, " (red)")) + theme(legend.position="none")
+  
+  individual_publications = qplot(results[,individual_publications_x], results[,individual_publications_y], xlab="Kappa", ylab="Agreement", xlim=c(-0.25,1), ylim=c(0,1), size=I(3), alpha=I(0.8)) + theme_bw() + ggtitle(paste0("individual publications' ratings (n=", nrow(results), ")"))
+  
+  wrap_plots(
+    wrap_plots(
+      bar_plot, 
+      wrap_plots(all_domains_heatmap, all_domains_kappa_vs_agreement, ncol=2),
+      individual_publications, 
+      nrow=3
+    ),
+    wrap_plots(domain_heatmaps, ncol=ncol, nrow=nrow),
+    ncol=2,
+    widths=c(0.4,0.6)
+  )
+}
+
+plot_metrics_overview(results, amstar, x_rater="human", y_rater="gpt", factorize, weight_matrix, individual_publications_x="amstar_cohen_kappa", individual_publications_y="amstar_agreement", nrow=4)
+#plot_metrics_overview(results, prisma, x_rater="human", y_rater="gpt", factorize, weight_matrix, individual_publications_x="prisma_cohen_kappa", individual_publications_y="prisma_agreement", nrow=6, ncol=5)
+```
+
+Column {data-width=45 .tabset}
+-------------------------------------
+
+### Individual results
+
+```{r, results="asis"}
+# Insert this invisible char after the first character of each quote to make sure that it is only replaced with span once
+insert_invis_char = function(str) paste0(substring(str, 0, 1), "‎", substring(str, 2))
+
+for (id in rownames(results)) {
+  cat("<a name='", id, "'></a>\n\n", sep="")
+  cat("#### <a href='https://doi.org/", human[id, "DOI"], "' title='Open publication'>", human[id, "Review.title"], "</a>\n\n", sep="")
+  
+  cat(knitr::kable(t(data.frame(Human=unlist(results[id, paste0(prisma[1:14], "_human")]), LLM=unlist(results[id, paste0(prisma[1:14], "_gpt")]), row.names = paste0("P", 1:14))), format="html", table.attr="style='margin: 0; width: 100%'", caption="PRISMA"), "\n\n")
+  cat(knitr::kable(t(data.frame(Human=unlist(results[id, paste0(prisma[15:27], "_human")]), LLM=unlist(results[id, paste0(prisma[15:27], "_gpt")]), row.names = paste0("P", 15:27))), format="html", table.attr="style='margin: 0; width: 100%; border-top: 0'"), "<br>")
+  
+  cat(knitr::kable(t(data.frame(Human=unlist(results[id, paste0(amstar, "_human")]), LLM=unlist(results[id, paste0(amstar, "_gpt")]), row.names = paste0("A", 1:11))), format="html", table.attr="style='margin: 0; width: 100%'", caption="AMSTAR"), "<br>")
+  
+  cat("<span style='padding: 8px 0; color: #999'>LLM response</span>\n\n")
+  
+  #gpt_message = gsub("#", "&#35;", results[id, "gpt_message"])
+  gpt_message = results[id, "gpt_message"]
+  
+  # quotes = quote_quality[quote_quality$pragmeta_trial_id == id,]
+  # for (ind in rownames(quotes)) {
+  #   # Replace each quote one after another (i.e. quotes must be ordered in csv), do not use gsub with this strategy
+  #   gpt_message = sub(quotes[ind, "quote"], paste0("<span title='", insert_invis_char(trimws(gsub("'", "&#39;", gsub("\n", "", quotes[ind, "best_match"]), fixed=T))), "' style='border-bottom: 1px dashed black;", ifelse(quotes[ind, "ratio"] < 80, "background-color: red", ifelse(quotes[ind, "ratio"] < 95, "background-color: orange", ifelse(quotes[ind, "ratio"] < 100, "background-color: yellow", ""))), "'>", insert_invis_char(quotes[ind, "quote"]), "</span>"), gpt_message, fixed=T, useBytes = T)
+  # }
+  
+  cat("```\n")
+  cat(gpt_message)
+  cat("```\n")
+}
+```
+
+### LLM prompt
+
+* Model: [Claude 2](https://www.anthropic.com/index/claude-2)
+* Temperature: Chat interface ([probably `1`](https://docs.anthropic.com/claude/reference/complete_post))
+* Briefing derived from: [Cullis 2017](https://doi.org/10.1371/journal.pone.0175213) Supporting information: [S1 Dataset](https://doi.org/10.1371/journal.pone.0175213.s004)
+
+#### User prompt
+
+```{r, results="asis"}
+fileName = "prompt_template/user.txt"
+cat("```\n")
+cat(readChar(fileName, file.info(fileName)$size), "\n")
+cat("```\n")
+```

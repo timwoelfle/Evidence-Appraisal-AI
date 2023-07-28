@@ -1,0 +1,232 @@
+---
+title: "PragMeta PRECIS-2 Scoring: Comparison Human vs ChatGPT (Toolkit  briefing)"
+author: "Tim Woelfle"
+date: "2023-07-14"
+output: 
+  flexdashboard::flex_dashboard:
+    source_code: ""
+    mathjax: NULL
+    self_contained: TRUE
+---
+
+```{css}
+table {
+  margin: auto;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+
+/* Hack to make prompt-tab scrollable again */
+#chatgpt-prompt .chart-stage {
+  overflow: scroll;
+}
+```
+
+```{r}
+library(ggplot2)
+library(patchwork)
+library(psych) # cohen.kappa, ICC
+library(tidyr) # pivot_longer
+
+domains = c("eligibility", "recruitment", "setting", "organization", "flexibility_delivery", "flexibility_adherence", "followup", "primary_outcome", "primary_analysis")
+
+pragmeta = read.csv2(paste0("../../../data/PRECIS-2/2023-06-07-PragMeta-export-V1_TW.csv"), row.names = "trials.trials_id", )
+
+results = read.csv("23-07-14_results_Toolkit.csv", row.names = 1, na.strings = c())
+
+# Count how often scores are reported multiple times in a domain per publication (including duplicates)
+results$multiple_scores = rowSums(apply(results[paste0(domains, "_gpt")], 2, function(x) !x %in% c("1", "2", "3", "4", "5", "NA")))
+
+# Merge duplicates
+results[paste0(domains, "_gpt")] = (apply(results[paste0(domains, "_gpt")], 2, Vectorize(function(score) {
+  arr = strsplit(score, ",")[[1]]
+  arr = sapply(arr, trimws)
+  if (length(unique(arr)) == 1) return(trimws(arr[1]))
+  else return (score)
+})))
+
+# Count how often different scores are reported in a domain per publication (excluding duplicates)
+results$multiple_different_scores = rowSums(apply(results[paste0(domains, "_gpt")], 2, function(x) !x %in% c("1", "2", "3", "4", "5", "NA")))
+
+# Coercien of "NA" to NA causes "Warning: NAs introduced by coercion"
+results[paste0(domains, "_gpt")] = as.integer(apply(results[paste0(domains, "_gpt")], 2, Vectorize(function(score) {
+  arr = strsplit(score, ",")[[1]]
+  arr = sapply(arr, trimws)
+  if (length(unique(arr)) == 1) return(trimws(arr[1]))
+  else return ("NA")
+})))
+
+
+# Retrieve human consensus ground truth
+results[c("eligibility_human", "recruitment_human", "setting_human", "organization_human", "flexibility_delivery_human", "flexibility_adherence_human", "followup_human", "primary_outcome_human", "primary_analysis_human")] = pragmeta[rownames(results), c("precis2.eligibility_score", "precis2.recruit_score", "precis2.set_score", "precis2.org_score", "precis2.flex_score", "precis2.adherence_score", "precis2.fu_score", "precis2.out_score", "precis2.analysis_score")]
+quote_quality = read.csv("23-07-14_quote_quality_Toolkit.csv")
+
+# Individual publications' ratings
+
+### SSE
+results_na_3 = results
+results_na_3[is.na(results_na_3)] = 3
+results$sse = rowSums(abs(results_na_3[,paste0(domains, "_human")]-results_na_3[,paste0(domains, "_gpt")])**2)
+
+### Cohen's kappa
+factorize = function(x) factor(x, levels=c(1,2,3,4,5,NA))
+weight_matrix = matrix(c(0,1,4,9,16,4, 1,0,1,4,9,4, 4,1,0,1,4,4, 9,4,1,0,1,4, 16,9,4,1,0,4, 4,4,4,4,4,0), nrow=6)
+# Weight matrix: (NA vs any score is weighted 4)
+#      [,1] [,2] [,3] [,4] [,5] [,NA]
+# [1,]    0    1    4    9   16    4
+# [2,]    1    0    1    4    9    4
+# [3,]    4    1    0    1    4    4
+# [4,]    9    4    1    0    1    4
+# [5,]   16    9    4    1    0    4
+# [NA,]   4    4    4    4    4    0
+for (i in seq_len(nrow(results))) {
+  results[i, "cohen_kappa_w"] = cohen.kappa(table(factorize(unlist(results[i, paste0(domains, "_human")])), factorize(unlist(results[i, paste0(domains, "_gpt")])), useNA="always"), w=weight_matrix)$weighted.kappa
+}
+```
+
+Column {data-width=60}
+-------------------------------------
+
+### Score comparisons of `r nrow(results)` PragMeta publications
+
+```{r, results="asis"}
+cat("#### Individual publications: Cohen's Kappa\n\n")
+cat("* Mean Kappa: ", round(mean(results$cohen_kappa_w),2), " (SD ", round(sd(results$cohen_kappa_w),2), ")\n\n", sep="")
+cat("* Median Kappa: ", round(median(results$cohen_kappa_w),2), " (IQR ", round(quantile(results$cohen_kappa_w,0.25),2), "-", round(quantile(results$cohen_kappa_w,0.75),2), ", range ", min(results$cohen_kappa_w), "-", max(results$cohen_kappa_w), ")\n\n", sep="")
+cat("#### Individual publications: Sum of squared errors (SSE)\n\n")
+cat("For ICC and SSE calculation, NA is imputed as 3 (compare [Loudon 2017](https://doi.org/10.1016/j.jclinepi.2017.06.001) for ICC). SSE = sum((human-gpt)²). Examples: error of 1 in each of the 9 domains: SSE = 9×(1²)= 9; error of 4 in 1 domain: 1×(4²)=16; error of 2 in 5 domains: SSE = 5×(2²) = 20\n\n")
+cat("* Mean SSE: ", round(mean(results$sse),2), " (SD ", round(sd(results$sse),2), ")\n\n", sep="")
+cat("* Median SSE: ", round(median(results$sse),2), " (IQR ", round(quantile(results$sse,0.25),2), "-", round(quantile(results$sse,0.75),2), ", range ", min(results$sse), "-", max(results$sse), ")\n\n", sep="")
+cat("* Modules: ", paste(names(table(pragmeta[rownames(results), "trials.module"])), table(pragmeta[rownames(results), "trials.module"]), sep=": ", collapse=", "), "\n\n", sep="")
+cat("All ", nrow(results), " publications sorted by SSE (best at the top, worst at the bottom):\n\n", sep="")
+cat("-------------------------------------\n\n")
+
+for (ind in rownames(results)) {
+  cat("#### <a href='#", ind, "' title='Jump to ChatGPT response on the right'>", pragmeta[ind, "trials.title"], "</a> (", pragmeta[ind, "trials.pub_year"], "), ", pragmeta[ind, "trials.module"], ", SEE: ", results[ind, "sse"], ", Cohen Kappa: ", round(results[ind, "cohen_kappa_w"], 2), "\n\n", sep="")
+  
+  cat(knitr::kable(data.frame(
+    eligibility = c(results[ind, "eligibility_human"], results[ind, "eligibility_gpt"]),
+    recruitment = c(results[ind, "recruitment_human"], results[ind, "recruitment_gpt"]),
+    setting = c(results[ind, "setting_human"], results[ind, "setting_gpt"]),
+    organization = c(results[ind, "organization_human"], results[ind, "organization_gpt"]),
+    delivery = c(results[ind, "flexibility_delivery_human"], results[ind, "flexibility_delivery_gpt"]),
+    adherence = c(results[ind, "flexibility_adherence_human"], results[ind, "flexibility_adherence_gpt"]),
+    followup = c(results[ind, "followup_human"], results[ind, "followup_gpt"]),
+    outcome = c(results[ind, "primary_outcome_human"], results[ind, "primary_outcome_gpt"]),
+    analysis = c(results[ind, "primary_analysis_human"], results[ind, "primary_analysis_gpt"]),
+    row.names = c("Human", "ChatGPT")
+  ), format="html", padding=1, border=1), "\n\n")
+  cat("-------------------------------------\n\n")
+}
+```
+
+### Score heatmaps
+
+```{r, fig.width=18, fig.height=10}
+plot_metrics_overview = function(results, domains, x_rater, y_rater, max_all_domains, max_single_domains, factorize, weight_matrix, useNA="always") {
+  plot_heatmap = function(data, title, limit_max) {
+    ggplot(
+      data, 
+      aes(x, y)
+    ) +
+      geom_tile(aes(fill=Freq)) + xlab(x_rater) + ylab(y_rater) +
+      geom_abline(slope=1, linewidth=0.3, color="lightgrey") +
+      geom_text(aes(label=ifelse(Freq==0,"",Freq))) +
+      scale_fill_gradient(low="white", high="red", limits=c(0, limit_max)) +
+      ggtitle(title) +
+      theme_bw() +
+      theme(legend.position="none")
+  }
+  
+  all_domains_table = table(x=factorize(unlist(results[,paste0(domains, "_", x_rater)])), y=factorize(unlist(results[,paste0(domains, "_", y_rater)])), useNA=useNA)
+
+  all_domains_cohen_kappa_w = cohen.kappa(all_domains_table, w=weight_matrix)$weighted.kappa
+  all_domains_heatmap = plot_heatmap(as.data.frame(all_domains_table), paste0("all domains (weighted Cohen κ=", round(all_domains_cohen_kappa_w, 2), ")"), max_all_domains)
+  
+  domain_tables = list()
+  domain_cohen_kappa_w = list()
+  domain_icc = list()
+  domain_heatmaps = list()
+  for (domain in domains) {
+    domain_tables[[domain]] = table(x=factorize(results[,paste0(domain, "_", x_rater)]), y=factorize(results[,paste0(domain, "_", y_rater)]), useNA=useNA)
+    domain_cohen_kappa_w[[domain]] = cohen.kappa(domain_tables[[domain]], w=weight_matrix)$weighted.kappa
+    #ICC(results_na_3[,c(paste0(domains[1], "_", "Rater1"), paste0(domains[1], "_", "Rater2"))])
+    domain_icc[[domain]] = ICC(results_na_3[,c(paste0(domain, "_", x_rater), paste0(domain, "_", y_rater))])$results["Average_random_raters", "ICC"]
+    domain_heatmaps[[domain]] = plot_heatmap(as.data.frame(domain_tables[[domain]]), paste0(domain, " (κ=", round(domain_cohen_kappa_w[[domain]],2), ", ICC=", round(domain_icc[[domain]],2), ")"), max_single_domains)
+  }
+  
+  all_domains_kappa_vs_icc = qplot(unlist(domain_cohen_kappa_w), unlist(domain_icc), xlab="Weighted Cohen kappa", ylab="ICC(2,k)", xlim=c(-0.2,1), ylim=c(0,1), size=I(3)) + theme_bw()
+  
+  bar_data = as.data.frame(table(x=unlist(results[,paste0(domains, "_", x_rater)]), y=unlist(results[,paste0(domains, "_", y_rater)]), useNA = useNA))
+  bar_data = pivot_longer(bar_data, cols=c(x, y))
+  bar_plot = ggplot(bar_data, aes(x=value, y=Freq, fill=name)) +
+    geom_bar(stat="identity", position="dodge") + scale_fill_manual(values=c("x"="#2780e3", "y"="#ff9e81")) + theme_bw() + xlab(NULL) + ggtitle(paste0(x_rater, " (blue) vs ", y_rater, " (red)")) + theme(legend.position="none")
+  
+  individual_publications = qplot(results$cohen_kappa_w, results$sse, xlab="Weighted Cohen kappa", ylab="Sum of squared errors", xlim=c(-0.5,1), size=I(3), alpha=I(0.8)) + theme_bw() + ggtitle(paste0("individual publications' ratings (n=", nrow(results), ")"))
+  
+  wrap_plots(
+    wrap_plots(
+      bar_plot, 
+      wrap_plots(all_domains_heatmap, all_domains_kappa_vs_icc, ncol=2),
+      individual_publications, 
+      nrow=3
+    ),
+    wrap_plots(domain_heatmaps, ncol=3, nrow=3),
+    ncol=2,
+    widths=c(0.4,0.6)
+  )
+}
+
+plot_metrics_overview(results, domains, "human", "gpt", 125, 30, factorize, weight_matrix)
+```
+
+Column {data-width=40 .tabset}
+-------------------------------------
+
+### ChatGPT responses per publication
+
+```{r, results="asis"}
+# Insert this invisible char after the first character of each quote to make sure that it is only replaced with span once
+insert_invis_char = function(str) paste0(substring(str, 0, 1), "‎", substring(str, 2))
+
+for (id in rownames(results)) {
+  cat("<a name='", id, "'></a>\n\n", sep="")
+  cat("#### <a href='https://doi.org/", pragmeta[id, "trials.doi"], "' title='Open publication'>", pragmeta[id, "trials.title"], "</a> (", pragmeta[id, "trials.pub_year"], "), ", pragmeta[id, "trials.module"], "\n\n", sep="")
+  
+  gpt_message = results[id, "gpt_message"]
+  
+  quotes = quote_quality[quote_quality$pragmeta_trial_id == id,]
+  for (ind in rownames(quotes)) {
+    # Replace each quote one after another (i.e. quotes must be ordered in csv), do not use gsub with this strategy
+    gpt_message = sub(quotes[ind, "quote"], paste0("<span title='", insert_invis_char(trimws(gsub("'", "&#39;", gsub("\n", "", quotes[ind, "best_match"]), fixed=T))), "' style='border-bottom: 1px dashed black;", ifelse(quotes[ind, "ratio"] < 80, "background-color: red", ifelse(quotes[ind, "ratio"] < 95, "background-color: orange", ifelse(quotes[ind, "ratio"] < 100, "background-color: yellow", ""))), "'>", insert_invis_char(quotes[ind, "quote"]), "</span>"), gpt_message, fixed=T, useBytes = T)
+  }
+  
+  cat(gsub("\n", "\n\n", gpt_message), "\n\n", sep="")
+}
+```
+
+### ChatGPT prompt
+
+* Model: `gpt-3.5-turbo-16k-0613`
+* Temperature: `0`
+* Briefing derived from: [PRECIS-2 Toolkit page 4](http://precis-2.org/Help/Documentation/ToolkitDownload)
+
+#### System prompt
+
+```{r, results="asis"}
+fileName = "prompts/prompt_template/Toolkit.system.txt"
+cat("```\n")
+cat(readChar(fileName, file.info(fileName)$size), "\n")
+cat("```\n")
+```
+
+#### User prompt
+
+```{r, results="asis"}
+fileName = "prompts/prompt_template/Toolkit.user.txt"
+cat("```\n")
+cat(readChar(fileName, file.info(fileName)$size), "\n")
+cat("```\n")
+```

@@ -1,4 +1,5 @@
 data
-results/prompts
+results/*/prompts
+results/*/*/prompts
 src/API_KEY
 venv

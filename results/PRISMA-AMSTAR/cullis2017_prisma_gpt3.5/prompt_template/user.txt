@@ -1,0 +1,11 @@
+This is the full text to be assessed:
+---
+%FULLTEXT%
+---
+
+For each of the PRISMA items (P1 to P27) perform the following steps. Do not repeat the items' names / instructions.
+1. Extract one relevant short quote from the full text.
+2. Explain your reasoning in one short sentence.
+3. Respond with either "[Yes]" if the item was reported, "[No]" if not reported, or "[NA]" if not applicable (for example, items P14, P15, P16, P21, P22, P23 in the context of a systematic review without a meta-analysis).
+
+Be as concise as possible and avoid unnecessary repetitions. Before stopping, make sure you've processed all 27 PRISMA items. Do not provide a final summary paragraph in the end.

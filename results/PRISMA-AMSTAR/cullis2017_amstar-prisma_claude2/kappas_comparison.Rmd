@@ -1,0 +1,46 @@
+---
+title: "Paul vs Kat. (97 publications)"
+author: "Tim Woelfle"
+date: 2023-08-03
+output:
+  html_notebook:
+    code_folding: hide
+    toc: yes
+    toc_depth: 4
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
+---
+
+Based on: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0175213
+
+# PRISMA
+
+```{r, warning=F}
+suppressPackageStartupMessages(library(ggplot2))
+
+amstar = paste0("A", 1:11)
+prisma = paste0("P", 1:27)
+
+prisma_human_lmm = read.csv("human_llm_27_IRR.csv")
+prisma_human_human = read.csv("../../../data/PRISMA-AMSTAR/cullis2017/paul_kat_27_IRR.csv")
+
+amstar_human_lmm = read.csv("human_llm_11_IRR.csv")
+amstar_human_human = read.csv("../../../data/PRISMA-AMSTAR/cullis2017/paul_kat_11_IRR.csv")
+
+ggplot(data.frame(x=prisma_human_human$cohen_kappa_w, y=prisma_human_lmm$cohen_kappa_w, text=prisma_human_human$X), aes(x,y)) + geom_point() + geom_text(aes(label=text), check_overlap = T, hjust="middle", vjust=-0.8) + xlim(-0.1,1) + ylim(-0.1,1) + geom_abline() + theme_bw() + xlab("human-human kappa") + ylab("human-lmm kappa") + ggtitle("PRISMA kappa")
+```
+
+```{r}
+ggplot(data.frame(x=prisma_human_human$agreement, y=prisma_human_lmm$agreement, text=prisma_human_human$X), aes(x,y)) + geom_point() + geom_text(aes(label=text), check_overlap = T, hjust="middle", vjust=-0.8) + xlim(-0.1,1) + ylim(-0.1,1) + geom_abline() + theme_bw() + xlab("human-human agreement") + ylab("human-lmm agreement") + ggtitle("PRISMA agreement")
+```
+
+# AMSTAR
+
+```{r}
+ggplot(data.frame(x=amstar_human_human$cohen_kappa_w, y=amstar_human_lmm$cohen_kappa_w, text=amstar_human_human$X), aes(x,y)) + geom_point() + geom_text(aes(label=text), check_overlap = T, hjust="middle", vjust=-0.8) + xlim(-0.1,1) + ylim(-0.1,1) + geom_abline() + theme_bw() + xlab("human-human kappa") + ylab("human-lmm kappa") + ggtitle("AMSTAR kappa")
+```
+
+```{r}
+ggplot(data.frame(x=amstar_human_human$agreement, y=amstar_human_lmm$agreement, text=amstar_human_human$X), aes(x,y)) + geom_point() + geom_text(aes(label=text), check_overlap = T, hjust="middle", vjust=-0.8) + xlim(-0.1,1) + ylim(-0.1,1) + geom_abline() + theme_bw() + xlab("human-human agreement") + ylab("human-lmm agreement") + ggtitle("AMSTAR agreement")
+```

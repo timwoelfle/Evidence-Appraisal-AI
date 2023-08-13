@@ -1,0 +1,93 @@
+---
+title: "PRISMA 2009 & AMSTAR Scores in Cullis 2017: Human Consensus vs Human Rater 2"
+author: "Tim Woelfle"
+date: "2023-08-10"
+output: 
+  flexdashboard::flex_dashboard:
+    source_code: ""
+    mathjax: NULL
+    self_contained: FALSE
+    lib_dir: "lib/"
+---
+
+```{css}
+table {
+  margin: auto;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+
+pre {
+  white-space: pre-wrap;
+  word-break: keep-all;
+}
+
+/* Hack to make prompt-tab(s) scrollable again */
+div.level3.tab-pane .chart-stage {
+  overflow: scroll;
+}
+```
+
+```{r}
+suppressPackageStartupMessages(library(data.table)) # fread
+source("../../../src/results_functions_prisma_amstar.r")
+source("../../../src/results_functions.r")
+
+x_rater = "Human Consensus"
+y_rater = "Human Rater 2"
+domains = c(amstar, prisma)
+
+human = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/S1Dataset_TW.csv", na.strings = NULL)
+rownames(human) = human$Reference
+
+rater1 = fread("../cullis2017_amstar-prisma_human/Paul_TW.csv", na.strings = NULL, data.table=F)
+rownames(rater1) = rater1$Reference
+
+results = fread("Kat_TW.csv", na.strings = NULL, data.table=F)
+rownames(results) = results$Reference
+results = results[rownames(results) %in% rownames(rater1),]
+results = results[2:57]
+results = results[c(18:28,30:56)]
+colnames(results) = paste0(domains, "_", y_rater)
+results$title = human[rownames(results), "title"]
+results$link = paste0("https://doi.org/", human[rownames(results), "DOI"])
+
+# Combine results
+results[paste0(domains, "_", x_rater)] = human[rownames(results), domains]
+
+results = results[order(as.integer(rownames(results))),]
+```
+
+Column {data-width=55}
+-------------------------------------
+
+### Score comparisons of `r nrow(results)` publications
+
+```{r}
+datatable_scores(results, x_rater, y_rater, factorize, weight_matrix)
+```
+
+```{r, results='hide'}
+plot_prisma = plot_metrics_overview(results, prisma, x_rater, y_rater, factorize, weight_matrix, nrow=6, ncol=5)
+png_prisma = paste0("results/", x_rater, "_", y_rater, "_27_domains_3_options.png")
+
+plot_amstar = plot_metrics_overview(results, amstar, x_rater, y_rater, factorize, weight_matrix, nrow=4)
+png_amstar = paste0("results/", x_rater, "_", y_rater, "_11_domains_3_options.png")
+```
+
+### Score heatmaps (<a onclick="data = 'data:image/png;base64,`r base64enc::base64encode(png_prisma)`'; $('#score-heatmaps-prisma-amstar p.image-container')[0].style = 'background: url(&quot;' + data + '&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = data;" style="cursor: pointer">PRISMA</a> / <a onclick="data = 'data:image/png;base64,`r base64enc::base64encode(png_amstar)`'; $('#score-heatmaps-prisma-amstar p.image-container')[0].style = 'background: url(&quot;' + data + '&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = data;" style="cursor: pointer">AMSTAR</a>) {data-height=720}
+
+```{r, results='asis'}
+cat(paste0('<img data-figure-id="fig1" src="data:image/png;base64,', base64enc::base64encode(png_prisma), '" width="1536">'))
+```
+
+Column {data-width=45}
+-------------------------------------
+
+### Individual results
+
+```{r, results="asis"}
+cat_individual_results(results, x_rater, y_rater, NULL, NULL, show_llm_message=F)
+```

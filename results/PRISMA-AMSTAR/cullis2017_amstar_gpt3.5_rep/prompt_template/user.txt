@@ -1,0 +1,11 @@
+This is the full text to be assessed:
+---
+%FULLTEXT%
+---
+
+For each of the 11 AMSTAR questions (A1 to A11) perform the following steps:
+1. Extract 1-3 relevant quotes from the full text.
+2. Explain your reasoning in 1 sentence.
+3. Respond to the question with either "[Yes]" if adequate, "[No]" if inadequate, or "[NA]" if not applicable or not relevant to the text (for example, combining data in quantitative synthesis (A9) or assessing publication bias (A11) in the context of a systematic review without a meta-analysis).
+
+Before stopping, make sure you've processed all 11 AMSTAR questions. Do not provide a final summary paragraph in the end.

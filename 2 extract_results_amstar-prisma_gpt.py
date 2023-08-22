@@ -4,21 +4,17 @@ import json
 import pandas as pd
 from src.extract_results import extract_prisma_amstar, compare_quotes
 
-# cullis2017_amstar_gpt3.5: 11:106, 14:3, 12:1, 22:1
-# cullis2017_amstar_gpt3.5_rep: 11:109, 22:1, 12:1
-# FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/cullis2017/fulltext/txt/done/"
-# RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_amstar_gpt3.5/"
-# NUM_SCORES = 11
-
-# cullis2017_prisma_gpt3.5: 27:108
-# cullis2017_prisma_gpt3.5_rep: 27:108
+# cullis2017_amstar_gpt3.5: 11:107, 14:3, 12:1, 22:1
+# cullis2017_amstar_gpt3.5_rep: 11:110, 22:1, 12:1
 FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/cullis2017/fulltext/txt/done/"
-RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_prisma_gpt3.5/"
-NUM_SCORES = 27
+RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_amstar_gpt3.5_rep/"
+NUM_SCORES = 11
 
+# cullis2017_prisma_gpt3.5: 27:109
+# cullis2017_prisma_gpt3.5_rep: 27:109
 # FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/cullis2017/fulltext/txt/done/"
-# RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_amstar-prisma-baseline_gpt3.5/"
-# NUM_SCORES = 38
+# RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_prisma_gpt3.5/"
+# NUM_SCORES = 27
 
 with open(RESULTS_FOLDER + "prompt_template/system.txt") as f:
     system_prompt = f.read()

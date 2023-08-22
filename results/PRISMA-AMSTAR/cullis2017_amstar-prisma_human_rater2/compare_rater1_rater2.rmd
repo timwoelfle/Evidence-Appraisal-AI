@@ -39,10 +39,9 @@ x_rater = "Human Rater 1"
 y_rater = "Human Rater 2"
 domains = c(amstar, prisma)
 
-human = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/S1Dataset_TW.csv", na.strings = NULL)
-rownames(human) = human$Reference
+human = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/S1Dataset_TW.csv", row.names = 1, na.strings = NULL)
 
-rater1 = fread("../cullis2017_amstar-prisma_human/Paul_TW.csv", na.strings = NULL, data.table=F)
+rater1 = fread("../cullis2017_amstar-prisma_human_rater1/Paul_TW.csv", na.strings = NULL, data.table=F)
 rownames(rater1) = rater1$Reference
 rater1 = rater1[2:60]
 rater1 = rater1[c(21:31,33:59)]
@@ -54,6 +53,7 @@ results = results[rownames(results) %in% rownames(rater1),]
 results = results[2:57]
 results = results[c(18:28,30:56)]
 colnames(results) = paste0(domains, "_", y_rater)
+results$author_year = human[rownames(results), "author_year"]
 results$title = human[rownames(results), "title"]
 results$link = paste0("https://doi.org/", human[rownames(results), "DOI"])
 

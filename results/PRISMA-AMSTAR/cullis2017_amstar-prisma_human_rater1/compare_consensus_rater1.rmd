@@ -39,14 +39,14 @@ x_rater = "Human Consensus"
 y_rater = "Human Rater 1"
 domains = c(amstar, prisma)
 
-human = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/S1Dataset_TW.csv", na.strings = NULL)
-rownames(human) = human$Reference
+human = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/S1Dataset_TW.csv", row.names = 1, na.strings = NULL)
 
 results = fread("Paul_TW.csv", na.strings = NULL, data.table=F)
 rownames(results) = results$Reference
 results = results[2:60]
 results = results[c(21:31,33:59)]
 colnames(results) = paste0(domains, "_", y_rater)
+results$author_year = human[rownames(results), "author_year"]
 results$title = human[rownames(results), "title"]
 results$link = paste0("https://doi.org/", human[rownames(results), "DOI"])
 

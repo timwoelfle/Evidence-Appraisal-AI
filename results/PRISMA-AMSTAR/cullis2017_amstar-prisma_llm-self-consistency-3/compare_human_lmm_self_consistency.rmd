@@ -1,5 +1,5 @@
 ---
-title: "PRISMA 2009 & AMSTAR Scores in Cullis 2017: Human Consensus vs LLM - self-consistency combined across all 5 experiments"
+title: "PRISMA 2009 & AMSTAR Scores in Cullis 2017: Human Consensus vs LLM - self-consistent for 3 / 5 experiments"
 author: "Tim Woelfle"
 date: "2023-08-13"
 output: 
@@ -39,8 +39,7 @@ x_rater = "Human Consensus"
 y_rater = "LLM self-consistency combined"
 domains = c(amstar, prisma)
 
-human = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/S1Dataset_TW.csv", na.strings = NULL)
-rownames(human) = human$Reference
+human = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/S1Dataset_TW.csv", row.names = 1, na.strings = NULL)
 
 # Experiment 1: Claude
 results_1 = read.csv("../cullis2017_amstar-prisma_claude2/results.csv", row.names = 1, na.strings = NULL)
@@ -81,6 +80,7 @@ for (row in rownames(results_1)) {
   self_consistency = sapply(self_consistency, function(table) names(which(table>=3)))
   results[row, paste0(domains, "_", y_rater)] = ifelse(sapply(self_consistency, length), self_consistency, "deferred")
 }
+results$author_year = human[rownames(results), "author_year"]
 results$title = human[rownames(results), "title"]
 results[paste0(domains, "_", x_rater)] = human[rownames(results), domains]
 

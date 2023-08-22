@@ -6525,6 +6525,97 @@ A11. Was the conflict of interest included?
 - No information provided.
 
 Summary: The systematic review adequately addressed most of the AMSTAR criteria, but there is missing information regarding the inclusion of grey literature, the provision of a list of included and excluded studies, the appropriate use of scientific quality in formulating conclusions, and the inclusion of conflict of interest."
+170,1692695647,4984,654,stop,[],11,11,"[1, 0, 1, 'NA', 1, 1, 1, 1, 'NA', 'NA', 'NA']","A1. Was an 'a priori' design provided?
+- ""After Internal Review Board approval, a prospective study was performed on all patients undergoing SIPES between March 2010 and March 2011 at our institution."" 
+- ""To determine whether SIPES was associated with different levels of postoperative pain than SL, a systematic review of current literature was performed.""
+- ""Only comparative articles that were published between January 2008 and November 2012 and that analysed postoperative pain following SIPES or SL in children were included.""
+- [Yes] The study design was clearly described as a prospective study and a systematic review.
+
+A2. Was there duplicate study selection and data extraction?
+- No information provided.
+- [No] No mention of duplicate study selection and data extraction.
+
+A3. Was a comprehensive literature search performed?
+- ""Scientific databases (PubMed, Medline, OVID, ERIC, and Cochrane Collaboration) were searched using the keywords “single port surgery” and “child”.""
+- ""Of the 102 retrieved articles that met the search criteria, eight reported a comparison of postoperative pain levels following SIPES and SL procedures in children.""
+- [Yes] A comprehensive literature search was performed using multiple databases and keywords.
+
+A4. Was the status of publication (i.e. grey literature) used as an inclusion criterion?
+- No information provided.
+- [NA] No mention of the status of publication as an inclusion criterion.
+
+A5. Was a list of studies (included and excluded) provided?
+- ""Eight studies that we analysed are then further supported by a series of non-comparative articles.""
+- [Yes] A list of included studies was provided.
+
+A6. Were the characteristics of the included studies provided?
+- ""The 10 SIPES procedures were compared with 10 similar SL procedures, performed in children possibly of similar age, weight and gender.""
+- [Yes] The characteristics of the included studies were provided.
+
+A7. Was the scientific quality of the included studies assessed and documented?
+- ""The primary endpoint of our study was to investigate whether there were differences in postoperative analgesia requirement following SIPES or SL.""
+- [Yes] The scientific quality of the included studies was assessed by investigating the postoperative analgesia requirement.
+
+A8. Was the scientific quality of the included studies used appropriately in formulating conclusions?
+- ""In our patient series, SIPES was not associated with increased postoperative pain compared to SL.""
+- [Yes] The scientific quality of the included studies was used appropriately in formulating conclusions.
+
+A9. Were the methods used to combine the findings of studies appropriate?
+- ""We also confirmed that SIPES was followed by satisfactory wound healing and was judged excellent by patients and parents.""
+- [NA] Not applicable as there was no mention of combining the findings of studies.
+
+A10. Was the likelihood of publication bias assessed?
+- ""The eight studies that we analysed are then further supported by a series of non-comparative articles.""
+- [NA] Not applicable as there was no mention of assessing publication bias.
+
+A11. Was the conflict of interest included?
+- No information provided.
+- [NA] No mention of conflict of interest.","A1. Was an 'a priori' design provided?
+- ""After Internal Review Board approval, a prospective study was performed on all patients undergoing SIPES between March 2010 and March 2011 at our institution."" 
+- ""To determine whether SIPES was associated with different levels of postoperative pain than SL, a systematic review of current literature was performed.""
+- ""Only comparative articles that were published between January 2008 and November 2012 and that analysed postoperative pain following SIPES or SL in children were included.""
+- [Yes] The study design was clearly described as a prospective study and a systematic review.
+
+A2. Was there duplicate study selection and data extraction?
+- No information provided.
+- [No] No mention of duplicate study selection and data extraction.
+
+A3. Was a comprehensive literature search performed?
+- ""Scientific databases (PubMed, Medline, OVID, ERIC, and Cochrane Collaboration) were searched using the keywords “single port surgery” and “child”.""
+- ""Of the 102 retrieved articles that met the search criteria, eight reported a comparison of postoperative pain levels following SIPES and SL procedures in children.""
+- [Yes] A comprehensive literature search was performed using multiple databases and keywords.
+
+A4. Was the status of publication (i.e. grey literature) used as an inclusion criterion?
+- No information provided.
+- [NA] No mention of the status of publication as an inclusion criterion.
+
+A5. Was a list of studies (included and excluded) provided?
+- ""Eight studies that we analysed are then further supported by a series of non-comparative articles.""
+- [Yes] A list of included studies was provided.
+
+A6. Were the characteristics of the included studies provided?
+- ""The 10 SIPES procedures were compared with 10 similar SL procedures, performed in children possibly of similar age, weight and gender.""
+- [Yes] The characteristics of the included studies were provided.
+
+A7. Was the scientific quality of the included studies assessed and documented?
+- ""The primary endpoint of our study was to investigate whether there were differences in postoperative analgesia requirement following SIPES or SL.""
+- [Yes] The scientific quality of the included studies was assessed by investigating the postoperative analgesia requirement.
+
+A8. Was the scientific quality of the included studies used appropriately in formulating conclusions?
+- ""In our patient series, SIPES was not associated with increased postoperative pain compared to SL.""
+- [Yes] The scientific quality of the included studies was used appropriately in formulating conclusions.
+
+A9. Were the methods used to combine the findings of studies appropriate?
+- ""We also confirmed that SIPES was followed by satisfactory wound healing and was judged excellent by patients and parents.""
+- [NA] Not applicable as there was no mention of combining the findings of studies.
+
+A10. Was the likelihood of publication bias assessed?
+- ""The eight studies that we analysed are then further supported by a series of non-comparative articles.""
+- [NA] Not applicable as there was no mention of assessing publication bias.
+
+A11. Was the conflict of interest included?
+- No information provided.
+- [NA] No mention of conflict of interest."
 171,1691678062,4243,549,stop,"['missing-squared-brackets-for-na', 'missing-squared-brackets-in-unnumbered-list']",0,11,"[1, 1, 1, 'NA', 1, 1, 'NA', 1, 1, 'NA', 'NA']","A1. Was an 'a priori' design provided?
 - ""The aim of this systematic review and meta-analysis was to compare clinical outcomes between single-incision laparoscopic appendicectomy and conventional laparoscopic appendicectomy in children."" (Introduction)
 - ""To evaluate the safety and efficacy of SILA in the treatment of pediatric appendicitis, the authors collected 12 published studies to perform a meta-analysis."" (Discussion)

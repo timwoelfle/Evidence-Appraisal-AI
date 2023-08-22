@@ -17255,6 +17255,161 @@ Results discussed in context of other evidence in Discussion.
 P27. Describe sources of funding for the systematic review. [No] 
 No statement about sources of funding.
 "
+170,[],38,38,"[1, 0, 1, 0, 0, 1, 0, 'NA', 'NA', 'NA', 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 'NA', 'NA', 'NA', 'NA', 0, 1, 0, 1, 'NA', 'NA', 'NA', 1, 0, 1, 0]"," Here are the AMSTAR and PRISMA assessments for the attached systematic review:
+
+A1. [Yes] ""A systematic review of current literature was performed."" The review had a predefined protocol.
+
+A2. [No] The review does not mention duplicate study selection or data extraction.
+
+A3. [Yes] ""Scientific databases (PubMed, Medline, OVID, ERIC, and Cochrane Collaboration) were searched."" Multiple databases were searched. 
+
+A4. [No] The review does not mention searching for unpublished or grey literature.
+
+A5. [No] The review does not provide a list of included and excluded studies.
+
+A6. [Yes] Table I provides aggregated characteristics of the included studies.
+
+A7. [No] The review does not assess the quality of included studies.
+
+A8. [NA] Quality assessment of included studies was not performed.
+
+A9. [NA] The review did not perform quantitative synthesis or meta-analysis. 
+
+A10. [NA] Assessment of publication bias is not applicable without a meta-analysis.
+
+A11. [No] The review does not report on conflicts of interest.
+
+P1. [Yes] ""Is single incision pediatric endoscopic surgery more painful than standard laparoscopy in children? Personal experience and review of the literature"" The title identifies the report as a systematic review.
+
+P2. [Yes] The abstract provides a structured summary.
+
+P3. [Yes] The introduction describes the rationale for the review.
+
+P4. [Yes] The objective states the PICOS elements. 
+
+P5. [No] The review does not mention a protocol.
+
+P6. [Yes] Inclusion criteria are described in the Methods.
+
+P7. [Yes] The data sources are described in the Methods.
+
+P8. [No] The full search strategy is not provided.
+
+P9. [Yes] Study selection is described in the Methods. 
+
+P10. [No] Data extraction methods are not described.
+
+P11. [Yes] Outcomes analyzed are described in the Methods.
+
+P12. [No] Risk of bias assessment is not described.
+
+P13. [NA] Summary measures are not applicable without quantitative synthesis.
+
+P14. [NA] Quantitative data synthesis was not performed.
+
+P15. [NA] Assessment of bias across studies is not applicable without quantitative synthesis.  
+
+P16. [NA] Additional analyses are not applicable without quantitative synthesis.
+
+P17. [No] A flow diagram of study selection is not provided.
+
+P18. [Yes] Study characteristics are presented in Table I.
+
+P19. [No] Risk of bias for individual studies is not presented.
+
+P20. [Yes] Summary data and effect estimates are presented for each study in Table II.
+
+P21. [NA] Meta-analysis was not performed. 
+
+P22. [NA] Assessment of bias across studies is not applicable without quantitative synthesis.
+
+P23. [NA] Additional analyses are not applicable without quantitative synthesis.
+
+P24. [Yes] Main findings are summarized in the Discussion.
+
+P25. [No] Limitations are not discussed.
+
+P26. [Yes] Results are interpreted in the Discussion. 
+
+P27. [No] Sources of funding are not reported.
+"," Here are the AMSTAR and PRISMA assessments for the attached systematic review:
+
+A1. [Yes] ""A systematic review of current literature was performed."" The review had a predefined protocol.
+
+A2. [No] The review does not mention duplicate study selection or data extraction.
+
+A3. [Yes] ""Scientific databases (PubMed, Medline, OVID, ERIC, and Cochrane Collaboration) were searched."" Multiple databases were searched. 
+
+A4. [No] The review does not mention searching for unpublished or grey literature.
+
+A5. [No] The review does not provide a list of included and excluded studies.
+
+A6. [Yes] Table I provides aggregated characteristics of the included studies.
+
+A7. [No] The review does not assess the quality of included studies.
+
+A8. [NA] Quality assessment of included studies was not performed.
+
+A9. [NA] The review did not perform quantitative synthesis or meta-analysis. 
+
+A10. [NA] Assessment of publication bias is not applicable without a meta-analysis.
+
+A11. [No] The review does not report on conflicts of interest.
+
+P1. [Yes] ""Is single incision pediatric endoscopic surgery more painful than standard laparoscopy in children? Personal experience and review of the literature"" The title identifies the report as a systematic review.
+
+P2. [Yes] The abstract provides a structured summary.
+
+P3. [Yes] The introduction describes the rationale for the review.
+
+P4. [Yes] The objective states the PICOS elements. 
+
+P5. [No] The review does not mention a protocol.
+
+P6. [Yes] Inclusion criteria are described in the Methods.
+
+P7. [Yes] The data sources are described in the Methods.
+
+P8. [No] The full search strategy is not provided.
+
+P9. [Yes] Study selection is described in the Methods. 
+
+P10. [No] Data extraction methods are not described.
+
+P11. [Yes] Outcomes analyzed are described in the Methods.
+
+P12. [No] Risk of bias assessment is not described.
+
+P13. [NA] Summary measures are not applicable without quantitative synthesis.
+
+P14. [NA] Quantitative data synthesis was not performed.
+
+P15. [NA] Assessment of bias across studies is not applicable without quantitative synthesis.  
+
+P16. [NA] Additional analyses are not applicable without quantitative synthesis.
+
+P17. [No] A flow diagram of study selection is not provided.
+
+P18. [Yes] Study characteristics are presented in Table I.
+
+P19. [No] Risk of bias for individual studies is not presented.
+
+P20. [Yes] Summary data and effect estimates are presented for each study in Table II.
+
+P21. [NA] Meta-analysis was not performed. 
+
+P22. [NA] Assessment of bias across studies is not applicable without quantitative synthesis.
+
+P23. [NA] Additional analyses are not applicable without quantitative synthesis.
+
+P24. [Yes] Main findings are summarized in the Discussion.
+
+P25. [No] Limitations are not discussed.
+
+P26. [Yes] Results are interpreted in the Discussion. 
+
+P27. [No] Sources of funding are not reported.
+"
 171,['wrong-response-partial-unclear-etc'],35,38,"[0, 1, 1, 0, 0, 1, 0, 'NA', 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 'NA', 1, 1, 1, 1, 0]"," Here is my assessment of the methodological quality using AMSTAR and reporting quality using PRISMA for the attached systematic review:
 
 A1. Was an 'a priori' design provided? [No]

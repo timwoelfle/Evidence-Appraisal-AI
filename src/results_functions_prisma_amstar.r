@@ -26,9 +26,9 @@ datatable_scores = function(results, x_rater, y_rater, factorize, weigth_matrix,
   }
   
   results$Reference = rownames(results)
-  results$title_link = paste0("<a href='#", rownames(results), "' title='Jump to individual results on the right'>", results$title, "</a>")
+  results$author_year_link = paste0("<a href='#", rownames(results), "' title='Jump to individual results on the right'>", results$author_year, "</a>")
   
-  columns = c("Reference", "title_link")
+  columns = c("Reference", "author_year_link")
   colnames = c("Ref.", "Author & Year")
   if (show_prisma) {
     columns = c(columns, "prisma_cohen_kappa", "prisma_agreement")
@@ -56,7 +56,7 @@ cat_individual_results = function(results, x_rater, y_rater, domain_instructions
   
   for (id in rownames(results)) {
     cat("<a name='", id, "'></a>\n\n", sep="")
-    cat("#### <a href='", results[id, "link"], "' title='Open publication'>", results[id, "title"], "</a>\n\n", sep="")
+    cat("#### ", id, ". <a href='", results[id, "link"], "' title='Open publication'>", results[id, "author_year"], ": <i>", results[id, "title"], "</i></a>\n\n", sep="")
     
     if (show_prisma) {
       rownames = paste0("<span style='border-bottom: 1px dashed black' title='", gsub("'", "&#39;", domain_instructions[paste0(prisma, ".")]), "'> ", prisma, "</span>")

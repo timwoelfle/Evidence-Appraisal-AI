@@ -38,10 +38,10 @@ x_rater = "Human Consensus"
 y_rater = "LLM"
 domains = c(amstar, prisma)
 
-human = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/S1Dataset_TW.csv", na.strings = NULL)
-rownames(human) = human$Reference
+human = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/S1Dataset_TW.csv", row.names = 1, na.strings = NULL)
 
 results = read.csv("results.csv", row.names = 1)
+results$author_year = human[rownames(results), "author_year"]
 results$title = human[rownames(results), "title"]
 results$link = paste0("https://doi.org/", human[rownames(results), "DOI"])
 results[paste0(domains, "_", y_rater)] = t(sapply(strsplit(gsub("\\[|\\]|\\'", "", results$llm_scores), ", ", fixed=T), as.character)) # strtoi

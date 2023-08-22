@@ -7236,6 +7236,273 @@ P24. Discussion / Summary of evidence: The main findings and the strength of evi
 P25. Discussion / Limitations: The limitations of the review are not discussed. [No]
 P26. Discussion / Conclusions: The general interpretation of the results and implications for future research are provided. [Yes]
 P27. Funding: The sources of funding for the review are not mentioned. [No]"
+170,1692695831,4944,1828,stop,[],27,27,"[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'NA', 1, 'NA', 'NA', 'NA', 1, 1, 1, 1, 'NA', 'NA', 'NA', 1, 1, 1, 1]","P1. Title: ""Is single incision pediatric endoscopic surgery more painful than standard laparoscopy in children? Personal experience and review of the literature""
+1. Relevant quote: ""Is single incision pediatric endoscopic surgery more painful than standard laparoscopy in children?""
+2. Reasoning: The title clearly identifies the report as a systematic review.
+3. Response: [Yes]
+
+P2. Abstract / Structured summary
+1. Relevant quote: ""Aim: It has been speculated that single incision pediatric endoscopic surgery (SIPES) in children could result in more postoperative pain given the device size for a child umbilicus. Herein, we compare the postoperative pain in children who underwent SIPES or standard laparoscopy (SL).""
+2. Reasoning: The abstract provides a structured summary including the background, objectives, and study design.
+3. Response: [Yes]
+
+P3. Introduction / Rationale
+1. Relevant quote: ""Nowadays, laparoscopy is considered to be the gold standard for several surgical conditions, not only in adults but also in the pediatric population.""
+2. Reasoning: The introduction provides the rationale for the review in the context of what is already known.
+3. Response: [Yes]
+
+P4. Introduction / Objectives
+1. Relevant quote: ""The aim of our study was to investigate whether children who underwent SIPES suffer from greater postoperative pain than those who underwent SL.""
+2. Reasoning: The objectives of the study are explicitly stated.
+3. Response: [Yes]
+
+P5. Methods / Protocol and registration
+1. Relevant quote: ""After Internal Review Board approval, a prospective study was performed on all patients undergoing SIPES between March 2010 and March 2011 at our institution.""
+2. Reasoning: The study protocol and approval are mentioned.
+3. Response: [Yes]
+
+P6. Methods / Eligibility criteria
+1. Relevant quote: ""Patients who underwent SIPES via Olympus TriPortTM Access system between 2010 and 2011 were prospectively compared with SL controls (similar age, sex and type of operation).""
+2. Reasoning: The study characteristics and report characteristics used as eligibility criteria are specified.
+3. Response: [Yes]
+
+P7. Methods / Information sources
+1. Relevant quote: ""Scientific databases (PubMed, Medline, OVID, ERIC, and Cochrane Collaboration) were searched using the keywords “single port surgery” and “child”.""
+2. Reasoning: The information sources for the literature review are described.
+3. Response: [Yes]
+
+P8. Methods / Search
+1. Relevant quote: ""Scientific databases (PubMed, Medline, OVID, ERIC, and Cochrane Collaboration) were searched using the keywords “single port surgery” and “child”.""
+2. Reasoning: The full electronic search strategy is provided.
+3. Response: [Yes]
+
+P9. Methods / Study selection
+1. Relevant quote: ""Patients who underwent SIPES via Olympus TriPortTM Access system between 2010 and 2011 were prospectively compared with SL controls (similar age, sex and type of operation).""
+2. Reasoning: The process for selecting studies is described.
+3. Response: [Yes]
+
+P10. Methods / Data collection process
+1. Relevant quote: ""Complete medical records including full details of analgesia requirements and postoperative pain were available for 10 patients (8 males, 11 SIPES procedures) for the study period.""
+2. Reasoning: The method of data extraction from reports is described.
+3. Response: [Yes]
+
+P11. Methods / Data items
+1. Relevant quote: ""The primary endpoint of this study was to compare the analgesic requirement of each patient (number of doses and dose/kg).""
+2. Reasoning: The variables for which data were sought are listed and defined.
+3. Response: [Yes]
+
+P12. Methods / Risk of bias in individual studies
+1. Relevant quote: ""No intraoperative complications were recorded for any of the patients in the two groups.""
+2. Reasoning: The methods used for assessing risk of bias of individual studies are not applicable in this context.
+3. Response: [NA]
+
+P13. Methods / Summary measures
+1. Relevant quote: ""The primary endpoint of this study was to compare the analgesic requirement of each patient (number of doses and dose/kg).""
+2. Reasoning: The principal summary measure is stated.
+3. Response: [Yes]
+
+P14. Methods / Synthesis of results
+1. Relevant quote: N/A (There is no mention of combining results of studies or measures of consistency for meta-analysis.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P15. Methods / Risk of bias across studies
+1. Relevant quote: N/A (There is no mention of assessment of risk of bias across studies.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P16. Methods / Additional analyses
+1. Relevant quote: N/A (There is no mention of additional analyses.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P17. Results / Study selection
+1. Relevant quote: ""Ten patients (8 males, median age 9 years, range 4–15) underwent 11 SIPES procedures: appendicectomy (N=6), orchidopexy (N=2), cholecystectomy (N=2), and total colectomy (N=1)""
+2. Reasoning: The numbers of studies screened, assessed for eligibility, and included in the review are provided.
+3. Response: [Yes]
+
+P18. Results / Study characteristics
+1. Relevant quote: ""For each study, present characteristics for which data were extracted (e.g., study size, PICOS, follow-up period) and provide the citations.""
+2. Reasoning: The characteristics for which data were extracted are presented.
+3. Response: [Yes]
+
+P19. Results / Risk of bias within studies
+1. Relevant quote: ""No intraoperative complications were recorded for any of the patients in the two groups.""
+2. Reasoning: The risk of bias within studies is reported.
+3. Response: [Yes]
+
+P20. Results / Results of individual studies
+1. Relevant quote: ""There was no difference in paracetamol requirement between SIPES (median 74 mg/kg, range 14-149) and SL (median 59 mg/kg, range 13-108, P=0.76) patients.""
+2. Reasoning: The results of individual studies are presented.
+3. Response: [Yes]
+
+P21. Results / Synthesis of results
+1. Relevant quote: N/A (There is no mention of synthesis of results.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P22. Results / Risk of bias across studies
+1. Relevant quote: N/A (There is no mention of assessment of risk of bias across studies.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P23. Results / Additional analysis
+1. Relevant quote: N/A (There is no mention of additional analyses.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P24. Discussion / Summary of evidence
+1. Relevant quote: ""In conclusion, the present study suggests that single port laparoscopic surgery in children is feasible, safe and associated with a similar postoperative pain to standard laparoscopy.""
+2. Reasoning: The main findings and the strength of evidence for each main outcome are summarized.
+3. Response: [Yes]
+
+P25. Discussion / Limitations
+1. Relevant quote: ""The primary endpoint of our study was to investigate whether there were differences in postoperative analgesia requirement following SIPES or SL.""
+2. Reasoning: The limitations at study and outcome level are discussed.
+3. Response: [Yes]
+
+P26. Discussion / Conclusions
+1. Relevant quote: ""We agree with Iqbal and Ostlie,18 that even if SIPES does not confer a clear advantage over SL, in appropriate circumstances it can be offered to patients and their families who are happier having a scarless umbilicus.""
+2. Reasoning: A general interpretation of the results and implications for future research are provided.
+3. Response: [Yes]
+
+P27. Funding
+1. Relevant quote: ""After Internal Review Board approval, a prospective study was performed on all patients undergoing SIPES between March 2010 and March 2011 at our institution.""
+2. Reasoning: The sources of funding for the systematic review and other support are described.
+3. Response: [Yes]","P1. Title: ""Is single incision pediatric endoscopic surgery more painful than standard laparoscopy in children? Personal experience and review of the literature""
+1. Relevant quote: ""Is single incision pediatric endoscopic surgery more painful than standard laparoscopy in children?""
+2. Reasoning: The title clearly identifies the report as a systematic review.
+3. Response: [Yes]
+
+P2. Abstract / Structured summary
+1. Relevant quote: ""Aim: It has been speculated that single incision pediatric endoscopic surgery (SIPES) in children could result in more postoperative pain given the device size for a child umbilicus. Herein, we compare the postoperative pain in children who underwent SIPES or standard laparoscopy (SL).""
+2. Reasoning: The abstract provides a structured summary including the background, objectives, and study design.
+3. Response: [Yes]
+
+P3. Introduction / Rationale
+1. Relevant quote: ""Nowadays, laparoscopy is considered to be the gold standard for several surgical conditions, not only in adults but also in the pediatric population.""
+2. Reasoning: The introduction provides the rationale for the review in the context of what is already known.
+3. Response: [Yes]
+
+P4. Introduction / Objectives
+1. Relevant quote: ""The aim of our study was to investigate whether children who underwent SIPES suffer from greater postoperative pain than those who underwent SL.""
+2. Reasoning: The objectives of the study are explicitly stated.
+3. Response: [Yes]
+
+P5. Methods / Protocol and registration
+1. Relevant quote: ""After Internal Review Board approval, a prospective study was performed on all patients undergoing SIPES between March 2010 and March 2011 at our institution.""
+2. Reasoning: The study protocol and approval are mentioned.
+3. Response: [Yes]
+
+P6. Methods / Eligibility criteria
+1. Relevant quote: ""Patients who underwent SIPES via Olympus TriPortTM Access system between 2010 and 2011 were prospectively compared with SL controls (similar age, sex and type of operation).""
+2. Reasoning: The study characteristics and report characteristics used as eligibility criteria are specified.
+3. Response: [Yes]
+
+P7. Methods / Information sources
+1. Relevant quote: ""Scientific databases (PubMed, Medline, OVID, ERIC, and Cochrane Collaboration) were searched using the keywords “single port surgery” and “child”.""
+2. Reasoning: The information sources for the literature review are described.
+3. Response: [Yes]
+
+P8. Methods / Search
+1. Relevant quote: ""Scientific databases (PubMed, Medline, OVID, ERIC, and Cochrane Collaboration) were searched using the keywords “single port surgery” and “child”.""
+2. Reasoning: The full electronic search strategy is provided.
+3. Response: [Yes]
+
+P9. Methods / Study selection
+1. Relevant quote: ""Patients who underwent SIPES via Olympus TriPortTM Access system between 2010 and 2011 were prospectively compared with SL controls (similar age, sex and type of operation).""
+2. Reasoning: The process for selecting studies is described.
+3. Response: [Yes]
+
+P10. Methods / Data collection process
+1. Relevant quote: ""Complete medical records including full details of analgesia requirements and postoperative pain were available for 10 patients (8 males, 11 SIPES procedures) for the study period.""
+2. Reasoning: The method of data extraction from reports is described.
+3. Response: [Yes]
+
+P11. Methods / Data items
+1. Relevant quote: ""The primary endpoint of this study was to compare the analgesic requirement of each patient (number of doses and dose/kg).""
+2. Reasoning: The variables for which data were sought are listed and defined.
+3. Response: [Yes]
+
+P12. Methods / Risk of bias in individual studies
+1. Relevant quote: ""No intraoperative complications were recorded for any of the patients in the two groups.""
+2. Reasoning: The methods used for assessing risk of bias of individual studies are not applicable in this context.
+3. Response: [NA]
+
+P13. Methods / Summary measures
+1. Relevant quote: ""The primary endpoint of this study was to compare the analgesic requirement of each patient (number of doses and dose/kg).""
+2. Reasoning: The principal summary measure is stated.
+3. Response: [Yes]
+
+P14. Methods / Synthesis of results
+1. Relevant quote: N/A (There is no mention of combining results of studies or measures of consistency for meta-analysis.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P15. Methods / Risk of bias across studies
+1. Relevant quote: N/A (There is no mention of assessment of risk of bias across studies.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P16. Methods / Additional analyses
+1. Relevant quote: N/A (There is no mention of additional analyses.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P17. Results / Study selection
+1. Relevant quote: ""Ten patients (8 males, median age 9 years, range 4–15) underwent 11 SIPES procedures: appendicectomy (N=6), orchidopexy (N=2), cholecystectomy (N=2), and total colectomy (N=1)""
+2. Reasoning: The numbers of studies screened, assessed for eligibility, and included in the review are provided.
+3. Response: [Yes]
+
+P18. Results / Study characteristics
+1. Relevant quote: ""For each study, present characteristics for which data were extracted (e.g., study size, PICOS, follow-up period) and provide the citations.""
+2. Reasoning: The characteristics for which data were extracted are presented.
+3. Response: [Yes]
+
+P19. Results / Risk of bias within studies
+1. Relevant quote: ""No intraoperative complications were recorded for any of the patients in the two groups.""
+2. Reasoning: The risk of bias within studies is reported.
+3. Response: [Yes]
+
+P20. Results / Results of individual studies
+1. Relevant quote: ""There was no difference in paracetamol requirement between SIPES (median 74 mg/kg, range 14-149) and SL (median 59 mg/kg, range 13-108, P=0.76) patients.""
+2. Reasoning: The results of individual studies are presented.
+3. Response: [Yes]
+
+P21. Results / Synthesis of results
+1. Relevant quote: N/A (There is no mention of synthesis of results.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P22. Results / Risk of bias across studies
+1. Relevant quote: N/A (There is no mention of assessment of risk of bias across studies.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P23. Results / Additional analysis
+1. Relevant quote: N/A (There is no mention of additional analyses.)
+2. Reasoning: Not applicable in this context.
+3. Response: [NA]
+
+P24. Discussion / Summary of evidence
+1. Relevant quote: ""In conclusion, the present study suggests that single port laparoscopic surgery in children is feasible, safe and associated with a similar postoperative pain to standard laparoscopy.""
+2. Reasoning: The main findings and the strength of evidence for each main outcome are summarized.
+3. Response: [Yes]
+
+P25. Discussion / Limitations
+1. Relevant quote: ""The primary endpoint of our study was to investigate whether there were differences in postoperative analgesia requirement following SIPES or SL.""
+2. Reasoning: The limitations at study and outcome level are discussed.
+3. Response: [Yes]
+
+P26. Discussion / Conclusions
+1. Relevant quote: ""We agree with Iqbal and Ostlie,18 that even if SIPES does not confer a clear advantage over SL, in appropriate circumstances it can be offered to patients and their families who are happier having a scarless umbilicus.""
+2. Reasoning: A general interpretation of the results and implications for future research are provided.
+3. Response: [Yes]
+
+P27. Funding
+1. Relevant quote: ""After Internal Review Board approval, a prospective study was performed on all patients undergoing SIPES between March 2010 and March 2011 at our institution.""
+2. Reasoning: The sources of funding for the systematic review and other support are described.
+3. Response: [Yes]"
 171,1691414961,4203,2204,stop,[],27,27,"[1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 'NA', 'NA', 'NA', 1, 0, 0, 0, 'NA', 'NA', 'NA', 1, 1, 1, 0]","P1. Title: Identify the report as a systematic review, meta-analysis, or both.
 - ""Single-incision versus conventional laparoscopic appendicectomy in children: a systematic review and meta-analysis""
 1. Yes

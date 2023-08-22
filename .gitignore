@@ -4,5 +4,4 @@ results/*/*/results
 results/*/interrupted
 src/API_KEY
 venv
-lib
 __pycache__

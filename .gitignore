@@ -1,5 +1,4 @@
 data
-results/*/*/prompts
 results/*/*/responses
 results/*/*/results
 results/*/interrupted

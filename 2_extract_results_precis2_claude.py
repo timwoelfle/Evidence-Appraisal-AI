@@ -2,43 +2,63 @@
 import os
 import re
 import pandas as pd
+from src.extract_results import compare_quotes
 
-experiment_folder = "results/PRECIS-2/pragms_pragqol_56_claude/"
-prompts_folder = experiment_folder + "prompts/done/"
+# Experiment 1 & 2
+# FULLTEXT_FOLDER = "data/PRECIS-2/pragms-pragqol-56/pdf/txt/"
+# RESULTS_FOLDER = "results/PRECIS-2/pragms-pragqol-56_loudon2015-toolkit_claude2/" # _rep
+# NUM_SCORES = 9
+# with open(RESULTS_FOLDER + "prompt_template/user.txt") as f:
+#     user_prompt = f.read()
+# with open(RESULTS_FOLDER + "prompt_template/Loudon 2015.pdf.txt") as f:
+#     loudon2015_prompt = f.read()
+# with open(RESULTS_FOLDER + "prompt_template/PRECIS Toolkit.pdf.txt") as f:
+#     toolkit_prompt = f.read()
+# prompt = user_prompt + "\n" + loudon2015_prompt + "\n" + toolkit_prompt
 
-response_files = os.listdir(prompts_folder)
-response_files = list(filter(lambda x: ("response.txt" in x), response_files))
+# Experiment 5
+FULLTEXT_FOLDER = "data/PRECIS-2/pragms-pragqol-56/txt/done/"
+RESULTS_FOLDER = "results/PRECIS-2/pragms-pragqol-56_toolkit_claude2/"
+NUM_SCORES = 9
+with open(RESULTS_FOLDER + "prompt_template/user.txt") as f:
+    prompt = f.read()
+
+responses_folder = RESULTS_FOLDER + "responses/"
+
+response_files = os.listdir(responses_folder)
+response_files = list(filter(lambda x: (".txt" in x), response_files))
 response_files.sort()
 
 results = []
+quote_accuracy = []
 for response_file in response_files:
-    id = int(response_file.split()[1].split(".")[0])
+    id = int(response_file.split(".")[0])
     
-    gpt_message = open(prompts_folder + response_file).read()
+    llm_message = open(responses_folder + response_file).read()
 
-    gpt_scores = re.findall(r"Score: \[(\d|NA)\]", gpt_message)
+    llm_scores = re.findall(r"Score: \[(\d|NA)\]", llm_message)
     
-    if len (gpt_scores) != 9:
-        print(response_file + "\nWrong number of scores: " + len(gpt_scores))
-        continue
+    if len (llm_scores) != NUM_SCORES:
+        print(f"{response_file}\nWrong number of scores: {len(llm_scores)}")
+        break
     
     results.append({
-        "pragmeta_trial_id": id,
-        "gpt_scores_n": len(gpt_scores),
-        "eligibility_gpt": gpt_scores[0],
-        "recruitment_gpt": gpt_scores[1],
-        "setting_gpt": gpt_scores[2],
-        "organization_gpt": gpt_scores[3],
-        "flexibility_delivery_gpt": gpt_scores[4],
-        "flexibility_adherence_gpt": gpt_scores[5],
-        "followup_gpt": gpt_scores[6],
-        "primary_outcome_gpt": gpt_scores[7],
-        "primary_analysis_gpt": gpt_scores[8],
-        "gpt_message": gpt_message
+        "publication_id": id,
+        "wrong_format": [],
+        "llm_scores": llm_scores,
+        "llm_message": llm_message,
     })
 
-results = pd.DataFrame(results)
-results.to_csv(experiment_folder + "23-07-18_results.csv", na_rep="NA", float_format=int, index=False)
+    with open(FULLTEXT_FOLDER + response_file.replace(".json", "")) as f:
+        fulltext = f.read()
+    quote_accuracy += [{"publication_id": id, **x} for x in compare_quotes(llm_message, fulltext, prompt)]
+
+results = pd.DataFrame(results).set_index("publication_id")
+results.to_csv(RESULTS_FOLDER + "results.csv", na_rep="NA")
+
+quote_accuracy = pd.DataFrame(quote_accuracy)
+quote_accuracy.to_csv(RESULTS_FOLDER + "quote_accuracy.csv", na_rep="NA", index=False)
+
 results
 
 # %%

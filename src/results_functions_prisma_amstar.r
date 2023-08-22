@@ -15,13 +15,13 @@ datatable_scores = function(results, x_rater, y_rater, factorize, weigth_matrix,
   for (row in rownames(results)) {
     if (show_prisma) {
       prisma_table = table(factorize(unlist(results[row, paste0(prisma, "_", x_rater)])), factorize(unlist(results[row, paste0(prisma, "_", y_rater)])), useNA=useNA)
-      results[row, "prisma_cohen_kappa"] = cohen.kappa(prisma_table, w=weight_matrix)$weighted.kappa
       results[row, "prisma_agreement"] = calc_agreement(prisma_table)
+      results[row, "prisma_cohen_kappa"] = ifelse(results[row, "prisma_agreement"] == 1, 1, cohen.kappa(prisma_table, w=weight_matrix)$weighted.kappa)
     }
     if (show_amstar) {
       amstar_table = table(factorize(unlist(results[row, paste0(amstar, "_", x_rater)])), factorize(unlist(results[row, paste0(amstar, "_", y_rater)])), useNA=useNA)
-      results[row, "amstar_cohen_kappa"] = cohen.kappa(amstar_table, w=weight_matrix)$weighted.kappa
       results[row, "amstar_agreement"] = calc_agreement(amstar_table)
+      results[row, "amstar_cohen_kappa"] = ifelse(results[row, "amstar_agreement"] == 1, 1, cohen.kappa(amstar_table, w=weight_matrix)$weighted.kappa)
     }
   }
   

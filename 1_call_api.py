@@ -3,8 +3,10 @@ import os
 import openai
 from tqdm import tqdm
 
-FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/cullis2017/fulltext/txt/"
-RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_amstar_gpt3.5_rep/"
+#FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/cullis2017/fulltext/txt/"
+#RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_amstar_gpt3.5_rep/"
+FULLTEXT_FOLDER = "data/PRECIS-2/pragms-pragqol-56/txt/"
+RESULTS_FOLDER = "results/PRECIS-2/pragms-pragqol-56_toolkit_gpt3.5_rep/"
 
 openai.api_key = open("src/API_KEY").read()
 
@@ -41,7 +43,7 @@ for fulltext_file in tqdm(files):
         print(fulltext_file)
         print(e)
     else:
-        with open(RESULTS_FOLDER + f"prompts/{fulltext_file}.json", "a") as f:
+        with open(RESULTS_FOLDER + f"responses/{fulltext_file}.json", "a") as f:
             f.write(str(response))
 
 # %%

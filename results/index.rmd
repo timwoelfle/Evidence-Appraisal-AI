@@ -10,9 +10,53 @@ output:
 ---
 
 ```{r}
-library(DT)
+suppressPackageStartupMessages(library(ggplot2))
 
-overview = read.csv("experiment_overview.csv")
+#cullis2017_prisma_claude2 = read.csv("PRISMA-AMSTAR/cullis2017_amstar-prisma_claude2/results/Human Consensus_LLM_27_domains_3_options_IRR.csv", row.names = 1)
+```
 
+
+```{r}
+prisma_sc_3_of_5 = read.csv("PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-3/results/Human Consensus_LLM self-consistency combined_27_domains_4_options_IRR.csv", row.names = 1)
+prisma_sc_4_of_5 = read.csv("PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-4/results/Human Consensus_LLM self-consistency combined_27_domains_4_options_IRR.csv", row.names = 1)
+prisma_sc_5_of_5 = read.csv("PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-5/results/Human Consensus_LLM self-consistency combined_27_domains_4_options_IRR.csv", row.names = 1)
+
+amstar_sc_3_of_5 = read.csv("PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-3/results/Human Consensus_LLM self-consistency combined_11_domains_4_options_IRR.csv", row.names = 1)
+amstar_sc_4_of_5 = read.csv("PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-4/results/Human Consensus_LLM self-consistency combined_11_domains_4_options_IRR.csv", row.names = 1)
+amstar_sc_5_of_5 = read.csv("PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-5/results/Human Consensus_LLM self-consistency combined_11_domains_4_options_IRR.csv", row.names = 1)
+
+precis2_sc_3_of_5 = read.csv("PRECIS-2/pragms-pragqol-56_precis2_llm-self-consistency-3/results/Human Consensus_LLM self-consistency combined_9_domains_5_options_IRR.csv", row.names = 1)
+precis2_sc_4_of_5 = read.csv("PRECIS-2/pragms-pragqol-56_precis2_llm-self-consistency-4/results/Human Consensus_LLM self-consistency combined_9_domains_5_options_IRR.csv", row.names = 1)
+precis2_sc_5_of_5 = read.csv("PRECIS-2/pragms-pragqol-56_precis2_llm-self-consistency-5/results/Human Consensus_LLM self-consistency combined_9_domains_5_options_IRR.csv", row.names = 1)
+
+self_consistency = rbind(
+  data.frame(
+    score = "PRISMA",
+    self_consistency = rep(c("3/5 consistent", "4/5 consistent", "5/5 consistent"), each=2),
+    deferring_fraction = rep(c(prisma_sc_3_of_5["combined", "deferring_fraction"], prisma_sc_4_of_5["combined", "deferring_fraction"], prisma_sc_5_of_5["combined", "deferring_fraction"]), each=2),
+    metric = rep(c("cohen_kappa_w", "agreement"), 3),
+    value = unlist(c(prisma_sc_3_of_5["combined", c("cohen_kappa_w", "agreement")], prisma_sc_4_of_5["combined", c("cohen_kappa_w", "agreement")], prisma_sc_5_of_5["combined", c("cohen_kappa_w", "agreement")]))
+  ),
+  data.frame(
+    score = "AMSTAR",
+    self_consistency = rep(c("3/5 consistent", "4/5 consistent", "5/5 consistent"), each=2),
+    deferring_fraction = rep(c(amstar_sc_3_of_5["combined", "deferring_fraction"], amstar_sc_4_of_5["combined", "deferring_fraction"], amstar_sc_5_of_5["combined", "deferring_fraction"]), each=2),
+    metric = rep(c("cohen_kappa_w", "agreement"), 3),
+    value = unlist(c(amstar_sc_3_of_5["combined", c("cohen_kappa_w", "agreement")], amstar_sc_4_of_5["combined", c("cohen_kappa_w", "agreement")], amstar_sc_5_of_5["combined", c("cohen_kappa_w", "agreement")]))
+  ),
+  data.frame(
+    score = "PRECIS-2",
+    self_consistency = rep(c("3/5 consistent", "4/5 consistent", "5/5 consistent"), each=2),
+    deferring_fraction = rep(c(precis2_sc_3_of_5["combined", "deferring_fraction"], precis2_sc_4_of_5["combined", "deferring_fraction"], precis2_sc_5_of_5["combined", "deferring_fraction"]), each=2),
+    metric = rep(c("cohen_kappa_w", "agreement"), 3),
+    value = unlist(c(precis2_sc_3_of_5["combined", c("cohen_kappa_w", "agreement")], precis2_sc_4_of_5["combined", c("cohen_kappa_w", "agreement")], precis2_sc_5_of_5["combined", c("cohen_kappa_w", "agreement")]))
+  )
+)
+self_consistency$score = factor(self_consistency$score, c("PRISMA", "AMSTAR", "PRECIS-2"))
+
+ggplot(self_consistency, aes(deferring_fraction, value, color=score)) + 
+  geom_line(aes(linetype=metric)) + 
+  geom_point(aes(shape=self_consistency)) + xlim(0,1) + ylim(0,1) +
+  theme_bw()
 ```
 

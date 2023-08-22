@@ -1,0 +1,90 @@
+---
+title: "PRECIS-2 Scores in PragMeta: Human Consensus vs Human Rater 1"
+author: "Tim Woelfle"
+date: "2023-08-22"
+output: 
+  flexdashboard::flex_dashboard:
+    source_code: ""
+    mathjax: NULL
+    self_contained: FALSE
+    lib_dir: "lib/"
+---
+
+```{css}
+table {
+  margin: auto;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+
+pre {
+  white-space: pre-wrap;
+  word-break: keep-all;
+}
+
+/* Hack to make prompt-tab(s) scrollable again */
+div.level3.tab-pane .chart-stage {
+  overflow: scroll;
+}
+```
+
+```{r}
+source("../../../src/results_functions_precis2.r")
+source("../../../src/results_functions.r")
+
+x_rater = "Human Consensus"
+y_rater = "Human Rater 1"
+
+human = read.csv2("../../../data/PRECIS-2/human.csv", row.names = "trials.trials_id", na.strings = NULL)
+human$author_year = paste0(human$trials.author, " (", human$trials.pub_year, ")")
+human$title = human$trials.title
+human$DOI = human$trials.doi
+
+results = read.csv2("human_raters.csv", na.strings = c("NA", "", "?"))
+results = results[seq(1, nrow(results), by=2),]
+rownames(results) = results$pragmeta_trial_id
+results$author_year = human[rownames(results), "author_year"]
+results$title = human[rownames(results), "title"]
+results$link = paste0("https://doi.org/", human[rownames(results), "DOI"])
+colnames(results)[c(6,8,10,12,14,16,18,20,22)] =  paste0(domains, "_", y_rater)
+results[is.na(results)] = "NA"
+
+# Combine results
+results[paste0(domains, "_", x_rater)] = human[rownames(results), c("precis2.eligibility_score", "precis2.recruit_score", "precis2.set_score", "precis2.org_score", "precis2.flex_score", "precis2.adherence_score", "precis2.fu_score", "precis2.out_score", "precis2.analysis_score")]
+
+results = results[order(as.integer(rownames(results))),]
+```
+
+Column {data-width=55}
+-------------------------------------
+
+### Score comparisons of `r nrow(results)` publications
+
+```{r}
+datatable_scores(results, x_rater, y_rater)
+```
+
+```{r, results='hide'}
+plot_precis2 = plot_metrics_overview(results, domains, x_rater, y_rater, factorize, weight_matrix)
+png_precis2 = paste0("results/", x_rater, "_", y_rater, "_9_domains_6_options.png")
+
+plot_precis2_pooled = plot_metrics_overview(results, domains, x_rater, y_rater, factorize_pooled, weight_matrix_pooled)
+png_precis2_pooled = paste0("results/", x_rater, "_", y_rater, "_9_domains_4_options.png")
+```
+
+### Score heatmaps (<a onclick="data = 'data:image/png;base64,`r base64enc::base64encode(png_precis2)`'; $('#score-heatmaps-unpooled-pooled p.image-container')[0].style = 'background: url(&quot;' + data + '&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = data;" style="cursor: pointer">unpooled</a> / <a onclick="data = 'data:image/png;base64,`r base64enc::base64encode(png_precis2_pooled)`'; $('#score-heatmaps-unpooled-pooled p.image-container')[0].style = 'background: url(&quot;' + data + '&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = data;" style="cursor: pointer">pooled</a>) {data-height=720}
+
+```{r, results='asis'}
+cat(paste0('<img data-figure-id="fig1" src="data:image/png;base64,', base64enc::base64encode(png_precis2), '" width="1536">'))
+```
+
+Column {data-width=45}
+-------------------------------------
+
+### Individual results
+
+```{r, results="asis"}
+cat_individual_results(results, x_rater, y_rater, NULL, NULL, show_llm_message=F)
+```

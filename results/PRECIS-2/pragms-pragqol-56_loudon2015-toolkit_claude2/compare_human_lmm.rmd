@@ -1,12 +1,13 @@
 ---
-title: "PRECIS-2 Scores in PragMeta: Human vs LMM (Claude 2)"
+title: "PRECIS-2 Scores in PragMeta: Human Consensus vs LMM (Claude 2)"
 author: "Tim Woelfle"
-date: "2023-07-18"
+date: "2023-07-26"
 output: 
   flexdashboard::flex_dashboard:
     source_code: ""
     mathjax: NULL
-    self_contained: TRUE
+    self_contained: FALSE
+    lib_dir: "lib/"
 ---
 
 ```{css}
@@ -18,172 +19,69 @@ table {
 table thead th { border-bottom: 1px solid #ddd; }
 th, td { padding: 5px; }
 
+pre {
+  white-space: pre-wrap;
+  word-break: keep-all;
+}
+
 /* Hack to make prompt-tab scrollable again */
-#gpt-prompt .chart-stage {
+div.level3.tab-pane .chart-stage {
   overflow: scroll;
 }
 ```
 
 ```{r}
-library(ggplot2)
-library(patchwork)
-library(psych) # cohen.kappa
-library(DT)
+source("../../../src/results_functions_precis2.r")
+source("../../../src/results_functions.r")
 
-domains = c("eligibility"="eligibility", "recruitment"="recruitment", "setting"="setting", "organization"="organization", "flex. delivery"="flexibility_delivery", "flex. adherence"="flexibility_adherence", "follow-up"="followup", "outcome"="primary_outcome", "analysis"="primary_analysis")
+x_rater = "Human Consensus"
+y_rater = "LLM"
 
-human = read.csv2(paste0("../../../data/PRECIS-2/2023-06-07-PragMeta-export-V1_TW.csv"), row.names = "trials.trials_id", )
+human = read.csv2("../../../data/PRECIS-2/human.csv", row.names = "trials.trials_id", na.strings = NULL)
+human$author_year = paste0(human$trials.author, " (", human$trials.pub_year, ")")
+human$title = human$trials.title
+human$DOI = human$trials.doi
 
-results = rbind(
-  read.csv("results.csv", row.names = 1, na.strings = c("")),
-  read.csv("../pragmeta-random-subset-50_toolkit_gpt3.5/results.csv", row.names = 1, na.strings = c(""))[c("gpt_scores_n", paste0(domains, "_gpt"), "gpt_message")]
-)
+results = read.csv("results.csv", row.names = 1)
+results$author_year = human[rownames(results), "author_year"]
+results$title = human[rownames(results), "title"]
+results$link = paste0("https://doi.org/", human[rownames(results), "DOI"])
+results[paste0(domains, "_", y_rater)] = t(sapply(strsplit(gsub("\\[|\\]|\\'", "", results$llm_scores), ", ", fixed=T), as.character)) # strtoi
 
-# Count how often scores are reported multiple times in a domain per publication (including duplicates)
-results$multiple_scores = rowSums(apply(results[paste0(domains, "_gpt")], 2, function(x) !x %in% c("1", "2", "3", "4", "5", "NA")))
+# Combine results
+results[paste0(domains, "_", x_rater)] = human[rownames(results), c("precis2.eligibility_score", "precis2.recruit_score", "precis2.set_score", "precis2.org_score", "precis2.flex_score", "precis2.adherence_score", "precis2.fu_score", "precis2.out_score", "precis2.analysis_score")]
+results[is.na(results)] = "NA"
 
-# Merge duplicates
-results[paste0(domains, "_gpt")] = (apply(results[paste0(domains, "_gpt")], 2, Vectorize(function(score) {
-  arr = strsplit(score, ",")[[1]]
-  arr = sapply(arr, trimws)
-  if (length(unique(arr)) == 1) return(trimws(arr[1]))
-  else return (score)
-})))
+results = results[order(as.integer(rownames(results))),]
 
-# Count how often different scores are reported in a domain per publication (excluding duplicates)
-results$multiple_different_scores = rowSums(apply(results[paste0(domains, "_gpt")], 2, function(x) !x %in% c("1", "2", "3", "4", "5", "NA")))
+quote_accuracy = read.csv("quote_accuracy.csv")
+# Remove quotes with < 10 characters
+quote_accuracy = quote_accuracy[nchar(quote_accuracy$quote) >= 10,]
 
-# Coercien of "NA" to NA causes "Warning: NAs introduced by coercion"
-results[paste0(domains, "_gpt")] = as.integer(apply(results[paste0(domains, "_gpt")], 2, Vectorize(function(score) {
-  arr = strsplit(score, ",")[[1]]
-  arr = sapply(arr, trimws)
-  if (length(unique(arr)) == 1) return(trimws(arr[1]))
-  else return ("NA")
-})))
-
-
-# Retrieve human consensus ground truth
-results[c("eligibility_human", "recruitment_human", "setting_human", "organization_human", "flexibility_delivery_human", "flexibility_adherence_human", "followup_human", "primary_outcome_human", "primary_analysis_human")] = human[rownames(results), c("precis2.eligibility_score", "precis2.recruit_score", "precis2.set_score", "precis2.org_score", "precis2.flex_score", "precis2.adherence_score", "precis2.fu_score", "precis2.out_score", "precis2.analysis_score")]
-#quote_quality = read.csv("23-07-17_quote_quality.csv")
-
-# Individual publications' ratings
-### Cohen's kappa
-factorize = function(x) factor(x, levels=c(1,2,3,4,5,NA))
-factorize_pooled = function(x) factor(x, levels=c(1,2,3,4,5,NA), labels=c("1/2", "1/2", "3", "4/5", "4/5"))
-weight_matrix = matrix(c(0,1,4,9,16,4, 1,0,1,4,9,4, 4,1,0,1,4,4, 9,4,1,0,1,4, 16,9,4,1,0,4, 4,4,4,4,4,0), nrow=6)
-# Weight matrix: (NA vs any score is weighted 4)
-#      [,1] [,2] [,3] [,4] [,5] [,NA]
-# [1,]    0    1    4    9   16    4
-# [2,]    1    0    1    4    9    4
-# [3,]    4    1    0    1    4    4
-# [4,]    9    4    1    0    1    4
-# [5,]   16    9    4    1    0    4
-# [NA,]   4    4    4    4    4    0
-weight_matrix_pooled = matrix(c(0,1,4,1, 1,0,1,1, 4,1,0,1, 1,1,1,0), nrow=4)
-for (i in seq_len(nrow(results))) {
-  results[i, "cohen_kappa_w"] = cohen.kappa(table(factorize(unlist(results[i, paste0(domains, "_human")])), factorize(unlist(results[i, paste0(domains, "_gpt")])), useNA="always"), w=weight_matrix)$weighted.kappa
-  results[i, "agreement"] = sum(diag(table(factorize(unlist(results[i, paste0(domains, "_human")])), factorize(unlist(results[i, paste0(domains, "_gpt")])), useNA="always"))) / length(domains)
-  results[i, "pooled_cohen_kappa_w"] = cohen.kappa(table(factorize_pooled(unlist(results[i, paste0(domains, "_human")])), factorize_pooled(unlist(results[i, paste0(domains, "_gpt")])), useNA="always"), w=weight_matrix_pooled)$weighted.kappa
-  results[i, "pooled_agreement"] = sum(diag(table(factorize_pooled(unlist(results[i, paste0(domains, "_human")])), factorize_pooled(unlist(results[i, paste0(domains, "_gpt")])), useNA="always"))) / length(domains)
-}
-
-results = results[order(results$cohen_kappa_w, decreasing = T),]
+user_prompt = readChar("prompt_template/user.txt", file.info("prompt_template/user.txt")$size)
 ```
 
 Column {data-width=55}
 -------------------------------------
 
-### Score comparisons of `r nrow(results)` publications {data-height=40}
+### Score comparisons of `r nrow(results)` publications
 
-```{r, results="asis"}
-results$author_year = paste0("<a href='#", rownames(results), "' title='Jump to individual results on the right'>", human[rownames(results), "trials.author"], " (", human[rownames(results), "trials.pub_year"], ")", "</a>")
-
-datatable(
-  results[c("author_year", "cohen_kappa_w", "agreement", "pooled_cohen_kappa_w", "pooled_agreement")],
-  colnames=c("First author (year)", "PRECIS-2 weighted κ", "PRECIS-2 agreement", "PRECIS-2 pooled weighted κ", "PRECIS-2 pooled agreement"),
-  escape=F, 
-  options=list(bPaginate=F, dom="t", order=list(list(2, "desc")))
-) %>% formatRound(2:5)
+```{r}
+datatable_scores(results, x_rater, y_rater)
 ```
 
-```{r, results='hide', fig.width=16, fig.height=9}
-no_x = theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank())
-no_y = theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())
+```{r, results='hide'}
+plot_precis2 = plot_metrics_overview(results, domains, x_rater, y_rater, factorize, weight_matrix, nrow=3, ncol=3)
+png_precis2 = paste0("results/", x_rater, "_", y_rater, "_9_domains_6_options.png")
 
-plot_heatmap = function(data, x_rater, y_rater, title, limit_max=NULL) {
-  if (is.null(limit_max)) limit_max = max(data$Freq)
-  ggplot(
-    data, 
-    aes(x, y)
-  ) +
-    geom_tile(aes(fill=Freq)) + xlab(x_rater) + ylab(y_rater) +
-    geom_abline(slope=1, linewidth=0.3, color="lightgrey") +
-    geom_text(aes(label=ifelse(Freq==0,"",Freq))) +
-    scale_fill_gradient(low="white", high="red", limits=c(0, limit_max)) +
-    ggtitle(title) +
-    theme_bw() +
-    theme(legend.position="none")
-}
-
-plot_metrics_overview = function(results, domains, x_rater, y_rater, factorize, weight_matrix, individual_publications_x, individual_publications_y, useNA="always", ncol=3, nrow=3) {
-  all_domains_table = table(x=factorize(unlist(results[,paste0(domains, "_", x_rater)])), y=factorize(unlist(results[,paste0(domains, "_", y_rater)])), useNA=useNA)
-
-  all_domains_cohen_kappa_w = cohen.kappa(all_domains_table, w=weight_matrix)$weighted.kappa
-  all_domains_agreement = sum(diag(all_domains_table)) / (length(domains)*nrow(results))
-  all_domains_heatmap = plot_heatmap(as.data.frame(all_domains_table), x_rater, y_rater, paste0("all domains (κ=", round(all_domains_cohen_kappa_w, 2), ", a=", round(all_domains_agreement, 2), ")"), max(all_domains_table))
-  
-  domain_tables = list()
-  domain_cohen_kappa_w = list()
-  domain_agreement = list()
-  domain_heatmaps = list()
-  for (domain in domains) {
-    domain_tables[[domain]] = table(x=factorize(results[,paste0(domain, "_", x_rater)]), y=factorize(results[,paste0(domain, "_", y_rater)]), useNA=useNA)
-    domain_cohen_kappa_w[[domain]] = cohen.kappa(domain_tables[[domain]], w=weight_matrix)$weighted.kappa
-    domain_agreement[[domain]] = sum(diag(domain_tables[[domain]])) / nrow(results)
-    domain_heatmaps[[domain]] = plot_heatmap(as.data.frame(domain_tables[[domain]]), x_rater, y_rater, paste0(domain, " (κ=", round(domain_cohen_kappa_w[[domain]],2), ", a=", round(domain_agreement[[domain]],2), ")"), max(sapply(domain_tables, max))) + xlab(NULL) + ylab(NULL) + no_x + no_y
-  }
-  
-  all_domains_kappa_vs_agreement = qplot(unlist(domain_cohen_kappa_w), unlist(domain_agreement), xlab="Kappa", ylab="Agreement", xlim=c(-0.2,1), ylim=c(0,1), size=I(3)) + theme_bw()
-  
-  bar_data = rbind(
-    cbind(as.data.frame(table(Score=factorize(unlist(results[,paste0(domains, "_", x_rater)])), useNA = useNA)), Rater="x"),
-    cbind(as.data.frame(table(Score=factorize(unlist(results[,paste0(domains, "_", y_rater)])), useNA = useNA)), Rater="y")
-  )
-  bar_plot = ggplot(bar_data, aes(x=Score, y=Freq, fill=Rater)) +
-    geom_bar(stat="identity", position="dodge") + scale_fill_manual(values=c("x"="#2780e3", "y"="#ff9e81")) + theme_bw() + xlab(NULL) + ggtitle(paste0(x_rater, " (blue) vs ", y_rater, " (red)")) + theme(legend.position="none")
-  
-  individual_publications = qplot(results[,individual_publications_x], results[,individual_publications_y], xlab="Kappa", ylab="Agreement", xlim=c(-0.55,1), ylim=c(0,1), size=I(3), alpha=I(0.8)) + theme_bw() + ggtitle(paste0("individual publications' ratings (n=", nrow(results), ")"))
-  
-  wrap_plots(
-    wrap_plots(
-      bar_plot, 
-      wrap_plots(all_domains_heatmap, all_domains_kappa_vs_agreement, ncol=2),
-      individual_publications, 
-      nrow=3
-    ),
-    wrap_plots(domain_heatmaps, ncol=ncol, nrow=nrow),
-    ncol=2,
-    widths=c(0.4,0.6)
-  )
-}
-
-plot_precis = plot_metrics_overview(results, domains, x_rater="human", y_rater="gpt", factorize, weight_matrix, individual_publications_x="cohen_kappa_w", individual_publications_y="agreement")
-png_precis <- tempfile(fileext='.png')
-png(png_precis, width=1920, height=1080, res=124)
-print(plot_precis)
-dev.off()
-
-plot_precis_pooled = plot_metrics_overview(results, domains, x_rater="human", y_rater="gpt", factorize_pooled, weight_matrix_pooled, individual_publications_x="pooled_cohen_kappa_w", individual_publications_y="pooled_agreement")
-png_precis_pooled <- tempfile(fileext='.png')
-png(png_precis_pooled, width=1920, height=1080, res=124)
-print(plot_precis_pooled)
-dev.off()
+plot_precis2_pooled = plot_metrics_overview(results, domains, x_rater=x_rater, y_rater=y_rater, factorize_pooled, weight_matrix_pooled, nrow=3)
+png_precis2_pooled = paste0("results/", x_rater, "_", y_rater, "_9_domains_4_options.png")
 ```
 
-### Score heatmaps (<a onclick="$('#score-heatmaps-unpooled-pooled p.image-container')[0].style = 'background: url(&quot;data:image/png;base64,`r base64enc::base64encode(png_precis)`&quot;) center center / contain no-repeat;'" style="cursor: pointer">unpooled</a> / <a onclick="$('#score-heatmaps-unpooled-pooled p.image-container')[0].style = 'background: url(&quot;data:image/png;base64,`r base64enc::base64encode(png_precis_pooled)`&quot;) center center / contain no-repeat;'" style="cursor: pointer">pooled</a>) {data-height=60}
+### Score heatmaps (<a onclick="data = 'data:image/png;base64,`r base64enc::base64encode(png_precis2)`'; $('#score-heatmaps-unpooled-pooled p.image-container')[0].style = 'background: url(&quot;' + data + '&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = data;" style="cursor: pointer">unpooled</a> / <a onclick="data = 'data:image/png;base64,`r base64enc::base64encode(png_precis2_pooled)`'; $('#score-heatmaps-unpooled-pooled p.image-container')[0].style = 'background: url(&quot;' + data + '&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = data;" style="cursor: pointer">pooled</a>) {data-height=720}
 
 ```{r, results='asis'}
-cat(paste0('<img data-figure-id="fig1" src="data:image/png;base64,', base64enc::base64encode(png_precis), '" width="1536">'))
+cat(paste0('<img data-figure-id="fig1" src="data:image/png;base64,', base64enc::base64encode(png_precis2), '" width="1536">'))
 ```
 
 Column {data-width=45 .tabset}
@@ -192,42 +90,33 @@ Column {data-width=45 .tabset}
 ### Individual results
 
 ```{r, results="asis"}
-# Insert this invisible char after the first character of each quote to make sure that it is only replaced with span once
-insert_invis_char = function(str) paste0(substring(str, 0, 1), "‎", substring(str, 2))
+quote_accuracy$html_span = quote_accuracy_html_span(quote_accuracy)
 
-for (id in rownames(results)) {
-  cat("<a name='", id, "'></a>\n\n", sep="")
-  cat("#### <a href='https://doi.org/", human[id, "trials.doi"], "' title='Open publication'>", human[id, "trials.author"], " (", human[id, "trials.pub_year"], ")</a>: ", human[id, "trials.title"], "\n\n", sep="")
-  
-  gpt_message = results[id, "gpt_message"]
-  
-  cat(knitr::kable(t(data.frame(Human=unlist(results[id, paste0(domains, "_human")]), LLM=unlist(results[id, paste0(domains, "_gpt")]), row.names = names(domains))), format="html", table.attr="style='margin: 0; width: 100%'", caption="PRECIS-2"), "<br>")
-  
-  cat("<span style='padding: 8px 0; color: #999'>LLM response</span>\n\n")
-  
-  # quotes = quote_quality[quote_quality$pragmeta_trial_id == id,]
-  # for (ind in rownames(quotes)) {
-  #   # Replace each quote one after another (i.e. quotes must be ordered in csv), do not use gsub with this strategy
-  #   gpt_message = sub(quotes[ind, "quote"], paste0("<span title='", insert_invis_char(trimws(gsub("'", "&#39;", gsub("\n", "", quotes[ind, "best_match"]), fixed=T))), "' style='border-bottom: 1px dashed black;", ifelse(quotes[ind, "ratio"] < 80, "background-color: red", ifelse(quotes[ind, "ratio"] < 95, "background-color: orange", ifelse(quotes[ind, "ratio"] < 100, "background-color: yellow", ""))), "'>", insert_invis_char(quotes[ind, "quote"]), "</span>"), gpt_message, fixed=T, useBytes = T)
-  # }
-  
-  cat("```\n")
-  cat(gpt_message)
-  cat("```\n")
-}
+cat_individual_results(results, x_rater, y_rater, domains_long, quote_accuracy)
 ```
 
-### GPT prompt
+### Quote accuracy
+
+```{r, results='asis'}
+cat_quote_accuracy(results, quote_accuracy)
+```
+
+### Formatting accuracy
+
+```{r, results='asis'}
+cat_formatting_accuracy(results, human)
+```
+
+### LLM prompt
 
 * Model: [Claude 2](https://www.anthropic.com/index/claude-2)
 * Temperature: Chat interface ([probably `1`](https://docs.anthropic.com/claude/reference/complete_post))
-* Briefing derived from: [PRECIS-2 Toolkit](http://precis-2.org/Help/Documentation/ToolkitDownload) & [Loudon 2015](https://doi.org/10.1136/bmj.h2147)
+* Briefing derived from: [Cullis 2017](https://doi.org/10.1371/journal.pone.0175213) Supporting information: [S1 Dataset](https://doi.org/10.1371/journal.pone.0175213.s004)
 
 #### User prompt
 
 ```{r, results="asis"}
-fileName = "prompt_template/user.txt"
-cat("```\n")
-cat(readChar(fileName, file.info(fileName)$size), "\n")
-cat("```\n")
+cat("<pre>\n")
+cat(user_prompt, "\n")
+cat("</pre>\n")
 ```

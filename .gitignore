@@ -1,6 +1,5 @@
 data
 results/*/*/responses
-results/*/*/results
 results/*/interrupted
 src/API_KEY
 venv

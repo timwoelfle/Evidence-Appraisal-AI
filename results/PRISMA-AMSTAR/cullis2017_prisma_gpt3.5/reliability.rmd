@@ -75,7 +75,7 @@ png_overview = paste0("../PRISMA-AMSTAR/", gsub(".*/", "", getwd()), "/results/r
 ### Score heatmaps {data-height=720}
 
 ```{r, results='asis'}
-cat(paste0('<img data-figure-id="fig1" src="', png_overview, '" width="1536">'))
+cat(paste0('<img data-figure-id="fig1" src="', png_overview, '" width="1536" onclick="window.open(this.src)" style="cursor: pointer">'))
 ```
 
 Column {data-width=45 .tabset}

@@ -81,7 +81,7 @@ png_precis2 = paste0("../PRECIS-2/", gsub(".*/", "", getwd()), "/results/human_c
 ### Score heatmaps (<a onclick="$('p.image-container')[0].style = 'background: url(&quot;`r png_precis2_pooled`&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = &quot;`r png_precis2_pooled`&quot;;" style="cursor: pointer">pooled</a> / <a onclick="$('p.image-container')[0].style = 'background: url(&quot;`r png_precis2`&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = &quot;`r png_precis2`&quot;;" style="cursor: pointer">unpooled</a>) {data-height=720}
 
 ```{r, results='asis'}
-cat(paste0('<img data-figure-id="fig1" src="', png_precis2_pooled, '" width="1536">'))
+cat(paste0('<img data-figure-id="fig1" src="', png_precis2_pooled, '" width="1536" onclick="window.open(this.src)" style="cursor: pointer">'))
 ```
 
 Column {data-width=45 .tabset}

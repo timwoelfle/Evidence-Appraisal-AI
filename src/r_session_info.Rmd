@@ -1,0 +1,24 @@
+---
+title: "R Session Info"
+author: "Tim Woelfle"
+date: "2023-08-25"
+output: html_document
+---
+
+# R session info
+
+Provided for [reproducibility](https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html)
+
+```{r}
+suppressPackageStartupMessages(library(DT))
+suppressPackageStartupMessages(library(flexdashboard))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(ggrepel))
+suppressPackageStartupMessages(library(htmltools))
+suppressPackageStartupMessages(library(jsonlite))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(patchwork))
+suppressPackageStartupMessages(library(psych))
+
+sessionInfo()
+```

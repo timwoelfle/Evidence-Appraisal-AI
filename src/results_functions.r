@@ -31,7 +31,7 @@ plot_heatmap = function(data, x_rater, y_rater, title, limit_max=NULL) {
     theme(legend.position="none")
 }
 
-plot_metrics_overview = function(results, domains, x_rater, y_rater, factorize, weight_matrix, useNA="no", ncol=3, nrow=3, save_results=T) {
+plot_metrics_overview = function(results, domains, x_rater, y_rater, factorize, weight_matrix, useNA="no", ncol=3, nrow=3, save_results=T, filename_prefix="human_consensus") {
   all_domains_table = table(x=factorize(unlist(results[,paste0(domains, "_", x_rater)])), y=factorize(unlist(results[,paste0(domains, "_", y_rater)])), useNA=useNA)
   
   all_domains_cohen_kappa_w = cohen.kappa(all_domains_table, w=weight_matrix)$weighted.kappa
@@ -48,12 +48,12 @@ plot_metrics_overview = function(results, domains, x_rater, y_rater, factorize, 
     domain_tables[[domain]] = table(x=factorize(results[,paste0(domain, "_", x_rater)]), y=factorize(results[,paste0(domain, "_", y_rater)]), useNA=useNA)
     domain_cohen_kappa_w[domain] = cohen.kappa(domain_tables[[domain]], w=weight_matrix)$weighted.kappa
     domain_agreement[domain] = calc_agreement(domain_tables[[domain]])
-    domain_deferring_fraction[domain] = ifelse("deferred" %in% colnames(domain_deferring_fraction[domain]), sum(domain_tables[[domain]][,"deferred"]) / sum(domain_tables[[domain]]), 0)
+    domain_deferring_fraction[domain] = ifelse("deferred" %in% colnames(domain_tables[[domain]]), sum(domain_tables[[domain]][,"deferred"]) / sum(domain_tables[[domain]]), 0)
     domain_heatmaps[[domain]] = plot_heatmap(as.data.frame(domain_tables[[domain]]), x_rater, y_rater, paste0(domain, " (κ=", round(domain_cohen_kappa_w[[domain]],2), ", a=", round(domain_agreement[[domain]],2), ")"), max(sapply(domain_tables, max))) + xlab(NULL) + ylab(NULL) + no_x + no_y
   }
   
   if (save_results) {
-    filename_prefix = paste0(x_rater, "_", y_rater, "_", length(domains), "_domains_", nrow(weight_matrix), "_options")
+    filename = paste0(filename_prefix, "_", length(domains), "_domains_", nrow(weight_matrix), "_options")
     write.csv(
       data.frame(
         cohen_kappa_w=c(all_domains_cohen_kappa_w, domain_cohen_kappa_w), 
@@ -61,7 +61,7 @@ plot_metrics_overview = function(results, domains, x_rater, y_rater, factorize, 
         deferring_fraction=c(all_domains_deferring_fraction, domain_deferring_fraction),
         row.names = c("combined", domains)
       ), 
-      paste0("results/", filename_prefix, "_IRR.csv")
+      paste0("results/", filename, ".csv")
     )
   }
   
@@ -95,7 +95,7 @@ plot_metrics_overview = function(results, domains, x_rater, y_rater, factorize, 
   )
   
   if (save_results) {
-    png = paste0("results/", filename_prefix, ".png")
+    png = paste0("results/", filename, ".png")
     png(png, width=1920, height=1080, res=124)
     print(plot)
     dev.off()

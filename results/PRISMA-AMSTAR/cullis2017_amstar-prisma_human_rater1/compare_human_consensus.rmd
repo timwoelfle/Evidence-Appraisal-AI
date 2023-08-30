@@ -31,7 +31,6 @@ div.level3.tab-pane .chart-stage {
 ```
 
 ```{r}
-suppressPackageStartupMessages(library(data.table)) # fread
 source("../../../src/results_functions_prisma_amstar.r")
 source("../../../src/results_functions.r")
 
@@ -41,10 +40,8 @@ domains = c(amstar, prisma)
 
 human = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/S1Dataset_TW.csv", row.names = 1, na.strings = NULL)
 
-results = fread("rater1.csv", na.strings = NULL, data.table=F)
-rownames(results) = results$Reference
-results = results[2:57]
-results = results[c(18:28,30:56)]
+results = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/rater1.csv", row.names = 1, na.strings = NULL)
+results = results[2:39]
 colnames(results) = paste0(domains, "_", y_rater)
 results$author_year = human[rownames(results), "author_year"]
 results$title = human[rownames(results), "title"]

@@ -31,7 +31,6 @@ div.level3.tab-pane .chart-stage {
 ```
 
 ```{r}
-suppressPackageStartupMessages(library(data.table)) # fread
 source("../../../src/results_functions_prisma_amstar.r")
 source("../../../src/results_functions.r")
 

@@ -41,24 +41,24 @@ domains = c(amstar, prisma)
 
 human = read.csv2("../../../data/PRISMA-AMSTAR/cullis2017/S1Dataset_TW.csv", row.names = 1, na.strings = NULL)
 
-rater1 = fread("Paul_TW.csv", na.strings = NULL, data.table=F)
-rownames(rater1) = rater1$Reference
-rater1 = rater1[2:60]
-rater1 = rater1[c(21:31,33:59)]
-colnames(rater1) = paste0(domains, "_", x_rater)
+rater2 = fread("../cullis2017_amstar-prisma_human_rater2/rater2.csv", na.strings = NULL, data.table=F)
+rownames(rater2) = rater2$Reference
+rater2 = rater2[2:60]
+rater2 = rater2[c(21:31,33:59)]
+colnames(rater2) = paste0(domains, "_", y_rater)
 
-results = fread("../cullis2017_amstar-prisma_human_rater2/Kat_TW.csv", na.strings = NULL, data.table=F)
+results = fread("rater1.csv", na.strings = NULL, data.table=F)
 rownames(results) = results$Reference
-results = results[rownames(results) %in% rownames(rater1),]
+results = results[rownames(results) %in% rownames(rater2),]
 results = results[2:57]
 results = results[c(18:28,30:56)]
-colnames(results) = paste0(domains, "_", y_rater)
+colnames(results) = paste0(domains, "_", x_rater)
 results$author_year = human[rownames(results), "author_year"]
 results$title = human[rownames(results), "title"]
 results$link = paste0("https://doi.org/", human[rownames(results), "DOI"])
 
 # Combine results
-results[paste0(domains, "_", x_rater)] = rater1[rownames(results), paste0(domains, "_", x_rater)]
+results[paste0(domains, "_", y_rater)] = rater2[rownames(results), paste0(domains, "_", y_rater)]
 
 results = results[order(as.integer(rownames(results))),]
 ```

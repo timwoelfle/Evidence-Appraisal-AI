@@ -5,7 +5,7 @@ import pandas as pd
 from src.extract_results import compare_quotes
 
 # Experiment 1 & 2
-# FULLTEXT_FOLDER = "data/PRECIS-2/pragms-pragqol-56/pdf/txt/"
+# FULLTEXT_FOLDER = "data/PRECIS-2/pragms-pragqol-56/fulltext/pdf/txt/"
 # RESULTS_FOLDER = "results/PRECIS-2/pragms-pragqol-56_loudon2015-toolkit_claude2/" # _rep
 # NUM_SCORES = 9
 # with open(RESULTS_FOLDER + "prompt_template/user.txt") as f:
@@ -17,7 +17,7 @@ from src.extract_results import compare_quotes
 # prompt = user_prompt + "\n" + loudon2015_prompt + "\n" + toolkit_prompt
 
 # Experiment 5
-FULLTEXT_FOLDER = "data/PRECIS-2/pragms-pragqol-56/txt/done/"
+FULLTEXT_FOLDER = "data/PRECIS-2/pragms-pragqol-56/fulltext/txt/done/"
 RESULTS_FOLDER = "results/PRECIS-2/pragms-pragqol-56_toolkit_claude2/"
 NUM_SCORES = 9
 with open(RESULTS_FOLDER + "prompt_template/user.txt") as f:

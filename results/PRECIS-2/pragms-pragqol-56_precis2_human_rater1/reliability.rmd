@@ -37,17 +37,17 @@ source("../../../src/results_functions.r")
 x_rater = "Human Rater 1"
 y_rater = "Human Rater 2"
 
-human = read.csv2("../../../data/PRECIS-2/human.csv", row.names = "trials.trials_id", na.strings = NULL)
+human = read.csv2("../../../data/PRECIS-2/pragms-pragqol-56/human_consensus.csv", row.names = "trials.trials_id", na.strings = NULL)
 human$author_year = paste0(human$trials.author, " (", human$trials.pub_year, ")")
 human$title = human$trials.title
 human$DOI = human$trials.doi
 
-rater1 = read.csv2("human_raters.csv", na.strings = c("NA", "", "?"))
+rater1 = read.csv2("../../../data/PRECIS-2/pragms-pragqol-56/human_raters.csv", na.strings = c("NA", "", "?"))
 rater1 = rater1[seq(1, nrow(rater1), by=2),]
 rownames(rater1) = rater1$pragmeta_trial_id
 colnames(rater1)[c(6,8,10,12,14,16,18,20,22)] =  paste0(domains, "_", x_rater)
 
-results = read.csv2("human_raters.csv", na.strings = c("NA", "", "?"))
+results = read.csv2("../../../data/PRECIS-2/pragms-pragqol-56/human_raters.csv", na.strings = c("NA", "", "?"))
 results = results[seq(2, nrow(results), by=2),]
 rownames(results) = results$pragmeta_trial_id
 results$author_year = human[rownames(results), "author_year"]

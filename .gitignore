@@ -1,6 +1,6 @@
-data
+interrupted
+fulltext
 results/*/*/responses
-results/*/interrupted
 src/API_KEY
 venv
 __pycache__

@@ -37,7 +37,7 @@ source("../../../src/results_functions.r")
 x_rater = "LLM"
 y_rater = "LLM 2nd run"
 
-human = read.csv2("../../../data/PRECIS-2/human.csv", row.names = "trials.trials_id", na.strings = NULL)
+human = read.csv2("../../../data/PRECIS-2/pragms-pragqol-56/human_consensus.csv", row.names = "trials.trials_id", na.strings = NULL)
 human$author_year = paste0(human$trials.author, " (", human$trials.pub_year, ")")
 human$title = human$trials.title
 human$DOI = human$trials.doi

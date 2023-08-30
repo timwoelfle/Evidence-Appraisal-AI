@@ -6,7 +6,7 @@ import pandas as pd
 from src.extract_results import compare_quotes
 
 # Experiments 3 & 4
-FULLTEXT_FOLDER = "data/PRECIS-2/pragms-pragqol-56/txt/done/"
+FULLTEXT_FOLDER = "data/PRECIS-2/pragms-pragqol-56/fulltext/txt/done/"
 RESULTS_FOLDER = "results/PRECIS-2/pragms-pragqol-56_toolkit_gpt3.5/" # _rep
 NUM_SCORES = 9
 with open(RESULTS_FOLDER + "prompt_template/system.txt") as f:

@@ -4,16 +4,16 @@ import json
 import pandas as pd
 from src.extract_results import extract_prisma_amstar, compare_quotes
 
-# cullis2017_amstar_gpt3.5: 11:107, 14:3, 12:1, 22:1
-# cullis2017_amstar_gpt3.5_rep: 11:110, 22:1, 12:1
-FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/cullis2017/fulltext/txt/done/"
-RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_amstar_gpt3.5_rep/"
+# gpt3.5_amstar: 11:107, 14:3, 12:1, 22:1
+# gpt3.5_amstar_rep: 11:110, 22:1, 12:1
+FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/fulltext/txt/done/"
+RESULTS_FOLDER = "results/PRISMA-AMSTAR/gpt3.5_amstar/" # _rep
 NUM_SCORES = 11
 
-# cullis2017_prisma_gpt3.5: 27:109
-# cullis2017_prisma_gpt3.5_rep: 27:109
-# FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/cullis2017/fulltext/txt/done/"
-# RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_prisma_gpt3.5/"
+# gpt3.5_prisma: 27:109
+# gpt3.5_prisma_rep: 27:109
+# FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/fulltext/txt/done/"
+# RESULTS_FOLDER = "results/PRISMA-AMSTAR/gpt3.5_prisma/" # _rep
 # NUM_SCORES = 27
 
 with open(RESULTS_FOLDER + "prompt_template/system.txt") as f:

@@ -1,0 +1,161 @@
+[
+  {
+    "run_folder": "claude2_amstar-gpt-prompt", "model": "Claude 2", "tool": "AMSTAR", 
+    "title": "AMSTAR Scores in Cullis 2017: Human Consensus vs LLM (Claude 2) - same prompt as for GPT 3.5",
+    "output_file": "human_consensus"
+  },
+  {
+    "run_folder": "claude2_prisma-amstar", "model": "Claude 2", "tool": "both", 
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Consensus vs LLM (Claude 2)",
+    "output_file": "human_consensus"
+  },
+  {
+    "run_folder": "claude2_prisma-amstar", "model": "Claude 2", "tool": "both", 
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Consensus vs LLM (Claude 2) - self-consistency",
+    "output_file": "human_consensus_self_consistency",
+    "x_rater": "LLM self-consistency",
+    "results_x": "results_self_consistency.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "claude2_prisma-amstar", "model": "Claude 2", "tool": "both", 
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Claude 2 reproducibility",
+    "output_file": "reliability",
+    "x_rater": "LLM 1st run",
+    "y_rater": "LLM 2nd run",
+    "results_y": "../claude2_prisma-amstar_rep/results.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "claude2_prisma-amstar", "model": "Claude 2", "tool": "both", 
+    "title": "PRISMA 2009 & AMSTAR Scores in Cullis 2017: Human Rater 1 vs LLM (Claude 2)",
+    "output_file": "human_rater1",
+    "y_rater": "Human Rater 1",
+    "results_y": "../../../data/PRISMA-AMSTAR/rater1.csv"
+  },
+  {
+    "run_folder": "claude2_prisma-amstar_rep", "model": "Claude 2", "tool": "both", 
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Consensus vs LLM (Claude 2) - 2nd run",
+    "output_file": "human_consensus",
+    "x_rater": "LLM 2nd run"
+  },
+  {
+    "run_folder": "claude2_prisma-gpt-prompt", "model": "Claude 2", "tool": "PRISMA",
+    "title": "PRISMA Scores in Cullis 2017: Human Consensus vs LLM (Claude 2) - same prompt as for GPT 3.5",
+    "output_file": "human_consensus"
+  },
+  {
+    "run_folder": "gpt3.5_amstar", "model": "GPT 3.5", "tool": "AMSTAR", 
+    "title": "AMSTAR Scores in Cullis 2017: Human Consensus vs LLM (GPT 3.5)",
+    "output_file": "human_consensus"
+  },
+  {
+    "run_folder": "gpt3.5_amstar", "model": "GPT 3.5", "tool": "AMSTAR", 
+    "title": "AMSTAR Scores in Cullis 2017: GPT 3.5 reproducibility",
+    "output_file": "reliability",
+    "x_rater": "LLM 1st run",
+    "y_rater": "LLM 2nd run",
+    "results_y": "../gpt3.5_amstar_rep/results.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "gpt3.5_amstar", "model": "GPT 3.5", "tool": "AMSTAR", 
+    "title": "AMSTAR Scores in Cullis 2017: Human Consensus vs LLM (GPT 3.5) - self-consistency",
+    "output_file": "human_consensus_self_consistency",
+    "x_rater": "LLM self-consistency",
+    "results_x": "results_self_consistency.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "gpt3.5_amstar_rep", "model": "GPT 3.5", "tool": "AMSTAR", 
+    "title": "AMSTAR Scores in Cullis 2017: Human Consensus vs LLM (GPT 3.5) - 2nd run",
+    "output_file": "human_consensus",
+    "x_rater": "LLM 2nd run"
+  },
+  {
+    "run_folder": "gpt3.5_prisma", "model": "GPT 3.5", "tool": "PRISMA", 
+    "title": "PRISMA Scores in Cullis 2017: Human Consensus vs LLM (GPT 3.5)",
+    "output_file": "human_consensus"
+  },
+  {
+    "run_folder": "gpt3.5_prisma", "model": "GPT 3.5", "tool": "PRISMA", 
+    "title": "PRISMA Scores in Cullis 2017: GPT 3.5 reproducibility",
+    "output_file": "reliability",
+    "x_rater": "LLM 1st run",
+    "y_rater": "LLM 2nd run",
+    "results_y": "../gpt3.5_prisma_rep/results.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "gpt3.5_prisma", "model": "GPT 3.5", "tool": "PRISMA", 
+    "title": "PRISMA Scores in Cullis 2017: Human Consensus vs LLM (GPT 3.5) - self-consistency",
+    "output_file": "human_consensus_self_consistency",
+    "x_rater": "LLM self-consistency",
+    "results_x": "results_self_consistency.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "gpt3.5_prisma_rep", "model": "GPT 3.5", "tool": "PRISMA", 
+    "title": "PRISMA Scores in Cullis 2017: Human Consensus vs LLM (GPT 3.5) - 2nd run",
+    "output_file": "human_consensus",
+    "x_rater": "LLM 2nd run"
+  },
+  {
+    "run_folder": "human-rater1-claude2_prisma-amstar", "model": "Claude 2", "tool": "both",
+    "title": "PRISMA 2009 & AMSTAR Scores in Cullis 2017: Human Consensus vs Human Rater 1 & LLM combined (Claude-2)",
+    "output_file": "human_consensus",
+    "x_rater": "Human Rater 1 & LLM combined",
+    "results_x": "results_rater1_llm_combined.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "human-rater1_prisma-amstar", "model": false, "tool": "both",
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Consensus vs Human Rater 1",
+    "output_file": "human_consensus",
+    "x_rater": "Human Rater 1",
+    "results_x": "../../../data/PRISMA-AMSTAR/rater1.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "human-rater1_prisma-amstar", "model": false, "tool": "both",
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human inter-rater-reliability",
+    "output_file": "reliability",
+    "x_rater": "Human Rater 1",
+    "y_rater": "Human Rater 2",
+    "results_x": "../../../data/PRISMA-AMSTAR/rater1.csv",
+    "results_y": "../../../data/PRISMA-AMSTAR/rater2.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "human-rater2_prisma-amstar", "model": false, "tool": "both",
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Consensus vs Human Rater 2",
+    "output_file": "human_consensus",
+    "x_rater": "Human Rater 2",
+    "results_x": "../../../data/PRISMA-AMSTAR/rater2.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "llm-self-consistency-3_prisma-amstar", "model": false, "tool": "both", 
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Consensus vs LLM - self-consistent for 3 / 5 experiments",
+    "output_file": "human_consensus",
+    "x_rater": "LLM self-consistency combined 3/5",
+    "results_x": "results_self_consistency.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "llm-self-consistency-4_prisma-amstar", "model": false, "tool": "both", 
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Consensus vs LLM - self-consistent for 4 / 5 experiments",
+    "output_file": "human_consensus",
+    "x_rater": "LLM self-consistency combined 4/5",
+    "results_x": "results_self_consistency.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "llm-self-consistency-5_prisma-amstar", "model": false, "tool": "both", 
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Consensus vs LLM - self-consistent for 5 / 5 experiments",
+    "output_file": "human_consensus",
+    "x_rater": "LLM self-consistency combined 5/5",
+    "results_x": "results_self_consistency.csv",
+    "show_llm_message": false
+  }
+]

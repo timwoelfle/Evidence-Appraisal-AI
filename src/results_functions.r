@@ -16,7 +16,8 @@ calc_agreement = function(table_) {
 plot_heatmap = function(data, x_rater, y_rater, title, limit_max=NULL) {
   if (is.null(limit_max)) limit_max = max(data$Freq)
   
-  if (x_rater == "Human Consensus") data = data[data$x != "deferred",]
+  if (!sum(data[data$x == "deferred", "Freq"])) data = data[data$x != "deferred",]
+  if (!sum(data[data$y == "deferred", "Freq"])) data = data[data$y != "deferred",]
   
   ggplot(
     data, 
@@ -31,51 +32,65 @@ plot_heatmap = function(data, x_rater, y_rater, title, limit_max=NULL) {
     theme(legend.position="none")
 }
 
-plot_metrics_overview = function(results, domains, x_rater, y_rater, factorize, weight_matrix, useNA="no", ncol=3, nrow=3, save_results=T, filename_prefix="human_consensus") {
-  all_domains_table = table(x=factorize(unlist(results[,paste0(domains, "_", x_rater)])), y=factorize(unlist(results[,paste0(domains, "_", y_rater)])), useNA=useNA)
+plot_metrics_overview = function(results, items, x_rater, y_rater, factorize, weight_matrix, useNA="no", save_results=T, filename_prefix="human_consensus") {
+  ncol=3
+  nrow=3
+  if (length(items) > 9) nrow = 4
+  if (length(items) > 11) {
+    ncol = 5
+    nrow = 6
+  }
   
-  all_domains_cohen_kappa_w = cohen.kappa(all_domains_table, w=weight_matrix)$weighted.kappa
-  all_domains_agreement = calc_agreement(all_domains_table)
-  all_domains_deferring_fraction = ifelse("deferred" %in% colnames(all_domains_table), sum(all_domains_table[,"deferred"]) / sum(all_domains_table), 0)
-  all_domains_heatmap = plot_heatmap(as.data.frame(all_domains_table), x_rater, y_rater, paste0("All domains (κ=", round(all_domains_cohen_kappa_w, 2), ", a=", round(all_domains_agreement, 2), ")"))
+  all_items_table = table(x=factorize(unlist(results[,paste0(items, "_", x_rater)])), y=factorize(unlist(results[,paste0(items, "_", y_rater)])), useNA=useNA)
   
-  domain_tables = list()
-  domain_cohen_kappa_w = c()
-  domain_agreement = c()
-  domain_deferring_fraction = c()
-  domain_heatmaps = list()
-  for (domain in domains) {
-    domain_tables[[domain]] = table(x=factorize(results[,paste0(domain, "_", x_rater)]), y=factorize(results[,paste0(domain, "_", y_rater)]), useNA=useNA)
-    domain_cohen_kappa_w[domain] = cohen.kappa(domain_tables[[domain]], w=weight_matrix)$weighted.kappa
-    domain_agreement[domain] = calc_agreement(domain_tables[[domain]])
-    domain_deferring_fraction[domain] = ifelse("deferred" %in% colnames(domain_tables[[domain]]), sum(domain_tables[[domain]][,"deferred"]) / sum(domain_tables[[domain]]), 0)
-    domain_heatmaps[[domain]] = plot_heatmap(as.data.frame(domain_tables[[domain]]), x_rater, y_rater, paste0(domain, " (κ=", round(domain_cohen_kappa_w[[domain]],2), ", a=", round(domain_agreement[[domain]],2), ")"), max(sapply(domain_tables, max))) + xlab(NULL) + ylab(NULL) + no_x + no_y
+  all_items_cohen_kappa_w = cohen.kappa(all_items_table, w=weight_matrix)$weighted.kappa
+  all_items_agreement = calc_agreement(all_items_table)
+  all_items_deferring_fraction = sum(all_items_table["deferred",]) / sum(all_items_table)
+  all_items_heatmap = plot_heatmap(as.data.frame(all_items_table), x_rater, y_rater, paste0("All items (κ=", round(all_items_cohen_kappa_w, 2), ", a=", round(all_items_agreement, 2), ifelse(all_items_deferring_fraction, paste0(", def.=", round(all_items_deferring_fraction, 2)), ""), ")"))
+  
+  item_tables = list()
+  item_cohen_kappa_w = c()
+  item_agreement = c()
+  item_deferring_fraction = c()
+  item_heatmaps = list()
+  for (i in seq_len(length(items))) {
+    item = items[[i]]
+    item_tables[[item]] = table(x=factorize(results[,paste0(item, "_", x_rater)]), y=factorize(results[,paste0(item, "_", y_rater)]), useNA=useNA)
+    item_agreement[item] = calc_agreement(item_tables[[item]])
+    item_cohen_kappa_w[item] = ifelse(is.nan(item_agreement[item]), NaN, cohen.kappa(item_tables[[item]], w=weight_matrix)$weighted.kappa)
+    item_deferring_fraction[item] = sum(item_tables[[item]]["deferred",]) / sum(item_tables[[item]])
+    bracket_string = paste0(" (κ=", round(item_cohen_kappa_w[[item]],2), ", a=", round(item_agreement[[item]],2), ")")
+    if (length(names(items))) title = paste0(item, bracket_string, "\n", names(items)[i])
+    else title = paste0(item, bracket_string)
+    item_heatmaps[[item]] = plot_heatmap(as.data.frame(item_tables[[item]]), x_rater, y_rater, title, max(sapply(item_tables, max))) + xlab(NULL) + ylab(NULL) + no_x + no_y
   }
   
   if (save_results) {
-    filename = paste0(filename_prefix, "_", length(domains), "_domains_", nrow(weight_matrix), "_options")
+    filename = paste0(filename_prefix, "_", length(items), "_items")
+    #write.csv(all_items_table, paste0("results/", filename, "_all_items_table.csv"))
     write.csv(
       data.frame(
-        cohen_kappa_w=c(all_domains_cohen_kappa_w, domain_cohen_kappa_w), 
-        agreement=c(all_domains_agreement, domain_agreement), 
-        deferring_fraction=c(all_domains_deferring_fraction, domain_deferring_fraction),
-        row.names = c("combined", domains)
+        cohen_kappa_w=c(all_items_cohen_kappa_w, item_cohen_kappa_w), 
+        agreement=c(all_items_agreement, item_agreement), 
+        deferring_fraction=c(all_items_deferring_fraction, item_deferring_fraction),
+        row.names = c("combined", items)
       ), 
       paste0("results/", filename, ".csv")
     )
   }
   
-  all_domains_kappa_vs_agreement = qplot(unlist(domain_cohen_kappa_w), unlist(domain_agreement), xlab="Kappa", ylab="Agreement", xlim=c(-0.2,1), ylim=c(0,1), size=I(3)) + theme_bw()
+  all_items_kappa_vs_agreement = qplot(unlist(item_cohen_kappa_w), unlist(item_agreement), xlab="Kappa", ylab="Agreement", xlim=c(-0.2,1), ylim=c(0,1), size=I(3)) + theme_bw()
   
   bar_data = rbind(
-    cbind(as.data.frame(table(Score=factorize(unlist(results[,paste0(domains, "_", x_rater)])), useNA = useNA)), Rater="x"),
-    cbind(as.data.frame(table(Score=factorize(unlist(results[,paste0(domains, "_", y_rater)])), useNA = useNA)), Rater="y")
+    cbind(as.data.frame(table(Score=factorize(unlist(results[,paste0(items, "_", x_rater)])), useNA = useNA)), Rater="x"),
+    cbind(as.data.frame(table(Score=factorize(unlist(results[,paste0(items, "_", y_rater)])), useNA = useNA)), Rater="y")
   )
+  if (!sum(bar_data[bar_data$Score == "deferred", "Freq"])) bar_data = bar_data[bar_data$Score != "deferred",]
   bar_plot = ggplot(bar_data, aes(x=Score, y=Freq, fill=Rater)) +
     geom_bar(stat="identity", position="dodge") + scale_fill_manual(values=c("x"="#2780e3", "y"="#ff9e81")) + theme_bw() + xlab(NULL) + ggtitle(paste0(x_rater, " (blue) vs ", y_rater, " (red)")) + theme(legend.position="none")
   
   for (row in rownames(results)) {
-    individual_table = table(factorize(unlist(results[row, paste0(domains, "_", x_rater)])), factorize(unlist(results[row, paste0(domains, "_", y_rater)])), useNA=useNA)
+    individual_table = table(factorize(unlist(results[row, paste0(items, "_", x_rater)])), factorize(unlist(results[row, paste0(items, "_", y_rater)])), useNA=useNA)
     results[row, "agreement"] = calc_agreement(individual_table)
     results[row, "cohen_kappa"] = ifelse(results[row, "agreement"] == 1, 1, cohen.kappa(individual_table, w=weight_matrix)$weighted.kappa)
   }
@@ -85,18 +100,18 @@ plot_metrics_overview = function(results, domains, x_rater, y_rater, factorize, 
   plot = wrap_plots(
     wrap_plots(
       bar_plot, 
-      wrap_plots(all_domains_heatmap, all_domains_kappa_vs_agreement, ncol=2),
+      wrap_plots(all_items_heatmap, all_items_kappa_vs_agreement, ncol=2),
       individual_publications, 
       nrow=3
     ),
-    wrap_plots(domain_heatmaps, ncol=ncol, nrow=nrow),
+    wrap_plots(item_heatmaps, ncol=ncol, nrow=nrow),
     ncol=2,
     widths=c(0.4,0.6)
   )
   
   if (save_results) {
     png = paste0("results/", filename, ".png")
-    png(png, width=1920, height=1080, res=124)
+    png(png, width=1920, height=1080, res=110)
     print(plot)
     dev.off()
   }

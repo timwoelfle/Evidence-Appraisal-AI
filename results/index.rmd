@@ -1,7 +1,7 @@
 ---
 title: "Benchmarking Large Language Models (LLM) for Extracting Tools for Systematic Review: PRISMA-2009, AMSTAR, PRECIS-2"
 author: "Tim Woelfle"
-date: "2023-08-22"
+date: "2023-09-02"
 output: 
   flexdashboard::flex_dashboard:
     source_code: ""
@@ -22,26 +22,23 @@ REDO_PLOTS = F
 
 folders = c(
   # PRISMA
-  prisma_human_rater1="PRISMA-AMSTAR/cullis2017_amstar-prisma_human_rater1", prisma_human_rater2="PRISMA-AMSTAR/cullis2017_amstar-prisma_human_rater2", prisma_llm_self_consistency_5="PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-5", prisma_llm_self_consistency_4="PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-4", prisma_llm_self_consistency_3="PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-3", prisma_exp1_claude="PRISMA-AMSTAR/cullis2017_amstar-prisma_claude2", prisma_exp2_claude="PRISMA-AMSTAR/cullis2017_amstar-prisma_claude2_rep", prisma_exp3_claude_gpt="PRISMA-AMSTAR/cullis2017_prisma_claude2", prisma_exp4_gpt="PRISMA-AMSTAR/cullis2017_prisma_gpt3.5", prisma_exp5_gpt="PRISMA-AMSTAR/cullis2017_prisma_gpt3.5_rep",
+  prisma_human_rater1="PRISMA-AMSTAR/human-rater1_prisma-amstar", prisma_human_rater2="PRISMA-AMSTAR/human-rater2_prisma-amstar", prisma_llm_self_consistency_5="PRISMA-AMSTAR/llm-self-consistency-5_prisma-amstar", prisma_llm_self_consistency_4="PRISMA-AMSTAR/llm-self-consistency-4_prisma-amstar", prisma_llm_self_consistency_3="PRISMA-AMSTAR/llm-self-consistency-3_prisma-amstar", prisma_exp1_claude="PRISMA-AMSTAR/claude2_prisma-amstar", prisma_exp2_claude="PRISMA-AMSTAR/claude2_prisma-amstar_rep", prisma_exp3_claude_gpt="PRISMA-AMSTAR/claude2_prisma-gpt-prompt", prisma_exp4_gpt="PRISMA-AMSTAR/gpt3.5_prisma", prisma_exp5_gpt="PRISMA-AMSTAR/gpt3.5_prisma_rep",
   # AMSTAR
-  amstar_human_rater1="PRISMA-AMSTAR/cullis2017_amstar-prisma_human_rater1", amstar_human_rater2="PRISMA-AMSTAR/cullis2017_amstar-prisma_human_rater2", amstar_llm_self_consistency_5="PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-5", amstar_llm_self_consistency_4="PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-4", amstar_llm_self_consistency_3="PRISMA-AMSTAR/cullis2017_amstar-prisma_llm-self-consistency-3", amstar_exp1_claude="PRISMA-AMSTAR/cullis2017_amstar-prisma_claude2", amstar_exp2_claude="PRISMA-AMSTAR/cullis2017_amstar-prisma_claude2_rep", amstar_exp3_claude_gpt="PRISMA-AMSTAR/cullis2017_amstar_claude2", amstar_exp4_gpt="PRISMA-AMSTAR/cullis2017_amstar_gpt3.5", amstar_exp5_gpt="PRISMA-AMSTAR/cullis2017_amstar_gpt3.5_rep",
+  amstar_human_rater1="PRISMA-AMSTAR/human-rater1_prisma-amstar", amstar_human_rater2="PRISMA-AMSTAR/human-rater2_prisma-amstar", amstar_llm_self_consistency_5="PRISMA-AMSTAR/llm-self-consistency-5_prisma-amstar", amstar_llm_self_consistency_4="PRISMA-AMSTAR/llm-self-consistency-4_prisma-amstar", amstar_llm_self_consistency_3="PRISMA-AMSTAR/llm-self-consistency-3_prisma-amstar", amstar_exp1_claude="PRISMA-AMSTAR/claude2_prisma-amstar", amstar_exp2_claude="PRISMA-AMSTAR/claude2_prisma-amstar_rep", amstar_exp3_claude_gpt="PRISMA-AMSTAR/claude2_amstar-gpt-prompt", amstar_exp4_gpt="PRISMA-AMSTAR/gpt3.5_amstar", amstar_exp5_gpt="PRISMA-AMSTAR/gpt3.5_amstar_rep",
   # PRECIS-2
-  precis2_human_rater1="PRECIS-2/pragms-pragqol-56_precis2_human_rater1", precis2_human_rater2="PRECIS-2/pragms-pragqol-56_precis2_human_rater2", precis2_llm_self_consistency_5="PRECIS-2/pragms-pragqol-56_precis2_llm-self-consistency-5", precis2_llm_self_consistency_4="PRECIS-2/pragms-pragqol-56_precis2_llm-self-consistency-4", precis2_llm_self_consistency_3="PRECIS-2/pragms-pragqol-56_precis2_llm-self-consistency-3", precis2_exp1_claude="PRECIS-2/pragms-pragqol-56_loudon2015-toolkit_claude2", precis2_exp2_claude="PRECIS-2/pragms-pragqol-56_loudon2015-toolkit_claude2_rep", precis2_exp3_claude_gpt="PRECIS-2/pragms-pragqol-56_toolkit_claude2", precis2_exp4_gpt="PRECIS-2/pragms-pragqol-56_toolkit_gpt3.5", precis2_exp5_gpt="PRECIS-2/pragms-pragqol-56_toolkit_gpt3.5_rep"
+  precis2_human_rater1="PRECIS-2/human-rater1_precis2", precis2_human_rater2="PRECIS-2/human-rater2_precis2", precis2_llm_self_consistency_5="PRECIS-2/llm-self-consistency-5_precis2", precis2_llm_self_consistency_4="PRECIS-2/llm-self-consistency-4_precis2", precis2_llm_self_consistency_3="PRECIS-2/llm-self-consistency-3_precis2", precis2_exp1_claude="PRECIS-2/claude2_precis2", precis2_exp2_claude="PRECIS-2/claude2_precis2_rep", precis2_exp3_claude_gpt="PRECIS-2/claude2_precis2-gpt-prompt", precis2_exp4_gpt="PRECIS-2/gpt3.5_precis2", precis2_exp5_gpt="PRECIS-2/gpt3.5_precis2_rep"
 )
 
 get_filename_suffix = Vectorize(function(experiment) {
   if (grepl("prisma", experiment)) {
-    domains = 27
-    options = 3
+    items = 27
   } else if (grepl("amstar", experiment)) {
-    domains = 11
-    options = 3
+    items = 11
   } else if (grepl("precis2", experiment)) {
-    domains = 9
-    options = 4
+    items = 9
   }
-  if (grepl("consistency", experiment)) options = options + 1
-  paste0(domains, "_domains_", options, "_options")
+  #if (grepl("consistency", experiment)) items = paste("_self_consistency_", items)
+  paste0(items, "_items")
 })
 
 # Experiments vs human consensus
@@ -56,37 +53,37 @@ consensus_vs = do.call(
 colnames(consensus_vs) = c("Kappa", "Agreement", "deferring_fraction")
 
 reliability = rbind(
-  prisma_human = read.csv("PRISMA-AMSTAR/cullis2017_amstar-prisma_human_rater1/results/reliability_27_domains_3_options.csv", row.names = 1),
+  prisma_human = read.csv("PRISMA-AMSTAR/human-rater1_prisma-amstar/results/reliability_27_items.csv", row.names = 1),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
-  prisma_claude = read.csv("PRISMA-AMSTAR/cullis2017_amstar-prisma_claude2/results/reliability_27_domains_3_options.csv", row.names = 1),
+  prisma_claude = read.csv("PRISMA-AMSTAR/claude2_prisma-amstar/results/reliability_27_items.csv", row.names = 1),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
-  prisma_gpt = read.csv("PRISMA-AMSTAR/cullis2017_prisma_gpt3.5/results/reliability_27_domains_3_options.csv", row.names = 1),
+  prisma_gpt = read.csv("PRISMA-AMSTAR/gpt3.5_prisma/results/reliability_27_items.csv", row.names = 1),
   combined = list(NA, NA, NA),
   
-  amstar_human = read.csv("PRISMA-AMSTAR/cullis2017_amstar-prisma_human_rater1/results/reliability_11_domains_3_options.csv", row.names = 1),
+  amstar_human = read.csv("PRISMA-AMSTAR/human-rater1_prisma-amstar/results/reliability_11_items.csv", row.names = 1),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
-  amstar_claude = read.csv("PRISMA-AMSTAR/cullis2017_amstar-prisma_claude2/results/reliability_11_domains_3_options.csv", row.names = 1),
+  amstar_claude = read.csv("PRISMA-AMSTAR/claude2_prisma-amstar/results/reliability_11_items.csv", row.names = 1),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
-  amstar_gpt = read.csv("PRISMA-AMSTAR/cullis2017_amstar_gpt3.5/results/reliability_11_domains_3_options.csv", row.names = 1),
+  amstar_gpt = read.csv("PRISMA-AMSTAR/gpt3.5_amstar/results/reliability_11_items.csv", row.names = 1),
   combined = list(NA, NA, NA),
 
-  precis2_human = read.csv("PRECIS-2/pragms-pragqol-56_precis2_human_rater1/results/reliability_9_domains_4_options.csv", row.names = 1),
+  precis2_human = read.csv("PRECIS-2/human-rater1_precis2/results/reliability_9_items.csv", row.names = 1),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
-  precis2_claude = read.csv("PRECIS-2/pragms-pragqol-56_loudon2015-toolkit_claude2/results/reliability_9_domains_4_options.csv", row.names = 1),
+  precis2_claude = read.csv("PRECIS-2/claude2_precis2/results/reliability_9_items.csv", row.names = 1),
   combined = list(NA, NA, NA),
   combined = list(NA, NA, NA),
-  precis2_gpt = read.csv("PRECIS-2/pragms-pragqol-56_toolkit_gpt3.5/results/reliability_9_domains_4_options.csv", row.names = 1),
+  precis2_gpt = read.csv("PRECIS-2/gpt3.5_precis2/results/reliability_9_items.csv", row.names = 1),
   combined = list(NA, NA, NA)
 )
 colnames(reliability) = c("Kappa", "Agreement", "deferring_fraction")
@@ -97,7 +94,7 @@ data = data.frame(
   consensus_vs = consensus_vs[grepl("combined", rownames(consensus_vs)), 1:2],
   reliability = reliability[grepl("combined", rownames(reliability)), 1:2],
   main_experiment = c(T, F, T, F, F, T, F, F, T, F),
-  path_human_consensus_html = paste0(gsub(".*/", "", folders), "_compare_human_consensus.html"),
+  path_human_consensus_html = paste0(gsub(".*/", "", folders), "_human_consensus.html"),
   path_reliability_html = paste0(gsub(".*/", "", folders), "_reliability.html"),
   path_human_consensus_png = paste0(folders, "/results/human_consensus_", get_filename_suffix(names(folders)), ".png"),
   path_reliability_png = paste0(folders, "/results/reliability_", get_filename_suffix(names(folders)), ".png"),
@@ -162,7 +159,7 @@ if (REDO_PLOTS) {
   
   item_wise_scatter = function(x, y, xlab, ylab, title, data=consensus_vs, filename_prefix="human_consensus") {
     set.seed(1337)
-    # Use negative lookahead "(?! )" to preserve "Flex. " in front of "delivery" and "adherence" for PRECIS-2 domains
+    # Use negative lookahead "(?! )" to preserve "Flex. " in front of "delivery" and "adherence" for PRECIS-2 items
     plot = function(column) ggplot(data.frame(x=data[grepl(x, rownames(data)), column], y=data[grepl(y, rownames(data)), column], text=gsub(".*\\.(?! )", "", rownames(data)[grepl(x, rownames(data))], perl=T)), aes(x,y)) + 
       geom_point() + 
       geom_text_repel(aes(label=text), max.overlaps=10) + 
@@ -178,14 +175,14 @@ if (REDO_PLOTS) {
   
   item_wise_scatter(x="prisma_human_rater1", y="prisma_human_rater1", xlab="Human Rater 1 vs Human Consensus", ylab="Human Rater 1 vs Human Consensus", title="PRISMA (Claude-2)")
   item_wise_scatter(x="prisma_human_rater1", y="prisma_human_rater2", xlab="Human Rater 1 vs Human Consensus", ylab="Human Rater 2 vs Human Consensus", title="PRISMA (Claude-2)")
-  item_wise_scatter(x="prisma_human_rater1", y="prisma_llm_self_consistency_5", xlab="Human Rater 1 vs Human Consensus", ylab="LMM self-consistency vs Human Consensus", title=paste0("PRISMA (LLM self-consistency 5/5: ", round(consensus_vs["prisma_llm_self_consistency_5.combined", "deferring_fraction"]*100), "% deferred)"))
-  item_wise_scatter(x="prisma_human_rater1", y="prisma_llm_self_consistency_4", xlab="Human Rater 1 vs Human Consensus", ylab="LMM self-consistency vs Human Consensus", title=paste0("PRISMA (LLM self-consistency 4/5: ", round(consensus_vs["prisma_llm_self_consistency_4.combined", "deferring_fraction"]*100), "% deferred)"))
-  item_wise_scatter(x="prisma_human_rater1", y="prisma_llm_self_consistency_3", xlab="Human Rater 1 vs Human Consensus", ylab="LMM self-consistency vs Human Consensus", title=paste0("PRISMA (LLM self-consistency 3/5: ", round(consensus_vs["prisma_llm_self_consistency_3.combined", "deferring_fraction"]*100), "% deferred)"))
-  item_wise_scatter(x="prisma_human_rater1", y="prisma_exp1_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="PRISMA (Claude-2)")
-  item_wise_scatter(x="prisma_human_rater1", y="prisma_exp2_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="PRISMA (Claude-2 repeated)")
-  item_wise_scatter(x="prisma_human_rater1", y="prisma_exp3_claude_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="PRISMA (Claude-2 GPT-prompt)")
-  item_wise_scatter(x="prisma_human_rater1", y="prisma_exp4_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="PRISMA (GPT-3.5)")
-  item_wise_scatter(x="prisma_human_rater1", y="prisma_exp5_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="PRISMA (GPT-3.5 repeated)")
+  item_wise_scatter(x="prisma_human_rater1", y="prisma_llm_self_consistency_5", xlab="Human Rater 1 vs Human Consensus", ylab="LLM self-consistency vs Human Consensus", title=paste0("PRISMA (LLM self-consistency 5/5: ", round(consensus_vs["prisma_llm_self_consistency_5.combined", "deferring_fraction"]*100), "% deferred)"))
+  item_wise_scatter(x="prisma_human_rater1", y="prisma_llm_self_consistency_4", xlab="Human Rater 1 vs Human Consensus", ylab="LLM self-consistency vs Human Consensus", title=paste0("PRISMA (LLM self-consistency 4/5: ", round(consensus_vs["prisma_llm_self_consistency_4.combined", "deferring_fraction"]*100), "% deferred)"))
+  item_wise_scatter(x="prisma_human_rater1", y="prisma_llm_self_consistency_3", xlab="Human Rater 1 vs Human Consensus", ylab="LLM self-consistency vs Human Consensus", title=paste0("PRISMA (LLM self-consistency 3/5: ", round(consensus_vs["prisma_llm_self_consistency_3.combined", "deferring_fraction"]*100), "% deferred)"))
+  item_wise_scatter(x="prisma_human_rater1", y="prisma_exp1_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="PRISMA (Claude-2)")
+  item_wise_scatter(x="prisma_human_rater1", y="prisma_exp2_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="PRISMA (Claude-2 repeated)")
+  item_wise_scatter(x="prisma_human_rater1", y="prisma_exp3_claude_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="PRISMA (Claude-2 GPT-prompt)")
+  item_wise_scatter(x="prisma_human_rater1", y="prisma_exp4_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="PRISMA (GPT-3.5)")
+  item_wise_scatter(x="prisma_human_rater1", y="prisma_exp5_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="PRISMA (GPT-3.5 repeated)")
   
   item_wise_scatter(x="prisma_human", y="prisma_human", xlab="Human Inter-Rater Reliability", ylab="Human Inter-Rater Reliability", title="PRISMA", data=reliability, filename_prefix="reliability")
   item_wise_scatter(x="prisma_human", y="prisma_claude", xlab="Human Inter-Rater Reliability", ylab="Claude-2 Reproducibility", title="PRISMA", data=reliability, filename_prefix="reliability")
@@ -193,14 +190,14 @@ if (REDO_PLOTS) {
   
   item_wise_scatter(x="amstar_human_rater1", y="amstar_human_rater1", xlab="Human Rater 1 vs Human Consensus", ylab="Human Rater 1 vs Human Consensus", title="AMSTAR (Claude-2)")
   item_wise_scatter(x="amstar_human_rater1", y="amstar_human_rater2", xlab="Human Rater 1 vs Human Consensus", ylab="Human Rater 2 vs Human Consensus", title="AMSTAR (Claude-2)")
-  item_wise_scatter(x="amstar_human_rater1", y="amstar_llm_self_consistency_5", xlab="Human Rater 1 vs Human Consensus", ylab="LMM self-consistency vs Human Consensus", title=paste0("AMSTAR (LLM self-consistency 5/5: ", round(consensus_vs["amstar_llm_self_consistency_5.combined", "deferring_fraction"]*100), "% deferred)"))
-  item_wise_scatter(x="amstar_human_rater1", y="amstar_llm_self_consistency_4", xlab="Human Rater 1 vs Human Consensus", ylab="LMM self-consistency vs Human Consensus", title=paste0("AMSTAR (LLM self-consistency 4/5: ", round(consensus_vs["amstar_llm_self_consistency_4.combined", "deferring_fraction"]*100), "% deferred)"))
-  item_wise_scatter(x="amstar_human_rater1", y="amstar_llm_self_consistency_3", xlab="Human Rater 1 vs Human Consensus", ylab="LMM self-consistency vs Human Consensus", title=paste0("AMSTAR (LLM self-consistency 3/5: ", round(consensus_vs["amstar_llm_self_consistency_3.combined", "deferring_fraction"]*100), "% deferred)"))
-  item_wise_scatter(x="amstar_human_rater1", y="amstar_exp1_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="AMSTAR (Claude-2)")
-  item_wise_scatter(x="amstar_human_rater1", y="amstar_exp2_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="AMSTAR (Claude-2 repeated)")
-  item_wise_scatter(x="amstar_human_rater1", y="amstar_exp3_claude_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="AMSTAR (Claude-2 GPT-prompt)")
-  item_wise_scatter(x="amstar_human_rater1", y="amstar_exp4_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="AMSTAR (GPT-3.5)")
-  item_wise_scatter(x="amstar_human_rater1", y="amstar_exp5_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="AMSTAR (GPT-3.5 repeated)")
+  item_wise_scatter(x="amstar_human_rater1", y="amstar_llm_self_consistency_5", xlab="Human Rater 1 vs Human Consensus", ylab="LLM self-consistency vs Human Consensus", title=paste0("AMSTAR (LLM self-consistency 5/5: ", round(consensus_vs["amstar_llm_self_consistency_5.combined", "deferring_fraction"]*100), "% deferred)"))
+  item_wise_scatter(x="amstar_human_rater1", y="amstar_llm_self_consistency_4", xlab="Human Rater 1 vs Human Consensus", ylab="LLM self-consistency vs Human Consensus", title=paste0("AMSTAR (LLM self-consistency 4/5: ", round(consensus_vs["amstar_llm_self_consistency_4.combined", "deferring_fraction"]*100), "% deferred)"))
+  item_wise_scatter(x="amstar_human_rater1", y="amstar_llm_self_consistency_3", xlab="Human Rater 1 vs Human Consensus", ylab="LLM self-consistency vs Human Consensus", title=paste0("AMSTAR (LLM self-consistency 3/5: ", round(consensus_vs["amstar_llm_self_consistency_3.combined", "deferring_fraction"]*100), "% deferred)"))
+  item_wise_scatter(x="amstar_human_rater1", y="amstar_exp1_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="AMSTAR (Claude-2)")
+  item_wise_scatter(x="amstar_human_rater1", y="amstar_exp2_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="AMSTAR (Claude-2 repeated)")
+  item_wise_scatter(x="amstar_human_rater1", y="amstar_exp3_claude_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="AMSTAR (Claude-2 GPT-prompt)")
+  item_wise_scatter(x="amstar_human_rater1", y="amstar_exp4_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="AMSTAR (GPT-3.5)")
+  item_wise_scatter(x="amstar_human_rater1", y="amstar_exp5_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="AMSTAR (GPT-3.5 repeated)")
   
   item_wise_scatter(x="amstar_human", y="amstar_human", xlab="Human Inter-Rater Reliability", ylab="Human Inter-Rater Reliability", title="AMSTAR", data=reliability, filename_prefix="reliability")
   item_wise_scatter(x="amstar_human", y="amstar_claude", xlab="Human Inter-Rater Reliability", ylab="Claude-2 Reproducibility", title="AMSTAR", data=reliability, filename_prefix="reliability")
@@ -208,14 +205,14 @@ if (REDO_PLOTS) {
   
   item_wise_scatter(x="precis2_human_rater1", y="precis2_human_rater1", xlab="Human Rater 1 vs Human Consensus", ylab="Human Rater 1 vs Human Consensus", title="PRECIS-2 (Claude-2)")
   item_wise_scatter(x="precis2_human_rater1", y="precis2_human_rater2", xlab="Human Rater 1 vs Human Consensus", ylab="Human Rater 2 vs Human Consensus", title="PRECIS-2 (Claude-2)")
-  item_wise_scatter(x="precis2_human_rater1", y="precis2_llm_self_consistency_5", xlab="Human Rater 1 vs Human Consensus", ylab="LMM self-consistency vs Human Consensus", title=paste0("PRECIS-2 (LLM self-consistency 5/5: ", round(consensus_vs["precis2_llm_self_consistency_5.combined", "deferring_fraction"]*100), "% deferred)"))
-  item_wise_scatter(x="precis2_human_rater1", y="precis2_llm_self_consistency_4", xlab="Human Rater 1 vs Human Consensus", ylab="LMM self-consistency vs Human Consensus", title=paste0("PRECIS-2 (LLM self-consistency 4/5: ", round(consensus_vs["precis2_llm_self_consistency_4.combined", "deferring_fraction"]*100), "% deferred)"))
-  item_wise_scatter(x="precis2_human_rater1", y="precis2_llm_self_consistency_3", xlab="Human Rater 1 vs Human Consensus", ylab="LMM self-consistency vs Human Consensus", title=paste0("PRECIS-2 (LLM self-consistency 3/5: ", round(consensus_vs["precis2_llm_self_consistency_3.combined", "deferring_fraction"]*100), "% deferred)"))
-  item_wise_scatter(x="precis2_human_rater1", y="precis2_exp1_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="PRECIS-2 (Claude-2)")
-  item_wise_scatter(x="precis2_human_rater1", y="precis2_exp2_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="PRECIS-2 (Claude-2 repeated)")
-  item_wise_scatter(x="precis2_human_rater1", y="precis2_exp3_claude_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="PRECIS-2 (Claude-2 GPT-prompt)")
-  item_wise_scatter(x="precis2_human_rater1", y="precis2_exp4_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="PRECIS-2 (GPT-3.5)")
-  item_wise_scatter(x="precis2_human_rater1", y="precis2_exp5_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LMM vs Human Consensus", title="PRECIS-2 (GPT-3.5 repeated)")
+  item_wise_scatter(x="precis2_human_rater1", y="precis2_llm_self_consistency_5", xlab="Human Rater 1 vs Human Consensus", ylab="LLM self-consistency vs Human Consensus", title=paste0("PRECIS-2 (LLM self-consistency 5/5: ", round(consensus_vs["precis2_llm_self_consistency_5.combined", "deferring_fraction"]*100), "% deferred)"))
+  item_wise_scatter(x="precis2_human_rater1", y="precis2_llm_self_consistency_4", xlab="Human Rater 1 vs Human Consensus", ylab="LLM self-consistency vs Human Consensus", title=paste0("PRECIS-2 (LLM self-consistency 4/5: ", round(consensus_vs["precis2_llm_self_consistency_4.combined", "deferring_fraction"]*100), "% deferred)"))
+  item_wise_scatter(x="precis2_human_rater1", y="precis2_llm_self_consistency_3", xlab="Human Rater 1 vs Human Consensus", ylab="LLM self-consistency vs Human Consensus", title=paste0("PRECIS-2 (LLM self-consistency 3/5: ", round(consensus_vs["precis2_llm_self_consistency_3.combined", "deferring_fraction"]*100), "% deferred)"))
+  item_wise_scatter(x="precis2_human_rater1", y="precis2_exp1_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="PRECIS-2 (Claude-2)")
+  item_wise_scatter(x="precis2_human_rater1", y="precis2_exp2_claude", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="PRECIS-2 (Claude-2 repeated)")
+  item_wise_scatter(x="precis2_human_rater1", y="precis2_exp3_claude_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="PRECIS-2 (Claude-2 GPT-prompt)")
+  item_wise_scatter(x="precis2_human_rater1", y="precis2_exp4_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="PRECIS-2 (GPT-3.5)")
+  item_wise_scatter(x="precis2_human_rater1", y="precis2_exp5_gpt", xlab="Human Rater 1 vs Human Consensus", ylab="LLM vs Human Consensus", title="PRECIS-2 (GPT-3.5 repeated)")
   
   item_wise_scatter(x="precis2_human", y="precis2_human", xlab="Human Inter-Rater Reliability", ylab="Human Inter-Rater Reliability", title="PRECIS-2", data=reliability, filename_prefix="reliability")
   item_wise_scatter(x="precis2_human", y="precis2_claude", xlab="Human Inter-Rater Reliability", ylab="Claude-2 Reproducibility", title="PRECIS-2", data=reliability, filename_prefix="reliability")

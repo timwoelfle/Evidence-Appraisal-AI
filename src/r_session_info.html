@@ -11,7 +11,7 @@
 
 <meta name="author" content="Tim Woelfle" />
 
-<meta name="date" content="2023-08-25" />
+<meta name="date" content="2023-09-02" />
 
 <title>R Session Info</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">R Session Info</h1>
 <h4 class="author">Tim Woelfle</h4>
-<h4 class="date">2023-08-25</h4>
+<h4 class="date">2023-09-02</h4>
 
 </div>
 
@@ -360,8 +360,9 @@ display: none;
 <div id="r-session-info" class="section level1">
 <h1>R session info</h1>
 <p>Provided for <a href="https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html">reproducibility</a></p>
-<pre class="r"><code>suppressPackageStartupMessages(library(DT))
+<pre class="r"><code>suppressPackageStartupMessages(library(rmarkdown))
 suppressPackageStartupMessages(library(flexdashboard))
+suppressPackageStartupMessages(library(DT))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(ggrepel))
 suppressPackageStartupMessages(library(htmltools))
@@ -394,9 +395,10 @@ sessionInfo()</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] psych_2.3.6         patchwork_1.1.2     knitr_1.42         
-## [4] jsonlite_1.8.4      htmltools_0.5.5     ggrepel_0.9.3      
-## [7] ggplot2_3.4.2       flexdashboard_0.6.1 DT_0.28            
+##  [1] psych_2.3.6         patchwork_1.1.2     knitr_1.42         
+##  [4] jsonlite_1.8.4      htmltools_0.5.5     ggrepel_0.9.3      
+##  [7] ggplot2_3.4.2       DT_0.28             flexdashboard_0.6.1
+## [10] rmarkdown_2.21     
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] gtable_0.3.3      dplyr_1.1.2       compiler_4.3.0    tidyselect_1.2.0 
@@ -408,7 +410,7 @@ sessionInfo()</code></pre>
 ## [25] withr_2.5.0       magrittr_2.0.3    digest_0.6.31     grid_4.3.0       
 ## [29] rstudioapi_0.14   nlme_3.1-162      lifecycle_1.0.3   vctrs_0.6.2      
 ## [33] mnormt_2.1.1      evaluate_0.21     glue_1.6.2        fansi_1.0.4      
-## [37] colorspace_2.1-0  rmarkdown_2.21    tools_4.3.0       pkgconfig_2.0.3</code></pre>
+## [37] colorspace_2.1-0  tools_4.3.0       pkgconfig_2.0.3</code></pre>
 </div>
 
 

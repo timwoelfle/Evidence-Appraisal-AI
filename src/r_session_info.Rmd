@@ -1,7 +1,7 @@
 ---
 title: "R Session Info"
 author: "Tim Woelfle"
-date: "2023-08-25"
+date: "2023-09-02"
 output: html_document
 ---
 
@@ -10,8 +10,9 @@ output: html_document
 Provided for [reproducibility](https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html)
 
 ```{r}
-suppressPackageStartupMessages(library(DT))
+suppressPackageStartupMessages(library(rmarkdown))
 suppressPackageStartupMessages(library(flexdashboard))
+suppressPackageStartupMessages(library(DT))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(ggrepel))
 suppressPackageStartupMessages(library(htmltools))

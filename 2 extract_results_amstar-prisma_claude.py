@@ -3,14 +3,14 @@ import os
 import pandas as pd
 from src.extract_results import extract_prisma_amstar, compare_quotes
 
-FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/cullis2017/fulltext/txt/done/"
-RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_prisma_claude2/"
+FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/fulltext/txt/done/"
+RESULTS_FOLDER = "results/PRISMA-AMSTAR/claude2_prisma-gpt-prompt/"
 NUM_SCORES = 27
-# FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/cullis2017/fulltext/txt/done/"
-# RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_amstar_claude2/"
+# FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/fulltext/txt/done/"
+# RESULTS_FOLDER = "results/PRISMA-AMSTAR/claude2_amstar-gpt-prompt/"
 # NUM_SCORES = 11
 # FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/cullis2017/fulltext/pdf/txt/"
-# RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_amstar-prisma_claude2/"
+# RESULTS_FOLDER = "results/PRISMA-AMSTAR/claude2_prisma-amstar/"
 # NUM_SCORES = 38
 
 with open(RESULTS_FOLDER + "prompt_template/user.txt") as f:

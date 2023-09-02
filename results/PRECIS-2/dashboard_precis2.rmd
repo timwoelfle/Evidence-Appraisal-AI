@@ -1,0 +1,174 @@
+---
+title: "`r params$title`"
+author: "Tim Woelfle"
+date: "`r Sys.Date()`"
+output: 
+  flexdashboard::flex_dashboard:
+    source_code: ""
+    mathjax: NULL
+    self_contained: FALSE
+    lib_dir: "../html/lib/"
+params:
+  run_folder: "claude2"
+  model: "Claude 2"
+  tool: "PRECIS-2"
+  title: "PRECIS-2 Scores in PragMeta: Human Consensus vs LLM (Claude 2)"
+  output_file: "human_consensus"
+  x_rater: "LLM"
+  y_rater: "Human Consensus"
+  results_x: "results.csv"
+  results_y: "human_consensus"
+  show_llm_message: TRUE
+---
+
+```{css}
+table {
+  margin: auto;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+
+pre {
+  white-space: pre-wrap;
+  word-break: keep-all;
+}
+
+/* Hack to make prompt-tab scrollable again */
+div.level3.tab-pane .chart-stage {
+  overflow: scroll;
+}
+```
+
+```{r}
+source("../../../src/results_functions_precis2.r")
+source("../../../src/results_functions.r")
+
+x_rater = params$x_rater
+y_rater = params$y_rater
+
+human_consensus = read.csv("../../../data/PRECIS-2/human_consensus.csv", row.names = "trials.trials_id", na.strings = NULL, check.names = F)
+human_consensus$author_year = paste0(human_consensus$trials.author, " (", human_consensus$trials.pub_year, ")")
+human_consensus$title = human_consensus$trials.title
+human_consensus$DOI = human_consensus$trials.doi
+
+results = read.csv(params$results_x, row.names = 1, na.strings = NULL, check.names = F)
+if (!all(items %in% colnames(results))) {
+  results[items] = t(sapply(strsplit(gsub("\\[|\\]|\\'", "", results$llm_scores), ", ", fixed=T), as.character)) # strtoi
+}
+results[paste0(items, "_", x_rater)] = results[items]
+results$author_year = human_consensus[rownames(results), "author_year"]
+results$title = human_consensus[rownames(results), "title"]
+results$link = paste0("https://doi.org/", human_consensus[rownames(results), "DOI"])
+
+# Combine results
+if (params$results_y == "human_consensus") {
+  # Human consensus is default
+  results[paste0(items, "_", y_rater)] = human_consensus[rownames(results), items]
+} else {
+  results_y = read.csv(params$results_y, row.names = 1, na.strings = NULL, check.names = F)
+  if (!all(items %in% colnames(results_y))) {
+    results_y[items] = t(sapply(strsplit(gsub("\\[|\\]|\\'", "", results_y$llm_scores), ", ", fixed=T), as.character)) # strtoi
+  }
+  results[paste0(items, "_", y_rater)] = results_y[rownames(results), items]
+}
+
+results = results[order(as.integer(rownames(results))),]
+
+if (params$show_llm_message) {
+  quote_accuracy = read.csv("quote_accuracy.csv")
+  # Remove quotes with < 10 characters
+  quote_accuracy = quote_accuracy[nchar(quote_accuracy$quote) >= 10,]
+  quote_accuracy$html_span = quote_accuracy_html_span(quote_accuracy)
+} else {
+  quote_accuracy = NULL
+}
+
+if (params$model == "GPT 3.5") system_prompt = readChar("prompt_template/system.txt", file.info("prompt_template/system.txt")$size)
+if (params$model %in% c("GPT 3.5", "Claude 2")) user_prompt = readChar("prompt_template/user.txt", file.info("prompt_template/user.txt")$size)
+```
+
+Column {data-width=55}
+-------------------------------------
+
+### Score comparisons of `r nrow(results)` publications
+
+```{r}
+datatable_scores(results, y_rater, x_rater)
+```
+
+```{r, results='hide'}
+plot_precis2_pooled = plot_metrics_overview(results, items, x_rater, y_rater, factorize_pooled, weight_matrix_pooled, filename_prefix=params$output_file)
+png_precis2_pooled = paste0("../PRECIS-2/", params$run_folder, "/results/", params$output_file, "_", length(items), "_items.png")
+
+plot_precis2 = plot_metrics_overview(results, items, x_rater, y_rater, factorize, weight_matrix, filename_prefix=paste0(params$output_file, "_unpooled"))
+png_precis2 = paste0("../PRECIS-2/", params$run_folder, "/results/", params$output_file, "_", length(items), "_items.png")
+```
+
+### Score heatmaps (<a onclick="$('p.image-container')[0].style = 'background: url(&quot;`r png_precis2_pooled`&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = &quot;`r png_precis2_pooled`&quot;;" style="cursor: pointer">pooled</a> / <a onclick="$('p.image-container')[0].style = 'background: url(&quot;`r png_precis2`&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = &quot;`r png_precis2`&quot;;" style="cursor: pointer">unpooled</a>) {data-height=720}
+
+```{r, results='asis'}
+cat(paste0('<img data-figure-id="fig1" src="', png_precis2_pooled, '" width="1536" onclick="window.open(this.src)" style="cursor: pointer">'))
+```
+
+Column {data-width=45 .tabset}
+-------------------------------------
+
+### Individual results
+
+```{r, results="asis"}
+cat_individual_results(results, x_rater, y_rater, quote_accuracy, show_llm_message = params$show_llm_message)
+```
+
+```{r, results='asis'}
+if (params$show_llm_message) {
+  cat("### Quote accuracy\n\n")
+  cat_quote_accuracy(results, quote_accuracy)
+}
+```
+
+```{r, results='asis'}
+if (params$show_llm_message) {
+  cat("### Formatting accuracy\n\n")
+  cat_formatting_accuracy(results, human_consensus)
+}
+```
+
+```{r, results='asis'}
+if (params$model == "GPT 3.5") {
+  cat("### LLM prompt\n\n")
+
+  cat("* Model: `gpt-3.5-turbo-16k-0613`\n")
+  cat("* Temperature: `0`\n")
+  cat("* Briefing derived from: [PRECIS-2 Toolkit page 4](http://precis-2.org/Help/Documentation/ToolkitDownload)\n\n")
+  
+  cat("#### System prompt\n\n")
+  
+  cat("<pre>\n")
+  cat(system_prompt, "\n")
+  cat("</pre>\n")
+  
+  cat("#### User prompt\n\n")
+  
+  cat("<pre>\n")
+  cat(user_prompt, "\n")
+  cat("</pre>\n")
+} else if (params$model == "Claude 2") {
+  cat("### LLM prompt\n\n")
+
+  cat("* Model: [Claude 2](https://www.anthropic.com/index/claude-2)\n")
+  cat("* Temperature: Chat interface ([probably `1`](https://docs.anthropic.com/claude/reference/complete_post))\n")
+  if (grepl("gpt-prompt", params$run_folder)) {
+    cat("* Briefing derived from: [PRECIS-2 Toolkit page 4](http://precis-2.org/Help/Documentation/ToolkitDownload)\n\n")
+  } else {
+    cat("* Briefing derived from: [Loudon 2015](https://doi.org/10.1016/j.jclinepi.2017.06.001) & [PRECIS-2 Toolkit](http://precis-2.org/Help/Documentation/ToolkitDownload)\n\n")
+  }
+  
+  cat("#### User prompt\n\n")
+  
+  cat("<pre>\n")
+  cat(user_prompt, "\n")
+  cat("</pre>\n")
+}
+```

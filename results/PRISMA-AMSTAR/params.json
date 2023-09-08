@@ -28,7 +28,7 @@
   },
   {
     "run_folder": "claude2_prisma-amstar", "model": "Claude 2", "tool": "both", 
-    "title": "PRISMA 2009 & AMSTAR Scores in Cullis 2017: Human Rater 1 vs LLM (Claude 2)",
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Rater 1 vs LLM (Claude 2)",
     "output_file": "human_rater1",
     "y_rater": "Human Rater 1",
     "results_y": "../../../data/PRISMA-AMSTAR/rater1.csv"
@@ -102,10 +102,26 @@
   },
   {
     "run_folder": "human-rater1-claude2_prisma-amstar", "model": "Claude 2", "tool": "both",
-    "title": "PRISMA 2009 & AMSTAR Scores in Cullis 2017: Human Consensus vs Human Rater 1 & LLM combined (Claude-2)",
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Consensus vs Human Rater 1 & LLM combined (Claude-2)",
     "output_file": "human_consensus",
     "x_rater": "Human Rater 1 & LLM combined",
     "results_x": "results_rater1_llm_combined.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "human-rater1-llm-self-consistency_prisma-amstar", "model": false, "tool": "both",
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Consensus vs Human Rater 1 & LLM combined (self-consistency 5/5)",
+    "output_file": "human_consensus",
+    "x_rater": "Human Rater 1 & LLM combined",
+    "results_x": "results_rater1_llm_combined.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "human-rater1-rater2_prisma-amstar", "model": false, "tool": "both",
+    "title": "PRISMA & AMSTAR Scores in Cullis 2017: Human Consensus vs Human Rater 1 & Human Rater 2 combined",
+    "output_file": "human_consensus",
+    "x_rater": "Human Rater 1 & Rater 2 combined",
+    "results_x": "results_rater1_rater2_combined.csv",
     "show_llm_message": false
   },
   {

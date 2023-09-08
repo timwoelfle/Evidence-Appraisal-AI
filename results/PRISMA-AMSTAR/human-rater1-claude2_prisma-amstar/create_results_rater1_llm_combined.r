@@ -2,7 +2,7 @@ source("../../../src/results_functions_prisma_amstar.r") # prisma, amstar
 
 items = c(amstar, prisma)
 
-rater1 = read.csv("../../../data/PRISMA-AMSTAR/cullis2017/rater1.csv", row.names = 1, na.strings = NULL)
+rater1 = read.csv("../../../data/PRISMA-AMSTAR/rater1.csv", row.names = 1, na.strings = NULL)
 
 results = read.csv("../claude2_prisma-amstar/results.csv", row.names = 1)
 results[items] = t(sapply(strsplit(gsub("\\[|\\]|\\'", "", results$llm_scores), ", ", fixed=T), as.character))

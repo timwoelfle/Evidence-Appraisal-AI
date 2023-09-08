@@ -84,21 +84,6 @@ def extract_prisma_amstar(llm_message, num_scores):
         if len(llm_scores) > len_pre:
             wrong_format.append("missing-squared-brackets-pre-dash")
     
-    # Apparently not needed anymore as of 23-08-13
-    # if len(llm_scores) < num_scores:
-    #     len_pre = len(llm_scores)
-    #     llm_message = re.sub(r"\"(Yes|No|NA)\"", r"\"<added-squared-brackets>[\1]</added-squared-brackets>\"", llm_message)
-    #     llm_scores = find_scores(llm_message)
-    #     if len(llm_scores) > len_pre:
-    #         wrong_format.append("missing-squared-brackets-instead-quotes")
-
-    # if len(llm_scores) < num_scores:
-    #     len_pre = len(llm_scores)
-    #     llm_message = llm_message.replace("Not reported", "Not reported <added>[No]</added>")
-    #     llm_scores = find_scores(llm_message)
-    #     if len(llm_scores) > len_pre:
-    #         wrong_format.append("not-reported-instead-of-no")
-
     if len(llm_scores) < num_scores:
         len_pre = len(llm_scores)
         llm_message = llm_message.replace("N/A", "N/A <added>[NA]</added>")

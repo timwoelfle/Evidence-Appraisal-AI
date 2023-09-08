@@ -1,4 +1,5 @@
 suppressPackageStartupMessages(library(psych)) # cohen.kappa
+suppressPackageStartupMessages(library(boot))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(patchwork)) # wrap_plots
 suppressPackageStartupMessages(library(jsonlite)) # read_json
@@ -11,6 +12,16 @@ no_y = theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.tic
 calc_agreement = function(table_) {
   table_ = table_[rownames(table_) != "deferred", colnames(table_) != "deferred"]
   sum(diag(table_)) / sum(table_)
+}
+
+get_kappa_agreement_deferring = function(results, indices, items, x_rater, y_rater, factorize, weight_matrix, useNA) {
+  items_table = table(x=factorize(unlist(results[indices, paste0(items, "_", x_rater)])), y=factorize(unlist(results[indices, paste0(items, "_", y_rater)])), useNA=useNA)
+  
+  return(c(
+    cohen_kappa_w = cohen.kappa(items_table, w=weight_matrix)$weighted.kappa,
+    agreement = calc_agreement(items_table),
+    deferring_fraction = sum(items_table["deferred",]) / sum(items_table)
+  ))
 }
 
 plot_heatmap = function(data, x_rater, y_rater, title, limit_max=NULL) {
@@ -33,6 +44,8 @@ plot_heatmap = function(data, x_rater, y_rater, title, limit_max=NULL) {
 }
 
 plot_metrics_overview = function(results, items, x_rater, y_rater, factorize, weight_matrix, useNA="no", save_results=T, filename_prefix="human_consensus") {
+  results = results[!rowSums(is.na(results[,c(paste0(items, "_", x_rater), paste0(items, "_", y_rater))])),]
+  
   ncol=3
   nrow=3
   if (length(items) > 9) nrow = 4
@@ -41,12 +54,13 @@ plot_metrics_overview = function(results, items, x_rater, y_rater, factorize, we
     nrow = 6
   }
   
+  boot_all_items = boot(results, get_kappa_agreement_deferring, 1000, items=items, x_rater=x_rater, y_rater=y_rater, factorize=factorize, weight_matrix=weight_matrix, useNA=useNA)
   all_items_table = table(x=factorize(unlist(results[,paste0(items, "_", x_rater)])), y=factorize(unlist(results[,paste0(items, "_", y_rater)])), useNA=useNA)
+  all_items_cohen_kappa_w = boot_all_items$t0["cohen_kappa_w"]
+  all_items_agreement = boot_all_items$t0["agreement"]
+  all_items_deferring_fraction = boot_all_items$t0["deferring_fraction"]
   
-  all_items_cohen_kappa_w = cohen.kappa(all_items_table, w=weight_matrix)$weighted.kappa
-  all_items_agreement = calc_agreement(all_items_table)
-  all_items_deferring_fraction = sum(all_items_table["deferred",]) / sum(all_items_table)
-  all_items_heatmap = plot_heatmap(as.data.frame(all_items_table), x_rater, y_rater, paste0("All items (κ=", round(all_items_cohen_kappa_w, 2), ", a=", round(all_items_agreement, 2), ifelse(all_items_deferring_fraction, paste0(", def.=", round(all_items_deferring_fraction, 2)), ""), ")"))
+  all_items_heatmap = plot_heatmap(as.data.frame(all_items_table), x_rater, y_rater, paste0("Overall (κ=", round(all_items_cohen_kappa_w, 2), ", a=", round(all_items_agreement, 2), ifelse(all_items_deferring_fraction, paste0(", def.=", round(all_items_deferring_fraction, 2)), ""), ")"))
   
   item_tables = list()
   item_cohen_kappa_w = c()
@@ -70,16 +84,22 @@ plot_metrics_overview = function(results, items, x_rater, y_rater, factorize, we
     #write.csv(all_items_table, paste0("results/", filename, "_all_items_table.csv"))
     write.csv(
       data.frame(
-        cohen_kappa_w=c(all_items_cohen_kappa_w, item_cohen_kappa_w), 
-        agreement=c(all_items_agreement, item_agreement), 
+        cohen_kappa_w=c(all_items_cohen_kappa_w, item_cohen_kappa_w),
+        cohen_kappa_w_ci_low=c(boot.ci(boot_all_items, type="perc", index=1)$percent[4], rep(NA, length(items))),
+        cohen_kappa_w_ci_high=c(boot.ci(boot_all_items, type="perc", index=1)$percent[5], rep(NA, length(items))),
+        agreement=c(all_items_agreement, item_agreement),
+        agreement_ci_low=c(boot.ci(boot_all_items, type="perc", index=2)$percent[4], rep(NA, length(items))),
+        agreement_ci_high=c(boot.ci(boot_all_items, type="perc", index=2)$percent[5], rep(NA, length(items))),
         deferring_fraction=c(all_items_deferring_fraction, item_deferring_fraction),
+        deferring_fraction_ci_low=c(boot.ci(boot_all_items, type="perc", index=3)$percent[4], rep(NA, length(items))),
+        deferring_fraction_ci_high=c(boot.ci(boot_all_items, type="perc", index=3)$percent[5], rep(NA, length(items))),
         row.names = c("combined", items)
       ), 
       paste0("results/", filename, ".csv")
     )
   }
   
-  all_items_kappa_vs_agreement = qplot(unlist(item_cohen_kappa_w), unlist(item_agreement), xlab="Kappa", ylab="Agreement", xlim=c(-0.2,1), ylim=c(0,1), size=I(3)) + theme_bw()
+  all_items_kappa_vs_agreement = qplot(unlist(item_cohen_kappa_w), unlist(item_agreement), xlab="Kappa", ylab="Agreement", xlim=c(-0.2,1), ylim=c(0,1), size=I(3)) + ggtitle(paste0("Individual items (n=", length(items), ")")) + theme_bw()
   
   bar_data = rbind(
     cbind(as.data.frame(table(Score=factorize(unlist(results[,paste0(items, "_", x_rater)])), useNA = useNA)), Rater="x"),

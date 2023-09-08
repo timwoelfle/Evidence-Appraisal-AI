@@ -1,10 +1,10 @@
 library(rmarkdown)
 library(jsonlite)
 
-tool_folder = "PRISMA-AMSTAR"
-notebook = "dashboard_prisma_amstar.rmd"
-# tool_folder = "PRECIS-2"
-# notebook = "dashboard_precis2.rmd"
+# tool_folder = "PRISMA-AMSTAR"
+# notebook = "dashboard_prisma_amstar.rmd"
+tool_folder = "PRECIS-2"
+notebook = "dashboard_precis2.rmd"
 
 all_params = read_json(paste0(tool_folder, "/params.json"))
 

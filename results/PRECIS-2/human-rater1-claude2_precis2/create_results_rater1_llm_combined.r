@@ -2,7 +2,7 @@ source("../../../src/results_functions_precis2.r") # items
 
 rater1 = read.csv("../../../data/PRECIS-2/rater1.csv", row.names = 1, na.strings = NULL, check.names = F)
 
-results = read.csv("../gpt3.5/results.csv", row.names = 1)
+results = read.csv("../claude2_precis2/results.csv", row.names = 1)
 results[items] = t(sapply(strsplit(gsub("\\[|\\]|\\'", "", results$llm_scores), ", ", fixed=T), as.character))
 
 # Combine results

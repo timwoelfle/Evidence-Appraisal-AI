@@ -79,11 +79,27 @@
     "show_llm_message": false
   },
   {
-    "run_folder": "human-rater1-gpt3.5_precis2", "model": false, "tool": "PRECIS-2",
-    "title": "PRECIS-2 Scores in PragMeta: Human Consensus vs Human Rater 1 & LLM (GPT 3.5)",
+    "run_folder": "human-rater1-claude2_precis2", "model": "Claude 2", "tool": "PRECIS-2",
+    "title": "PRECIS-2 Scores in PragMeta: Human Consensus vs Human Rater 1 & LLM combined (Claude 2)",
     "output_file": "human_consensus",
     "x_rater": "Human Rater 1 & LLM combined",
     "results_x": "results_rater1_llm_combined.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "human-rater1-llm-self-consistency_precis2", "model": false, "tool": "PRECIS-2",
+    "title": "PRECIS-2 Scores in PragMeta: Human Consensus vs Human Rater 1 & LLM combined (self-consistency 5/5)",
+    "output_file": "human_consensus",
+    "x_rater": "Human Rater 1 & LLM combined",
+    "results_x": "results_rater1_llm_combined.csv",
+    "show_llm_message": false
+  },
+  {
+    "run_folder": "human-rater1-rater2_precis2", "model": false, "tool": "PRECIS-2",
+    "title": "PRECIS-2 Scores in PragMeta: Human Consensus vs Human Rater 1 & Human Rater 2 combined",
+    "output_file": "human_consensus",
+    "x_rater": "Human Rater 1 & Rater 2 combined",
+    "results_x": "results_rater1_rater2_combined.csv",
     "show_llm_message": false
   },
   {

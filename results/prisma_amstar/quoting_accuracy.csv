@@ -1,0 +1,17 @@
+"run_folder","tool","total_results_n","results_with_quotes_n","quotes_n","perfect_fulltext_quotes_n","perfect_prompt_quotes_n","minor_deviations_n","moderate_deviations_n","major_deviations_n"
+"claude2_chat_gpt3.5_prompt_amstar","AMSTAR",112,108,640,369,166,36,29,40
+"claude2_chat_gpt3.5_prompt_prisma","PRISMA",112,105,1552,831,605,54,42,20
+"claude2_chat_prisma_amstar","AMSTAR",112,105,442,308,65,26,20,23
+"claude2_chat_prisma_amstar","PRISMA",112,85,357,215,65,22,18,37
+"claude2_chat_prisma_amstar_rep","AMSTAR",112,108,461,291,81,30,22,37
+"claude2_chat_prisma_amstar_rep","PRISMA",112,84,403,243,42,24,34,60
+"claude2_prisma_amstar","AMSTAR",112,110,480,326,64,50,17,23
+"claude2_prisma_amstar","PRISMA",112,79,557,359,51,69,22,56
+"claude2_prisma_amstar_rep","AMSTAR",112,110,488,344,61,47,12,24
+"claude2_prisma_amstar_rep","PRISMA",112,86,529,327,54,75,23,50
+"gpt3.5_amstar","AMSTAR",112,112,847,809,7,10,6,15
+"gpt3.5_amstar_rep","AMSTAR",112,112,829,797,4,11,4,13
+"gpt3.5_prisma","PRISMA",109,107,951,853,37,38,15,8
+"gpt3.5_prisma_rep","PRISMA",109,108,971,872,40,34,19,6
+"gpt4_prisma_amstar","AMSTAR",109,109,780,700,1,63,8,8
+"gpt4_prisma_amstar","PRISMA",109,109,1829,1548,3,226,33,19

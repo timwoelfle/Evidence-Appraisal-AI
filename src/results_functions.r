@@ -44,8 +44,6 @@ plot_heatmap = function(data, x_rater, y_rater, title, limit_max=NULL) {
 }
 
 plot_metrics_overview = function(results, items, x_rater, y_rater, factorize, weight_matrix, useNA="no", save_results=T, filename_prefix="human_consensus") {
-  results = results[!rowSums(is.na(results[,c(paste0(items, "_", x_rater), paste0(items, "_", y_rater))])),]
-  
   ncol=3
   nrow=3
   if (length(items) > 9) nrow = 4
@@ -149,12 +147,9 @@ quote_accuracy_html_span = function(quote_accuracy) {
     if (similarity < 100) title = paste0(ifelse(similarity < 75, "Major quote deviation, possible hallucination. ", ifelse(similarity < 95, "Moderate quote deviation. ", "Minor quote deviation. ")), "Best match in ", x["best_match_source"], " (Similarity ", round(similarity, 1), "%):\n\n", trimws(gsub("'", "&#39;", x["best_match"], fixed=T)))
     else title = paste0("Perfect quote from ", x["best_match_source"], " (Similarity ", round(similarity, 1), "%).")
     
-    paste0("<span title='", title, "' style='border-bottom: 1px dashed ", color, "; color: ", color, "; background-color: ", background_color, "'>", insert_invis_char(x["quote"]), "</span>")
+    paste0("<span title='", title, "' style='border-bottom: 1px dashed ", color, "; color: ", color, "; background-color: ", background_color, "'>&quot;", x["quote"], "&quot;</span>")
   })
 }
-
-# Insert this invisible char after the first character of each quote to make sure that it is only replaced with span once
-insert_invis_char = function(str) paste0("&quot;‎", str, "&quot;")
 
 cat_llm_response = function(id, wrong_format, llm_message, quotes) {
   cat("<span style='padding: 8px 0; color: #999'>LLM response</span>\n\n")
@@ -166,7 +161,7 @@ cat_llm_response = function(id, wrong_format, llm_message, quotes) {
   
   for (ind in rownames(quotes)) {
     # Replace each quote one after another (i.e. quotes must be ordered in csv), do not use gsub with this strategy
-    llm_message = sub(paste0('"', quotes[ind, "quote"], '"'), quotes[ind, "html_span"], llm_message, fixed=T, useBytes = T)
+    llm_message = gsub(paste0('"', quotes[ind, "quote"], '"'), quotes[ind, "html_span"], llm_message, fixed=T, useBytes = T)
   }
   
   llm_message = gsub("<added>", "<span style='background-color: #ff9e81' title='Added response during extraction'>", llm_message)
@@ -181,17 +176,38 @@ cat_llm_response = function(id, wrong_format, llm_message, quotes) {
   cat("</pre>\n")
 }
 
-cat_quote_accuracy = function(results, quote_accuracy) {
-  perfect_fulltext_quotes = quote_accuracy[quote_accuracy$best_match_source == "fulltext" & quote_accuracy$similarity==100,]
-  perfect_prompt_quotes = quote_accuracy[quote_accuracy$best_match_source == "prompt" & quote_accuracy$similarity==100,]
-  
-  cat('* ', nrow(quote_accuracy), ' quotes for ', length(unique(quote_accuracy$publication_id)), ' / ', nrow(results), ' (', round(length(unique(quote_accuracy$publication_id)) / nrow(results)*100,1), '%) publications, median ', median(table(quote_accuracy$publication_id)), ' (IQR ', quantile(table(quote_accuracy$publication_id), 0.25), '-', quantile(table(quote_accuracy$publication_id), 0.75), ', range ', min(table(quote_accuracy$publication_id)), '-', max(table(quote_accuracy$publication_id)), ')\n', sep="")
-  cat('* ', nrow(perfect_fulltext_quotes), ' / ', nrow(quote_accuracy), ' (', round(nrow(perfect_fulltext_quotes) / nrow(quote_accuracy)*100,1), '%) perfect <span style="border-bottom: 1px dashed black;">quotes from the publication full text</span>\n', sep="")
-  cat('* ', nrow(perfect_prompt_quotes), ' / ', nrow(quote_accuracy), ' (', round(nrow(perfect_prompt_quotes) / nrow(quote_accuracy)*100,1), '%) perfect <span style="border-bottom: 1px dashed #2780e3; color: #2780e3;">quotes from the LLM prompt briefing</span> - were instructions quoted (ok) or examples (unwanted beahviour)?\n', sep="")
-  cat('* ', sum(quote_accuracy$similarity != 100), ' / ', nrow(quote_accuracy), ' (', round(sum(quote_accuracy$similarity != 100) / nrow(quote_accuracy)*100,1), '%) quotes with deviations from source, where the accuracy was measured by a ["normalized Levenshtein similarity"](https://maxbachmann.github.io/RapidFuzz/Usage/distance/Levenshtein.html#normalized-similarity) <span style="border-bottom: 1px dashed black;" title="Weights for insertion: 1, deletion: 0.5, substitution: 1.5. Penalizes &quot;positive hallucinations&quot; (insertions) more than omissions of e.g. brackets and references (deletions).">with custom weights</span>, ranging from 0-100%\n', sep="")
-  cat('  * <span style="background-color: #ffe9e2">', sum(quote_accuracy$similarity < 100 & quote_accuracy$similarity >= 95), ' minor</span> deviations (95% ≤ similarity < 100%); mean: ', round(mean(quote_accuracy[quote_accuracy$similarity < 100 & quote_accuracy$similarity >= 95, "similarity"]),1), '%\n', sep="")
-  cat('  * <span style="background-color: #ff9e81">', sum(quote_accuracy$similarity < 95 & quote_accuracy$similarity >= 75), ' moderate</span> deviations (75% ≤ similarity < 95%); mean: ', round(mean(quote_accuracy[quote_accuracy$similarity < 95 & quote_accuracy$similarity >= 75, "similarity"]),1), '%\n', sep="")
-  cat('  * <span style="background-color: red">', sum(quote_accuracy$similarity < 75), ' major</span> deviations (similarity < 75%); mean: ', round(mean(quote_accuracy[quote_accuracy$similarity < 75, "similarity"]),1), '%\n', sep="")
+cat_quote_accuracy = function(results, quote_accuracy, add_to_csv=F) {
+  for (tool in unique(quote_accuracy$tool)) {
+    if (length(unique(quote_accuracy$tool)) > 1) cat("#### ", tool, "\n\n", sep="")
+    quote_accuracy_tool = quote_accuracy[quote_accuracy$tool == tool,]
+    perfect_fulltext_quotes = quote_accuracy_tool[quote_accuracy_tool$best_match_source == "fulltext" & quote_accuracy_tool$similarity==100,]
+    perfect_prompt_quotes = quote_accuracy_tool[quote_accuracy_tool$best_match_source == "prompt" & quote_accuracy_tool$similarity==100,]
+    
+    cat('* ', nrow(quote_accuracy_tool), ' quotes for ', length(unique(quote_accuracy_tool$publication_id)), ' / ', nrow(results), ' (', round(length(unique(quote_accuracy_tool$publication_id)) / nrow(results)*100,1), '%) publications, median ', median(table(quote_accuracy_tool$publication_id)), ' (IQR ', quantile(table(quote_accuracy_tool$publication_id), 0.25), '-', quantile(table(quote_accuracy_tool$publication_id), 0.75), ', range ', min(table(quote_accuracy_tool$publication_id)), '-', max(table(quote_accuracy_tool$publication_id)), ')\n', sep="")
+    cat('* ', nrow(perfect_fulltext_quotes), ' / ', nrow(quote_accuracy_tool), ' (', round(nrow(perfect_fulltext_quotes) / nrow(quote_accuracy_tool)*100,1), '%) perfect <span style="border-bottom: 1px dashed black;">quotes from the publication full text</span>\n', sep="")
+    cat('* ', nrow(perfect_prompt_quotes), ' / ', nrow(quote_accuracy_tool), ' (', round(nrow(perfect_prompt_quotes) / nrow(quote_accuracy_tool)*100,1), '%) perfect <span style="border-bottom: 1px dashed #2780e3; color: #2780e3;">quotes from the LLM prompt briefing</span> - were instructions quoted (ok) or examples (unwanted beahviour)?\n', sep="")
+    cat('* ', sum(quote_accuracy_tool$similarity != 100), ' / ', nrow(quote_accuracy_tool), ' (', round(sum(quote_accuracy_tool$similarity != 100) / nrow(quote_accuracy_tool)*100,1), '%) quotes with deviations from source, where the accuracy was measured by a ["normalized Levenshtein similarity"](https://maxbachmann.github.io/RapidFuzz/Usage/distance/Levenshtein.html#normalized-similarity) <span style="border-bottom: 1px dashed black;" title="Weights for insertion: 1, deletion: 0.5, substitution: 1.5. Penalizes &quot;positive hallucinations&quot; (insertions) more than omissions of e.g. brackets and references (deletions).">with custom weights</span>, ranging from 0-100%\n', sep="")
+    cat('  * <span style="background-color: #ffe9e2">', sum(quote_accuracy_tool$similarity < 100 & quote_accuracy_tool$similarity >= 95), ' minor</span> deviations (95% ≤ similarity < 100%); mean: ', round(mean(quote_accuracy_tool[quote_accuracy_tool$similarity < 100 & quote_accuracy_tool$similarity >= 95, "similarity"]),1), '%\n', sep="")
+    cat('  * <span style="background-color: #ff9e81">', sum(quote_accuracy_tool$similarity < 95 & quote_accuracy_tool$similarity >= 75), ' moderate</span> deviations (75% ≤ similarity < 95%); mean: ', round(mean(quote_accuracy_tool[quote_accuracy_tool$similarity < 95 & quote_accuracy_tool$similarity >= 75, "similarity"]),1), '%\n', sep="")
+    cat('  * <span style="background-color: red">', sum(quote_accuracy_tool$similarity < 75), ' major</span> deviations (similarity < 75%); mean: ', round(mean(quote_accuracy_tool[quote_accuracy_tool$similarity < 75, "similarity"]),1), '%\n\n', sep="")
+    
+    if (is.character(add_to_csv)) {
+      to_save = data.frame(
+        run_folder = add_to_csv,
+        tool = tool,
+        total_results_n = nrow(results),
+        results_with_quotes_n = length(unique(quote_accuracy_tool$publication_id)),
+        quotes_n = nrow(quote_accuracy_tool),
+        perfect_fulltext_quotes_n = nrow(perfect_fulltext_quotes),
+        perfect_prompt_quotes_n = nrow(perfect_prompt_quotes),
+        minor_deviations_n = sum(quote_accuracy_tool$similarity < 100 & quote_accuracy_tool$similarity >= 95),
+        moderate_deviations_n = sum(quote_accuracy_tool$similarity < 95 & quote_accuracy_tool$similarity >= 75),
+        major_deviations_n = sum(quote_accuracy_tool$similarity < 75)
+      )
+      if (file.exists("../quoting_accuracy.csv")) to_save = rbind(read.csv("../quoting_accuracy.csv"), to_save)
+      write.csv(to_save, "../quoting_accuracy.csv", row.names = F)
+    }
+  }
   
   df = quote_accuracy[quote_accuracy$similarity < 100, c("publication_id", "best_match_source", "html_span", "similarity")]
   df$publication_id = results[as.character(df$publication_id), "author_year"]
@@ -207,8 +223,9 @@ cat_quote_accuracy = function(results, quote_accuracy) {
 
 # Formatting accuracy
 
-cat_formatting_accuracy = function(results, human) {
+cat_formatting_accuracy = function(results, human, add_to_csv=F) {
   # Wrong response format that was fixed during score extraction
+  # Wrong_format is in JSON-format, just remove "['] " characters and it becomes a  comma-separated list
   results$wrong_format = gsub("\\[|\\'|\\]| ", "", results$wrong_format)
   wrong_format = strsplit(results$wrong_format, ",")
   n_wrong_format = table(sapply(wrong_format, length))
@@ -219,7 +236,7 @@ cat_formatting_accuracy = function(results, human) {
   failed_responses_paths = failed_responses_paths[grepl(".txt|.json", failed_responses_paths)]
   failed_responses = data.frame()
   for (path in failed_responses_paths) {
-    if (grepl(".json", path)) llm_message = read_json(path)$choices[[1]]$message$content
+    if (grepl(".json", path) & file.info(path)$size) llm_message = read_json(path)$choices[[1]]$message$content
     else llm_message = readChar(path, file.info(path)$size)
     failed_responses = rbind(failed_responses, list(
       id = strsplit(gsub(".*\\/", "", path), "\\.")[[1]][1],
@@ -245,15 +262,30 @@ cat_formatting_accuracy = function(results, human) {
   cat("<br><br>\n")
   
   cat("* ", sum(results$n_retries == 0), " / ", nrow(human), " (", round(sum(results$n_retries==0)/nrow(human)*100, 1), "%) publications yielded usable responses in the first try\n", sep="")
-  cat("* ", sum(results$n_retries > 0), " / ", nrow(human), " (", round(sum(results$n_retries>0)/nrow(human)*100, 1), "%) publications yielded usable responses after a median of ", median(results[results$n_retries>0, "n_retries"]), " retries  (IQR ", quantile(results[results$n_retries>0, "n_retries"], 0.25), "-", quantile(results[results$n_retries>0, "n_retries"], 0.75), ", range ", min(results[results$n_retries>0, "n_retries"]), "-", max(results[results$n_retries>0, "n_retries"]), "), thus being ultimately successful\n", sep="")
+  cat("* ", sum(results$n_retries > 0), " / ", nrow(human), " (", round(sum(results$n_retries>0)/nrow(human)*100, 1), "%) publications ultimately yielded usable responses after a median of ", median(results[results$n_retries>0, "n_retries"]), " retries  ", ifelse(sum(results$n_retries > 0), paste0("(IQR ", quantile(results[results$n_retries>0, "n_retries"], 0.25), "-", quantile(results[results$n_retries>0, "n_retries"], 0.75), ", range ", min(results[results$n_retries>0, "n_retries"]), "-", max(results[results$n_retries>0, "n_retries"]), ")"), ""), "\n", sep="")
   failed_response_reasons_table = sort(table(unlist(failed_responses[failed_responses$ultimately_successful, "reason"])), decreasing = T)
   for (x in names(failed_response_reasons_table)) {
     cat  ("  * ", failed_response_reasons_table[x], " responses with failure reason '", x, "'\n", sep="")
   }
   cat("* ", length(no_results), " / ", nrow(human), " (", round(length(no_results)/nrow(human)*100, 1), "%) publications yielded no usable responses and were thus ultimately unsuccessful. ", paste0(paste0("[", human[no_results, "author_year"], "](https://doi.org/", human[no_results, "DOI"], ")"), collapse=", "), "\n", sep="")
-  failed_response_reasons_table = sort(table(unlist(failed_responses[!failed_responses$ultimately_successful, "reason"])), decreasing = T)
-  for (x in names(failed_response_reasons_table)) {
-    cat  ("  * ", failed_response_reasons_table[x], " responses with failure reason '", x, "'\n", sep="")
+  no_results_reasons_table = sort(table(unlist(failed_responses[!failed_responses$ultimately_successful, "reason"])), decreasing = T)
+  for (x in names(no_results_reasons_table)) {
+    cat  ("  * ", no_results_reasons_table[x], " responses with failure reason '", x, "'\n", sep="")
+  }
+  
+  if (is.character(add_to_csv)) {
+    to_save = data.frame(
+      run_folder = add_to_csv,
+      dataset_n = nrow(human),
+      no_results_n = length(no_results),
+      no_results = paste(names(no_results_reasons_table), collapse = ", "),
+      required_retries_n = sum(results$n_retries > 0),
+      required_retries = paste(names(failed_response_reasons_table), collapse = ", "),
+      minor_formatting_issues_n = nrow(results)-n_wrong_format["0"],
+      minor_formatting_issues = paste(names(wrong_format_table), collapse = ", ")
+    )
+    if (file.exists("../formatting_accuracy.csv")) to_save = rbind(read.csv("../formatting_accuracy.csv"), to_save)
+    write.csv(to_save, "../formatting_accuracy.csv", row.names = F)
   }
   
   if (nrow(failed_responses)) {

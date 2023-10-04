@@ -44,8 +44,8 @@ div.level3.tab-pane .chart-stage {
 ```
 
 ```{r}
-source("../../src/results_functions_prisma_amstar.r")
-source("../../src/results_functions.r")
+source("../../../src/results_functions_prisma_amstar.r")
+source("../../../src/results_functions.r")
 
 x_rater = params$x_rater
 y_rater = params$y_rater
@@ -54,7 +54,7 @@ items = switch(params$tool, "prisma"=prisma, "amstar"=amstar, "prisma_amstar"=c(
 
 #if (!is.character(params$title)) params$title = paste0(sub("_", " & ", toupper(params$tool)), " in Cullis 2017: ", x_rater, " vs ", y_rater, " (Accuracy)")
 
-human_consensus = read.csv("../../data/prisma_amstar/S1Dataset_TW.csv", row.names = 1, na.strings = NULL, check.names = F)
+human_consensus = read.csv("../../../data/prisma_amstar/S1Dataset_TW.csv", row.names = 1, na.strings = NULL, check.names = F)
 
 results = read.csv(params$results_x, row.names = 1, na.strings = NULL, check.names = F)
 if (!all(items %in% colnames(results))) {

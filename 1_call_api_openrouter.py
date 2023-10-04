@@ -3,13 +3,13 @@ import os
 import openai
 from tqdm import tqdm
 
-#FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/fulltext/pdf/txt/"
-#RESULTS_FOLDER = "results/PRISMA-AMSTAR/gpt4_prisma-amstar/"
-#RESULTS_FOLDER = "results/PRISMA-AMSTAR/claude2_prisma-amstar/"
+FULLTEXT_FOLDER = "data/prisma_amstar/fulltext/pdf/txt/"
+RESULTS_FOLDER = "results/prisma_amstar/gpt4_prisma_amstar_rep/"
+#RESULTS_FOLDER = "results/prisma_amstar/claude2_prisma_amstar/"
 
-FULLTEXT_FOLDER = "data/PRECIS-2/fulltext/pdf/txt/"
-#RESULTS_FOLDER = "results/PRECIS-2/gpt4_precis2/"
-RESULTS_FOLDER = "results/PRECIS-2/claude2_precis2_rep/"
+# FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
+# RESULTS_FOLDER = "results/precis2/gpt4_precis2/"
+#RESULTS_FOLDER = "results/precis2/claude2_precis2_rep/"
 
 openai.api_base = "https://openrouter.ai/api/v1"
 openai.api_key = open("src/OPENROUTER_API_KEY").read()
@@ -35,15 +35,15 @@ for fulltext_file in tqdm(files):
 
     try:
         response = openai.ChatCompletion.create(
-            #model="openai/gpt-4-32k",
-            model="anthropic/claude-2",
+            model="openai/gpt-4-32k",
+            #model="anthropic/claude-2",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
             ],
             headers={"HTTP-Referer": "https://localhost/", "X-Title": fulltext_file},
             temperature=0,
-            max_tokens=4000,
+            max_tokens=8000,
             #stream=True
         )
         # collected_messages = []

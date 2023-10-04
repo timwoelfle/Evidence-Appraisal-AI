@@ -21,9 +21,9 @@ from src.compare_quotes import split_interrupted_quotes, compare_quotes
 # FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
 # RESULTS_FOLDER = "results/precis2/claude2_precis2/" # _rep
 
-# Experiment 8 (GPT-4)
+# Experiment 8 (repetition only performed on 25% of publications) (GPT-4)
 FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
-RESULTS_FOLDER = "results/precis2/gpt4_precis2/"
+RESULTS_FOLDER = "results/precis2/gpt4_precis2/" # _rep
 
 NUM_SCORES = 9
 

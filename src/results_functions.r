@@ -78,6 +78,7 @@ plot_metrics_overview = function(results, items, x_rater, y_rater, factorize, we
   }
   
   if (save_results) {
+    dir.create("results", showWarnings = F)
     filename = paste0(filename_prefix, "_", length(items), "_items")
     #write.csv(all_items_table, paste0("results/", filename, "_all_items_table.csv"))
     write.csv(

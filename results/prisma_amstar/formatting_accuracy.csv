@@ -10,3 +10,4 @@
 "gpt3.5_prisma",112,3,"too-short, exceeded-max-tokens-2000-and-no-scores, no-scores",7,"exceeded-max-tokens-2000, nearly-all-na",1,"missing-squared-brackets-for-na"
 "gpt3.5_prisma_rep",112,3,"too-short, exceeded-max-tokens-2500, scores-missing",3,"exceeded-max-tokens-2500, score-p1-missing",5,"wrong-response-partial-unclear-etc, missing-squared-brackets-for-na"
 "gpt4_prisma_amstar",112,3,"too-long-for-32k-context-window",0,"",0,""
+"gpt4_prisma_amstar_rep",112,0,"",3,"exceeded-max-tokens-4k",0,""

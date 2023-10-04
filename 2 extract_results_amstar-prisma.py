@@ -34,9 +34,9 @@ from src.compare_quotes import split_interrupted_quotes, compare_quotes
 # RESULTS_FOLDER = "results/prisma_amstar/claude2_prisma_amstar/" # _rep
 # NUM_SCORES = 38
 
-# Experiment 8 (GPT-4): 109
+# Experiment 8 (repetition only performed on 25% of publications) (GPT-4): 109
 FULLTEXT_FOLDER = "data/prisma_amstar/fulltext/pdf/txt/"
-RESULTS_FOLDER = "results/prisma_amstar/gpt4_prisma_amstar/"
+RESULTS_FOLDER = "results/prisma_amstar/gpt4_prisma_amstar_rep/" # _rep
 NUM_SCORES = 38
 
 with open(RESULTS_FOLDER + "prompt_template/user.txt") as f:

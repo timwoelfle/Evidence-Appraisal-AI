@@ -46,4 +46,4 @@ for (row in rownames(results_1)) {
   results[row, items] = ifelse(sapply(self_consistency, length), self_consistency, "deferred")
 }
 
-write.csv(results, "results_self_consistency.csv")
+write.csv(results, "results.csv")

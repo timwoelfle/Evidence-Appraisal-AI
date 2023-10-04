@@ -12,11 +12,11 @@ output:
     lib_dir: "../html/lib/"
 params:
   run_folder: "claude2_prisma_amstar"
-  model: "Claude-2"
-  tool: "both"
+  rater: "claude2"
+  tool: "prisma_amstar"
   title: "PRISMA & AMSTAR in Cullis 2017: LLM (Claude-2) vs Human Consensus (Accuracy)"
   output_file: "human_consensus"
-  x_rater: "LLM"
+  x_rater: "LLM (Claude-2)"
   y_rater: "Human Consensus"
   results_x: "results.csv"
   results_y: "human_consensus"
@@ -44,16 +44,19 @@ div.level3.tab-pane .chart-stage {
 ```
 
 ```{r}
-source("../../../src/results_functions_prisma_amstar.r")
-source("../../../src/results_functions.r")
+source("../../src/results_functions_prisma_amstar.r")
+source("../../src/results_functions.r")
 
 x_rater = params$x_rater
 y_rater = params$y_rater
-items = switch(params$tool, "PRISMA"=prisma, "AMSTAR"=amstar, "both"=c(amstar, prisma))
+# Actually order for prisma_amstar has to be c(amstar, prisma), because that's the order in which the combined prompts were made
+items = switch(params$tool, "prisma"=prisma, "amstar"=amstar, "prisma_amstar"=c(amstar, prisma))
 
-human_consensus = read.csv("../../../data/prisma_amstar/S1Dataset_TW.csv", row.names = 1, na.strings = NULL)
+#if (!is.character(params$title)) params$title = paste0(sub("_", " & ", toupper(params$tool)), " in Cullis 2017: ", x_rater, " vs ", y_rater, " (Accuracy)")
 
-results = read.csv(params$results_x, row.names = 1, na.strings = NULL)
+human_consensus = read.csv("../../data/prisma_amstar/S1Dataset_TW.csv", row.names = 1, na.strings = NULL, check.names = F)
+
+results = read.csv(params$results_x, row.names = 1, na.strings = NULL, check.names = F)
 if (!all(items %in% colnames(results))) {
   results[items] = t(sapply(strsplit(gsub("\\[|\\]|\\'", "", results$llm_scores), ", ", fixed=T), as.character)) # strtoi
 }
@@ -67,7 +70,7 @@ if (params$results_y == "human_consensus") {
   # Human consensus is default
   results[paste0(items, "_", y_rater)] = human_consensus[rownames(results), items]
 } else {
-  results_y = read.csv(params$results_y, row.names = 1, na.strings = NULL)
+  results_y = read.csv(params$results_y, row.names = 1, na.strings = NULL, check.names = F)
   if (!all(items %in% colnames(results_y))) {
     results_y[items] = t(sapply(strsplit(gsub("\\[|\\]|\\'", "", results_y$llm_scores), ", ", fixed=T), as.character)) # strtoi
   }
@@ -110,11 +113,11 @@ if (all(amstar %in% items)) {
   png_amstar = paste0("../prisma_amstar/", params$run_folder, "/results/", params$output_file, "_", length(amstar), "_items.png")
 }
 
-png_overview = switch(params$tool, "PRISMA"=png_prisma, "AMSTAR"=png_amstar, "both"=png_prisma)
+png_overview = switch(params$tool, "prisma"=png_prisma, "amstar"=png_amstar, "prisma_amstar"=png_prisma)
 ```
 
 ```{r, results='asis'}
-if (params$tool == "both") {
+if (params$tool == "prisma_amstar") {
   cat("### Score heatmaps (<a onclick=\"$('p.image-container')[0].style = 'background: url(&quot;", png_prisma, "&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = &quot;", png_prisma, "&quot;;\" style=\"cursor: pointer\">PRISMA</a> / <a onclick=\"$('p.image-container')[0].style = 'background: url(&quot;", png_amstar, "&quot;) center center / contain no-repeat;'; $('p.image-container img')[0].src = &quot;", png_amstar, "&quot;;\" style=\"cursor: pointer\">AMSTAR</a>) {data-height=720}\n\n", sep="")
 } else {
   cat("### Score heatmaps {data-height=720}\n\n")
@@ -147,19 +150,7 @@ if (params$show_llm_message) {
 ```
 
 ```{r, results='asis'}
-if (params$model == "GPT-3.5") {
-  cat("### LLM prompt\n\n")
-
-  cat("* Model: [gpt-3.5-turbo-16k-0613](https://platform.openai.com/docs/models/gpt-3-5)\n")
-  cat("* Temperature: `0`\n")
-  cat("* Briefing derived from: [Cullis 2017](https://doi.org/10.1371/journal.pone.0175213) Supporting information: [S1 Dataset](https://doi.org/10.1371/journal.pone.0175213.s004)\n\n")
-} else if (params$model == "GPT-4") {
-  cat("### LLM prompt\n\n")
-
-  cat("* Model: [gpt-4-32k-0613](https://platform.openai.com/docs/models/gpt-4)\n")
-  cat("* Temperature: `0`\n")
-  cat("* Briefing derived from: [Cullis 2017](https://doi.org/10.1371/journal.pone.0175213) Supporting information: [S1 Dataset](https://doi.org/10.1371/journal.pone.0175213.s004)\n\n")
-} else if (params$model == "Claude-2") {
+if (grepl("claude2", params$rater)) {
   cat("### LLM prompt\n\n")
 
   cat("* Model: [Claude-2](https://www.anthropic.com/index/claude-2)\n")
@@ -168,6 +159,18 @@ if (params$model == "GPT-3.5") {
   } else {
     cat("* Temperature: `0`\n")
   }
+  cat("* Briefing derived from: [Cullis 2017](https://doi.org/10.1371/journal.pone.0175213) Supporting information: [S1 Dataset](https://doi.org/10.1371/journal.pone.0175213.s004)\n\n")
+} else if (grepl("gpt4", params$rater)) {
+  cat("### LLM prompt\n\n")
+
+  cat("* Model: [gpt-4-32k-0613](https://platform.openai.com/docs/models/gpt-4)\n")
+  cat("* Temperature: `0`\n")
+  cat("* Briefing derived from: [Cullis 2017](https://doi.org/10.1371/journal.pone.0175213) Supporting information: [S1 Dataset](https://doi.org/10.1371/journal.pone.0175213.s004)\n\n")
+} else if (grepl("gpt3.5", params$rater)) {
+  cat("### LLM prompt\n\n")
+
+  cat("* Model: [gpt-3.5-turbo-16k-0613](https://platform.openai.com/docs/models/gpt-3-5)\n")
+  cat("* Temperature: `0`\n")
   cat("* Briefing derived from: [Cullis 2017](https://doi.org/10.1371/journal.pone.0175213) Supporting information: [S1 Dataset](https://doi.org/10.1371/journal.pone.0175213.s004)\n\n")
 }
 

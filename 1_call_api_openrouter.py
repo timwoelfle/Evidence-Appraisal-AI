@@ -4,12 +4,12 @@ import openai
 from tqdm import tqdm
 
 FULLTEXT_FOLDER = "data/prisma_amstar/fulltext/pdf/txt/"
-RESULTS_FOLDER = "results/prisma_amstar/gpt4_prisma_amstar_rep/"
-#RESULTS_FOLDER = "results/prisma_amstar/claude2_prisma_amstar/"
+RESULTS_FOLDER = "docs/prisma_amstar/gpt4_prisma_amstar_rep/"
+#RESULTS_FOLDER = "docs/prisma_amstar/claude2_prisma_amstar/"
 
 # FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
-# RESULTS_FOLDER = "results/precis2/gpt4_precis2/"
-#RESULTS_FOLDER = "results/precis2/claude2_precis2_rep/"
+# RESULTS_FOLDER = "docs/precis2/gpt4_precis2/"
+#RESULTS_FOLDER = "docs/precis2/claude2_precis2_rep/"
 
 openai.api_base = "https://openrouter.ai/api/v1"
 openai.api_key = open("src/OPENROUTER_API_KEY").read()

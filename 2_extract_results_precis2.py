@@ -7,23 +7,23 @@ from src.compare_quotes import split_interrupted_quotes, compare_quotes
 
 # Experiments 1 & 2 (GPT-3.5)
 # FULLTEXT_FOLDER = "data/precis2/fulltext/txt/"
-# RESULTS_FOLDER = "results/precis2/gpt3.5_precis2/" # _rep
+# RESULTS_FOLDER = "docs/precis2/gpt3.5_precis2/" # _rep
 
 # Experiment 3 & 4 (Claude-2 chat)
 # FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
-# RESULTS_FOLDER = "results/precis2/claude2_chat_precis2/" # _rep
+# RESULTS_FOLDER = "docs/precis2/claude2_chat_precis2/" # _rep
 
 # Experiment 5 (Claude-2 chat, same prompt as GPT-3.5)
 # FULLTEXT_FOLDER = "data/precis2/fulltext/txt/"
-# RESULTS_FOLDER = "results/precis2/claude2_chat_gpt3.5_prompt_precis2/"
+# RESULTS_FOLDER = "docs/precis2/claude2_chat_gpt3.5_prompt_precis2/"
 
 # Experiment 6 & 7 (Claude-2 API)
 # FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
-# RESULTS_FOLDER = "results/precis2/claude2_precis2/" # _rep
+# RESULTS_FOLDER = "docs/precis2/claude2_precis2/" # _rep
 
 # Experiment 8 (repetition only performed on 25% of publications) (GPT-4)
 FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
-RESULTS_FOLDER = "results/precis2/gpt4_precis2/" # _rep
+RESULTS_FOLDER = "docs/precis2/gpt4_precis2/" # _rep
 
 NUM_SCORES = 9
 

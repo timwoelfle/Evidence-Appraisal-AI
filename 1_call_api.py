@@ -3,10 +3,10 @@ import os
 import openai
 from tqdm import tqdm
 
-#FULLTEXT_FOLDER = "data/PRISMA-AMSTAR/cullis2017/fulltext/txt/"
-#RESULTS_FOLDER = "results/PRISMA-AMSTAR/cullis2017_amstar_gpt3.5_rep/"
-FULLTEXT_FOLDER = "data/PRECIS-2/pragms-pragqol-56/fulltext/txt/"
-RESULTS_FOLDER = "results/PRECIS-2/pragms-pragqol-56_toolkit_gpt3.5_rep/"
+#FULLTEXT_FOLDER = "data/prisma_amstar/cullis2017/fulltext/txt/"
+#RESULTS_FOLDER = "docs/prisma_amstar/cullis2017_amstar_gpt3.5_rep/"
+FULLTEXT_FOLDER = "data/precis2/pragms-pragqol-56/fulltext/txt/"
+RESULTS_FOLDER = "docs/precis2/pragms-pragqol-56_toolkit_gpt3.5_rep/"
 
 openai.api_key = open("src/API_KEY").read()
 

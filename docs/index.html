@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="author" content="Tim Woelfle" />
+
+
+
+<title>Benchmarking Human-AI Collaboration for Commonly Used Evidence Appraisal Tools</title>
+
+<meta property="og:title" content="Benchmarking Human-AI Collaboration for Commonly Used Evidence Appraisal Tools" />
+
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+
+<link rel="icon" href="data:image/x-icon;" type="image/x-icon">
+
+
+<script type="text/javascript">
+window.FlexDashboardComponents = [];
+</script>
+
+<script id="flexdashboard-navbar" type="application/json">
+[{"title":"Source Code","icon":"fa-github","href":"https://github.com/timwoelfle/Research-Assessment-AI/","align":"right"}]
+</script>
+<script src="html/lib/header-attrs-2.21/header-attrs.js"></script>
+<script src="html/lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="html/lib/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="html/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="html/lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="html/lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="html/lib/stickytableheaders-0.1.19/jquery.stickytableheaders.min.js"></script>
+<link href="html/lib/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="html/lib/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
+<link href="html/lib/value-box-accent-static-0.6.1/theme-cosmo-value-box.css" rel="stylesheet" />
+<link href="html/lib/flexdashboard-css-0.6.1/flexdashboard.min.css" rel="stylesheet" />
+<link href="html/lib/flexdashboard-css-0.6.1/theme-cosmo.css" rel="stylesheet" />
+<script src="html/lib/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="html/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="html/lib/datatables-binding-0.28/datatables.js"></script>
+<link href="html/lib/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="html/lib/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="html/lib/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="html/lib/dt-ext-rowgroup-1.13.4/css/rowGroup.dataTables.min.css" rel="stylesheet" />
+<script src="html/lib/dt-ext-rowgroup-1.13.4/js/dataTables.rowGroup.min.js"></script>
+<link href="html/lib/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="html/lib/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<style type="text/css">
+/*
+  CSS for flexdashboard.js' use of Sly(). The sizing/position of this CSS needs to be
+  applied _before_ flexdashboard.js initializes, which is why this CSS has been pulled
+  out from flexdashboard.scss and inlined in the document's head.
+*/
+
+.storyboard-nav button {
+  background: transparent;
+  border: 0;
+  opacity: .3;
+  outline: none;
+  padding: 0;
+}
+
+.storyboard-nav button:hover,
+.storyboard-nav button:hover {
+  opacity: .5;
+}
+
+.storyboard-nav button:disabled,
+.storyboard-nav button:disabled {
+  opacity: .1;
+}
+
+.storyboard-nav .sbnext,
+.storyboard-nav .sbprev {
+  float: left;
+  width: 2%;
+  height: 120px;
+}
+
+.storyboard-nav .sbprev {
+  text-align: left;
+  width: 2%;
+}
+
+.storyboard-nav .sbnext {
+  float: right;
+  text-align: right;
+  margin-right: 8px;
+}
+
+.storyboard-nav .sbframelist {
+  margin: 0 auto;
+  width: 94%;
+  height: 120px;
+  overflow: hidden;
+  text-shadow: none;
+  margin-bottom: 8px;
+}
+
+.storyboard-nav .sbframelist ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.storyboard-nav .sbframelist ul li {
+  float: left;
+  width: 270px;
+  height: 100%;
+  padding: 10px 10px 10px 10px;
+  margin-right: 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.storyboard-nav .sbframelist ul li:last-child {
+  margin-right: 0px;
+}
+
+.sbframe-commentary {
+  width: 300px;
+}
+
+.sbframe-commentary ul {
+  padding-left: 22px;
+}
+
+.sbframe.active {
+  display: flex;
+}
+
+.sbframe:not(.active) {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+html, body {
+  height: 100%;
+}
+
+#dashboard-container {
+  height: 100%;
+}
+}
+</style>
+
+
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+
+<span class="navbar-logo pull-left">
+  
+</span>
+<span class="navbar-brand">
+  Benchmarking Human-AI Collaboration for Commonly Used Evidence Appraisal Tools
+  <span class="navbar-author">
+    <a href='https://timwoelfle.de' style='color: white'>Tim
+Woelfle</a> &mdash; 09/2023
+    </span>
+</span>
+
+<button id="navbar-button" type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-left">
+</ul>
+<ul class="nav navbar-nav navbar-right">
+</ul>
+</div><!--/.nav-collapse-->
+</div><!--/.container-->
+</div><!--/.navbar-->
+
+<script type="text/javascript">
+
+
+var FlexDashboard = (function () {
+
+  // initialize options
+  var _options = {};
+
+  var FlexDashboard = function() {
+
+    // default options
+    _options = $.extend(_options, {
+      theme: "cosmo",
+      fillPage: false,
+      orientation: 'columns',
+      storyboard: false,
+      defaultFigWidth: 576,
+      defaultFigHeight: 461,
+      defaultFigWidthMobile: 360,
+      defaultFigHeightMobile: 461,
+      isMobile: false,
+      isPortrait: false,
+      resize_reload: true
+    });
+  };
+
+  function init(options) {
+
+    // extend default options
+    $.extend(true, _options, options);
+
+    // add ids to sections that don't have them (pandoc won't assign ids
+    // to e.g. sections with titles consisting of only chinese characters)
+    var nextId = 1;
+    $('.level1:not([id]),.level2:not([id]),.level3:not([id])').each(function() {
+      $(this).attr('id', 'dashboard-' + nextId++);
+    });
+
+    // find navbar items
+    var navbarItems = $('#flexdashboard-navbar');
+    if (navbarItems.length)
+      navbarItems = JSON.parse(navbarItems.html());
+    addNavbarItems(navbarItems);
+
+    // find the main dashboard container
+    var dashboardContainer = $('#dashboard-container');
+
+    // resolve mobile classes
+    resolveMobileClasses(dashboardContainer);
+
+    // one time global initialization for components
+    componentsInit(dashboardContainer);
+
+    // look for a global sidebar
+    var globalSidebar = dashboardContainer.find(".section.level1.sidebar");
+    if (globalSidebar.length > 0) {
+
+      // global layout for fullscreen displays
+      if (!isMobilePhone()) {
+
+         // hoist it up to the top level
+         globalSidebar.insertBefore(dashboardContainer);
+
+         // lay it out (set width/positions)
+         layoutSidebar(globalSidebar, dashboardContainer);
+
+      // tuck sidebar into first page for mobile phones
+      } else {
+
+        // convert it into a level3 section
+        globalSidebar.removeClass('sidebar');
+        globalSidebar.removeClass('level1');
+        globalSidebar.addClass('level3');
+        var h1 = globalSidebar.children('h1');
+        var h3 = $('<h3></h3>');
+        h3.append(h1.contents());
+        h3.insertBefore(h1);
+        h1.detach();
+
+        // move it into the first page
+        var page = dashboardContainer.find('.section.level1').first();
+        if (page.length > 0)
+          page.prepend(globalSidebar);
+      }
+    }
+
+    // look for pages to layout
+    var pages = $('div.section.level1');
+    if (pages.length > 0) {
+
+        // find the navbar and collapse on clicked
+        var navbar = $('#navbar');
+        navbar.on("click", "a[data-toggle!=dropdown]", null, function () {
+           navbar.collapse('hide');
+        });
+
+        // envelop the dashboard container in a tab content div
+        dashboardContainer.wrapInner('<div class="tab-content"></div>');
+
+        pages.each(function(index) {
+
+          // lay it out
+          layoutDashboardPage($(this));
+
+          // add it to the navbar
+          addToNavbar($(this), index === 0);
+
+        });
+
+    } else {
+
+      // remove the navbar and navbar button if we don't
+      // have any navbuttons
+      if (navbarItems.length === 0) {
+        $('#navbar').remove();
+        $('#navbar-button').remove();
+      }
+
+      // add the storyboard class if requested
+      if (_options.storyboard)
+        dashboardContainer.addClass('storyboard');
+
+      // layout the entire page
+      layoutDashboardPage(dashboardContainer);
+    }
+
+    // if we are in shiny we need to trigger a window resize event to
+    // force correct layout of shiny-bound-output elements
+    if (isShinyDoc())
+      $(window).trigger('resize');
+
+    // make main components visible
+    $('.section.sidebar').css('visibility', 'visible');
+    dashboardContainer.css('visibility', 'visible');
+
+    // handle location hash
+    handleLocationHash();
+
+    // intialize prism highlighting
+    initPrismHighlighting();
+
+    // record mobile and orientation state then register a handler
+    // to refresh if resize_reload is set to true and it changes
+    _options.isMobile = isMobilePhone();
+    _options.isPortrait = isPortrait();
+    if (_options.resize_reload) {
+      $(window).on('resize', function() {
+        if (_options.isMobile !== isMobilePhone() ||
+            _options.isPortrait !== isPortrait()) {
+          window.location.reload();
+        }
+      });
+    } else {
+      // if in desktop mode and resizing to mobile, make sure the heights are 100%
+      // This enforces what `fillpage.css` does for "wider" pages.
+      // Since we are not reloading once the page becomes small, we need to force the height to 100%
+      // This is a new situation introduced when `_options.resize_reload` is `false`
+      if (! _options.isMobile) {
+        // only add if `fillpage.css` was added in the first place
+        if (_options.fillPage) {
+          // fillpage.css
+          $("html,body,#dashboard").css("height", "100%");
+        }
+      }
+    }
+    // trigger layoutcomplete event
+    dashboardContainer.trigger('flexdashboard:layoutcomplete');
+  }
+
+  function resolveMobileClasses(dashboardContainer) {
+     // add top level layout class
+    dashboardContainer.addClass(isMobilePhone() ? 'mobile-layout' :
+                                                  'desktop-layout');
+
+    // look for .mobile sections and add .no-mobile to their peers
+    var mobileSections = $('.section.mobile');
+    mobileSections.each(function() {
+       var id = $(this).attr('id');
+       var nomobileId = id.replace(/-\d+$/, '');
+       $('#' + nomobileId).addClass('no-mobile');
+    });
+  }
+
+  function addNavbarItems(navbarItems) {
+
+    var navbarLeft = $('ul.navbar-left');
+    var navbarRight = $('ul.navbar-right');
+
+    for (var i = 0; i<navbarItems.length; i++) {
+
+      // get the item
+      var item = navbarItems[i];
+
+      // determine the container
+      var container = null;
+      if (item.align === "left")
+        container = navbarLeft;
+      else
+        container = navbarRight;
+
+      // navbar menu if we have multiple items
+      if (item.items) {
+        var menu = navbarMenu(null, item.icon, item.title, container);
+        for (var j = 0; j<item.items.length; j++) {
+          var subItem = item.items[j];
+          var li = $('<li></li>');
+          var a = navbarLink(subItem.icon, subItem.title, subItem.href, subItem.target);
+          a.removeClass("nav-link").addClass("dropdown-item");
+          li.append(a);
+          menu.append(li);
+        }
+      } else {
+        var li = $('<li class="nav-item"></li>');
+        li.append(navbarLink(item.icon, item.title, item.href, item.target));
+        container.append(li);
+      }
+    }
+  }
+
+  // create or get a reference to an existing dropdown menu
+  function navbarMenu(id, icon, title, container) {
+    var existingMenu = [];
+    if (id)
+      existingMenu = container.children('#' + id);
+    if (existingMenu.length > 0) {
+      return existingMenu.children('ul');
+    } else {
+      var li = $('<li class="nav-item"></li>');
+      if (id)
+        li.attr('id', id);
+      li.addClass('dropdown');
+      // auto add "Share" title on mobile if necessary
+      if (!title && icon && (icon === "fa-share-alt") && isMobilePhone())
+        title = "Share";
+      if (title) {
+        title = title + ' <span class="caret"></span>';
+      }
+      var a = navbarLink(icon, title, "#");
+      a.addClass('dropdown-toggle');
+      a.attr('data-toggle', 'dropdown');
+      a.attr('data-bs-toggle', 'dropdown');
+      a.attr('role', 'button');
+      a.attr('aria-expanded', 'false');
+      li.append(a);
+      var ul = $('<ul class="dropdown-menu"></ul>');
+      ul.attr('role', 'menu');
+      li.append(ul);
+      container.append(li);
+      return ul;
+    }
+  }
+
+  function addToNavbar(page, active) {
+
+    // capture the id and data-icon attribute (if any)
+    var id = page.attr('id');
+    var icon = page.attr('data-icon');
+    var navmenu = page.attr('data-navmenu');
+
+    // get hidden state (transfer this to navbar)
+    var hidden = page.hasClass('hidden');
+    page.removeClass('hidden');
+
+    // sanitize the id for use with bootstrap tabs
+    id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
+    page.attr('id', id);
+
+    // get the wrapper
+    var wrapper = page.closest('.dashboard-page-wrapper');
+
+    // move the id to the wrapper
+    page.removeAttr('id');
+    wrapper.attr('id', id);
+
+    // add the tab-pane class to the wrapper
+    wrapper.addClass('tab-pane');
+    if (active)
+      wrapper.addClass('active');
+
+    // get a reference to the h1, discover its inner contens, then detach it
+    var h1 = wrapper.find('h1').first();
+    var title = h1.contents();
+    h1.detach();
+
+    // create a navbar item
+    var li = $('<li></li>');
+    var a = navbarLink(icon, title, '#' + id);
+    a.attr('data-toggle', 'tab');
+    li.append(a);
+
+    // add it to the navbar (or navbar menu if specified)
+    var container = $('ul.navbar-left');
+    if (navmenu) {
+      var menuId = navmenu.replace(/\s+/g, '');
+      var menu = navbarMenu(menuId, null, navmenu, container);
+      li.find("> a").removeClass("nav-link").addClass("dropdown-item");
+      menu.append(li);
+    } else {
+      li.addClass("nav-item")
+      container.append(li);
+    }
+
+    // hide it if requested
+    if (hidden)
+      li.addClass('hidden');
+  }
+
+  function navbarLink(icon, title, href, target) {
+
+    var a = $('<a class="nav-link"></a>');
+    if (icon) {
+
+      // get the name of the icon set and icon
+      var dashPos = icon.indexOf("-");
+      var iconSet = null;
+      var iconSplit = icon.split(" ");
+      if (iconSplit.length > 1) {
+        iconSet = iconSplit[0];
+        icon = iconSplit.slice(1).join(" ");
+      } else {
+        iconSet = icon.substring(0, dashPos);
+      }
+      var iconName = icon.substring(dashPos + 1);
+
+      // create the icon
+      var iconElement = $('<span class="' + iconSet + ' ' + icon + '"></span>');
+      if (title)
+        iconElement.css('margin-right', '7px');
+      a.append(iconElement);
+      // if href is null see if we can auto-generate based on icon (e.g. social)
+      if (!href)
+        maybeGenerateLinkFromIcon(iconName, a);
+    }
+    if (title)
+      a.append(title);
+
+    // add the href.
+    if (href) {
+      if (href === "source_embed") {
+        a.attr('href', '#');
+        a.attr('data-featherlight', "#flexdashboard-source-code");
+        a.featherlight({
+            beforeOpen: function(event){
+              $('body').addClass('unselectable');
+            },
+            afterClose: function(event){
+              $('body').removeClass('unselectable');
+            }
+        });
+      } else {
+        a.attr('href', href);
+      }
+    }
+
+    // add the arget
+    if (target)
+      a.attr('target', target);
+
+    return a;
+  }
+
+  // auto generate a link from an icon name (e.g. twitter) when possible
+  function maybeGenerateLinkFromIcon(iconName, a) {
+
+     var serviceLinks = {
+      "twitter": "https://twitter.com/share?text=" + encodeURIComponent(document.title) + "&url="+encodeURIComponent(location.href),
+      "facebook": "https://www.facebook.com/sharer/sharer.php?s=100&p[url]="+encodeURIComponent(location.href),
+      "linkedin": "https://www.linkedin.com/shareArticle?mini=true&url="+encodeURIComponent(location.href) + "&title=" + encodeURIComponent(document.title),
+      "pinterest": "https://pinterest.com/pin/create/link/?url="+encodeURIComponent(location.href) + "&description=" + encodeURIComponent(document.title)
+    };
+
+    var makeSocialLink = function(a, href) {
+      a.attr('href', '#');
+      a.on('click', function(e) {
+        e.preventDefault();
+        window.open(href);
+      });
+    };
+
+    $.each(serviceLinks, function(key, value) {
+      if (iconName.indexOf(key) !== -1)
+        makeSocialLink(a, value);
+    });
+  }
+
+  // layout a dashboard page
+  function layoutDashboardPage(page) {
+
+    // use a page wrapper so that free form content above the
+    // dashboard appears at the top rather than the side (as it
+    // would without the wrapper in a column orientation)
+    var wrapper = $('<div class="dashboard-page-wrapper"></div>');
+    page.wrap(wrapper);
+
+    // if there are no level2 or level3 headers synthesize a level3
+    // header to contain the (e.g. frame it, scroll container, etc.)
+    var headers = page.find('h2,h3');
+    if (headers.length === 0)
+      page.wrapInner('<div class="section level3"></div>');
+
+    // hoist up any content before level 2 or level 3 headers
+    var children = page.children();
+    children.each(function(index) {
+      if ($(this).hasClass('level2') || $(this).hasClass('level3'))
+        return false;
+      $(this).insertBefore(page);
+    });
+
+    // determine orientation and fillPage behavior for distinct media
+    var orientation, fillPage, storyboard;
+
+    // media: mobile phone
+    if (isMobilePhone()) {
+
+      // if there is a sidebar we need to ensure it's content
+      // is properly framed as an h3
+      var sidebar = page.find('.section.sidebar');
+      sidebar.removeClass('sidebar');
+      sidebar.wrapInner('<div class="section level3"></div>');
+      var h2 = sidebar.find('h2');
+      var h3 = $('<h3></h3>');
+      h3.append(h2.contents());
+      h3.insertBefore(h2);
+      h2.detach();
+
+      // wipeout h2 elements then enclose them in a single h2
+      var level2 = page.find('div.section.level2');
+      level2.each(function() {
+        level2.children('h2').remove();
+        level2.children().unwrap();
+      });
+      page.wrapInner('<div class="section level2"></div>');
+
+      // substitute mobile images
+      if (isPortrait()) {
+        var mobileFigures = $('img.mobile-figure');
+        mobileFigures.each(function() {
+          // get the src (might be base64 encoded)
+          var src = $(this).attr('src');
+
+          // find it's peer
+          var id = $(this).attr('data-mobile-figure-id');
+          var img = $('img[data-figure-id=' + id + "]");
+          img.attr('src', src)
+             .attr('width', _options.defaultFigWidthMobile)
+             .attr('height', _options.defaultFigHeightMobile);
+        });
+      }
+
+      // hoist storyboard commentary into it's own section
+      if (page.hasClass('storyboard')) {
+        var commentaryHR = page.find('div.section.level3 hr');
+        commentaryHR.each(function() {
+          var commentary = $(this).nextAll().detach();
+          var commentarySection = $('<div class="section level3"></div>');
+          commentarySection.append(commentary);
+          commentarySection.insertAfter($(this).closest('div.section.level3'));
+          $(this).remove();
+        });
+      }
+
+      // force a non full screen layout by columns
+      orientation = _options.orientation = 'columns';
+      fillPage = _options.fillPage = false;
+      storyboard = _options.storyboard = false;
+
+    // media: desktop
+    } else {
+
+      // determine orientation
+      orientation = page.attr('data-orientation');
+      if (orientation !== 'rows' && orientation != 'columns')
+        orientation = _options.orientation;
+
+      // determine storyboard mode
+      storyboard = page.hasClass('storyboard');
+
+      // fillPage based on options (force for storyboard)
+      fillPage = _options.fillPage || storyboard;
+
+      // handle sidebar
+      var sidebar = page.find('.section.level2.sidebar');
+      if (sidebar.length > 0)
+        layoutSidebar(sidebar, page);
+    }
+
+    // give it and it's parent divs height: 100% if we are in fillPage mode
+    if (fillPage) {
+      page.addClass('vertical-layout-fill');
+      page.css('height', '100%');
+      page.parents('div').css('height', '100%');
+    } else {
+      page.addClass('vertical-layout-scroll');
+    }
+
+    // perform the layout
+    if (storyboard)
+      layoutPageAsStoryboard(page);
+    else if (orientation === 'rows')
+      layoutPageByRows(page, fillPage);
+    else if (orientation === 'columns')
+      layoutPageByColumns(page, fillPage);
+  }
+
+  function layoutSidebar(sidebar, content) {
+
+    // get it out of the header hierarchy
+    sidebar = sidebar.first();
+    if (sidebar.hasClass('level1')) {
+      sidebar.removeClass('level1');
+      sidebar.children('h1').remove();
+    } else if (sidebar.hasClass('level2')) {
+      sidebar.removeClass('level2');
+      sidebar.children('h2').remove();
+    }
+
+    // determine width
+    var sidebarWidth = isTablet() ? 220 : 250;
+    var dataWidth = parseInt(sidebar.attr('data-width'));
+    if (dataWidth)
+      sidebarWidth = dataWidth;
+
+    // set the width and shift the page right to accomodate the sidebar
+    sidebar.css('width', sidebarWidth + 'px');
+    content.css('padding-left', sidebarWidth + 'px');
+
+    // wrap it's contents in a form
+    sidebar.wrapInner($('<form></form>'));
+  }
+
+  function layoutPageAsStoryboard(page) {
+
+    // create storyboard navigation
+    var nav = $('<div class="storyboard-nav"></div>');
+
+    // add navigation buttons
+    var prev = $('<button class="sbprev"><i class="fa fa-angle-left"></i></button>');
+    nav.append(prev);
+    var next= $('<button class="sbnext"><i class="fa fa-angle-right"></i></button>');
+    nav.append(next);
+
+    // add navigation frame
+    var frameList = $('<div class="sbframelist"></div>');
+    nav.append(frameList);
+    var ul = $('<ul></ul>');
+    frameList.append(ul);
+
+     // find all the level3 sections (those are the storyboard frames)
+    var frames = page.find('div.section.level3');
+    frames.each(function() {
+
+      // mark it
+      $(this).addClass('sbframe');
+
+      // divide it into chart content and (optional) commentary
+      $(this).addClass('dashboard-column-orientation');
+
+      // stuff the chart into it's own div w/ flex
+      $(this).wrapInner('<div class="sbframe-component"></div>');
+      setFlex($(this), 1);
+      var frame = $(this).children('.sbframe-component');
+
+      // extract the title from the h3
+      var li = $('<li></li>');
+      var h3 = frame.children('h3');
+      li.append(h3.contents());
+      h3.detach();
+      ul.append(li);
+
+      // extract commentary
+      var hr = frame.children('hr');
+      if (hr.length) {
+        var commentary = hr.nextAll().detach();
+        hr.remove();
+        var commentaryFrame = $('<div class="sbframe-commentary"></div>');
+        commentaryFrame.addClass('flowing-content-shim');
+        commentaryFrame.addClass('flowing-content-container');
+        commentaryFrame.append(commentary);
+        $(this).append(commentaryFrame);
+
+        // look for a data-commentary-width attribute
+        var commentaryWidth = $(this).attr('data-commentary-width');
+        if (commentaryWidth)
+          commentaryFrame.css('width', commentaryWidth + 'px');
+      }
+
+      // layout the chart (force flex)
+      var result = layoutChart(frame, true);
+
+      // ice the notes if there are none
+      if (!result.notes)
+        frame.find('.chart-notes').remove();
+
+      // set flex on chart
+      setFlex(frame, 1);
+    });
+
+    // create a div to hold all the frames
+    var frameContent = $('<div class="sbframe-content"></div>');
+    frameContent.addClass('dashboard-row-orientation');
+    frameContent.append(frames.detach());
+
+    // row orientation to stack nav and frame content
+    page.addClass('dashboard-row-orientation');
+    page.append(nav);
+    page.append(frameContent);
+    setFlex(frameContent, 1);
+
+    // initialize sly
+    var sly = new Sly(frameList, {
+    		horizontal: true,
+    		itemNav: 'basic',
+    		smart: true,
+    		activateOn: 'click',
+    		startAt: 0,
+    		scrollBy: 1,
+    		activatePageOn: 'click',
+    		speed: 200,
+    		moveBy: 600,
+    		dragHandle: true,
+    		dynamicHandle: true,
+    		clickBar: true,
+    		keyboardNavBy: 'items',
+    		next: next,
+    		prev: prev
+    	}).init();
+
+    // make first frame active
+    frames.removeClass('active');
+    frames.first().addClass('active');
+
+    // subscribe to frame changed events
+    sly.on('active', function (eventName, itemIndex) {
+      frames.removeClass('active');
+      frames.eq(itemIndex).addClass('active')
+                          .trigger('shown');
+    });
+  }
+
+  function layoutPageByRows(page, fillPage) {
+
+    // row orientation
+    page.addClass('dashboard-row-orientation');
+
+    // find all the level2 sections (those are the rows)
+    var rows = page.find('div.section.level2');
+
+    // if there are no level2 sections then treat the
+    // entire page as if it's a level 2 section
+    if (rows.length === 0) {
+      page.wrapInner('<div class="section level2"></div>');
+      rows = page.find('div.section.level2');
+    }
+
+    rows.each(function () {
+
+      // flags
+      var haveNotes = false;
+      var haveFlexHeight = true;
+
+      // remove the h2
+      $(this).children('h2').remove();
+
+      // check for a tabset
+      var isTabset = $(this).hasClass('tabset');
+      if (isTabset)
+        layoutTabset($(this));
+
+      // give it row layout semantics if it's not a tabset
+      if (!isTabset)
+        $(this).addClass('dashboard-row');
+
+      // find all of the level 3 subheads
+      var columns = $(this).find('div.section.level3');
+
+      // determine figureSizes sizes
+      var figureSizes = chartFigureSizes(columns);
+
+      // fixup the columns
+      columns.each(function(index) {
+
+        // layout the chart (force flex if we are in a tabset)
+        var result = layoutChart($(this), isTabset);
+
+        // update flexHeight state
+        if (!result.flex)
+          haveFlexHeight = false;
+
+        // update state
+        if (result.notes)
+          haveNotes = true;
+
+        // set the column flex based on the figure width
+        // (value boxes will just get the default figure width)
+        var chartWidth = figureSizes[index].width;
+        setFlex($(this), chartWidth + ' ' + chartWidth + ' 0px');
+
+      });
+
+      // remove empty chart note divs
+      if (isTabset)
+        $(this).find('.chart-notes').filter(function() {
+            return $(this).html() === "&nbsp;";
+        }).remove();
+      if (!haveNotes)
+        $(this).find('.chart-notes').remove();
+
+       // make it a flexbox row
+      if (haveFlexHeight)
+        $(this).addClass('dashboard-row-flex');
+
+      // now we can set the height on all the wrappers (based on maximum
+      // figure height + room for title and notes, or data-height on the
+      // container if specified). However, don't do this if there is
+      // no flex on any of the constituent columns
+      var flexHeight = null;
+      var dataHeight = parseInt($(this).attr('data-height'));
+      if (dataHeight)
+        flexHeight = adjustedHeight(dataHeight, columns.first());
+      else if (haveFlexHeight)
+        flexHeight = maxChartHeight(figureSizes, columns);
+      if (flexHeight) {
+        if (fillPage)
+          setFlex($(this), flexHeight + ' ' + flexHeight + ' 0px');
+        else {
+          $(this).css('height', flexHeight + 'px');
+          setFlex($(this), '0 0 ' + flexHeight + 'px');
+        }
+      }
+
+    });
+  }
+
+  function layoutPageByColumns(page, fillPage) {
+
+    // column orientation
+    page.addClass('dashboard-column-orientation');
+
+    // find all the level2 sections (those are the columns)
+    var columns = page.find('div.section.level2');
+
+    // if there are no level2 sections then treat the
+    // entire page as if it's a level 2 section
+    if (columns.length === 0) {
+      page.wrapInner('<div class="section level2"></div>');
+      columns = page.find('div.section.level2');
+    }
+
+    // layout each column
+    columns.each(function (index) {
+
+      // remove the h2
+      $(this).children('h2').remove();
+
+      // make it a flexbox column
+      $(this).addClass('dashboard-column');
+
+      // check for a tabset
+      var isTabset = $(this).hasClass('tabset');
+      if (isTabset)
+        layoutTabset($(this));
+
+      // find all the h3 elements
+      var rows = $(this).find('div.section.level3');
+
+      // get the figure sizes for the rows
+      var figureSizes = chartFigureSizes(rows);
+
+      // column flex is the max row width (or data-width if specified)
+      var flexWidth;
+      var dataWidth = parseInt($(this).attr('data-width'));
+      if (dataWidth)
+        flexWidth = dataWidth;
+      else
+        flexWidth = maxChartWidth(figureSizes);
+      setFlex($(this), flexWidth + ' ' + flexWidth + ' 0px');
+
+      // layout each chart
+      rows.each(function(index) {
+
+        // perform the layout
+        var result = layoutChart($(this), false);
+
+        // ice the notes if there are none
+        if (!result.notes)
+          $(this).find('.chart-notes').remove();
+
+        // set flex height based on figHeight, then adjust
+        if (result.flex) {
+          var chartHeight = figureSizes[index].height;
+          chartHeight = adjustedHeight(chartHeight, $(this));
+          if (fillPage)
+            setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
+          else {
+            $(this).css('height', chartHeight + 'px');
+            setFlex($(this), chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
+          }
+        }
+      });
+    });
+  }
+
+  function chartFigureSizes(charts) {
+
+    // sizes
+    var figureSizes = new Array(charts.length);
+
+    // check each chart
+    charts.each(function(index) {
+
+      // start with default
+      figureSizes[index] = {
+        width: _options.defaultFigWidth,
+        height: _options.defaultFigHeight
+      };
+
+      // look for data-height or data-width then knit options
+      var dataWidth = parseInt($(this).attr('data-width'));
+      var dataHeight = parseInt($(this).attr('data-height'));
+      var knitrOptions = $(this).find('.knitr-options:first');
+      var knitrWidth, knitrHeight;
+      if (knitrOptions) {
+        knitrWidth = parseInt(knitrOptions.attr('data-fig-width'));
+        knitrHeight =  parseInt(knitrOptions.attr('data-fig-height'));
+      }
+
+      // width
+      if (dataWidth)
+        figureSizes[index].width = dataWidth;
+      else if (knitrWidth)
+        figureSizes[index].width = knitrWidth;
+
+      // height
+      if (dataHeight)
+        figureSizes[index].height = dataHeight;
+      else if (knitrHeight)
+        figureSizes[index].height = knitrHeight;
+    });
+
+    // return sizes
+    return figureSizes;
+  }
+
+  function maxChartHeight(figureSizes, charts) {
+
+    // first compute the maximum height
+    var maxHeight = _options.defaultFigHeight;
+    for (var i = 0; i<figureSizes.length; i++)
+      if (figureSizes[i].height > maxHeight)
+        maxHeight = figureSizes[i].height;
+
+    // now add offests for chart title and chart notes
+    if (charts.length)
+      maxHeight = adjustedHeight(maxHeight, charts.first());
+
+    return maxHeight;
+  }
+
+  function adjustedHeight(height, chart) {
+    if (chart.length > 0) {
+      var chartTitle = chart.find('.chart-title');
+      if (chartTitle.length)
+        height += chartTitle.first().outerHeight();
+      var chartNotes = chart.find('.chart-notes');
+      if (chartNotes.length)
+        height += chartNotes.first().outerHeight();
+    }
+    return height;
+  }
+
+  function maxChartWidth(figureSizes) {
+    var maxWidth = _options.defaultFigWidth;
+    for (var i = 0; i<figureSizes.length; i++)
+      if (figureSizes[i].width > maxWidth)
+        maxWidth = figureSizes[i].width;
+    return maxWidth;
+  }
+
+  // layout a chart
+  function layoutChart(chart, forceFlex) {
+
+    // state to return
+    var result = {
+      notes: false,
+      flex: false
+    };
+
+    // extract the title
+    var title = extractTitle(chart);
+
+    // find components that apply to this container
+    var components = componentsFind(chart);
+
+    // if it's a custom component then call it and return
+    var customComponents = componentsCustom(components);
+    if (customComponents.length) {
+      componentsLayout(customComponents, title, chart);
+      result.notes = false;
+      result.flex = forceFlex || componentsFlex(customComponents);
+      return result;
+    }
+
+    // put all the content in a chart wrapper div
+    chart.addClass('chart-wrapper');
+    chart.wrapInner('<div class="chart-stage"></div>');
+    var chartContent = chart.children('.chart-stage');
+
+    // flex the content if appropriate
+    result.flex = forceFlex || componentsFlex(components);
+    if (result.flex) {
+      // add flex classes
+      chart.addClass('chart-wrapper-flex');
+      chartContent.addClass('chart-stage-flex');
+
+      // additional shim to break out of flexbox sizing
+      chartContent.wrapInner('<div class="chart-shim"></div>');
+      chartContent = chartContent.children('.chart-shim');
+    }
+
+    // set custom data-padding attribute
+    var pad = chart.attr('data-padding');
+    if (pad) {
+      if (pad === "0")
+        chart.addClass('no-padding');
+      else {
+        pad = pad + 'px';
+        chartContent.css('left', pad)
+                    .css('top', pad)
+                    .css('right', pad)
+                    .css('bottom', pad)
+      }
+    }
+
+    // call compoents
+    componentsLayout(components, title, chartContent);
+
+    // also activate components on shiny output
+    findShinyOutput(chartContent).on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+
+          // see if we opted out of flex based on our output (for shiny
+          // we can't tell what type of output we have until after the
+          // value is bound)
+          var components = componentsFind(element);
+          var flex = forceFlex || componentsFlex(components);
+          if (!flex) {
+            chart.css('height', "");
+            setFlex(chart, "");
+            chart.removeClass('chart-wrapper-flex');
+            chartContent.removeClass('chart-stage-flex');
+            chartContent.children().unwrap();
+          }
+
+          // perform layout
+          componentsLayout(components, title, element.parent());
+        }, 10);
+      });
+
+    // add the title
+    var chartTitle = $('<div class="chart-title"></div>');
+    chartTitle.append(title);
+    chart.prepend(chartTitle);
+
+    // add the notes section
+    var chartNotes = $('<div class="chart-notes"></div>');
+    chartNotes.html('&nbsp;');
+    chart.append(chartNotes);
+
+    // attempt to extract notes if we have a component
+    if (components.length)
+      result.notes = extractChartNotes(chartContent, chartNotes);
+
+    // return result
+    return result;
+  }
+
+  // build a tabset from a section div with the .tabset class
+  function layoutTabset(tabset) {
+
+    // check for fade option
+    var fade = tabset.hasClass("tabset-fade");
+    var pills = tabset.hasClass("tabset-pills");
+    var navClass = pills ? "nav-pills" : "nav-tabs";
+
+    // determine the heading level of the tabset and tabs
+    var match = tabset.attr('class').match(/level(\d) /);
+    if (match === null)
+      return;
+    var tabsetLevel = Number(match[1]);
+    var tabLevel = tabsetLevel + 1;
+
+    // find all subheadings immediately below
+    var tabs = tabset.find("div.section.level" + tabLevel);
+    if (!tabs.length)
+      return;
+
+    // create tablist and tab-content elements
+    var tabList = $('<ul class="nav ' + navClass + '" role="tablist"></ul>');
+    $(tabs[0]).before(tabList);
+    var tabContent = $('<div class="tab-content"></div>');
+    $(tabs[0]).before(tabContent);
+
+    // build the tabset
+    var activeTab = 0;
+    tabs.each(function(i) {
+
+      // get the tab div
+      var tab = $(tabs[i]);
+
+      // get the id then sanitize it for use with bootstrap tabs
+      var id = tab.attr('id');
+
+      // see if this is marked as the active tab
+      if (tab.hasClass('active'))
+        activeTab = i;
+
+      // sanitize the id for use with bootstrap tabs
+      id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
+      tab.attr('id', id);
+
+      // get the heading element within it and grab it's text
+      var heading = tab.find('h' + tabLevel + ':first');
+      var headingDom = heading.contents();
+
+      // build and append the tab list item
+      var a = $('<a role="tab" data-toggle="tab" class="nav-link"></a>');
+      a.append(headingDom);
+      a.attr('href', '#' + id);
+      a.attr('aria-controls', id);
+      var li = $('<li role="presentation" class="nav-item"></li>');
+      li.append(a);
+      tabList.append(li);
+
+      // set it's attributes
+      tab.attr('role', 'tabpanel');
+      tab.addClass('tab-pane');
+      tab.addClass('tabbed-pane');
+      tab.addClass('no-title');
+      if (fade)
+        tab.addClass('fade');
+
+      // move it into the tab content div
+      tab.detach().appendTo(tabContent);
+    });
+
+    // set active tab
+    $(tabList.children()[activeTab]).tab("show");
+    var active = $(tabContent.children('div.section')[activeTab]);
+    active.addClass('active');
+    if (fade)
+      active.addClass('in');
+
+    // add nav-tabs-custom
+    tabset.addClass('nav-tabs-custom');
+
+    // internal layout is dashboard-column with tab-content flexing
+    tabset.addClass('dashboard-column');
+    setFlex(tabContent, 1);
+  }
+
+  // one time global initialization for components
+  function componentsInit(dashboardContainer) {
+    for (var i=0; i<window.FlexDashboardComponents.length; i++) {
+      var component = window.FlexDashboardComponents[i];
+      if (component.init)
+        component.init(dashboardContainer);
+    }
+  }
+
+  // find components that apply within a container
+  function componentsFind(container) {
+
+    // look for components
+    var components = [];
+    for (var i=0; i<window.FlexDashboardComponents.length; i++) {
+      var component = window.FlexDashboardComponents[i];
+      if (component.find(container).length)
+        components.push(component);
+    }
+
+    // if there were none then use a special flowing content component
+    // that just adds a scrollbar in fillPage mode
+    if (components.length == 0) {
+      components.push({
+        find: function(container) {
+          return container;
+        },
+
+        flex: function(fillPage) {
+          return fillPage;
+        },
+
+        layout: function(title, container, element, fillPage) {
+          if (fillPage) {
+            container.addClass('flowing-content-shim');
+            container.addClass('flowing-content-container');
+          }
+        }
+      });
+    }
+
+    return components;
+  }
+
+  // if there is a custom component then pick it out
+  function componentsCustom(components) {
+    var customComponent = [];
+    for (var i=0; i<components.length; i++)
+      if (components[i].type === "custom") {
+        customComponent.push(components[i]);
+        break;
+      }
+    return customComponent;
+  }
+
+  // query all components for flex
+  function componentsFlex(components) {
+
+    // no components at all means no flex
+    if (components.length === 0)
+      return false;
+
+    // otherwise query components (assume true unless we see false)
+    var isMobile = isMobilePhone();
+    for (var i=0; i<components.length; i++)
+      if (components[i].flex && !components[i].flex(_options.fillPage))
+        return false;
+    return true;
+  }
+
+  // layout all components
+  function componentsLayout(components, title, container) {
+    var isMobile = isMobilePhone();
+    for (var i=0; i<components.length; i++) {
+      var element = components[i].find(container);
+      if (components[i].layout) {
+        // call layout (don't call other components if it returns false)
+        var result = components[i].layout(title, container, element, _options.fillPage);
+        if (result === false)
+          return;
+      }
+    }
+  }
+
+  // get a reference to the h3, discover it's inner html, and remove it
+  function extractTitle(container) {
+    var h3 = container.children('h3').first();
+    var title = '';
+    if (!container.hasClass('no-title'))
+      title = h3.contents();
+    h3.detach();
+    return title;
+  }
+
+  // extract chart notes
+  function extractChartNotes(chartContent, chartNotes) {
+    // look for a terminating blockquote or image caption
+    var blockquote = chartContent.children('blockquote:last-child');
+    var caption = chartContent.children('div.image-container')
+                              .children('p.caption');
+    if (blockquote.length) {
+      chartNotes.empty().append(blockquote.children('p:first-child').contents());
+      blockquote.remove();
+      return true;
+    } else if (caption.length) {
+      chartNotes.empty().append(caption.contents());
+      caption.remove();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function findShinyOutput(chartContent) {
+    return chartContent.find('.shiny-text-output, .shiny-html-output');
+  }
+
+  // safely detect rendering on a mobile phone
+  function isMobilePhone() {
+    try
+    {
+      return ! window.matchMedia("only screen and (min-width: 768px)").matches;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
+  function isFillPage() {
+    return _options.fillPage;
+  }
+
+  // detect portrait mode
+  function isPortrait() {
+    return ($(window).width() < $(window).height());
+  }
+
+  // safely detect rendering on a tablet
+  function isTablet() {
+    try
+    {
+      return window.matchMedia("only screen and (min-width: 769px) and (max-width: 992px)").matches;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
+  // test whether this is a shiny doc
+  function isShinyDoc() {
+    return (typeof(window.Shiny) !== "undefined" && !!window.Shiny.outputBindings);
+  }
+
+  // set flex using vendor specific prefixes
+  function setFlex(el, flex) {
+    el.css('-webkit-box-flex', flex)
+      .css('-webkit-flex', flex)
+      .css('-ms-flex', flex)
+      .css('flex', flex);
+  }
+
+  // support bookmarking of pages
+  function handleLocationHash() {
+
+    // restore tab/page from bookmark
+    var hash = window.decodeURIComponent(window.location.hash);
+    if (hash.length > 0)
+      $('ul.nav a[href="' + hash + '"]').tab('show');
+    FlexDashboardUtils.manageActiveNavbarMenu();
+
+    // navigate to a tab when the history changes
+    window.addEventListener("popstate", function(e) {
+      var hash = window.decodeURIComponent(window.location.hash);
+      var activeTab = $('ul.nav a[href="' + hash + '"]');
+      if (activeTab.length) {
+        activeTab.tab('show');
+      } else {
+        $('ul.nav a:first').tab('show');
+      }
+      FlexDashboardUtils.manageActiveNavbarMenu();
+    });
+
+    // add a hash to the URL when the user clicks on a tab/page
+    $('.navbar-nav a[data-toggle="tab"]').on('click', function(e) {
+      var baseUrl = FlexDashboardUtils.urlWithoutHash(window.location.href);
+      var hash = FlexDashboardUtils.urlHash($(this).attr('href'));
+      var href = baseUrl + hash;
+      FlexDashboardUtils.setLocation(href);
+    });
+
+    // handle clicks of other links that should activate pages
+    var navPages = $('ul.navbar-nav li a[data-toggle=tab]');
+    navPages.each(function() {
+      var href =  $(this).attr('href');
+      var links = $('a[href="' + href + '"][data-toggle!=tab]');
+      links.each(function() {
+        $(this).on('click', function(e) {
+          window.FlexDashboardUtils.showPage(href);
+        });
+      });
+    });
+  }
+
+  // tweak Prism highlighting
+  function initPrismHighlighting() {
+
+    if (window.Prism) {
+      Prism.languages.insertBefore('r', 'comment', {
+        'heading': [
+          {
+            // title 1
+        	  // =======
+
+        	  // title 2
+        	  // -------
+        	  pattern: /\w+.*(?:\r?\n|\r)(?:====+|----+)/,
+            alias: 'operator'
+          },
+          {
+            // ### title 3
+            pattern: /(^\s*)###[^#].+/m,
+            lookbehind: true,
+            alias: 'operator'
+          }
+        ]
+      });
+
+      // prism highlight
+      Prism.highlightAll();
+    }
+  }
+
+  FlexDashboard.prototype = {
+    constructor: FlexDashboard,
+    init: init,
+    isMobilePhone: isMobilePhone,
+    isFillPage: isFillPage
+  };
+
+  return FlexDashboard;
+
+})();
+
+// utils
+window.FlexDashboardUtils = {
+  resizableImage: function(img) {
+    var src = img.attr('src');
+    var url = 'url("' + src + '")';
+    img.parent().css('background', url)
+                .css('background-size', 'contain')
+                .css('background-repeat', 'no-repeat')
+                .css('background-position', 'center')
+                .addClass('image-container');
+  },
+  setLocation: function(href) {
+    if (history && history.pushState) {
+      history.pushState(null, null, href);
+    } else {
+      window.location.replace(href);
+    }
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 10);
+    this.manageActiveNavbarMenu();
+  },
+  showPage: function(href) {
+    $('ul.navbar-nav li a[href="' + href + '"]').tab('show');
+    var baseUrl = this.urlWithoutHash(window.location.href);
+    var loc = baseUrl + href;
+    this.setLocation(loc);
+  },
+  showLinkedValue: function(href) {
+    // check for a page link
+    if ($('ul.navbar-nav li a[data-toggle=tab][href="' + href + '"]').length > 0)
+      this.showPage(href);
+    else
+      window.open(href);
+  },
+  urlWithoutHash: function(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(0, hashLoc);
+    else
+      return url;
+  },
+  urlHash: function(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(hashLoc);
+    else
+      return "";
+  },
+  manageActiveNavbarMenu: function () {
+    // remove active from currently active tabs
+    $('.navbar ul.nav .active').removeClass('active');
+    // find the active tab
+    var activeTab = $('.dashboard-page-wrapper.tab-pane.active');
+    if (activeTab.length > 0) {
+      var tabId = activeTab.attr('id');
+      if (tabId)
+        $(".navbar ul.nav a[href='#" + tabId + "']").tab("show");
+    }
+  }
+};
+
+window.FlexDashboard = new FlexDashboard();
+
+// empty content
+window.FlexDashboardComponents.push({
+  find: function(container) {
+    if (container.find('p').length == 0)
+      return container;
+    else
+      return $();
+  }
+})
+
+// plot image
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('p')
+                    .children('img:only-child');
+  },
+
+  layout: function(title, container, element, fillPage) {
+    FlexDashboardUtils.resizableImage(element);
+  }
+});
+
+// plot image (figure style)
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('div.figure').children('img');
+  },
+
+  layout: function(title, container, element, fillPage) {
+    FlexDashboardUtils.resizableImage(element);
+  }
+});
+
+// htmlwidget
+window.FlexDashboardComponents.push({
+
+  init: function(dashboardContainer) {
+    // trigger "shown" after initial layout to force static htmlwidgets
+    // in runtime: shiny to be resized after the dom has been transformed
+    dashboardContainer.on('flexdashboard:layoutcomplete', function(event) {
+      setTimeout(function() {
+        dashboardContainer.trigger('shown');
+      }, 200);
+    });
+  },
+
+  find: function(container) {
+    return container.children('div[id^="htmlwidget-"],div.html-widget');
+  }
+});
+
+// gauge
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('div.html-widget.gauge');
+  },
+
+  flex: function(fillPage) {
+    return false;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+
+  }
+
+});
+
+// shiny output
+window.FlexDashboardComponents.push({
+  find: function(container) {
+    return container.children('div[class^="shiny-"]');
+  }
+});
+
+// bootstrap table
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    var bsTable = container.find('table.table');
+    if (bsTable.length !== 0)
+      return bsTable;
+    else
+      return container.find('tr.header').parent('thead').parent('table');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+    // alias variables
+    var bsTable = element;
+
+    // fixup xtable generated tables with a proper thead
+    var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
+    if (headerRow.length > 0) {
+      var thead = $('<thead></thead>');
+      bsTable.prepend(thead);
+      headerRow.detach().appendTo(thead);
+    }
+
+    // improve appearance
+    container.addClass('bootstrap-table');
+
+    // for fill page provide scrolling w/ sticky headers
+    if (fillPage) {
+      // force scrollbar on overflow
+      container.addClass('flowing-content-shim');
+
+      // stable table headers when scrolling
+      bsTable.stickyTableHeaders({
+        scrollableArea: container
+      });
+    }
+  }
+});
+
+// embedded shiny app
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.find('iframe.shiny-frame');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+    if (fillPage) {
+      element.attr('height', '100%');
+    } else {
+      // provide default height if necessary
+      var height = element.get(0).style.height;
+      if (!height)
+        height = element.attr('height');
+      if (!height)
+        element.attr('height', 500);
+    }
+  }
+});
+
+// shiny fillRow or fillCol
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.find('.flexfill-container');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+    if (fillPage)
+      element.css('height', '100%');
+    else {
+      // provide default height if necessary
+      var height = element.get(0).style.height;
+      if (height === "100%" || height === "auto" || height === "initial" ||
+          height === "inherit" || !height) {
+        element.css('height', 500);
+      }
+    }
+  }
+});
+
+// valueBox
+window.FlexDashboardComponents.push({
+
+  type: "custom",
+
+  find: function(container) {
+    if (container.find('span.value-output, .shiny-valuebox-output').length)
+      return container;
+    else
+      return $();
+  },
+
+  flex: function(fillPage) {
+    return false;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+    // alias variables
+    var chartTitle = title;
+    var valueBox = element;
+
+    // add value-box class to container
+    container.addClass('value-box');
+
+    // value paragraph
+    var value = $('<p class="value"></p>');
+
+    // if we have shiny-text-output then just move it in
+    var valueOutputSpan = [];
+    var shinyOutput = valueBox.find('.shiny-valuebox-output').detach();
+    if (shinyOutput.length) {
+      valueBox.children().remove();
+      shinyOutput.html("&mdash;");
+      value.append(shinyOutput);
+    } else {
+      // extract the value (remove leading vector index)
+      var chartValue = valueBox.text().trim();
+      chartValue = chartValue.replace("[1] ", "");
+      valueOutputSpan = valueBox.find('span.value-output').detach();
+      valueBox.children().remove();
+      value.text(chartValue);
+    }
+
+    // caption
+    var caption = $('<p class="caption"></p>');
+    caption.append(chartTitle);
+
+    // build inner div for value box and add it
+    var inner = $('<div class="inner"></div>');
+    inner.append(value);
+    inner.append(caption);
+    valueBox.append(inner);
+
+    // add icon if specified
+    var icon = $('<div class="icon"><i></i></div>');
+    valueBox.append(icon);
+    function setIcon(chartIcon) {
+      var iconLib = "";
+      var iconSplit = chartIcon.split(" ");
+      if (iconSplit.length > 1) {
+        iconLib = iconSplit[0];
+        chartIcon = iconSplit.slice(1).join(" ");
+      } else {
+        var components = chartIcon.split("-");
+        if (components.length > 1)
+          iconLib = components[0];
+      }
+      icon.children('i').attr('class', iconLib + ' ' + chartIcon);
+    }
+    var chartIcon = valueBox.attr('data-icon');
+    if (chartIcon)
+      setIcon(chartIcon);
+
+    // handle data attributes in valueOutputSpan
+    function handleValueOutput(valueOutput) {
+
+      // caption
+      var dataCaption = valueOutput.attr('data-caption');
+      if (dataCaption)
+        caption.html(dataCaption);
+
+      // icon
+      var dataIcon = valueOutput.attr('data-icon');
+      if (dataIcon)
+        setIcon(dataIcon);
+
+      // If valueBox(color=) was an accent color, this attr should
+      // be populated with the accent color and the relevant CSS comes
+      // in through HTML dependencies
+      var dataColorAccent = valueOutput.attr('data-color-accent');
+      var valueBoxClasses = "value-box-" + (["primary", "info", "danger", "warning", "success"].join(" value-box-"));
+      if (dataColorAccent) {
+        valueBox.removeClass(valueBoxClasses);
+        valueBox.addClass('value-box-' + dataColorAccent);
+      }
+
+      // If valueBox(color=) was a CSS color, these other data-color-*
+      // attrs will be populated
+      var dataColor = valueOutput.attr('data-color');
+      if (dataColor) {
+        valueBox.removeClass(valueBoxClasses);
+        valueBox.css('background-color', dataColor);
+      }
+      var dataColorText = valueOutput.attr('data-color-text');
+      if (dataColorText) {
+        valueBox.find(".inner").css('color', dataColorText);
+      }
+      var dataColorIcon = valueOutput.attr('data-color-icon');
+      if (dataColorIcon) {
+        valueBox.find(".icon").css('color', dataColorIcon);
+      }
+
+      // url
+      var dataHref = valueOutput.attr('data-href');
+      if (dataHref) {
+        valueBox.addClass('linked-value');
+        valueBox.off('click.value-box');
+        valueBox.on('click.value-box', function(e) {
+          window.FlexDashboardUtils.showLinkedValue(dataHref);
+        });
+      }
+    }
+
+    // check for a valueOutputSpan
+    if (valueOutputSpan.length > 0) {
+      handleValueOutput(valueOutputSpan);
+    }
+
+    // if we have a shinyOutput then bind a listener to handle
+    // new valueOutputSpan values
+    shinyOutput.on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+          var valueOutputSpan = element.find('span.value-output');
+          if (valueOutputSpan.length > 0)
+            handleValueOutput(valueOutputSpan);
+        }, 10);
+      }
+    );
+  }
+});
+</script>
+
+<div id="dashboard-container">
+
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<style type="text/css">
+table.dataTable tbody td {
+  font-size: 10pt;
+  padding: 5px
+}
+</style>
+<script>
+// Functions to make tool header rows in tables clickable to (un)filter specific research assessment tool
+function headerFunctionAccuracy() {
+  for (x of $("#DataTables_Table_0 th[scope=\'row\']")) { x.innerHTML = "<a onclick=\"$(\'#DataTables_Table_0\').DataTable().columns(0).search(\'" + ($('#DataTables_Table_0').DataTable().columns(0).search()[0] ? '' : x.innerHTML) + "\').draw()\" style=\"cursor: pointer\">" + x.innerHTML + "</a>" }
+}
+function headerFunctionCollabAccuracy() {
+  for (x of $("#DataTables_Table_1 th[scope=\'row\']")) { x.innerHTML = "<a onclick=\"$(\'#DataTables_Table_1\').DataTable().columns(0).search(\'" + ($('#DataTables_Table_1').DataTable().columns(0).search()[0] ? '' : x.innerHTML) + "\').draw()\" style=\"cursor: pointer\">" + x.innerHTML + "</a>" }
+}
+function headerFunctionPrecision() {
+  for (x of $("#DataTables_Table_2 th[scope=\'row\']")) { x.innerHTML = "<a onclick=\"$(\'#DataTables_Table_2\').DataTable().columns(0).search(\'" + ($('#DataTables_Table_2').DataTable().columns(0).search()[0] ? '' : x.innerHTML) + "\').draw()\" style=\"cursor: pointer\">" + x.innerHTML + "</a>" }
+}
+function headerFunctionFormattingQuoting() {
+  for (x of $("#DataTables_Table_3 th[scope=\'row\']")) { x.innerHTML = "<a onclick=\"$(\'#DataTables_Table_3\').DataTable().columns(0).search(\'" + ($('#DataTables_Table_3').DataTable().columns(0).search()[0] ? '' : x.innerHTML) + "\').draw()\" style=\"cursor: pointer\">" + x.innerHTML + "</a>" }
+}
+</script>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div id="accuracy-reliability" class="section level1">
+<h1>Accuracy &amp; Reliability</h1>
+<div id="column" class="section level2 tabset" data-width="60">
+<h2 class="tabset">Column</h2>
+<div id="accuracy-1-human-raters-2-individual-3-combined-llms-mainall"
+class="section level3">
+<h3>Accuracy: (1) Human Raters / (2) Individual / (3) Combined LLMs
+(<a onclick="$('#DataTables_Table_0').DataTable().search('TRUE').draw()" style="cursor: pointer">main</a>/<a onclick="$('#DataTables_Table_0').DataTable().search('').draw()" style="cursor: pointer">all</a>)</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c868f7a193e429a60b1e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c868f7a193e429a60b1e">{"x":{"filter":"none","vertical":false,"extensions":["RowGroup"],"fillContainer":true,"data":[["PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2"],["(1) Human Rater 1","(1) Human Rater 2","(2) GPT-3.5 API","(2) GPT-3.5 API repeated","(2) GPT-4 API","(2) Claude-2 API","(2) Claude-2 API repeated","(2) Claude-2 Chat","(2) Claude-2 Chat repeated","(2) Claude-2 Chat GPT-3.5 prompt","(3) Combined LLMs (self-consistent 5/8)","(3) Combined LLMs (self-consistent 6/8)","(3) Combined LLMs (self-consistent 7/8)","(3) Combined LLMs (self-consistent 8/8)","(1) Human Rater 1","(1) Human Rater 2","(2) GPT-3.5 API","(2) GPT-3.5 API repeated","(2) GPT-4 API","(2) Claude-2 API","(2) Claude-2 API repeated","(2) Claude-2 Chat","(2) Claude-2 Chat repeated","(2) Claude-2 Chat GPT-3.5 prompt","(3) Combined LLMs (self-consistent 5/8)","(3) Combined LLMs (self-consistent 6/8)","(3) Combined LLMs (self-consistent 7/8)","(3) Combined LLMs (self-consistent 8/8)","(1) Human Rater 1","(1) Human Rater 2","(2) GPT-3.5 API","(2) GPT-3.5 API repeated","(2) GPT-4 API","(2) Claude-2 API","(2) Claude-2 API repeated","(2) Claude-2 Chat","(2) Claude-2 Chat repeated","(2) Claude-2 Chat GPT-3.5 prompt","(3) Combined LLMs (self-consistent 5/8)","(3) Combined LLMs (self-consistent 6/8)","(3) Combined LLMs (self-consistent 7/8)","(3) Combined LLMs (self-consistent 8/8)"],[2686,2367,1868,1879,2018,2116,2107,2111,2126,2018,2077,1795,1442,843,1096,949,652,645,836,777,774,811,792,775,744,594,404,242,379,369,265,254,193,222,216,265,270,226,138,73,37,14],[3024,2619,2943,2943,2943,3024,3024,3024,3024,3024,2741,2298,1759,987,1232,1067,1232,1232,1199,1232,1232,1232,1232,1232,1060,787,521,293,504,504,486,477,504,504,504,504,504,504,228,112,51,19],[0,0,0,0,0,0,0,0,0,0,283,726,1265,2037,0,0,0,0,0,0,0,0,0,0,172,445,711,939,0,0,0,0,0,0,0,0,0,0,276,392,453,485],[3024,2619,2943,2943,2943,3024,3024,3024,3024,3024,3024,3024,3024,3024,1232,1067,1232,1232,1199,1232,1232,1232,1232,1232,1232,1232,1232,1232,504,504,486,477,504,504,504,504,504,504,504,504,504,504],[0.809304118393121,0.834604769634086,0.403146543844527,0.407015032211883,0.452262298406812,0.513385913847541,0.509423013779282,0.513460017509654,0.521131022603311,0.450627234091427,0.599859866777785,0.636312512552721,0.696517034920828,0.732095330789571,0.798214724428794,0.797510739139035,0.272688039394708,0.271263024244745,0.451712057404092,0.387682651481802,0.383071239343947,0.434281120853543,0.411536737159662,0.390597416373073,0.500722666594849,0.588703958042877,0.630810841268947,0.711219476323325,0.571392125180713,0.550571513497446,0.0350861809800582,0.0553224755700324,0.0177001130655808,0.00605834351172907,0.0138415827233856,0.0622835728855367,0.122105448051758,0.0494916015954159,0.176461243432773,0.220088626292467,0.298559845092581,0.356157383750639],[0.783827680622674,0.811744072569224,0.367706838879717,0.368231943329873,0.423379850249494,0.472766270956024,0.467531821317278,0.475178279871039,0.485538232447064,0.412777339320038,0.563983663455616,0.597406448013992,0.655660912828684,0.689457301360559,0.764239519206812,0.76382088576846,0.224113607486849,0.230140935148313,0.400344560592266,0.339337240254496,0.333913305596949,0.393456027808098,0.370791939521005,0.347263103814454,0.456359064430888,0.538040965016965,0.567583882073544,0.63924729514413,0.479069489611127,0.452645382215774,-0.0493706506598464,-0.0256533330533309,-0.036297410043412,-0.0760653091686892,-0.0612604136513838,-0.0226757998522005,0.0324066774380678,-0.0197299578894749,0.0595240542305593,0.0239375304162061,-0.00716852399555882,-0.086394535570886],[0.833187210131398,0.858460520535762,0.437497317927696,0.440908691610109,0.478744737881506,0.549344901410672,0.545246159406497,0.547519832194466,0.55497896444794,0.48625363473189,0.629703635757413,0.670796035236289,0.728147831937878,0.774397391743582,0.82990393591057,0.831020020917979,0.321666602001713,0.312526357316184,0.505529028396435,0.431971480446253,0.426170423511215,0.471787440613311,0.453001060459233,0.430818706101841,0.543244576053438,0.63468057998361,0.687356674277784,0.774546632752886,0.653821811026058,0.645652485996119,0.115498537106436,0.136542637209975,0.0750876925347303,0.0810513685814246,0.0817918729773309,0.147316598515004,0.210898282884868,0.124154127262303,0.294512869212247,0.397036784446712,0.622449419772207,0.770322402311835],[0.888227513227513,0.903780068728522,0.634726469588855,0.63846415222562,0.685694869181108,0.69973544973545,0.696759259259259,0.698082010582011,0.703042328042328,0.667328042328042,0.757752645020066,0.781114012184508,0.819783968163729,0.854103343465046,0.88961038961039,0.889409559512652,0.529220779220779,0.523538961038961,0.697247706422018,0.630681818181818,0.628246753246753,0.658279220779221,0.642857142857143,0.629058441558442,0.70188679245283,0.754764930114358,0.775431861804223,0.825938566552901,0.751984126984127,0.732142857142857,0.545267489711934,0.532494758909853,0.382936507936508,0.44047619047619,0.428571428571429,0.525793650793651,0.535714285714286,0.448412698412698,0.605263157894737,0.651785714285714,0.725490196078431,0.736842105263158],[0.873346560846561,0.888507063764796,0.615358477743799,0.618756371049949,0.664976352385595,0.676917989417989,0.674611575750928,0.674272486772487,0.681547619047619,0.645833333333333,0.740646003084354,0.760487016812435,0.797182630904531,0.833175162029648,0.87012987012987,0.869728209934395,0.495941558441558,0.491883116883117,0.67139282735613,0.602272727272727,0.599025974025974,0.633928571428571,0.616903737882147,0.604707792207792,0.677299073714705,0.725874555452082,0.739303382214834,0.783337698465774,0.704365079365079,0.678571428571429,0.504115226337449,0.484276729559748,0.329365079365079,0.388888888888889,0.376984126984127,0.474206349206349,0.480209137045249,0.400793650793651,0.538159141352706,0.549560993275138,0.591871885258811,0.550141139282253],[0.904100529100529,0.918661548273843,0.655793408086986,0.656804143706828,0.707101597009854,0.721891534391534,0.717261904761905,0.719899006259654,0.723867260227908,0.686177248677249,0.773198477721672,0.799730404755856,0.837820372658785,0.875379806803154,0.907467532467532,0.908153701968135,0.563311688311688,0.556006493506494,0.726438698915763,0.655844155844156,0.654220779220779,0.681818181818182,0.669642857142857,0.65338846991006,0.727090496828778,0.782482522665451,0.80969930495946,0.863783538950347,0.795634920634921,0.781695624859513,0.584362139917695,0.580712788259958,0.432539682539683,0.490079365079365,0.474206349206349,0.57336229152618,0.58531746031746,0.497965466129354,0.66532173403523,0.745059720858514,0.839248930882038,0.909090909090909],[0,0,0,0,0,0,0,0,0,0,0.0935846560846561,0.240079365079365,0.418320105820106,0.673611111111111,0,0,0,0,0,0,0,0,0,0,0.13961038961039,0.361201298701299,0.57711038961039,0.762175324675325,0,0,0,0,0,0,0,0,0,0,0.547619047619048,0.777777777777778,0.898809523809524,0.962301587301587],[0,0,0,0,0,0,0,0,0,0,0.0810269196662717,0.220568783068783,0.394849670989023,0.650132275132275,0,0,0,0,0,0,0,0,0,0,0.12012987012987,0.336038961038961,0.551968672947082,0.737824675324675,0,0,0,0,0,0,0,0,0,0,0.5,0.732142857142857,0.873015873015873,0.942460317460317],[0,0,0,0,0,0,0,0,0,0,0.106150793650794,0.261234985095633,0.443443979804628,0.699404761904762,0,0,0,0,0,0,0,0,0,0,0.160714285714286,0.388778080299671,0.603084415584416,0.785714285714286,0,0,0,0,0,0,0,0,0,0,0.593253968253968,0.821378164542053,0.924603174603175,0.978174603174603],[true,true,true,false,true,true,false,true,false,false,true,true,true,true,true,true,true,false,true,true,false,true,false,false,true,true,true,true,true,true,true,false,true,true,false,true,false,false,true,true,true,true],["human_rater1_prisma_amstar_human_consensus.html","human_rater2_prisma_amstar_human_consensus.html","gpt3.5_prisma_human_consensus.html","gpt3.5_prisma_rep_human_consensus.html","gpt4_prisma_amstar_human_consensus.html","claude2_prisma_amstar_human_consensus.html","claude2_prisma_amstar_rep_human_consensus.html","claude2_chat_prisma_amstar_human_consensus.html","claude2_chat_prisma_amstar_rep_human_consensus.html","claude2_chat_gpt3.5_prompt_prisma_human_consensus.html","llm_self_consistency_5_prisma_amstar_human_consensus.html","llm_self_consistency_6_prisma_amstar_human_consensus.html","llm_self_consistency_7_prisma_amstar_human_consensus.html","llm_self_consistency_8_prisma_amstar_human_consensus.html","human_rater1_prisma_amstar_human_consensus.html","human_rater2_prisma_amstar_human_consensus.html","gpt3.5_amstar_human_consensus.html","gpt3.5_amstar_rep_human_consensus.html","gpt4_prisma_amstar_human_consensus.html","claude2_prisma_amstar_human_consensus.html","claude2_prisma_amstar_rep_human_consensus.html","claude2_chat_prisma_amstar_human_consensus.html","claude2_chat_prisma_amstar_rep_human_consensus.html","claude2_chat_gpt3.5_prompt_amstar_human_consensus.html","llm_self_consistency_5_prisma_amstar_human_consensus.html","llm_self_consistency_6_prisma_amstar_human_consensus.html","llm_self_consistency_7_prisma_amstar_human_consensus.html","llm_self_consistency_8_prisma_amstar_human_consensus.html","human_rater1_precis2_human_consensus.html","human_rater2_precis2_human_consensus.html","gpt3.5_precis2_human_consensus.html","gpt3.5_precis2_rep_human_consensus.html","gpt4_precis2_human_consensus.html","claude2_precis2_human_consensus.html","claude2_precis2_rep_human_consensus.html","claude2_chat_precis2_human_consensus.html","claude2_chat_precis2_rep_human_consensus.html","claude2_chat_gpt3.5_prompt_precis2_human_consensus.html","llm_self_consistency_5_precis2_human_consensus.html","llm_self_consistency_6_precis2_human_consensus.html","llm_self_consistency_7_precis2_human_consensus.html","llm_self_consistency_8_precis2_human_consensus.html"],["prisma_amstar/human_rater1_prisma_amstar/results/human_consensus_27_items.png","prisma_amstar/human_rater2_prisma_amstar/results/human_consensus_27_items.png","prisma_amstar/gpt3.5_prisma/results/human_consensus_27_items.png","prisma_amstar/gpt3.5_prisma_rep/results/human_consensus_27_items.png","prisma_amstar/gpt4_prisma_amstar/results/human_consensus_27_items.png","prisma_amstar/claude2_prisma_amstar/results/human_consensus_27_items.png","prisma_amstar/claude2_prisma_amstar_rep/results/human_consensus_27_items.png","prisma_amstar/claude2_chat_prisma_amstar/results/human_consensus_27_items.png","prisma_amstar/claude2_chat_prisma_amstar_rep/results/human_consensus_27_items.png","prisma_amstar/claude2_chat_gpt3.5_prompt_prisma/results/human_consensus_27_items.png","prisma_amstar/llm_self_consistency_5_prisma_amstar/results/human_consensus_27_items.png","prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_27_items.png","prisma_amstar/llm_self_consistency_7_prisma_amstar/results/human_consensus_27_items.png","prisma_amstar/llm_self_consistency_8_prisma_amstar/results/human_consensus_27_items.png","prisma_amstar/human_rater1_prisma_amstar/results/human_consensus_11_items.png","prisma_amstar/human_rater2_prisma_amstar/results/human_consensus_11_items.png","prisma_amstar/gpt3.5_amstar/results/human_consensus_11_items.png","prisma_amstar/gpt3.5_amstar_rep/results/human_consensus_11_items.png","prisma_amstar/gpt4_prisma_amstar/results/human_consensus_11_items.png","prisma_amstar/claude2_prisma_amstar/results/human_consensus_11_items.png","prisma_amstar/claude2_prisma_amstar_rep/results/human_consensus_11_items.png","prisma_amstar/claude2_chat_prisma_amstar/results/human_consensus_11_items.png","prisma_amstar/claude2_chat_prisma_amstar_rep/results/human_consensus_11_items.png","prisma_amstar/claude2_chat_gpt3.5_prompt_amstar/results/human_consensus_11_items.png","prisma_amstar/llm_self_consistency_5_prisma_amstar/results/human_consensus_11_items.png","prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_11_items.png","prisma_amstar/llm_self_consistency_7_prisma_amstar/results/human_consensus_11_items.png","prisma_amstar/llm_self_consistency_8_prisma_amstar/results/human_consensus_11_items.png","precis2/human_rater1_precis2/results/human_consensus_9_items.png","precis2/human_rater2_precis2/results/human_consensus_9_items.png","precis2/gpt3.5_precis2/results/human_consensus_9_items.png","precis2/gpt3.5_precis2_rep/results/human_consensus_9_items.png","precis2/gpt4_precis2/results/human_consensus_9_items.png","precis2/claude2_precis2/results/human_consensus_9_items.png","precis2/claude2_precis2_rep/results/human_consensus_9_items.png","precis2/claude2_chat_precis2/results/human_consensus_9_items.png","precis2/claude2_chat_precis2_rep/results/human_consensus_9_items.png","precis2/claude2_chat_gpt3.5_prompt_precis2/results/human_consensus_9_items.png","precis2/llm_self_consistency_5_precis2/results/human_consensus_9_items.png","precis2/llm_self_consistency_6_precis2/results/human_consensus_9_items.png","precis2/llm_self_consistency_7_precis2/results/human_consensus_9_items.png","precis2/llm_self_consistency_8_precis2/results/human_consensus_9_items.png"],["plots/human_consensus_human_rater1_prisma_human_rater1_prisma.png","plots/human_consensus_human_rater1_prisma_human_rater2_prisma.png","plots/human_consensus_human_rater1_prisma_gpt3.5_prisma.png","plots/human_consensus_human_rater1_prisma_gpt3.5_prisma_rep.png","plots/human_consensus_human_rater1_prisma_gpt4_prisma.png","plots/human_consensus_human_rater1_prisma_claude2_prisma.png","plots/human_consensus_human_rater1_prisma_claude2_prisma_rep.png","plots/human_consensus_human_rater1_prisma_claude2_chat_prisma.png","plots/human_consensus_human_rater1_prisma_claude2_chat_prisma_rep.png","plots/human_consensus_human_rater1_prisma_claude2_chat_gpt3.5_prompt_prisma.png","plots/human_consensus_human_rater1_prisma_llm_self_consistency_5_prisma.png","plots/human_consensus_human_rater1_prisma_llm_self_consistency_6_prisma.png","plots/human_consensus_human_rater1_prisma_llm_self_consistency_7_prisma.png","plots/human_consensus_human_rater1_prisma_llm_self_consistency_8_prisma.png","plots/human_consensus_human_rater1_amstar_human_rater1_amstar.png","plots/human_consensus_human_rater1_amstar_human_rater2_amstar.png","plots/human_consensus_human_rater1_amstar_gpt3.5_amstar.png","plots/human_consensus_human_rater1_amstar_gpt3.5_amstar_rep.png","plots/human_consensus_human_rater1_amstar_gpt4_amstar.png","plots/human_consensus_human_rater1_amstar_claude2_amstar.png","plots/human_consensus_human_rater1_amstar_claude2_amstar_rep.png","plots/human_consensus_human_rater1_amstar_claude2_chat_amstar.png","plots/human_consensus_human_rater1_amstar_claude2_chat_amstar_rep.png","plots/human_consensus_human_rater1_amstar_claude2_chat_gpt3.5_prompt_amstar.png","plots/human_consensus_human_rater1_amstar_llm_self_consistency_5_amstar.png","plots/human_consensus_human_rater1_amstar_llm_self_consistency_6_amstar.png","plots/human_consensus_human_rater1_amstar_llm_self_consistency_7_amstar.png","plots/human_consensus_human_rater1_amstar_llm_self_consistency_8_amstar.png","plots/human_consensus_human_rater1_precis2_human_rater1_precis2.png","plots/human_consensus_human_rater1_precis2_human_rater2_precis2.png","plots/human_consensus_human_rater1_precis2_gpt3.5_precis2.png","plots/human_consensus_human_rater1_precis2_gpt3.5_precis2_rep.png","plots/human_consensus_human_rater1_precis2_gpt4_precis2.png","plots/human_consensus_human_rater1_precis2_claude2_precis2.png","plots/human_consensus_human_rater1_precis2_claude2_precis2_rep.png","plots/human_consensus_human_rater1_precis2_claude2_chat_precis2.png","plots/human_consensus_human_rater1_precis2_claude2_chat_precis2_rep.png","plots/human_consensus_human_rater1_precis2_claude2_chat_gpt3.5_prompt_precis2.png","plots/human_consensus_human_rater1_precis2_llm_self_consistency_5_precis2.png","plots/human_consensus_human_rater1_precis2_llm_self_consistency_6_precis2.png","plots/human_consensus_human_rater1_precis2_llm_self_consistency_7_precis2.png","plots/human_consensus_human_rater1_precis2_llm_self_consistency_8_precis2.png"]],"container":"<table class=\"display fill-container\">\n  <thead>\n    <tr>\n      <th>Tool<\/th>\n      <th>Rater<\/th>\n      <th>agreement_numerator<\/th>\n      <th>agreement_denominator<\/th>\n      <th>deferring_numerator<\/th>\n      <th>deferring_denominator<\/th>\n      <th>Kappa<\/th>\n      <th>Kappa_CI_low<\/th>\n      <th>Kappa_CI_high<\/th>\n      <th>Agreement<\/th>\n      <th>Agreement_CI_low<\/th>\n      <th>Agreement_CI_high<\/th>\n      <th>Deferring Fraction<\/th>\n      <th>Deferring Fraction_CI_low<\/th>\n      <th>Deferring Fraction_CI_high<\/th>\n      <th>main_experiment<\/th>\n      <th>path_human_consensus_html<\/th>\n      <th>path_human_consensus_png<\/th>\n      <th>path_human_consensus_item_wise_scatter_png<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"rowGroup":{"dataSrc":0},"bPaginate":false,"dom":"t","columnDefs":[{"targets":1,"render":"function(data, type, row, meta) { return '<a href=\"html/'+row[16]+'\" target=\"_blank\" title=\"Open details\">' + data + '<\/a>' }"},{"targets":6,"render":"function(data, type, row, meta) { return '<a href=\"#\" onclick=\"$(&quot;p.image-container&quot;)[0].style = &quot;background: url(&apos;' + row[17] + '&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[0].src = &quot;' + row[17] + '&quot;; $(&quot;p.image-container&quot;)[1].style = &quot;background: url(&apos;' + row[18] + '&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[1].src = &quot;' + row[18] + '&quot;; $(&quot;div.chart-title span&quot;)[0].innerText = &quot;' + row[0] + ': ' + row[1] + ' vs Human Consensus&quot;;$(&quot;div.chart-title span&quot;)[1].innerText = &quot;' + row[0] + ': ' + row[1] + ': Item-Wise Performance vs Human Rater 1 (vs Human Consensus)&quot;;$(&quot;td a&quot;).css(&quot;font-weight&quot;, &quot;normal&quot;); this.style.fontWeight=&quot;bold&quot;; return false;\" title=\"Show plots on the right\">' + (data ? ((Math.round(data*100)/100).toFixed(2) + ' (' + (Math.round(row[meta.col+1]*100)/100).toFixed(2) + '-' + (Math.round(row[meta.col+2]*100)/100).toFixed(2) + ')') : '') + '<\/a>' }"},{"targets":9,"render":"function(data, type, row, meta) { return '<a href=\"#\" onclick=\"$(&quot;p.image-container&quot;)[0].style = &quot;background: url(&apos;' + row[17] + '&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[0].src = &quot;' + row[17] + '&quot;; $(&quot;p.image-container&quot;)[1].style = &quot;background: url(&apos;' + row[18] + '&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[1].src = &quot;' + row[18] + '&quot;; $(&quot;div.chart-title span&quot;)[0].innerText = &quot;' + row[0] + ': ' + row[1] + ' vs Human Consensus&quot;;$(&quot;div.chart-title span&quot;)[1].innerText = &quot;' + row[0] + ': ' + row[1] + ': Item-Wise Performance vs Human Rater 1 (vs Human Consensus)&quot;;$(&quot;td a&quot;).css(&quot;font-weight&quot;, &quot;normal&quot;); this.style.fontWeight=&quot;bold&quot;; return false;\" title=\"Show plots on the right\">' + (data ? (row[2] + ' / ' + row[3] + ' (' + Math.round(data*100) + '%, ' + Math.round(row[meta.col+1]*100) + '-' + Math.round(row[meta.col+2]*100) + '%)') : '') + '<\/a>' }"},{"targets":12,"render":"function(data, type, row, meta) { return '<a href=\"#\" onclick=\"$(&quot;p.image-container&quot;)[0].style = &quot;background: url(&apos;' + row[17] + '&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[0].src = &quot;' + row[17] + '&quot;; $(&quot;p.image-container&quot;)[1].style = &quot;background: url(&apos;' + row[18] + '&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[1].src = &quot;' + row[18] + '&quot;; $(&quot;div.chart-title span&quot;)[0].innerText = &quot;' + row[0] + ': ' + row[1] + ' vs Human Consensus&quot;;$(&quot;div.chart-title span&quot;)[1].innerText = &quot;' + row[0] + ': ' + row[1] + ': Item-Wise Performance vs Human Rater 1 (vs Human Consensus)&quot;;$(&quot;td a&quot;).css(&quot;font-weight&quot;, &quot;normal&quot;); this.style.fontWeight=&quot;bold&quot;; return false;\" title=\"Show plots on the right\">' + (data ? (row[4] + ' / ' + row[5] + ' (' + Math.round(data*100) + '%, ' + Math.round(row[meta.col+1]*100) + '-' + Math.round(row[meta.col+2]*100) + '%)') : '') + '<\/a>' }"},{"targets":[0,2,3,4,5,7,8,10,11,13,14,15,16,17,18],"visible":false},{"className":"dt-left","targets":"_all"}],"search":{"search":"TRUE"},"drawCallback":"function() { setTimeout(headerFunctionAccuracy, 1) }","order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.drawCallback"],"jsHooks":[]}</script>
+</div>
+<div id="accuracy-4-human-ai-collaboration-mainall"
+class="section level3">
+<h3>Accuracy: (4) Human-AI Collaboration
+(<a onclick="$('#DataTables_Table_1').DataTable().search('TRUE').draw()" style="cursor: pointer">main</a>/<a onclick="$('#DataTables_Table_1').DataTable().search('').draw()" style="cursor: pointer">all</a>)</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-bdf951fb58fc208c3e2e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bdf951fb58fc208c3e2e">{"x":{"filter":"none","vertical":false,"class":"display fill-container","extensions":["RowGroup"],"fillContainer":true,"data":[["PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2"],["Human Rater","(2) GPT-3.5 API","(2) GPT-3.5 API repeated","(2) GPT-4 API","(2) Claude-2 API","(2) Claude-2 API repeated","(2) Claude-2 Chat","(2) Claude-2 Chat repeated","(2) Claude-2 Chat GPT-3.5 prompt","(3) Combined LLMs (self-consistent 5/8)","(3) Combined LLMs (self-consistent 6/8)","(3) Combined LLMs (self-consistent 7/8)","(3) Combined LLMs (self-consistent 8/8)","Human Rater","(2) GPT-3.5 API","(2) GPT-3.5 API repeated","(2) GPT-4 API","(2) Claude-2 API","(2) Claude-2 API repeated","(2) Claude-2 Chat","(2) Claude-2 Chat repeated","(2) Claude-2 Chat GPT-3.5 prompt","(3) Combined LLMs (self-consistent 5/8)","(3) Combined LLMs (self-consistent 6/8)","(3) Combined LLMs (self-consistent 7/8)","(3) Combined LLMs (self-consistent 8/8)","Human Rater","(2) GPT-3.5 API","(2) GPT-3.5 API repeated","(2) GPT-4 API","(2) Claude-2 API","(2) Claude-2 API repeated","(2) Claude-2 Chat","(2) Claude-2 Chat repeated","(2) Claude-2 Chat GPT-3.5 prompt","(3) Combined LLMs (self-consistent 5/8)","(3) Combined LLMs (self-consistent 6/8)","(3) Combined LLMs (self-consistent 7/8)","(3) Combined LLMs (self-consistent 8/8)"],[2686,1653,1670,1955,1883,1878,1884,1889,1796,1853,1600,1284,831,1096,563,555,793,703,699,725,706,705,678,546,368,223,379,119,124,98,101,108,151,139,120,81,45,23,10],[3024,1740,1760,2194,1970,1961,1972,1974,1885,1924,1660,1329,863,1232,587,582,872,753,746,765,743,756,713,561,377,226,504,139,144,123,126,136,180,164,147,92,50,25,11],[0,1203,1183,749,1054,1063,1052,1050,1139,1100,1364,1695,2161,0,645,650,327,479,486,467,489,476,519,671,855,1006,0,347,333,381,378,368,324,340,357,412,454,479,493],[3024,2943,2943,2943,3024,3024,3024,3024,3024,3024,3024,3024,3024,1232,1232,1232,1199,1232,1232,1232,1232,1232,1232,1232,1232,1232,504,486,477,504,504,504,504,504,504,504,504,504,504],[0.809304118393121,0.911970930304518,0.909802472625236,0.807328600667935,0.92318629938447,0.926526181809879,0.922951175658186,0.925558614482012,0.91578109392954,0.935259647097775,0.936264742993478,0.940272460811483,0.93244137630589,0.798214724428794,0.930321504233544,0.920910160847391,0.832822085889571,0.880777039515831,0.886508586727714,0.906558890841899,0.911219831414282,0.878930584324871,0.91325811143275,0.953508030431107,0.959547610361182,0.977629285299245,0.571392125180713,0.682226518080509,0.723758505863617,0.632020860495437,0.563026150188785,0.562019169329073,0.67545377711595,0.716567315262625,0.636258660508083,0.766194331983806,0.797914995990377,0.819484240687679,0.777581641659312],[0.783827680622674,0.878303146500468,0.877496021482742,0.777566471964977,0.899641979248615,0.905435966333824,0.899089347724621,0.90254336986957,0.886154713803176,0.91492968202646,0.914871689583483,0.917097142342303,0.902793286157344,0.764239519206812,0.898519173760196,0.891020360513131,0.795825387175407,0.853962577831834,0.858796605512648,0.880175708682194,0.882673257441991,0.846643974822569,0.885609123721009,0.927726432472795,0.930533172282888,0.949195409127651,0.479069489611127,0.489289081165792,0.599517024197582,0.487612708507627,0.350895721635536,0.377145441825993,0.527527406683619,0.601740502240938,0.430740003986401,0.627909069979262,0.569672827893696,0.528989829732375,0.285259648151372],[0.833187210131398,0.94042116366587,0.935955692983419,0.832952150600745,0.943885553444787,0.946188170908191,0.945712398329908,0.947534753953049,0.942386742428182,0.954325316762536,0.956403875072021,0.962357240269936,0.960952354231146,0.82990393591057,0.956649386492216,0.947732215728357,0.870808123072641,0.906256926852954,0.912555886410598,0.933931781505662,0.937195282738425,0.909266705695418,0.937619429876382,0.974888553656934,0.98113165665463,1,0.653821811026058,0.827231732860094,0.834778855583311,0.755512214506742,0.75880824373843,0.730419581089429,0.810064133072633,0.820768095457265,0.806461246497568,0.889443406788827,0.960319701122238,1,1],[0.888227513227513,0.95,0.948863636363636,0.891066545123063,0.955837563451777,0.957674655787863,0.955375253549696,0.95694022289767,0.952785145888594,0.963097713097713,0.963855421686747,0.966139954853273,0.962920046349942,0.88961038961039,0.959114139693356,0.95360824742268,0.909403669724771,0.933598937583001,0.936997319034853,0.947712418300654,0.950201884253028,0.932539682539683,0.950911640953717,0.973262032085562,0.976127320954907,0.986725663716814,0.751984126984127,0.856115107913669,0.861111111111111,0.796747967479675,0.801587301587302,0.794117647058823,0.838888888888889,0.847560975609756,0.816326530612245,0.880434782608696,0.9,0.92,0.909090909090909],[0.873346560846561,0.930604811256726,0.930410462902841,0.87310577277817,0.942903071071348,0.945838269283742,0.9407370072643,0.943630290723036,0.936434450842888,0.951183031941804,0.95185202386804,0.952987742722565,0.947306990549688,0.87012987012987,0.940567543197313,0.935993705153162,0.889503578474586,0.919246922090538,0.921368948774446,0.932978413389828,0.934430121812595,0.915254790040922,0.935861915148471,0.958409433223943,0.959241936756673,0.969963577225665,0.704365079365079,0.789866949542218,0.79592177833926,0.718313333115111,0.715598615314877,0.710808404503002,0.773012478081596,0.775179674828453,0.72959721415777,0.804123711340206,0.782687593387595,0.7895293970851,0.666666666666667],[0.904100529100529,0.966339983267355,0.963758576055768,0.907465066677476,0.967580492786823,0.969206053370718,0.968973708530359,0.969970652924445,0.968230796497914,0.974233613015469,0.975608241095426,0.978881014232251,0.978815872760663,0.907467532467532,0.974868980656915,0.970272613966208,0.929942018016512,0.947939748303081,0.951632884546598,0.963254593175853,0.964817320703654,0.949281425791258,0.964704191358961,0.985713636466374,0.988980716253444,1,0.795634920634921,0.912408759124088,0.916617432033323,0.866050515075958,0.880333194847588,0.866183831684462,0.900569938555084,0.906826229080075,0.894366197183099,0.945938482646649,0.981809627922288,1,1],[0,0.408766564729867,0.401970778117567,0.254502208630649,0.348544973544974,0.351521164021164,0.347883597883598,0.347222222222222,0.376653439153439,0.363756613756614,0.451058201058201,0.560515873015873,0.714616402116402,0,0.523538961038961,0.527597402597403,0.272727272727273,0.388798701298701,0.394480519480519,0.379058441558442,0.396915584415584,0.386363636363636,0.421266233766234,0.544642857142857,0.693993506493506,0.816558441558442,0,0.713991769547325,0.69811320754717,0.755952380952381,0.75,0.73015873015873,0.642857142857143,0.674603174603175,0.708333333333333,0.817460317460317,0.900793650793651,0.950396825396825,0.978174603174603],[0,0.388727626595585,0.382959840347133,0.233783691835136,0.327380952380952,0.332349670989023,0.32409087636958,0.324743850883203,0.356812169312169,0.346891534391534,0.429571893211245,0.538368189507542,0.690832081750138,0,0.490280361258771,0.493506493506494,0.246872393661384,0.364448051948052,0.37012987012987,0.354728413206823,0.370941558441558,0.359577922077922,0.396915584415584,0.51950114047955,0.667228413206823,0.793831168831169,0,0.679012345679012,0.651991614255765,0.716269841269841,0.71031746031746,0.694494851330963,0.599206349206349,0.627034533870646,0.666666666666667,0.787698412698413,0.875,0.93452380952381,0.964285714285714],[0,0.428474345905539,0.420310769598775,0.275229357798165,0.371345631566928,0.372346096206744,0.373338159698808,0.37037037037037,0.398139747000395,0.382266731127379,0.473214285714286,0.585639747000395,0.737103174603175,0,0.556006493506494,0.559253246753247,0.299416180150125,0.417207792207792,0.423680677702268,0.403409090909091,0.422077922077922,0.413961038961039,0.44724025974026,0.570596262117853,0.719946911468502,0.838474025974026,0,0.746913580246914,0.737945492662474,0.797619047619048,0.789632132796021,0.761854355018243,0.682539682539683,0.718253968253968,0.748015873015873,0.845238095238095,0.926587301587302,0.968253968253968,0.990079365079365],[2367,1472,1484,1710,1649,1641,1645,1641,1576,1625,1411,1134,699,949,503,485,697,598,589,615,595,589,579,473,324,200,369,124,118,101,108,103,147,150,120,83,51,27,9],[2619,1524,1537,1861,1702,1686,1696,1694,1630,1662,1438,1151,709,1067,535,523,775,633,621,634,622,619,598,477,326,201,504,143,139,128,138,135,182,177,150,97,57,31,11],[0,1014,1001,677,917,933,923,925,989,957,1181,1468,1910,0,532,544,259,434,446,433,445,448,469,590,741,866,0,343,338,376,366,369,322,327,354,407,447,473,493],[2619,2538,2538,2538,2619,2619,2619,2619,2619,2619,2619,2619,2619,1067,1067,1067,1034,1067,1067,1067,1067,1067,1067,1067,1067,1067,504,486,477,504,504,504,504,504,504,504,504,504,504],[0.834604769634086,0.940249611891403,0.93946703231674,0.855817047266401,0.945838431859755,0.953678192453148,0.947994156550558,0.945726765247644,0.940824951045206,0.960937345684113,0.96703299777199,0.974132070933309,0.974268256617892,0.797510739139035,0.896813500314298,0.875340503114489,0.812617619315357,0.899521350872142,0.906176408356851,0.945954087766957,0.921716375730962,0.912445295404814,0.943165762088454,0.985125862111026,0.989497514641469,0.991454155186775,0.550571513497446,0.701290719114935,0.674495308501564,0.636341771390776,0.562305157210297,0.587763782103713,0.651162790697674,0.720425689279698,0.616940421399316,0.729302539706898,0.795399188092016,0.722084367245658,0.555163283318623],[0.811744072569224,0.917474812812925,0.91636512122304,0.832172262805171,0.928830945453707,0.939155748219708,0.927976770570497,0.925750365319639,0.921131350357893,0.945792207947974,0.954200902723744,0.960829000194793,0.955774446238266,0.76382088576846,0.859402632948237,0.835015159882836,0.772568441283814,0.868741212237455,0.878168664540903,0.922157416586029,0.89504272652907,0.879705020294662,0.918205410146642,0.969461273232462,0.971785028748273,0.972098165782887,0.452645382215774,0.561187371859658,0.529027465323501,0.496985590576897,0.411577765759718,0.447709615713084,0.551099596835649,0.623452589244367,0.47369189469652,0.623406895024621,0.649340726275187,0.445775932126633,0.175420054742168],[0.858460520535762,0.961029380903078,0.95966263763886,0.878650868329702,0.962215502441734,0.968015852931119,0.966139954746333,0.964227950103244,0.960082585404844,0.975539182083756,0.980007395752289,0.986935978650798,0.991716809315243,0.831020020917979,0.92918473004322,0.91016707390412,0.847691959409577,0.927752285645968,0.934072483147883,0.965254291796332,0.947414674961187,0.941094048251361,0.963158968083174,0.996398340260149,1,1,0.645652485996119,0.82811377290228,0.813674077084314,0.77997508983284,0.702172420557383,0.717994008803298,0.747864091782766,0.816737208772598,0.749575342178432,0.831328408220102,0.933627636747753,0.941611248662091,1],[0.903780068728522,0.965879265091864,0.96551724137931,0.91886082751209,0.968860164512338,0.973309608540925,0.969929245283019,0.968713105076741,0.966871165644172,0.977737665463297,0.981223922114047,0.985230234578627,0.98589562764457,0.889409559512652,0.94018691588785,0.927342256214149,0.899354838709677,0.944707740916272,0.948470209339775,0.970031545741325,0.956591639871383,0.951534733441034,0.968227424749164,0.991614255765199,0.993865030674847,0.995024875621891,0.732142857142857,0.867132867132867,0.848920863309353,0.7890625,0.782608695652174,0.762962962962963,0.807692307692308,0.847457627118644,0.8,0.855670103092783,0.894736842105263,0.870967741935484,0.818181818181818],[0.888507063764796,0.952324136076187,0.951634243866154,0.901960267542452,0.958696077598317,0.964651831806139,0.957832022533985,0.956271970202429,0.955160138634159,0.968920932991413,0.973525203623394,0.977350068204046,0.975867372715097,0.869728209934395,0.9181679060509,0.904406958051827,0.879057773314752,0.927473800105295,0.933335955115666,0.956523451639421,0.941958714043609,0.934212095692538,0.954314720812183,0.982798500697084,0.983502459889796,0.983700106078332,0.678571428571429,0.80690280913074,0.778643341190865,0.702502469948205,0.708680224495515,0.690140845070423,0.748539671669823,0.792904591934463,0.733822203832367,0.797982265449767,0.825414358226919,0.757575757575758,0.666666666666667],[0.918661548273843,0.977902579783038,0.977556246452471,0.934149038416201,0.978633399423221,0.981713651177035,0.980992106881283,0.979361034690915,0.978137187437607,0.986177884615385,0.988816605539775,0.992542073152344,0.995440376347337,0.908153701968135,0.959257338996916,0.947663551401869,0.918204604690661,0.96012781777742,0.96389128172735,0.980860467307556,0.970871383961278,0.96752630050472,0.979450260904476,0.997983767493195,1,1,0.781695624859513,0.918514677993831,0.91303606505083,0.865671641791045,0.852920128358902,0.833302426921161,0.861836194262309,0.901085840205228,0.866656819739998,0.910874965047724,0.965501872310463,0.971428571428571,1],[0,0.399527186761229,0.394405043341214,0.266745468873128,0.350133638793433,0.356242840778923,0.352424589537992,0.353188239786178,0.377625047728141,0.365406643757159,0.450935471554028,0.560519282168767,0.729285987017946,0,0.498594189315839,0.509840674789128,0.250483558994197,0.406747891283974,0.417994376757263,0.4058106841612,0.417057169634489,0.419868791002812,0.439550140581068,0.552952202436738,0.694470477975633,0.811621368322399,0,0.705761316872428,0.708595387840671,0.746031746031746,0.726190476190476,0.732142857142857,0.638888888888889,0.648809523809524,0.702380952380952,0.807539682539683,0.886904761904762,0.938492063492063,0.978174603174603],[0,0.380220646178093,0.375886524822695,0.247832939322301,0.329515082092402,0.335252159248112,0.328761132138528,0.329916307805121,0.357770141275296,0.348224513172967,0.429935089728904,0.536464299350897,0.704849179075983,0,0.461129714218187,0.473313406814251,0.221494589043332,0.378655487414063,0.388940955951265,0.374906658922967,0.388027558641805,0.390815370196814,0.412371134020619,0.525773195876289,0.668228678537957,0.790065604498594,0,0.660493827160494,0.660430618597077,0.694444444444444,0.676637708473821,0.686507936507937,0.589285714285714,0.597222222222222,0.660714285714286,0.76984126984127,0.85515873015873,0.916666666666667,0.96031746031746],[0,0.419227738376675,0.41371158392435,0.286446020488574,0.37151584574265,0.378378997682014,0.373043146239023,0.376469872061548,0.397861779305078,0.382206949217259,0.473463153875525,0.584574264986636,0.751050019091256,0,0.534208059981256,0.548242357009554,0.277562862669246,0.436714709399433,0.447985004686036,0.434864104967198,0.446086780627174,0.447985004686036,0.466705337328205,0.57825679475164,0.721649484536082,0.833177132146204,0,0.748971193415638,0.750524109014675,0.793650793650794,0.771825396825397,0.777777777777778,0.694394037557926,0.698412698412698,0.742063492063492,0.843253968253968,0.920584513748402,0.96031746031746,0.992063492063492],[true,true,false,true,true,false,true,false,false,true,true,true,true,true,true,false,true,true,false,true,false,false,true,true,true,true,true,true,false,true,true,false,true,false,false,true,true,true,true],["human_rater1_prisma_amstar_human_consensus.html","human_rater1_gpt3.5_prisma_human_consensus.html","human_rater1_gpt3.5_prisma_rep_human_consensus.html","human_rater1_gpt4_prisma_amstar_human_consensus.html","human_rater1_claude2_prisma_amstar_human_consensus.html","human_rater1_claude2_prisma_amstar_rep_human_consensus.html","human_rater1_claude2_chat_prisma_amstar_human_consensus.html","human_rater1_claude2_chat_prisma_amstar_rep_human_consensus.html","human_rater1_claude2_chat_gpt3.5_prompt_prisma_human_consensus.html","human_rater1_llm_self_consistency_5_prisma_amstar_human_consensus.html","human_rater1_llm_self_consistency_6_prisma_amstar_human_consensus.html","human_rater1_llm_self_consistency_7_prisma_amstar_human_consensus.html","human_rater1_llm_self_consistency_8_prisma_amstar_human_consensus.html","human_rater1_prisma_amstar_human_consensus.html","human_rater1_gpt3.5_amstar_human_consensus.html","human_rater1_gpt3.5_amstar_rep_human_consensus.html","human_rater1_gpt4_prisma_amstar_human_consensus.html","human_rater1_claude2_prisma_amstar_human_consensus.html","human_rater1_claude2_prisma_amstar_rep_human_consensus.html","human_rater1_claude2_chat_prisma_amstar_human_consensus.html","human_rater1_claude2_chat_prisma_amstar_rep_human_consensus.html","human_rater1_claude2_chat_gpt3.5_prompt_amstar_human_consensus.html","human_rater1_llm_self_consistency_5_prisma_amstar_human_consensus.html","human_rater1_llm_self_consistency_6_prisma_amstar_human_consensus.html","human_rater1_llm_self_consistency_7_prisma_amstar_human_consensus.html","human_rater1_llm_self_consistency_8_prisma_amstar_human_consensus.html","human_rater1_precis2_human_consensus.html","human_rater1_gpt3.5_precis2_human_consensus.html","human_rater1_gpt3.5_precis2_rep_human_consensus.html","human_rater1_gpt4_precis2_human_consensus.html","human_rater1_claude2_precis2_human_consensus.html","human_rater1_claude2_precis2_rep_human_consensus.html","human_rater1_claude2_chat_precis2_human_consensus.html","human_rater1_claude2_chat_precis2_rep_human_consensus.html","human_rater1_claude2_chat_gpt3.5_prompt_precis2_human_consensus.html","human_rater1_llm_self_consistency_5_precis2_human_consensus.html","human_rater1_llm_self_consistency_6_precis2_human_consensus.html","human_rater1_llm_self_consistency_7_precis2_human_consensus.html","human_rater1_llm_self_consistency_8_precis2_human_consensus.html"],["human_rater2_prisma_amstar_human_consensus.html","human_rater2_gpt3.5_prisma_human_consensus.html","human_rater2_gpt3.5_prisma_rep_human_consensus.html","human_rater2_gpt4_prisma_amstar_human_consensus.html","human_rater2_claude2_prisma_amstar_human_consensus.html","human_rater2_claude2_prisma_amstar_rep_human_consensus.html","human_rater2_claude2_chat_prisma_amstar_human_consensus.html","human_rater2_claude2_chat_prisma_amstar_rep_human_consensus.html","human_rater2_claude2_chat_gpt3.5_prompt_prisma_human_consensus.html","human_rater2_llm_self_consistency_5_prisma_amstar_human_consensus.html","human_rater2_llm_self_consistency_6_prisma_amstar_human_consensus.html","human_rater2_llm_self_consistency_7_prisma_amstar_human_consensus.html","human_rater2_llm_self_consistency_8_prisma_amstar_human_consensus.html","human_rater2_prisma_amstar_human_consensus.html","human_rater2_gpt3.5_amstar_human_consensus.html","human_rater2_gpt3.5_amstar_rep_human_consensus.html","human_rater2_gpt4_prisma_amstar_human_consensus.html","human_rater2_claude2_prisma_amstar_human_consensus.html","human_rater2_claude2_prisma_amstar_rep_human_consensus.html","human_rater2_claude2_chat_prisma_amstar_human_consensus.html","human_rater2_claude2_chat_prisma_amstar_rep_human_consensus.html","human_rater2_claude2_chat_gpt3.5_prompt_amstar_human_consensus.html","human_rater2_llm_self_consistency_5_prisma_amstar_human_consensus.html","human_rater2_llm_self_consistency_6_prisma_amstar_human_consensus.html","human_rater2_llm_self_consistency_7_prisma_amstar_human_consensus.html","human_rater2_llm_self_consistency_8_prisma_amstar_human_consensus.html","human_rater2_precis2_human_consensus.html","human_rater2_gpt3.5_precis2_human_consensus.html","human_rater2_gpt3.5_precis2_rep_human_consensus.html","human_rater2_gpt4_precis2_human_consensus.html","human_rater2_claude2_precis2_human_consensus.html","human_rater2_claude2_precis2_rep_human_consensus.html","human_rater2_claude2_chat_precis2_human_consensus.html","human_rater2_claude2_chat_precis2_rep_human_consensus.html","human_rater2_claude2_chat_gpt3.5_prompt_precis2_human_consensus.html","human_rater2_llm_self_consistency_5_precis2_human_consensus.html","human_rater2_llm_self_consistency_6_precis2_human_consensus.html","human_rater2_llm_self_consistency_7_precis2_human_consensus.html","human_rater2_llm_self_consistency_8_precis2_human_consensus.html"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th rowspan=\"2\" width=\"120\">Tool<\/th>\n      <th rowspan=\"2\" width=\"120\">Rater<\/th>\n      <th rowspan=\"2\" colspan=\"4\"><\/th>\n      <th colspan=\"9\">Human Rater 1<\/th>\n      <th rowspan=\"2\" colspan=\"4\"><\/th>\n      <th colspan=\"9\">Human Rater 2<\/th>\n      <th rowspan=\"2\" colspan=\"2\"><\/th>\n    <\/tr>\n    <tr>\n      <th>Cohen Kappa<\/th>\n      <th>Cohen Kappa<\/th>\n      <th>Cohen Kappa<\/th>\n      <th>Agreement<\/th>\n      <th>Agreement<\/th>\n      <th>Agreement<\/th>\n      <th>Deferring fraction<\/th>\n      <th>Deferring fraction<\/th>\n      <th>Deferring fraction<\/th>\n      <th>Cohen Kappa<\/th>\n      <th>Cohen Kappa<\/th>\n      <th>Cohen Kappa<\/th>\n      <th>Agreement<\/th>\n      <th>Agreement<\/th>\n      <th>Agreement<\/th>\n      <th>Deferring fraction<\/th>\n      <th>Deferring fraction<\/th>\n      <th>Deferring fraction<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"rowGroup":{"dataSrc":0},"bPaginate":false,"dom":"t","columnDefs":[{"targets":1,"render":"function(data, type, row, meta) { return '<a href=\"html/'+row[29]+'\" target=\"_blank\" onclick=\"location.href=&quot;html/'+row[30]+'&quot;\" title=\"Open details (Human Rater 2 in existing tab and Human Rater 1 in new tab)\">' + data + '<\/a>' }"},{"targets":6,"render":"function(data, type, row, meta) { return (data ? ((Math.round(data*100)/100).toFixed(2) + ' (' + (Math.round(row[meta.col+1]*100)/100).toFixed(2) + '-' + (Math.round(row[meta.col+2]*100)/100).toFixed(2) + ')') : '') + '<\/a>' }"},{"targets":9,"render":"function(data, type, row, meta) { return (data ? (row[2] + ' / ' + row[3] + ' (' + Math.round(data*100) + '%, ' + Math.round(row[meta.col+1]*100) + '-' + Math.round(row[meta.col+2]*100) + '%)') : '') + '<\/a>' }"},{"targets":12,"render":"function(data, type, row, meta) { return (data ? (row[4] + ' / ' + row[5] + ' (' + Math.round(data*100) + '%, ' + Math.round(row[meta.col+1]*100) + '-' + Math.round(row[meta.col+2]*100) + '%)') : '') + '<\/a>' }"},{"targets":19,"render":"function(data, type, row, meta) { return (data ? ((Math.round(data*100)/100).toFixed(2) + ' (' + (Math.round(row[meta.col+1]*100)/100).toFixed(2) + '-' + (Math.round(row[meta.col+2]*100)/100).toFixed(2) + ')') : '') + '<\/a>' }"},{"targets":22,"render":"function(data, type, row, meta) { return (data ? (row[15] + ' / ' + row[16] + ' (' + Math.round(data*100) + '%, ' + Math.round(row[meta.col+1]*100) + '-' + Math.round(row[meta.col+2]*100) + '%)') : '') + '<\/a>' }"},{"targets":25,"render":"function(data, type, row, meta) { return (data ? (row[17] + ' / ' + row[18] + ' (' + Math.round(data*100) + '%, ' + Math.round(row[meta.col+1]*100) + '-' + Math.round(row[meta.col+2]*100) + '%)') : '') + '<\/a>' }"},{"targets":[0,2,3,4,5,7,8,10,11,13,14,15,16,17,18,20,21,23,24,26,27,28,29,30],"visible":false},{"className":"dt-left","targets":"_all"}],"search":{"search":"TRUE"},"drawCallback":"function() { setTimeout(headerFunctionCollabAccuracy, 1) }","order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.drawCallback"],"jsHooks":[]}</script>
+</div>
+<div id="reliability" class="section level3">
+<h3>Reliability</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-bfb66c8472a8423b7422" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bfb66c8472a8423b7422">{"x":{"filter":"none","vertical":false,"extensions":["RowGroup"],"fillContainer":true,"data":[["PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2"],["Human Raters 1 &amp; 2","GPT-3.5 API first &amp; second run","GPT-4 API first &amp; second run","Claude-2 API first &amp; second run","Claude-2 Chat first &amp; second run","Human Raters 1 &amp; 2","GPT-3.5 API first &amp; second run","GPT-4 API first &amp; second run","Claude-2 API first &amp; second run","Claude-2 Chat first &amp; second run","Human Raters 1 &amp; 2","GPT-3.5 API first &amp; second run","GPT-4 API first &amp; second run","Claude-2 API first &amp; second run","Claude-2 Chat first &amp; second run"],[2384,2762,677,2695,2383,936,1067,274,1163,968,288,370,80,384,321],[2619,2943,756,3024,3024,1067,1232,308,1232,1232,504,477,126,504,504],[0.840611248539393,0.899413684103192,0.796503446466477,0.826149742133021,0.664022363566024,0.765930011939869,0.785076747731612,0.789117564138709,0.9102664518894,0.657283752884524,0.286640847370631,0.621094927754714,0.68006993006993,0.705566241104707,0.441066354887102],[0.798211549059132,0.870941311429295,0.717237330710886,0.79660348442803,0.633626949720228,0.716665250913674,0.731312180562078,0.682155273027624,0.873184973617874,0.607141591826124,0.198000580985157,0.522114137507392,0.523668878039433,0.626286782180448,0.344227792061237],[0.878752086705364,0.926365917786304,0.861736559515467,0.852687791274808,0.691771238011378,0.815005538264379,0.833167041258514,0.874117985017137,0.942613384665893,0.70146127049738,0.371322540672123,0.713067795957493,0.800870751894069,0.768733273497321,0.549492203051399],[0.910271095838106,0.938498131158682,0.895502645502645,0.891203703703704,0.788029100529101,0.877225866916589,0.866071428571429,0.88961038961039,0.943993506493506,0.785714285714286,0.571428571428571,0.775681341719078,0.634920634920635,0.761904761904762,0.636904761904762],[0.88622581331455,0.920837718338704,0.851851851851852,0.872693586332938,0.768196231835584,0.850046860356139,0.833603896103896,0.831168831168831,0.921266233766234,0.753246753246753,0.513939295775408,0.710691823899371,0.516074643419091,0.710367867203979,0.579415486251598],[0.931653302787323,0.955147808358818,0.93250607794867,0.908068783068783,0.806539217899866,0.904381063663725,0.896103896103896,0.935064935064935,0.964285714285714,0.813311688311688,0.625,0.836477987421384,0.746031746031746,0.80952380952381,0.692460317460317],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],["human_rater1_prisma_amstar_reliability.html","gpt3.5_prisma_reliability.html","gpt4_prisma_amstar_reliability.html","claude2_prisma_amstar_reliability.html","claude2_chat_prisma_amstar_reliability.html","human_rater1_prisma_amstar_reliability.html","gpt3.5_amstar_reliability.html","gpt4_prisma_amstar_reliability.html","claude2_prisma_amstar_reliability.html","claude2_chat_prisma_amstar_reliability.html","human_rater1_precis2_reliability.html","gpt3.5_precis2_reliability.html","gpt4_precis2_reliability.html","claude2_precis2_reliability.html","claude2_chat_precis2_reliability.html"],["prisma_amstar/human_rater1_prisma_amstar/results/reliability_27_items.png","prisma_amstar/gpt3.5_prisma/results/reliability_27_items.png","prisma_amstar/gpt4_prisma_amstar/results/reliability_27_items.png","prisma_amstar/claude2_prisma_amstar/results/reliability_27_items.png","prisma_amstar/claude2_chat_prisma_amstar/results/reliability_27_items.png","prisma_amstar/human_rater1_prisma_amstar/results/reliability_11_items.png","prisma_amstar/gpt3.5_amstar/results/reliability_11_items.png","prisma_amstar/gpt4_prisma_amstar/results/reliability_11_items.png","prisma_amstar/claude2_prisma_amstar/results/reliability_11_items.png","prisma_amstar/claude2_chat_prisma_amstar/results/reliability_11_items.png","precis2/human_rater1_precis2/results/reliability_9_items.png","precis2/gpt3.5_precis2/results/reliability_9_items.png","precis2/gpt4_precis2/results/reliability_9_items.png","precis2/claude2_precis2/results/reliability_9_items.png","precis2/claude2_chat_precis2/results/reliability_9_items.png"],["plots/reliability_prisma_human_prisma_human.png","plots/reliability_prisma_human_prisma_gpt3.png","plots/reliability_prisma_human_prisma_gpt4.png","plots/reliability_prisma_human_prisma2_claude.png","plots/reliability_prisma_human_prisma_claude2_chat.png","plots/reliability_amstar_human_amstar_human.png","plots/reliability_amstar_human_amstar_gpt3.png","plots/reliability_amstar_human_amstar_gpt4.png","plots/reliability_amstar_human_amstar_claude2.png","plots/reliability_amstar_human_amstar_claude2_chat.png","plots/reliability_precis2_human_precis2_human.png","plots/reliability_precis2_human_precis2_gpt3.png","plots/reliability_precis2_human_precis2_gpt4.png","plots/reliability_precis2_human_precis2_claude2.png","plots/reliability_precis2_human_precis2_claude2_chat.png"]],"container":"<table class=\"display fill-container\">\n  <thead>\n    <tr>\n      <th>Tool<\/th>\n      <th>Rater<\/th>\n      <th>agreement_numerator<\/th>\n      <th>agreement_denominator<\/th>\n      <th>Kappa<\/th>\n      <th>Kappa_CI_low<\/th>\n      <th>Kappa_CI_high<\/th>\n      <th>Agreement<\/th>\n      <th>Agreement_CI_low<\/th>\n      <th>Agreement_CI_high<\/th>\n      <th>Deferring Fraction<\/th>\n      <th>Deferring Fraction_CI_low<\/th>\n      <th>Deferring Fraction_CI_high<\/th>\n      <th>main_experiment<\/th>\n      <th>path_reliability_html<\/th>\n      <th>path_reliability_png<\/th>\n      <th>path_reliablility_item_wise_scatter_png<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"rowGroup":{"dataSrc":0},"bPaginate":false,"dom":"t","columnDefs":[{"targets":1,"render":"function(data, type, row, meta) { return '<a href=\"html/'+row[14]+'\" target=\"_blank\" title=\"Open details\">' + data + '<\/a>' }"},{"targets":4,"render":"function(data, type, row, meta) { return '<a href=\"#\" onclick=\"$(&quot;p.image-container&quot;)[0].style = &quot;background: url(&apos;' + row[13] + '&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[0].src = &quot;' + row[13] + '&quot;; $(&quot;p.image-container&quot;)[1].style = &quot;background: url(&apos;' + row[14] + '&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[1].src = &quot;' + row[14] + '&quot;; $(&quot;div.chart-title span&quot;)[0].innerText = &quot;' + row[0] + ': ' + row[1] + ' Reliability&quot;;$(&quot;div.chart-title span&quot;)[1].innerText = &quot;' + row[0] + ': ' + row[1] + ': Item-Wise Performance vs Human Rater 1 (Reliability)&quot;;$(&quot;td a&quot;).css(&quot;font-weight&quot;, &quot;normal&quot;); this.style.fontWeight=&quot;bold&quot;; return false;\" title=\"Show plots on the right\">' + (data ? ((Math.round(data*100)/100).toFixed(2) + ' (' + (Math.round(row[meta.col+1]*100)/100).toFixed(2) + '-' + (Math.round(row[meta.col+2]*100)/100).toFixed(2) + ')') : '') + '<\/a>' }"},{"targets":7,"render":"function(data, type, row, meta) { return '<a href=\"#\" onclick=\"$(&quot;p.image-container&quot;)[0].style = &quot;background: url(&apos;' + row[13] + '&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[0].src = &quot;' + row[13] + '&quot;; $(&quot;p.image-container&quot;)[1].style = &quot;background: url(&apos;' + row[14] + '&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[1].src = &quot;' + row[14] + '&quot;; $(&quot;div.chart-title span&quot;)[0].innerText = &quot;' + row[0] + ': ' + row[1] + ' Reliability&quot;;$(&quot;div.chart-title span&quot;)[1].innerText = &quot;' + row[0] + ': ' + row[1] + ': Item-Wise Performance vs Human Rater 1 (Reliability)&quot;;$(&quot;td a&quot;).css(&quot;font-weight&quot;, &quot;normal&quot;); this.style.fontWeight=&quot;bold&quot;; return false;\" title=\"Show plots on the right\">' + (data ? (row[2] + ' / ' + row[3] + ' (' + Math.round(data*100) + '%, ' + Math.round(row[meta.col+1]*100) + '-' + Math.round(row[meta.col+2]*100) + '%)') : '') + '<\/a>' }"},{"targets":[0,2,3,5,6,8,9,10,11,12,13,14,15,16],"visible":false},{"className":"dt-left","targets":"_all"}],"drawCallback":"function() { setTimeout(headerFunctionPrecision, 1) }","order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.drawCallback"],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="column-1" class="section level2" data-width="40">
+<h2>Column</h2>
+<div id="method-overview-show-overview" class="section level3">
+<h3><span>Method Overview</span>
+(<a onclick="$(&quot;td a&quot;).css(&quot;font-weight&quot;, &quot;normal&quot;); $(&quot;p.image-container&quot;)[0].style = &quot;background: url(&apos;plots/schematic_overview.png&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[0].src = &quot;plots/schematic_overview.png&quot;; $(&quot;p.image-container&quot;)[1].style = &quot;background: url(&apos;plots/self-consistency-overview.png&apos;) center center / contain no-repeat;&quot;; $(&quot;p.image-container img&quot;)[1].src = &quot;plots/self-consistency-overview.png&quot;; $(&quot;div.chart-title span&quot;)[0].innerText = &quot;Method Overview&quot;;$(&quot;div.chart-title span&quot;)[1].innerText = &quot;Combined LLMs Overview&quot;;" style="cursor: pointer">Show
+overview</a>)</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<p><img data-figure-id="fig1" src="plots/schematic_overview.png" onclick="window.open(this.src)" style="cursor: pointer"></p>
+</div>
+<div id="combined-llms-overview" class="section level3">
+<h3><span>Combined LLMs Overview</span></h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<p><img data-figure-id="fig2" src="plots/self-consistency-overview.png" onclick="window.open(this.src)" style="cursor: pointer"></p>
+</div>
+</div>
+</div>
+<div id="formatting-quoting-accuracy" class="section level1">
+<h1>Formatting &amp; Quoting Accuracy</h1>
+<div id="column-2" class="section level2">
+<h2>Column</h2>
+<div id="formatting-quoting-accuracy-mainall" class="section level3">
+<h3>Formatting &amp; Quoting Accuracy
+(<a onclick="$('#DataTables_Table_3').DataTable().search('TRUE').draw()" style="cursor: pointer">main</a>/<a onclick="$('#DataTables_Table_3').DataTable().search('').draw()" style="cursor: pointer">all</a>)</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8ca361a5d6cb4db89439" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8ca361a5d6cb4db89439">{"x":{"filter":"none","vertical":false,"extensions":["RowGroup"],"fillContainer":true,"data":[["PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","PRISMA","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","AMSTAR","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2","PRECIS-2"],["(2) GPT-3.5 API","(2) GPT-3.5 API repeated","(2) GPT-4 API","(2) Claude-2 API","(2) Claude-2 API repeated","(2) Claude-2 Chat","(2) Claude-2 Chat repeated","(2) Claude-2 Chat GPT-3.5 prompt","(2) GPT-3.5 API","(2) GPT-3.5 API repeated","(2) GPT-4 API","(2) Claude-2 API","(2) Claude-2 API repeated","(2) Claude-2 Chat","(2) Claude-2 Chat repeated","(2) Claude-2 Chat GPT-3.5 prompt","(2) GPT-3.5 API","(2) GPT-3.5 API repeated","(2) GPT-4 API","(2) Claude-2 API","(2) Claude-2 API repeated","(2) Claude-2 Chat","(2) Claude-2 Chat repeated","(2) Claude-2 Chat GPT-3.5 prompt"],[3,3,3,0,0,0,0,0,0,0,3,0,0,0,0,0,2,3,0,0,0,0,0,0],[112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,56,56,56,56,56,56,56,56],["too-short, exceeded-max-tokens-2000-and-no-scores, no-scores","too-short, exceeded-max-tokens-2500, scores-missing","too-long-for-32k-context-window",null,null,null,null,null,null,null,"too-long-for-32k-context-window",null,null,null,null,null,"early-stop","early-stop",null,null,null,null,null,null],[7,3,0,0,0,3,1,28,2,0,0,0,0,3,1,1,5,4,0,0,0,5,6,0],["exceeded-max-tokens-2000, nearly-all-na","exceeded-max-tokens-2500, score-p1-missing",null,null,null,"completely-misunderstood, score-p20-missing, scores-p17-to-p20-duplicated","scores-p21-to-p27-missing","too-short, too-long","too-short",null,null,null,null,"completely-misunderstood, score-p20-missing, scores-p17-to-p20-duplicated","scores-p21-to-p27-missing","score-A6-missing","early-stop, exceeded-max-tokens-2000","early-stop, exceeded-max-tokens-2000",null,null,null,"analyzed-and-quoted-mostly-examples-from-briefing","analyzed-and-quoted-mostly-examples-from-briefing",null],[1,5,0,6,9,39,37,11,49,47,0,6,9,39,37,2,23,22,0,2,1,0,0,0],[109,109,109,112,112,112,112,112,112,112,109,112,112,112,112,112,54,53,56,56,56,56,56,56],["missing-squared-brackets-for-na","wrong-response-partial-unclear-etc, missing-squared-brackets-for-na",null,"unsolicited-ranges, wrong-response-partial-unclear-etc","unsolicited-ranges, wrong-response-partial-unclear-etc","unsolicited-ranges, wrong-response-partial-unclear-etc, missing-squared-brackets-in-numbered-list","unsolicited-ranges, wrong-response-partial-unclear-etc, missing-squared-brackets-in-numbered-list, missing-squared-brackets-na-with-slash","wrong-response-partial-unclear-etc, missing-squared-brackets-in-numbered-list, missing-squared-brackets-end-of-line, missing-squared-brackets-for-na, missing-squared-brackets-pre-dash","missing-squared-brackets-in-unnumbered-list, missing-squared-brackets-for-na, wrong-response-partial-unclear-etc, wrong-response-partial-unclear-etc-without-squared-brackets, not-applicable-missing-na-in-squared-brackets","missing-squared-brackets-in-unnumbered-list, missing-squared-brackets-for-na, wrong-response-partial-unclear-etc-without-squared-brackets, wrong-response-partial-unclear-etc",null,"unsolicited-ranges, wrong-response-partial-unclear-etc","unsolicited-ranges, wrong-response-partial-unclear-etc","unsolicited-ranges, wrong-response-partial-unclear-etc, missing-squared-brackets-in-numbered-list","unsolicited-ranges, wrong-response-partial-unclear-etc, missing-squared-brackets-in-numbered-list, missing-squared-brackets-na-with-slash","missing-squared-brackets-in-numbered-list, wrong-response-partial-unclear-etc","squared-brackets-around-score, multiple-scores-per-domain-if-incongruent-na, not-applicable-without-score, score-prefix-missing-before-na","squared-brackets-around-score, multiple-scores-per-domain-if-incongruent-na, missing-score-na-with-slash, score-prefix-missing-before-na, not-applicable-without-score, score-prefix-missing-before-colon, score-prefix-missing-before-number",null,"multiple-scores-per-domain-if-incongruent-na, removed-unsolicited-final-summary-score, score-prefix-missing-before-number, squared-brackets-around-score","squared-brackets-around-score",null,null,null],[107,108,109,79,86,85,84,105,112,112,109,110,110,105,108,108,54,53,56,56,56,56,55,56],[951,971,1829,557,529,357,403,1552,847,829,780,480,488,442,461,640,566,578,562,479,468,584,589,547],["gpt3.5_prisma_human_consensus.html","gpt3.5_prisma_rep_human_consensus.html","gpt4_prisma_amstar_human_consensus.html","claude2_prisma_amstar_human_consensus.html","claude2_prisma_amstar_rep_human_consensus.html","claude2_chat_prisma_amstar_human_consensus.html","claude2_chat_prisma_amstar_rep_human_consensus.html","claude2_chat_gpt3.5_prompt_prisma_human_consensus.html","gpt3.5_amstar_human_consensus.html","gpt3.5_amstar_rep_human_consensus.html","gpt4_prisma_amstar_human_consensus.html","claude2_prisma_amstar_human_consensus.html","claude2_prisma_amstar_rep_human_consensus.html","claude2_chat_prisma_amstar_human_consensus.html","claude2_chat_prisma_amstar_rep_human_consensus.html","claude2_chat_gpt3.5_prompt_amstar_human_consensus.html","gpt3.5_precis2_human_consensus.html","gpt3.5_precis2_rep_human_consensus.html","gpt4_precis2_human_consensus.html","claude2_precis2_human_consensus.html","claude2_precis2_rep_human_consensus.html","claude2_chat_precis2_human_consensus.html","claude2_chat_precis2_rep_human_consensus.html","claude2_chat_gpt3.5_prompt_precis2_human_consensus.html"],[853,872,1548,359,327,215,243,831,809,797,700,326,344,308,291,369,533,551,480,355,354,475,478,519],[37,40,3,51,54,65,42,605,7,4,1,64,61,65,81,166,0,0,1,56,50,3,5,1],[99.4095735142622,99.461808402257,99.2461628133867,95.0786302390744,95.0132109363092,94.4794715184404,92.1331429860338,99.0809631769088,99.0541315067172,99.2222187225527,99.3027359107527,97.3908189333027,97.5041825941776,96.9230807108139,95.4631893367295,96.5723103989506,99.4959942222823,99.7463500153423,99.0693426778231,99.3680235276214,99.4278938107259,98.6797941313798,98.8462823423657,99.4327216537563],[3.80303261248566,3.42215723913479,4.32179540127575,12.9035619035578,13.1578494809753,14.9677945283026,16.5117840838044,5.41243175521857,6.55755904122148,5.84727660786961,4.15730996180517,9.38731446640019,9.38796103610916,10.4263013543853,13.4630543758085,11.122168714628,3.58847335110856,2.06807136042809,4.12836865348844,3.17324227432678,2.93897575935793,5.69110638070422,4.85004810882818,3.8193069599104],[true,false,true,true,false,true,false,false,true,false,true,true,false,true,false,false,true,false,true,true,false,true,false,false]],"container":"<table class=\"display fill-container\">\n  <thead>\n    <tr>\n      <th>Tool<\/th>\n      <th>Rater<\/th>\n      <th>Publications unsuccessful<\/th>\n      <th>dataset_n<\/th>\n      <th>no_results<\/th>\n      <th>Required retries<\/th>\n      <th>required_retries<\/th>\n      <th>Minor formatting issues<\/th>\n      <th>total_results_n<\/th>\n      <th>minor_formatting_issues<\/th>\n      <th>Publications w/ quotes<\/th>\n      <th>Total quotes (n)<\/th>\n      <th>path_human_consensus_html<\/th>\n      <th>Perfect fulltext quotes<\/th>\n      <th>Perfect prompt quotes<\/th>\n      <th>Mean quote similarity ± SD<\/th>\n      <th>sd_similarity<\/th>\n      <th>main_experiment<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"rowGroup":{"dataSrc":0},"bPaginate":false,"dom":"t","columnDefs":[{"targets":1,"render":"function(data, type, row, meta) { return '<a href=\"html/'+row[12]+'\" target=\"_blank\" title=\"Open details\">' + data + '<\/a>' }"},{"targets":2,"render":"function(data, type, row, meta) { text=data + ' / ' + row[3] + ' (' + Math.round(data/row[3]*100) + '%)'; return (data) ? ('<span style=\"border-bottom: 1px dashed black\" title=\"Reasons: ' + row[4] + '\">' + text + '<\/a>') : text }"},{"targets":5,"render":"function(data, type, row, meta) { text=data + ' / ' + row[3] + ' (' + Math.round(data/row[3]*100) + '%)'; return (data) ? ('<span style=\"border-bottom: 1px dashed black\" title=\"Reasons: ' + row[6] + '\">' + text + '<\/a>') : text }"},{"targets":7,"render":"function(data, type, row, meta) { text=data + ' / ' + row[8] + ' (' + Math.round(data/row[8]*100) + '%)'; return (data) ? ('<span style=\"border-bottom: 1px dashed black\" title=\"Reasons: ' + row[9] + '\">' + text + '<\/a>') : text }"},{"targets":10,"render":"function(data, type, row, meta) { return data + ' / ' + row[8] + ' (' + Math.round(data/row[8]*100) + '%)' }"},{"targets":13,"render":"function(data, type, row, meta) { return data + ' / ' + row[11] + ' (' + Math.round(data/row[11]*100) + '%)' }"},{"targets":14,"render":"function(data, type, row, meta) { return data + ' / ' + row[11] + ' (' + Math.round(data/row[11]*100) + '%)' }"},{"targets":15,"render":"function(data, type, row, meta) { return Math.round(data) + '% ± ' + Math.round(row[16]) + '%' }"},{"targets":[0,3,4,6,8,9,12,16,17],"visible":false},{"className":"dt-right","targets":[2,3,5,7,8,10,11,13,14,15,16]}],"search":{"search":"true"},"drawCallback":"function() { setTimeout(headerFunctionFormattingQuoting, 1) }","order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render","options.drawCallback"],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+  // add bootstrap table styles to pandoc tables
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed table-sm');
+
+  // initialize mathjax
+
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  FlexDashboard.init({
+    fillPage: true,
+    orientation: "columns",
+    storyboard: false,
+    defaultFigWidth: 576,
+    defaultFigHeight: 460,
+    defaultFigWidthMobile: 360,
+    defaultFigHeightMobile: 460,
+    resize_reload: true
+  });
+  var navbar = $(".navbar").first();
+  var body = $("body").first();
+  var sidebar = $(".section.sidebar").first();
+  function addNavbarPadding() {
+    var navHeight = navbar.outerHeight();
+    body.css("padding-top", (navHeight + 8) + "px");
+    sidebar.css("top", navHeight + "px");
+    var resizeEvent = window.document.createEvent("UIEvents");
+    resizeEvent.initUIEvent("resize", true, false, window, 0);
+    window.dispatchEvent(resizeEvent);
+  }
+  if (!window.Shiny) setTimeout(addNavbarPadding, 100);
+  $(document).on("shiny:idle", function() {
+    setTimeout(addNavbarPadding, 50);
+  });
+});
+</script>
+
+</body>
+</html>

@@ -9,34 +9,34 @@ from src.compare_quotes import split_interrupted_quotes, compare_quotes
 # AMSTAR: 11:107, 14:3, 12:1, 22:1
 # AMSTAR rep: 11:110, 22:1, 12:1
 # FULLTEXT_FOLDER = "data/prisma_amstar/fulltext/txt/"
-# RESULTS_FOLDER = "results/prisma_amstar/gpt3.5_amstar/" # _rep
+# RESULTS_FOLDER = "docs/prisma_amstar/gpt3.5_amstar/" # _rep
 # NUM_SCORES = 11
 # PRISMA: 109
 # FULLTEXT_FOLDER = "data/prisma_amstar/fulltext/txt/"
-# RESULTS_FOLDER = "results/prisma_amstar/gpt3.5_prisma/" # _rep
+# RESULTS_FOLDER = "docs/prisma_amstar/gpt3.5_prisma/" # _rep
 # NUM_SCORES = 27
 
 # Experiment 3 & 4 (Claude-2 chat)
 # FULLTEXT_FOLDER = "data/prisma_amstar/fulltext/pdf/txt/"
-# RESULTS_FOLDER = "results/prisma_amstar/claude2_chat_prisma_amstar_rep/" # _rep
+# RESULTS_FOLDER = "docs/prisma_amstar/claude2_chat_prisma_amstar_rep/" # _rep
 # NUM_SCORES = 38
 
 # Experiment 5 (Claude-2 chat, same prompt as GPT-3.5)
 # FULLTEXT_FOLDER = "data/prisma_amstar/fulltext/txt/"
-# RESULTS_FOLDER = "results/prisma_amstar/claude2_chat_gpt3.5_prompt_prisma/"
+# RESULTS_FOLDER = "docs/prisma_amstar/claude2_chat_gpt3.5_prompt_prisma/"
 # NUM_SCORES = 27
 # FULLTEXT_FOLDER = "data/prisma_amstar/fulltext/txt/"
-# RESULTS_FOLDER = "results/prisma_amstar/claude2_chat_gpt3.5_prompt_amstar/"
+# RESULTS_FOLDER = "docs/prisma_amstar/claude2_chat_gpt3.5_prompt_amstar/"
 # NUM_SCORES = 11
 
 # Experiment 6 & 7 (Claude-2 API)
 # FULLTEXT_FOLDER = "data/prisma_amstar/fulltext/pdf/txt/"
-# RESULTS_FOLDER = "results/prisma_amstar/claude2_prisma_amstar/" # _rep
+# RESULTS_FOLDER = "docs/prisma_amstar/claude2_prisma_amstar/" # _rep
 # NUM_SCORES = 38
 
 # Experiment 8 (repetition only performed on 25% of publications) (GPT-4): 109
 FULLTEXT_FOLDER = "data/prisma_amstar/fulltext/pdf/txt/"
-RESULTS_FOLDER = "results/prisma_amstar/gpt4_prisma_amstar_rep/" # _rep
+RESULTS_FOLDER = "docs/prisma_amstar/gpt4_prisma_amstar_rep/" # _rep
 NUM_SCORES = 38
 
 with open(RESULTS_FOLDER + "prompt_template/user.txt") as f:

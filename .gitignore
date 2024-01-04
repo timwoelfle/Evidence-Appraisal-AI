@@ -1,6 +1,6 @@
 interrupted
 fulltext
-results/*/*/responses
+docs/*/*/responses
 src/API_KEY
 src/OPENROUTER_API_KEY
 venv

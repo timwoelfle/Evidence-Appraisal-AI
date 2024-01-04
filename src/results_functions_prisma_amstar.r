@@ -66,11 +66,13 @@ datatable_scores = function(results, x_rater, y_rater, factorize, weigth_matrix,
       prisma_table = table(factorize(unlist(results[row, paste0(prisma, "_", y_rater)])), factorize(unlist(results[row, paste0(prisma, "_", x_rater)])), useNA=useNA)
       results[row, "prisma_agreement"] = calc_agreement(prisma_table)
       results[row, "prisma_cohen_kappa"] = ifelse(results[row, "prisma_agreement"] == 1, 1, cohen.kappa(prisma_table, w=weight_matrix)$weighted.kappa)
+      results[row, "prisma_deferring_fraction"] = sum(results[row, paste0(prisma, "_", x_rater)] == "deferred") / length(prisma)
     }
     if (show_amstar) {
       amstar_table = table(factorize(unlist(results[row, paste0(amstar, "_", y_rater)])), factorize(unlist(results[row, paste0(amstar, "_", x_rater)])), useNA=useNA)
       results[row, "amstar_agreement"] = calc_agreement(amstar_table)
       results[row, "amstar_cohen_kappa"] = ifelse(results[row, "amstar_agreement"] == 1, 1, cohen.kappa(amstar_table, w=weight_matrix)$weighted.kappa)
+      results[row, "amstar_deferring_fraction"] = sum(results[row, paste0(amstar, "_", x_rater)] == "deferred") / length(amstar)
     }
   }
   
@@ -80,12 +82,20 @@ datatable_scores = function(results, x_rater, y_rater, factorize, weigth_matrix,
   columns = c("Reference", "author_year_link")
   colnames = c("Ref.", "Author & Year")
   if (show_prisma) {
-    columns = c(columns, "prisma_cohen_kappa", "prisma_agreement")
-    colnames = c(colnames, "PRISMA κ", "PRISMA agreement")
+    columns = c(columns, "prisma_agreement", "prisma_cohen_kappa")
+    colnames = c(colnames, "PRISMA agreement", "PRISMA κ")
+    if (sum(results[,"prisma_deferring_fraction"])) {
+      columns = c(columns, "prisma_deferring_fraction")
+      colnames = c(colnames, "PRISMA deferral")
+    }
   }
   if (show_amstar) {
-    columns = c(columns, "amstar_cohen_kappa", "amstar_agreement")
-    colnames = c(colnames, "AMSTAR κ", "AMSTAR agreement")
+    columns = c(columns, "amstar_agreement", "amstar_cohen_kappa")
+    colnames = c(colnames, "AMSTAR agreement", "AMSTAR κ")
+    if (sum(results[,"amstar_deferring_fraction"])) {
+      columns = c(columns, "amstar_deferring_fraction")
+      colnames = c(colnames, "AMSTAR deferral")
+    }
   }
   
   datatable(
@@ -94,7 +104,7 @@ datatable_scores = function(results, x_rater, y_rater, factorize, weigth_matrix,
     rownames=F,
     escape=F, 
     options=list(bPaginate=F, dom="t", order=list(list(0, "asc")))
-  ) %>% formatRound(3:length(columns))
+  ) %>% formatPercentage(columns[grepl("agreement", columns) | grepl("deferring", columns)]) %>% formatRound(columns[grepl("kappa", columns)])
 }
 
 cat_individual_results = function(results, x_rater, y_rater, quote_accuracy, show_llm_message=T) {

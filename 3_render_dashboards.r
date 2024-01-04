@@ -8,14 +8,14 @@ source("src/results_functions_precis2.r") # precis2
 TOOL_FOLDER = "precis2/"
 NOTEBOOK_FILE = "dashboard_precis2.rmd"
 
-all_params = read_json(paste0("results/", TOOL_FOLDER, "params.json"))
+all_params = read_json(paste0("docs/", TOOL_FOLDER, "params.json"))
 
 render_dashboard = function(params) render(
-  input = paste0("results/", TOOL_FOLDER, NOTEBOOK_FILE),
+  input = paste0("docs/", TOOL_FOLDER, NOTEBOOK_FILE),
   output_file = paste0(params$run_folder, "_", params$output_file, ".html"),
-  output_dir = "results/html/",
+  output_dir = "docs/html/",
   output_options = list(title = params$title),
-  knit_root_dir = paste0("/home/tim/Forschung/Pragmatic Evidence/Research-Assessment-AI/results/", TOOL_FOLDER, params$run_folder, "/"),
+  knit_root_dir = paste0("/home/tim/Forschung/Pragmatic Evidence/Research-Assessment-AI/docs/", TOOL_FOLDER, params$run_folder, "/"),
   params=params,
   envir=new.env()
 )
@@ -24,7 +24,7 @@ combine_human_ai = function(human_rater_no, params) {
   human_rater = read.csv(paste0("data/", TOOL_FOLDER, "rater", human_rater_no, ".csv"), row.names = 1, na.strings = NULL, check.names = F)
   
   items = switch(params$tool, "prisma"=prisma, "amstar"=amstar, "prisma_amstar"=c(amstar, prisma), "precis2"=precis2)
-  results = read.csv(paste0("results/", TOOL_FOLDER, params$run_folder, "/results.csv"), row.names = 1, na.strings = NULL, check.names = F)
+  results = read.csv(paste0("docs/", TOOL_FOLDER, params$run_folder, "/results.csv"), row.names = 1, na.strings = NULL, check.names = F)
   if (!all(items %in% colnames(results))) {
     results[items] = t(sapply(strsplit(gsub("\\[|\\]|\\'", "", results$llm_scores), ", ", fixed=T), as.character)) # strtoi
   }
@@ -38,8 +38,8 @@ combine_human_ai = function(human_rater_no, params) {
   results = results[items]
   
   run_folder = paste0("human_rater", human_rater_no, "_", params$run_folder)
-  dir.create(paste0("results/", TOOL_FOLDER, run_folder), showWarnings = F)
-  write.csv(results, paste0("results/", TOOL_FOLDER, run_folder, "/results.csv"))
+  dir.create(paste0("docs/", TOOL_FOLDER, run_folder), showWarnings = F)
+  write.csv(results, paste0("docs/", TOOL_FOLDER, run_folder, "/results.csv"))
   
   x_rater = paste0("Human Rater ", human_rater_no, " & ", params$x_rater)
   params = list(
@@ -60,6 +60,7 @@ for (i in seq_len(length(all_params))) {
   render_dashboard(params)
   
   # Create Human-AI collaboration dashboards
+  # (But not for inter/intra-rater reliability results, human raters themselves, and GPT-4 repetition (because it's only based on 25% of publications for cost reasons))
   if (params$output_file != "human_consensus" | grepl("human_rater", params$rater) | params$run_folder %in% c("gpt4_prisma_amstar_rep", "gpt4_precis2_rep")) next
   
   ## Human-AI collaboration results

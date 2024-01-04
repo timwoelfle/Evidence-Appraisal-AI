@@ -1,0 +1,164 @@
+<style>
+* {
+  font-family: sans-serif;
+}
+
+th {
+  font-size: 18pt
+}
+
+table, th, td {
+  border: 3px solid #000;
+  border-collapse: collapse;
+  padding: 10px
+}
+
+img {
+  width: 780px;
+  height: 720px;
+  object-fit: none;
+  object-position: 0 0;
+}
+
+table#confusionMatrixPlusBin2D img, table#confusionMatrixOnly img {
+  width: 510px;
+  height: 370px;
+  object-fit: none;
+  object-position: 0 12px;
+  padding-right: 20px
+}
+
+table#confusionMatrixOnly tr:last-child img {
+  width: 500px;
+}
+
+table#confusionMatrixPlusBin2D img:nth-child(2) {
+  width: 380px;
+  height: 350px;
+  object-fit: none;
+  object-position: 0 -365px;
+  padding-right: 20px
+}
+</style>
+<!--<table>
+  <tr height="200">
+    <th></th>
+    <th style="height: 30px">Human Rater</th>
+    <th>Best Individual LLM</th>
+    <th>Combined LLMs (6 / 8)</th>
+    <th>Best Human-LLM Collaboration</th>
+  </tr>
+  <tr>
+    <th style="transform: rotate(-90deg); width: 10px">PRISMA</th>
+    <td><img src="prisma_amstar/human_rater1_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/claude2_chat_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/human_rater1_claude2_chat_prisma_amstar/results/human_consensus_27_items.png"></td>
+  </tr>
+  <tr>
+    <th style="transform: rotate(-90deg); width: 10px">AMSTAR</th>
+    <td><img src="prisma_amstar/human_rater1_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/gpt4_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/human_rater1_claude2_chat_prisma_amstar/results/human_consensus_11_items.png"></td>
+  </tr>
+  <tr>
+    <th style="transform: rotate(-90deg); width: 10px">PRECIS-2</th>
+    <td><img src="precis2/human_rater1_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/gpt3.5_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/llm_self_consistency_6_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/human_rater1_gpt3.5_precis2/results/human_consensus_9_items.png"></td>
+  </tr>
+</table>
+<table id="confusionMatrixOnly">
+  <tr height="200">
+    <th></th>
+    <th style="height: 30px">Human Rater</th>
+    <th>Best Individual LLM</th>
+    <th>Combined LLMs (6 / 8)</th>
+    <th>Best Human-LLM Collaboration</th>
+  </tr>
+  <tr>
+    <th style="transform: rotate(-90deg); width: 10px">PRISMA</th>
+    <td><img src="prisma_amstar/human_rater1_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/claude2_chat_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/human_rater1_claude2_chat_prisma_amstar/results/human_consensus_27_items.png"></td>
+  </tr>
+  <tr>
+    <th style="transform: rotate(-90deg); width: 10px">AMSTAR</th>
+    <td><img src="prisma_amstar/human_rater1_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/gpt4_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/human_rater1_claude2_chat_prisma_amstar/results/human_consensus_11_items.png"></td>
+  </tr>
+  <tr>
+    <th style="transform: rotate(-90deg); width: 10px">PRECIS-2</th>
+    <td><img src="precis2/human_rater1_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/gpt3.5_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/llm_self_consistency_6_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/human_rater1_gpt3.5_precis2/results/human_consensus_9_items.png"></td>
+  </tr>
+</table>
+-->
+
+<table id="confusionMatrixOnly">
+  <tr style="height: 40px">
+    <th></th>
+    <th>1) Human Rater 1</th>
+    <th>2) Best Individual LLM</th>
+    <th>3) Combined LLMs <br>(self-consistent 6 / 8)</th>
+    <th>4) Best Human-AI Collaboration</th>
+  </tr>
+  <tr>
+    <th style="width: 80px; writing-mode: sideways-lr;">PRISMA <br><span style="font-weight: normal;">27 items × 112 publications</span></th>
+    <td><img src="prisma_amstar/human_rater1_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/claude2_chat_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/human_rater1_claude2_chat_prisma_amstar/results/human_consensus_27_items.png"></td>
+  </tr>
+  <tr>
+    <th style="width: 80px; writing-mode: sideways-lr;">AMSTAR <br><span style="font-weight: normal;">11 items × 112 publications</span></th>
+    <td><img src="prisma_amstar/human_rater1_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/gpt4_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/human_rater1_claude2_chat_prisma_amstar/results/human_consensus_11_items.png"></td>
+  </tr>
+  <tr>
+    <th style="width: 80px; writing-mode: sideways-lr;">PRECIS-2 <br><span style="font-weight: normal;">9 items × 56 publications</span></th>
+    <td><img src="precis2/human_rater1_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/gpt3.5_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/llm_self_consistency_6_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/human_rater1_gpt3.5_precis2/results/human_consensus_9_items.png"></td>
+  </tr>
+</table>
+<!--<table id="confusionMatrixPlusBin2D">
+  <tr style="height: 40px">
+    <th></th>
+    <th>1) Human Rater 1</th>
+    <th>2) Best Individual LLM</th>
+    <th>3) Combined LLMs (self-consistent 6 / 8)</th>
+    <th>4) Best Human-LLM Collaboration</th>
+  </tr>
+  <tr>
+    <th style="width: 80px; writing-mode: sideways-lr;">PRISMA <br><span style="font-weight: normal;">27 items × 112 publications</span></th>
+    <td><img src="prisma_amstar/human_rater1_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/claude2_chat_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_27_items.png"><img src="prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_27_items.png"></td>
+    <td><img src="prisma_amstar/human_rater1_claude2_chat_prisma_amstar/results/human_consensus_27_items.png"><img src="prisma_amstar/human_rater1_claude2_chat_prisma_amstar/results/human_consensus_27_items.png"></td>
+  </tr>
+  <tr>
+    <th style="width: 80px; writing-mode: sideways-lr;">AMSTAR <br><span style="font-weight: normal;">11 items × 112 publications</span></th>
+    <td><img src="prisma_amstar/human_rater1_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/gpt4_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_11_items.png"><img src="prisma_amstar/llm_self_consistency_6_prisma_amstar/results/human_consensus_11_items.png"></td>
+    <td><img src="prisma_amstar/human_rater1_claude2_chat_prisma_amstar/results/human_consensus_11_items.png"><img src="prisma_amstar/human_rater1_claude2_chat_prisma_amstar/results/human_consensus_11_items.png"></td>
+  </tr>
+  <tr>
+    <th style="width: 80px; writing-mode: sideways-lr;">PRECIS-2 <br><span style="font-weight: normal;">9 items × 56 publications</span></th>
+    <td><img src="precis2/human_rater1_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/gpt3.5_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/llm_self_consistency_6_precis2/results/human_consensus_9_items.png"><img src="precis2/llm_self_consistency_6_precis2/results/human_consensus_9_items.png"></td>
+    <td><img src="precis2/human_rater1_gpt3.5_precis2/results/human_consensus_9_items.png"><img src="precis2/human_rater1_gpt3.5_precis2/results/human_consensus_9_items.png"></td>
+  </tr>
+</table>-->

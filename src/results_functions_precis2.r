@@ -26,13 +26,18 @@ datatable_scores = function(results, x_rater, y_rater, useNA="no") {
     results[row, "pooled_cohen_kappa_w"] = ifelse(results[row, "pooled_agreement"] == 1, 1, cohen.kappa(row_table_pooled, w=weight_matrix_pooled)$weighted.kappa)
     results[row, "agreement"] = calc_agreement(row_table)
     results[row, "cohen_kappa_w"] = ifelse(results[row, "agreement"] == 1, 1, cohen.kappa(row_table, w=weight_matrix)$weighted.kappa)
+    results[row, "deferring_fraction"] = sum(results[row, paste0(precis2, "_", x_rater)] == "deferred") / length(precis2)
   }
   
   results$Reference = rownames(results)
   results$author_year_link = paste0("<a href='#", rownames(results), "' title='Jump to individual results on the right'>", results$author_year, "</a>")
   
-  columns = c("Reference", "author_year_link", "pooled_cohen_kappa_w", "pooled_agreement", "cohen_kappa_w", "agreement")
-  colnames = c("Ref.", "Author & Year", "pooled weighted κ", "pooled agreement", "weighted κ", "agreement")
+  columns = c("Reference", "author_year_link", "pooled_agreement", "pooled_cohen_kappa_w", "agreement", "cohen_kappa_w")
+  colnames = c("Ref.", "Author & Year", "pooled agreement", "pooled weighted κ", "agreement", "weighted κ")
+  if (sum(results[,"deferring_fraction"])) {
+    columns = c(columns, "deferring_fraction")
+    colnames = c(colnames, "deferral")
+  }
   
   datatable(
     results[columns],
@@ -40,7 +45,7 @@ datatable_scores = function(results, x_rater, y_rater, useNA="no") {
     rownames=F,
     escape=F, 
     options=list(bPaginate=F, dom="t", order=list(list(0, "asc")))
-  ) %>% formatRound(3:length(columns))
+  ) %>% formatPercentage(columns[grepl("agreement", columns) | grepl("deferring", columns)]) %>% formatRound(columns[grepl("kappa", columns)])
 }
 
 # Unpure function: uses items defined above

@@ -5,25 +5,41 @@ import re
 import pandas as pd
 from src.compare_quotes import split_interrupted_quotes, compare_quotes
 
-# Experiments 1 & 2 (GPT-3.5)
+# GPT-3.5
 # FULLTEXT_FOLDER = "data/precis2/fulltext/txt/"
 # RESULTS_FOLDER = "docs/precis2/gpt3.5_precis2/" # _rep
 
-# Experiment 3 & 4 (Claude-2 chat)
+# Claude-2 Chat
 # FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
 # RESULTS_FOLDER = "docs/precis2/claude2_chat_precis2/" # _rep
 
-# Experiment 5 (Claude-2 chat, same prompt as GPT-3.5)
+# Claude-2 Chat, same prompt as GPT-3.5
 # FULLTEXT_FOLDER = "data/precis2/fulltext/txt/"
 # RESULTS_FOLDER = "docs/precis2/claude2_chat_gpt3.5_prompt_precis2/"
 
-# Experiment 6 & 7 (Claude-2 API)
+# Claude-2
 # FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
 # RESULTS_FOLDER = "docs/precis2/claude2_precis2/" # _rep
 
-# Experiment 8 (repetition only performed on 25% of publications) (GPT-4)
+# GPT-4 (repetition only performed on 25% of publications)
+# FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
+# RESULTS_FOLDER = "docs/precis2/gpt4_precis2/" # _rep
+
+# Mixtral-8x7B
+#FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
+#RESULTS_FOLDER = "docs/precis2/mixtral8x7b_precis2/" # 1773 and 689: extracted scores alright (excluded one summary paragraph)
+#RESULTS_FOLDER = "docs/precis2/mixtral8x7b_precis2_rep/" # 1773 and 725: extracted scores alright (excluded one summary paragraph)
+#RESULTS_FOLDER = "docs/precis2/mixtral8x7b_gpt4_prompt_precis2/"
+
+# Claude-3-Opus
+#FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
+#RESULTS_FOLDER = "docs/precis2/claude3_opus_precis2/"
+#RESULTS_FOLDER = "docs/precis2/claude3_opus_precis2_rep/"
+#RESULTS_FOLDER = "docs/precis2/claude3_opus_gpt4_prompt_precis2/" # "655.txt.json Bad finish reason: max_tokens" ok because all scores came before
+
+# Mixtral-8x22B
 FULLTEXT_FOLDER = "data/precis2/fulltext/pdf/txt/"
-RESULTS_FOLDER = "docs/precis2/gpt4_precis2/" # _rep
+RESULTS_FOLDER = "docs/precis2/mixtral8x22b_precis2/" # _rep
 
 NUM_SCORES = 9
 
@@ -48,10 +64,17 @@ for response_file in response_files:
     llm_message = open(responses_folder + response_file).read()
     if ".json" in response_file:
         response_json = json.loads(llm_message)
-        if not response_json["choices"][0]["finish_reason"] in ["stop", "stop_sequence"]:
-            print(f'{response_file}\nBad finish_reason: {response_json["choices"][0]["finish_reason"]}')
-            continue
-        llm_message = response_json["choices"][0]["message"]["content"]
+        # "choices" seems to be OpenAI's / OpenRouter's syntax
+        if "choices" in response_json.keys():
+            # "eos" and None are for mixtral
+            if "finish_reason" in response_json["choices"][0].keys() and not response_json["choices"][0]["finish_reason"] in ["stop", "stop_sequence", "eos", None]:
+                print(f'{response_file}\nBad finish reason: {response_json["choices"][0]["finish_reason"]}')
+            llm_message = response_json["choices"][0]["message"]["content"]
+        # "content" seems to be Anthropic's syntax
+        else:
+            if "stop_reason" in response_json and not response_json["stop_reason"] in ["end_turn"]:
+                print(f'{response_file}\nBad finish reason: {response_json["stop_reason"]}')
+            llm_message = response_json["content"][0]["text"]
     original_llm_message = llm_message
 
     llm_scores = re.findall(r"Score: \[(\d|NA)\]", llm_message)
@@ -71,7 +94,7 @@ for response_file in response_files:
         llm_scores = re.findall(r"Score: \[(\d|NA)\]", llm_message)
         if len(llm_scores) > len_pre:
             wrong_format.append("squared-brackets-around-score")
-    
+
     if len(llm_scores) < NUM_SCORES:
         len_pre = len(llm_scores)
         llm_message = re.sub(r"(?<![Ss]core): \[(\d|NA)\]", r": <added-score-prefix>Score: [\1]</added-score-prefix>", llm_message)
@@ -100,6 +123,7 @@ for response_file in response_files:
         if len(llm_scores) > len_pre:
             wrong_format.append("missing-score-na-with-slash")
     
+    # Too many scores?
     if len(llm_scores) > NUM_SCORES:
         len_pre = len(llm_scores)
         llm_scores_pre = llm_scores
@@ -132,11 +156,13 @@ for response_file in response_files:
     # Sometimes quotes are interrupted by a gap (...), make sure to exclude that gap from quote
     llm_message = split_interrupted_quotes(llm_message)
     
+    prompt_tokens_key = "input_tokens" if "claude3" in RESULTS_FOLDER else "prompt_tokens"
+    completion_tokens_key = "output_tokens" if "claude3" in RESULTS_FOLDER else "completion_tokens"
     results.append({
         "publication_id": id,
         #"created": response_json["created"],
-        "prompt_tokens": response_json["usage"]["prompt_tokens"] if 'response_json' in locals() and "usage" in response_json else int((len(prompt)+len(fulltext))/4),
-        "completion_tokens": response_json["usage"]["completion_tokens"] if 'response_json' in locals() and "usage" in response_json else int(len(original_llm_message)/4),
+        "prompt_tokens": response_json["usage"][prompt_tokens_key] if 'response_json' in locals() and "usage" in response_json else int((len(prompt)+len(fulltext))/4),
+        "completion_tokens": response_json["usage"][completion_tokens_key] if 'response_json' in locals() and "usage" in response_json else int(len(original_llm_message)/4),
         #"finish_reason": response_json["choices"][0]["finish_reason"],
         "wrong_format": wrong_format,
         "original_llm_scores_n": original_llm_scores_n,

@@ -15,7 +15,7 @@ render_dashboard = function(params) render(
   output_file = paste0(params$run_folder, "_", params$output_file, ".html"),
   output_dir = "docs/html/",
   output_options = list(title = params$title),
-  knit_root_dir = paste0("/home/tim/Forschung/Pragmatic Evidence/Research-Assessment-AI/docs/", TOOL_FOLDER, params$run_folder, "/"),
+  knit_root_dir = paste0("/home/tim/Forschung/Papers/23- Human-AI Evidence Appraisal/Evidence-Appraisal-AI/docs/", TOOL_FOLDER, params$run_folder, "/"),
   params=params,
   envir=new.env()
 )
@@ -44,7 +44,8 @@ combine_human_ai = function(human_rater_no, params) {
   x_rater = paste0("Human Rater ", human_rater_no, " & ", params$x_rater)
   params = list(
     "run_folder"=run_folder, "rater"=params$rater, "tool"=params$tool,
-    "title"=paste0(sub("_", " & ", toupper(params$tool)), " in Cullis 2017: ", x_rater, " vs Human Consensus (Accuracy)"),
+    #"title"=paste0(sub("_", " & ", toupper(params$tool)), " in Cullis 2017: ", x_rater, " vs Human Consensus"), # prisma, amstar
+    "title"=paste0("PRECIS-2 in PragMeta: ", x_rater, " vs Human Consensus"), # precis2
     "output_file"="human_consensus",
     "x_rater"=x_rater,
     "show_llm_message"=F
@@ -60,8 +61,8 @@ for (i in seq_len(length(all_params))) {
   render_dashboard(params)
   
   # Create Human-AI collaboration dashboards
-  # (But not for inter/intra-rater reliability results, human raters themselves, and GPT-4 repetition (because it's only based on 25% of publications for cost reasons))
-  if (params$output_file != "human_consensus" | grepl("human_rater", params$rater) | params$run_folder %in% c("gpt4_prisma_amstar_rep", "gpt4_precis2_rep")) next
+  # (But not for inter/intra-rater reliability results, combined LLMs, human raters themselves, and GPT-4 repetition (because it's only based on 25% of publications for cost reasons))
+  if (params$output_file != "human_consensus" | params$rater == "llms_combined" | grepl("human_rater", params$rater) | params$run_folder %in% c("gpt4_prisma_amstar_rep", "gpt4_precis2_rep", "mixtral8x7b_gpt4_prompt_precis2")) next
   
   ## Human-AI collaboration results
   combine_human_ai(1, params)

@@ -456,8 +456,14 @@ cat_formatting_accuracy = function(results, human, add_to_csv=F) {
   failed_responses_paths = failed_responses_paths[grepl(".txt|.json", failed_responses_paths)]
   failed_responses = data.frame()
   for (path in failed_responses_paths) {
-    if (grepl(".json", path) & file.info(path)$size) llm_message = read_json(path)$choices[[1]]$message$content
-    else llm_message = readChar(path, file.info(path)$size)
+    if (grepl(".json", path) & file.info(path)$size) {
+      llm_message = read_json(path)#$choices[[1]]$message$content
+      if ("choices" %in% names(llm_message)) llm_message = llm_message$choices[[1]]$message$content
+      else llm_message = llm_message$content[[1]]$text
+    } else {
+      llm_message = readChar(path, file.info(path)$size)
+    }
+    if (is.null(llm_message)) llm_message = NA
     failed_responses = rbind(failed_responses, list(
       id = strsplit(gsub(".*\\/", "", path), "\\.")[[1]][1],
       reason = strsplit(gsub(".*\\/", "", path), "\\.")[[1]][2],
@@ -466,12 +472,15 @@ cat_formatting_accuracy = function(results, human, add_to_csv=F) {
   }
   failed_responses = failed_responses[order(as.integer(failed_responses$id)),]
   failed_responses$author_year = human[failed_responses$id, "author_year"]
+  failed_responses$link = sapply(human[failed_responses$id, "DOI"], function(x) paste0("https://doi.org/", x)) # sapply handles empty NULL case (if using paste0 directly and there are no failed_responses: error "replacement has 1 row, data has 0")
   failed_responses$ultimately_successful = failed_responses$id %in% rownames(results)
   failed_responses$llm_message = gsub('"', "'", failed_responses$llm_message, fixed=T)
-  for (id in rownames(results)) {
-    results[id, "n_retries"] = sum(failed_responses$id == id)
-  }
-  no_results = as.character(unique(failed_responses[!failed_responses$ultimately_successful, "id"]))
+  
+  problematic_publications = as.data.frame(table(failed_responses$id), stringsAsFactors = F)
+  colnames(problematic_publications) = c("id", "n_retries")[1:ncol(problematic_publications)]
+  problematic_publications$author_year = human[problematic_publications$id, "author_year"]
+  problematic_publications$ultimately_successful = problematic_publications$id %in% rownames(results)
+  no_results = problematic_publications[!problematic_publications$ultimately_successful, "id"]
   
   # Output
   cat("  * ", n_wrong_format["0"], " / ", nrow(results), " (", round(n_wrong_format["0"]/nrow(results)*100, 1), "%) usable responses with correctly formatted scores\n", sep="")
@@ -481,16 +490,20 @@ cat_formatting_accuracy = function(results, human, add_to_csv=F) {
   }
   cat("<br><br>\n")
   
-  cat("* ", sum(results$n_retries == 0), " / ", nrow(human), " (", round(sum(results$n_retries==0)/nrow(human)*100, 1), "%) publications yielded usable responses in the first try\n", sep="")
-  cat("* ", sum(results$n_retries > 0), " / ", nrow(human), " (", round(sum(results$n_retries>0)/nrow(human)*100, 1), "%) publications ultimately yielded usable responses after a median of ", median(results[results$n_retries>0, "n_retries"]), " retries  ", ifelse(sum(results$n_retries > 0), paste0("(IQR ", quantile(results[results$n_retries>0, "n_retries"], 0.25), "-", quantile(results[results$n_retries>0, "n_retries"], 0.75), ", range ", min(results[results$n_retries>0, "n_retries"]), "-", max(results[results$n_retries>0, "n_retries"]), ")"), ""), "\n", sep="")
-  failed_response_reasons_table = sort(table(unlist(failed_responses[failed_responses$ultimately_successful, "reason"])), decreasing = T)
-  for (x in names(failed_response_reasons_table)) {
-    cat  ("  * ", failed_response_reasons_table[x], " responses with failure reason '", x, "'\n", sep="")
+  cat("* ", sum(!rownames(results) %in% problematic_publications$id), " / ", nrow(human), " (", round(sum(!rownames(results) %in% problematic_publications$id)/nrow(human)*100, 1), "%) publications yielded usable responses on the first try\n", sep="")
+  if (sum(problematic_publications$ultimately_successful)) {
+    cat("* ", sum(problematic_publications$ultimately_successful), " / ", nrow(human), " (", round(sum(problematic_publications$ultimately_successful)/nrow(human)*100, 1), "%) publications ultimately yielded usable responses after a median of ", median(problematic_publications[problematic_publications$ultimately_successful, "n_retries"]), " retries (range ", min(problematic_publications[problematic_publications$ultimately_successful, "n_retries"]), "-", max(problematic_publications[problematic_publications$ultimately_successful, "n_retries"]), ")\n", sep="")
+    failed_response_reasons_table = sort(table(unlist(failed_responses[failed_responses$ultimately_successful, "reason"])), decreasing = T)
+    for (x in names(failed_response_reasons_table)) {
+      cat  ("  * ", failed_response_reasons_table[x], " responses with failure reason '", x, "'\n", sep="")
+    }
   }
-  cat("* ", length(no_results), " / ", nrow(human), " (", round(length(no_results)/nrow(human)*100, 1), "%) publications yielded no usable responses and were thus ultimately unsuccessful. ", paste0(paste0("[", human[no_results, "author_year"], "](https://doi.org/", human[no_results, "DOI"], ")"), collapse=", "), "\n", sep="")
-  no_results_reasons_table = sort(table(unlist(failed_responses[!failed_responses$ultimately_successful, "reason"])), decreasing = T)
-  for (x in names(no_results_reasons_table)) {
-    cat  ("  * ", no_results_reasons_table[x], " responses with failure reason '", x, "'\n", sep="")
+  if (sum(!problematic_publications$ultimately_successful)) {
+    cat("* ", length(no_results), " / ", nrow(human), " (", round(length(no_results)/nrow(human)*100, 1), "%) publications yielded no usable responses and were thus ultimately unsuccessful after a median of ", median(problematic_publications[!problematic_publications$ultimately_successful, "n_retries"]), " retries (range ", min(problematic_publications[!problematic_publications$ultimately_successful, "n_retries"]), "-", max(problematic_publications[!problematic_publications$ultimately_successful, "n_retries"]), ")\n", sep="")
+    no_results_reasons_table = sort(table(unlist(failed_responses[!failed_responses$ultimately_successful, "reason"])), decreasing = T)
+    for (x in names(no_results_reasons_table)) {
+      cat  ("  * ", no_results_reasons_table[x], " responses with failure reason '", x, "'\n", sep="")
+    }
   }
   
   if (is.character(add_to_csv)) {
@@ -498,9 +511,9 @@ cat_formatting_accuracy = function(results, human, add_to_csv=F) {
       run_folder = add_to_csv,
       dataset_n = nrow(human),
       no_results_n = length(no_results),
-      no_results = paste(names(no_results_reasons_table), collapse = ", "),
-      required_retries_n = sum(results$n_retries > 0),
-      required_retries = paste(names(failed_response_reasons_table), collapse = ", "),
+      no_results = ifelse(exists("no_results_reasons_table"), paste(names(no_results_reasons_table), collapse = ", "), NA),
+      required_retries_n = sum(problematic_publications$ultimately_successful),
+      required_retries = ifelse(exists("failed_response_reasons_table"), paste(names(failed_response_reasons_table), collapse = ", "), NA),
       minor_formatting_issues_n = nrow(results)-n_wrong_format["0"],
       minor_formatting_issues = paste(names(wrong_format_table), collapse = ", ")
     )
@@ -509,12 +522,14 @@ cat_formatting_accuracy = function(results, human, add_to_csv=F) {
   }
   
   if (nrow(failed_responses)) {
+    failed_responses$author_year_link = paste0("<a href='", failed_responses$link, "' title='Open publication'>", failed_responses$author_year, "</a>")
     cell_tooltip_js = function(col_id) paste0("function(data, type, row, meta) { return '<a onclick=\"javascript:alert(`'+row[", col_id, "]+'`)\" style=\"cursor: pointer\">' + data + '</a>' }")
-    datatable(
-      failed_responses[c("author_year", "reason", "ultimately_successful", "llm_message")], 
-      colnames=c("Author & Year", "Reason for failed response (click to show LLM response)", "Ultimately successful", "LLM response"), 
-      rownames = T, escape=T, fillContainer=F, 
-      options=list(bPaginate=F, dom="ft", columnDefs=list(list(targets=2, render=JS(cell_tooltip_js(4))), list(targets=c(0,4), visible=F)))
-    )
+    # Has to be returned to be printed
+    return(datatable(
+      failed_responses[c("id", "author_year_link", "reason", "ultimately_successful", "llm_message")], 
+      colnames=c("Ref.", "Author & Year", "Reason for failed response (click to show LLM response)", "Ultimately successful", "LLM response"), 
+      rownames = F, escape=F, fillContainer=F, 
+      options=list(bPaginate=F, dom="ft", columnDefs=list(list(targets=2, render=JS(cell_tooltip_js(4))), list(targets=c(4), visible=F)))
+    ))
   }
 }

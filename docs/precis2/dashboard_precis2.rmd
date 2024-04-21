@@ -1,6 +1,7 @@
 ---
-title: "`r ifelse(is.character(params$title), params$title, paste0('PRECIS-2 in PragMeta: ', params$x_rater, ' vs ', params$y_rater, ' (Accuracy)'))`"
+title: "`r params$title`"
 author: "Tim Woelfle"
+#date: "`r as.Date(file.info('responses')$mtime)`"
 date: "`r Sys.Date()`"
 output: 
   flexdashboard::flex_dashboard:
@@ -14,9 +15,9 @@ params:
   run_folder: "claude2_precis2"
   rater: "claude2"
   tool: "precis2"
-  title: FALSE
+  title: "PRECIS-2 in PragMeta: LLM (Claude-2) vs Human Consensus"
   output_file: "human_consensus"
-  x_rater: "LLM"
+  x_rater: "LLM (Claude-2)"
   y_rater: "Human Consensus"
   results_x: "results.csv"
   results_y: "human_consensus"
@@ -140,47 +141,42 @@ if (params$show_llm_message) {
 ```
 
 ```{r, results='asis'}
-if (grepl("claude2", params$rater)) {
+if (!params$rater %in% c("human_rater", "llms_combined")) {
   cat("### LLM prompt\n\n")
 
-  cat("* Model: [Claude-2](https://www.anthropic.com/index/claude-2)\n")
+  if (grepl("claude3_opus", params$rater)) cat("* Model: [claude-3-opus-20240229](https://www.anthropic.com/news/claude-3-family)\n")
+  if (grepl("claude2", params$rater)) cat("* Model: [claude-2.0](https://www.anthropic.com/index/claude-2)\n")
+  if (grepl("gpt4", params$rater)) cat("* Model: [gpt-4-32k-0613](https://platform.openai.com/docs/models/gpt-4)\n")
+  if (grepl("gpt3.5", params$rater)) cat("* Model: [gpt-3.5-turbo-16k-0613](https://platform.openai.com/docs/models/gpt-3-5)\n")
+  if (grepl("mixtral8x22b", params$rater)) cat("* Model: [mixtral-8x22b-instruct](https://openrouter.ai/models/mistralai/mixtral-8x22b-instruct)\n")
+  if (grepl("mixtral8x7b", params$rater)) cat("* Model: [mixtral-8x7b-instruct](https://openrouter.ai/models/mistralai/mixtral-8x7b-instruct)\n")
   if (grepl("chat", params$run_folder)) {
     cat("* Temperature: Chat interface ([probably `1`](https://docs.anthropic.com/claude/reference/complete_post))\n")
   } else {
     cat("* Temperature: `0`\n")
   }
-  if (grepl("gpt-prompt", params$run_folder)) {
-    cat("* Briefing derived from: [PRECIS-2 Toolkit page 4](http://precis-2.org/Help/Documentation/ToolkitDownload)\n\n")
-  } else {
-    cat("* Briefing derived from: [Loudon 2015](https://doi.org/10.1016/j.jclinepi.2017.06.001) & [PRECIS-2 Toolkit](http://precis-2.org/Help/Documentation/ToolkitDownload)\n\n")
+  
+  # Briefing for gpt3.5, claude2_chat_gpt3.5, mixtral8x7b_precis2 (NOT mixtral8x7b_gpt4_prompt_precis2), claude3_opus_precis2 (NOT claude3_opus_gpt4_prompt_precis2), mixtral8x22b_precis2
+  if (grepl("gpt3.5", params$run_folder) | grepl("mixtral8x7b_precis2", params$run_folder) | grepl("claude3_opus_precis2", params$run_folder) | grepl("mixtral8x22b_precis2", params$run_folder)) cat("* Briefing derived from: [PRECIS-2 Toolkit page 4](http://precis-2.org/Help/Documentation/ToolkitDownload)\n\n")
+  # Briefing for claude2 and claude2_chat
+  else if (grepl("claude2", params$run_folder)) cat("* Briefing derived from: [Loudon 2015](https://doi.org/10.1016/j.jclinepi.2017.06.001) & [PRECIS-2 Toolkit](http://precis-2.org/Help/Documentation/ToolkitDownload)\n\n")
+  # Briefing for gpt4, mixtral8x7b_gpt4_prompt_precis2, claude3_opus_gpt4_prompt_precis2
+  else if (grepl("gpt4", params$run_folder)) cat("* Briefing derived from: [Loudon 2015, section 'The domains in detail' w/o boxes](https://doi.org/10.1016/j.jclinepi.2017.06.001) & [PRECIS-2 Toolkit page 4](http://precis-2.org/Help/Documentation/ToolkitDownload)\n\n")
+
+  if (exists("system_prompt")) {
+    cat("#### System prompt\n\n")
+    
+    cat("<pre>\n")
+    cat(gsub("<", "&lt;", gsub(">", "&gt;", system_prompt)), "\n")
+    cat("</pre>\n")
   }
-} else if (grepl("gpt4", params$rater)) {
-  cat("### LLM prompt\n\n")
   
-  cat("* Model: [gpt-4-32k-0613](https://platform.openai.com/docs/models/gpt-4)\n")
-  cat("* Temperature: `0`\n")
-  cat("* Briefing derived from: [Loudon 2015, section 'The domains in detail' w/o boxes](https://doi.org/10.1016/j.jclinepi.2017.06.001) & [PRECIS-2 Toolkit page 4](http://precis-2.org/Help/Documentation/ToolkitDownload)\n\n")
-} else if (grepl("gpt3.5", params$rater)) {
-  cat("### LLM prompt\n\n")
-
-  cat("* Model: [gpt-3.5-turbo-16k-0613](https://platform.openai.com/docs/models/gpt-3-5)\n")
-  cat("* Temperature: `0`\n")
-  cat("* Briefing derived from: [PRECIS-2 Toolkit page 4](http://precis-2.org/Help/Documentation/ToolkitDownload)\n\n")
-}
-
-if (exists("system_prompt") & !grepl("chat", params$run_folder)) {
-  cat("#### System prompt\n\n")
-  
-  cat("<pre>\n")
-  cat(gsub("<", "&lt;", gsub(">", "&gt;", system_prompt)), "\n")
-  cat("</pre>\n")
-}
-
-if (exists("user_prompt")) {
-  cat("#### User prompt\n\n")
-  
-  cat("<pre>\n")
-  cat(gsub("<", "&lt;", gsub(">", "&gt;", user_prompt)), "\n")
-  cat("</pre>\n")
+  if (exists("user_prompt")) {
+    cat("#### User prompt\n\n")
+    
+    cat("<pre>\n")
+    cat(gsub("<", "&lt;", gsub(">", "&gt;", user_prompt)), "\n")
+    cat("</pre>\n")
+  }
 }
 ```

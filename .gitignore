@@ -1,7 +1,5 @@
-interrupted
+hidden
 fulltext
 docs/*/*/responses
-src/API_KEY
-src/OPENROUTER_API_KEY
 venv
 __pycache__

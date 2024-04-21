@@ -1,10 +1,18 @@
-run_folder,dataset_n,no_results_n,no_results,required_retries_n,required_retries,minor_formatting_issues_n,minor_formatting_issues
-claude2_chat_gpt3.5_prompt_precis2,56,0,,0,,0,
-claude2_chat_precis2,56,0,,5,analyzed-and-quoted-mostly-examples-from-briefing,0,
-claude2_chat_precis2_rep,56,0,,6,analyzed-and-quoted-mostly-examples-from-briefing,0,
-claude2_precis2,56,0,,0,,2,"multiple-scores-per-domain-if-incongruent-na, removed-unsolicited-final-summary-score, score-prefix-missing-before-number, squared-brackets-around-score"
-claude2_precis2_rep,56,0,,0,,1,squared-brackets-around-score
-gpt3.5_precis2,56,2,early-stop,5,"early-stop, exceeded-max-tokens-2000",23,"squared-brackets-around-score, multiple-scores-per-domain-if-incongruent-na, not-applicable-without-score, score-prefix-missing-before-na"
-gpt3.5_precis2_rep,56,3,early-stop,4,"early-stop, exceeded-max-tokens-2000",22,"squared-brackets-around-score, multiple-scores-per-domain-if-incongruent-na, missing-score-na-with-slash, score-prefix-missing-before-na, not-applicable-without-score, score-prefix-missing-before-colon, score-prefix-missing-before-number"
-gpt4_precis2,56,0,,0,,0,
-gpt4_precis2_rep,56,0,,0,,0,
+"run_folder","dataset_n","no_results_n","no_results","required_retries_n","required_retries","minor_formatting_issues_n","minor_formatting_issues"
+"gpt3.5_precis2",56,2,"early-stop",5,"early-stop, exceeded-max-tokens-2000",23,"squared-brackets-around-score, multiple-scores-per-domain-if-incongruent-na, not-applicable-without-score, score-prefix-missing-before-na"
+"gpt3.5_precis2_rep",56,3,"early-stop",4,"early-stop, exceeded-max-tokens-2000",22,"squared-brackets-around-score, multiple-scores-per-domain-if-incongruent-na, missing-score-na-with-slash, score-prefix-missing-before-na, not-applicable-without-score, score-prefix-missing-before-colon, score-prefix-missing-before-number"
+"claude2_chat_precis2",56,0,NA,5,"analyzed-and-quoted-mostly-examples-from-briefing",0,""
+"claude2_chat_precis2_rep",56,0,NA,6,"analyzed-and-quoted-mostly-examples-from-briefing",0,""
+"claude2_chat_gpt3.5_prompt_precis2",56,0,NA,0,NA,0,""
+"claude2_precis2",56,0,NA,0,NA,2,"multiple-scores-per-domain-if-incongruent-na, removed-unsolicited-final-summary-score, score-prefix-missing-before-number, squared-brackets-around-score"
+"claude2_precis2_rep",56,0,NA,0,NA,1,"squared-brackets-around-score"
+"gpt4_precis2",56,0,NA,0,NA,0,""
+"gpt4_precis2_rep",56,0,NA,0,NA,0,""
+"mixtral8x7b_precis2",56,6,"misunderstood, empty, final-summary-paragraph, too-short",6,"misunderstood, too-short, wrong-score-prefix",4,"multiple-scores-per-domain-if-incongruent-na, removed-unsolicited-final-summary-score, score-prefix-missing-before-number"
+"mixtral8x7b_precis2_rep",56,5,"misunderstood, empty",4,"misunderstood, stopped-short",9,"multiple-scores-per-domain-if-incongruent-na, score-prefix-missing-before-number, removed-unsolicited-final-summary-score, score-prefix-missing-before-colon"
+"mixtral8x7b_gpt4_prompt_precis2",56,34,"empty, too-short, repetitive-nonsense, misunderstood, no-scores, repetitive-nonsense-and-exceeded-context-length",0,NA,3,"score-prefix-missing-before-colon"
+"claude3_opus_precis2",56,0,NA,0,NA,0,""
+"claude3_opus_precis2_rep",56,0,NA,0,NA,0,""
+"claude3_opus_gpt4_prompt_precis2",56,0,NA,0,NA,0,""
+"mixtral8x22b_precis2",56,0,NA,0,NA,0,""
+"mixtral8x22b_precis2_rep",56,0,NA,0,NA,0,""

@@ -7,12 +7,13 @@ import parasail
 
 def extract_unique_quotes(llm_message):
     quotes = list(set(re.findall(r'"([^"\r\n]+)"', llm_message)))
-    return [x for x in quotes if x not in ["[Yes]", "[No]", "[NA]"]]
+    # Minimum quote length: >= 10 characters (this was introduced late at 24-04-04, which is why notebooks also still filter quotes)
+    return [x for x in quotes if len(x) >= 10]
 
 # Sometimes quotes are interrupted by a gap (...), make sure to exclude that gap from quote
 def split_interrupted_quotes(llm_message):
     quotes = extract_unique_quotes(llm_message)
-    quotes_split = [[quot.strip() for quot in quote.split("...")] for quote in quotes]
+    quotes_split = [quote.split("...") for quote in quotes]
     replacements = ['" [...] "'.join(quote) for quote in quotes_split]
     for i in range(len(quotes)):
         llm_message = llm_message.replace(quotes[i], replacements[i])

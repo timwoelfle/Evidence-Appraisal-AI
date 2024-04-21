@@ -1,0 +1,11 @@
+"","cohen_kappa_w","cohen_kappa_w_ci_low","cohen_kappa_w_ci_high","agreement","agreement_ci_low","agreement_ci_high","deferring_fraction","deferring_fraction_ci_low","deferring_fraction_ci_high"
+"combined",0.674699876361026,0.455361025956209,0.843411428836477,0.746666666666667,0.642222222222222,0.848888888888889,0,0,0
+"Eligibility",0.872897927258506,NA,NA,0.86,NA,NA,0,NA,NA
+"Recruitment",0.733806566104703,NA,NA,0.76,NA,NA,0,NA,NA
+"Setting",0.814380617428683,NA,NA,0.74,NA,NA,0,NA,NA
+"Organization",0.487235435304386,NA,NA,0.7,NA,NA,0,NA,NA
+"Flex. delivery",0.64808297832932,NA,NA,0.72,NA,NA,0,NA,NA
+"Flex. adherence",0.685222001325381,NA,NA,0.72,NA,NA,0,NA,NA
+"Follow-up",0.649753881105642,NA,NA,0.74,NA,NA,0,NA,NA
+"Outcome",0.508050089445438,NA,NA,0.76,NA,NA,0,NA,NA
+"Analysis",0.429287305122494,NA,NA,0.72,NA,NA,0,NA,NA

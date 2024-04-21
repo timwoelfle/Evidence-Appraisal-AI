@@ -1,6 +1,7 @@
 ---
 title: "`r params$title`"
 author: "Tim Woelfle"
+#date: "`r as.Date(file.info('responses')$mtime)`"
 date: "`r Sys.Date()`"
 output: 
   flexdashboard::flex_dashboard:
@@ -11,16 +12,16 @@ output:
     self_contained: FALSE
     lib_dir: "../html/lib/"
 params:
-  run_folder: "human_rater1_claude2_chat_prisma_amstar"
-  rater: "claude2"
+  run_folder: "claude3_opus_prisma_amstar"
+  rater: "claude3_opus"
   tool: "prisma_amstar"
-  title: "PRISMA & AMSTAR in Cullis 2017: Human Rater 1 & LLM (Claude-2 Chat) vs Human Consensus"
+  title: "PRISMA & AMSTAR in Cullis 2017: LLM (Claude-3-Opus) vs Human Consensus"
   output_file: "human_consensus"
-  x_rater: "Human Rater 1 & LLM (Claude-2)"
+  x_rater: "LLM (Claude-3-Opus)"
   y_rater: "Human Consensus"
   results_x: "results.csv"
   results_y: "human_consensus"
-  show_llm_message: FALSE
+  show_llm_message: TRUE
 ---
 
 ```{css}
@@ -150,43 +151,36 @@ if (params$show_llm_message) {
 ```
 
 ```{r, results='asis'}
-if (grepl("claude2", params$rater)) {
+if (!params$rater %in% c("human_rater", "llms_combined")) {
   cat("### LLM prompt\n\n")
 
-  cat("* Model: [Claude-2](https://www.anthropic.com/index/claude-2)\n")
+  if (grepl("claude3_opus", params$rater)) cat("* Model: [Claude-3-Opus](https://www.anthropic.com/news/claude-3-family)\n")
+  if (grepl("claude2", params$rater)) cat("* Model: [Claude-2](https://www.anthropic.com/index/claude-2)\n")
+  if (grepl("gpt4", params$rater)) cat("* Model: [gpt-4-32k-0613](https://platform.openai.com/docs/models/gpt-4)\n")
+  if (grepl("gpt3.5", params$rater)) cat("* Model: [gpt-3.5-turbo-16k-0613](https://platform.openai.com/docs/models/gpt-3-5)\n")
+  if (grepl("mixtral8x22b", params$rater)) cat("* Model: [mixtral-8x22b-instruct](https://openrouter.ai/models/mistralai/mixtral-8x22b-instruct)\n")
+  if (grepl("mixtral8x7b", params$rater)) cat("* Model: [mixtral-8x7b-instruct](https://openrouter.ai/models/mistralai/mixtral-8x7b-instruct)\n")
   if (grepl("chat", params$run_folder)) {
     cat("* Temperature: Chat interface ([probably `1`](https://docs.anthropic.com/claude/reference/complete_post))\n")
   } else {
     cat("* Temperature: `0`\n")
   }
   cat("* Briefing derived from: [Cullis 2017](https://doi.org/10.1371/journal.pone.0175213) Supporting information: [S1 Dataset](https://doi.org/10.1371/journal.pone.0175213.s004)\n\n")
-} else if (grepl("gpt4", params$rater)) {
-  cat("### LLM prompt\n\n")
-
-  cat("* Model: [gpt-4-32k-0613](https://platform.openai.com/docs/models/gpt-4)\n")
-  cat("* Temperature: `0`\n")
-  cat("* Briefing derived from: [Cullis 2017](https://doi.org/10.1371/journal.pone.0175213) Supporting information: [S1 Dataset](https://doi.org/10.1371/journal.pone.0175213.s004)\n\n")
-} else if (grepl("gpt3.5", params$rater)) {
-  cat("### LLM prompt\n\n")
-
-  cat("* Model: [gpt-3.5-turbo-16k-0613](https://platform.openai.com/docs/models/gpt-3-5)\n")
-  cat("* Temperature: `0`\n")
-  cat("* Briefing derived from: [Cullis 2017](https://doi.org/10.1371/journal.pone.0175213) Supporting information: [S1 Dataset](https://doi.org/10.1371/journal.pone.0175213.s004)\n\n")
-}
-
-if (exists("system_prompt")) {
-  cat("#### System prompt\n\n")
   
-  cat("<pre>\n")
-  cat(gsub("<", "&lt;", gsub(">", "&gt;", system_prompt)), "\n")
-  cat("</pre>\n")
-}
-
-if (exists("user_prompt")) {
-  cat("#### User prompt\n\n")
+  if (exists("system_prompt")) {
+    cat("#### System prompt\n\n")
+    
+    cat("<pre>\n")
+    cat(gsub("<", "&lt;", gsub(">", "&gt;", system_prompt)), "\n")
+    cat("</pre>\n")
+  }
   
-  cat("<pre>\n")
-  cat(gsub("<", "&lt;", gsub(">", "&gt;", user_prompt)), "\n")
-  cat("</pre>\n")
+  if (exists("user_prompt")) {
+    cat("#### User prompt\n\n")
+    
+    cat("<pre>\n")
+    cat(gsub("<", "&lt;", gsub(">", "&gt;", user_prompt)), "\n")
+    cat("</pre>\n")
+  }
 }
 ```

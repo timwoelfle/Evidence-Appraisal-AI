@@ -38,7 +38,7 @@ item_instructions = c(
   "P12"="Methods / Risk of bias in individual studies: Describe methods used for assessing risk of bias of individual studies (including specification of whether this was done at the study or outcome level), and how this information is to be used in any data synthesis.",
   "P13"="Methods / Summary measures: State the principal summary measures (e.g., risk ratio, difference in means).",
   "P14"="Methods / Synthesis of results: Describe the methods of handling data and combining results of studies, if done, including measures of consistency (e.g., I2) for each meta-analysis.",
-  "P15"="Methdos / Risk of bias across studies: Specify any assessment of risk of bias that may affect the cumulative evidence (e.g., publication bias, selective reporting within studies).",
+  "P15"="Methods / Risk of bias across studies: Specify any assessment of risk of bias that may affect the cumulative evidence (e.g., publication bias, selective reporting within studies).",
   "P16"="Methods / Additional analyses: Describe methods of additional analyses (e.g., sensitivity or subgroup analyses, meta-regression), if done, indicating which were pre-specified.",
   "P17"="Results / Study selection: Give numbers of studies screened, assessed for eligibility, and included in the review, with reasons for exclusions at each stage, ideally with a flow diagram.",
   "P18"="Results / Study characteristics: For each study, present characteristics for which data were extracted (e.g., study size, PICOS, follow-up period) and provide the citations.",
@@ -118,13 +118,13 @@ cat_individual_results = function(results, x_rater, y_rater, quote_accuracy, sho
     cat("#### ", id, ". <a href='", results[id, "link"], "' title='Open publication'>", results[id, "author_year"], ": <i>", results[id, "title"], "</i></a>\n\n", sep="")
     
     if (show_prisma) {
-      rownames = paste0("<span style='border-bottom: 1px dashed black' title='", gsub("'", "&#39;", item_instructions[paste0(prisma, ".")]), "'> ", prisma, "</span>")
+      rownames = paste0("<span style='border-bottom: 1px dashed black' title='", gsub("'", "&#39;", item_instructions[prisma]), "'> ", prisma, "</span>")
       cat(knitr::kable(data.frame(t(data.frame(unlist(results[id, paste0(prisma[1:14], "_", y_rater)]), unlist(results[id, paste0(prisma[1:14], "_", x_rater)]), row.names = rownames[1:14])), row.names=c(y_rater, x_rater), check.names = F), format="html", escape=F, table.attr="style='margin: 0; width: 100%'", caption="PRISMA"), "\n\n")
       cat(knitr::kable(data.frame(t(data.frame(unlist(results[id, paste0(prisma[15:27], "_", y_rater)]), unlist(results[id, paste0(prisma[15:27], "_", x_rater)]), row.names = rownames[15:27])), row.names=c(y_rater, x_rater), check.names = F), format="html", escape=F, table.attr="style='margin: 0; width: 100%; border-top: 0'"), "<br>")
     }
     
     if (show_amstar) {
-      rownames = paste0("<span style='border-bottom: 1px dashed black' title='", gsub("'", "&#39;", item_instructions[paste0("A", 1:11, ".")]), "'> A", 1:11, "</span>")
+      rownames = paste0("<span style='border-bottom: 1px dashed black' title='", gsub("'", "&#39;", item_instructions[amstar]), "'> A", 1:11, "</span>")
       cat(knitr::kable(data.frame(t(data.frame(unlist(results[id, paste0(amstar, "_", y_rater)]), unlist(results[id, paste0(amstar, "_", x_rater)]), row.names = rownames)), row.names=c(y_rater, x_rater), check.names = F), format="html", escape=F, table.attr="style='margin: 0; width: 100%'", caption="AMSTAR"), "<br>")
     }
     

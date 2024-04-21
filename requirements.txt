@@ -1,5 +1,6 @@
 # removed dependencies
-# python==3.11.4
+# python==3.11.6
+anthropic=0.21.3
 numpy==1.24.3
 openai==0.27.8
 pandas==2.0.1

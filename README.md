@@ -1,13 +1,18 @@
 # Benchmarking Human-AI Collaboration for Common Evidence Appraisal Tools
 
-Tim Woelfle, Julian Hirt, Perrine Janiaud, Ludwig Kappos, John P. A. Ioannidis, Lars G. Hemkens
+Tim Woelfle, Julian Hirt, Perrine Janiaud, Ludwig Kappos, John Ioannidis, Lars G Hemkens
+
+[Preprint on medRxiv](https://www.medrxiv.org/content/10.1101/2024.04.21.24306137v1)
 
 ## Abstract
 
 Background: It is unknown whether large language models (LLMs) may facilitate time- and resource-intensive text-related processes in evidence appraisal.
 Objectives: To quantify the agreement of LLMs with human consensus in appraisal of scientific reporting (PRISMA) and methodological rigor (AMSTAR) of systematic reviews and design of clinical trials (PRECIS-2). To identify areas, where human-AI collaboration would outperform the traditional consensus process of human raters in efficiency.
-Design: Five LLMs (Claude-3-Opus, Claude-2, GPT-4, GPT-3.5, Mixtral) assessed 112 systematic reviews applying the PRISMA and AMSTAR criteria, and 56 randomized controlled trials applying PRECIS-2. We quantified agreement between human consensus and (1) individual human raters; (2) individual LLMs; (3) combined LLMs approach; (4) human-AI collaboration. Ratings were marked as deferred (undecided) in case of inconsistency between combined LLMs or between the human rater and the LLM.
-Results: Individual human rater accuracy was 89% for PRISMA and AMSTAR, and 75% for PRECIS-2. Individual LLM accuracy was ranging from 57% (Mixtral) to 70% (Claude-3-Opus) for PRISMA, 50% (Mixtral) to 74% (Claude-3-Opus) for AMSTAR, and 38% (GPT-4) to 58% (Mixtral) for PRECIS-2. Combined LLM ratings led to accuracies of 75-87% for PRISMA (3-80% deferred), 71-88% for AMSTAR (7-88% deferred), and 60-79% for PRECIS-2 (7-92% deferred). Human-AI collaboration resulted in the best accuracies from 89-96% for PRISMA (25-44% deferred), 91-96% for AMSTAR (27-52% deferred), and 80-86% for PRECIS-2 (67-75% deferred).
+
+Design: Five LLMs (Claude-3-Opus, Claude-2, GPT-4, GPT-3.5, Mixtral-8x22B) assessed 112 systematic reviews applying the PRISMA and AMSTAR criteria, and 56 randomized controlled trials applying PRECIS-2. We quantified agreement between human consensus and (1) individual human raters; (2) individual LLMs; (3) combined LLMs approach; (4) human-AI collaboration. Ratings were marked as deferred (undecided) in case of inconsistency between combined LLMs or between the human rater and the LLM.
+
+Results: Individual human rater accuracy was 89% for PRISMA and AMSTAR, and 75% for PRECIS-2. Individual LLM accuracy was ranging from 63% (GPT-3.5) to 70% (Claude-3-Opus) for PRISMA, 53% (GPT-3.5) to 74% (Claude-3-Opus) for AMSTAR, and 38% (GPT-4) to 55% (GPT-3.5) for PRECIS-2. Combined LLM ratings led to accuracies of 75-88% for PRISMA (4-74% deferred), 74-89% for AMSTAR (6-84% deferred), and 64-79% for PRECIS-2 (29-88% deferred). Human-AI collaboration resulted in the best accuracies from 89-96% for PRISMA (25/35% deferred), 91-95% for AMSTAR (27/30% deferred), and 80-86% for PRECIS-2 (76/71% deferred).
+
 Conclusions: Current LLMs alone appraised evidence worse than humans. Human-AI collaboration may reduce workload for the second human rater for the assessment of reporting (PRISMA) and methodological rigor (AMSTAR) but not for complex tasks such as PRECIS-2.
 
 ## Contributions

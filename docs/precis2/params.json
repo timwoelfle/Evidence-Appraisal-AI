@@ -239,7 +239,7 @@
     "show_llm_message": false
   },
   {
-    "run_folder": "llm_consistency_6_precis2", "rater": "llms_combined", "tool": "precis2", 
+    "run_folder": "llm_consistency_5_precis2", "rater": "llms_combined", "tool": "precis2", 
     "title": "PRECIS-2 in PragMeta: LLMs combined (consistent in 5/9 assessments) vs Human Consensus",
     "output_file": "human_consensus",
     "x_rater": "LLMs combined (consistent in 5/9)",

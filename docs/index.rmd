@@ -4,7 +4,9 @@ author: "<a href='https://timwoelfle.de' style='color: white'>Tim Woelfle</a>"
 date: "04/2024"
 output:
   flexdashboard::flex_dashboard:
-    source_code: "https://github.com/timwoelfle/Research-Assessment-AI/"
+    navbar:
+      - { title: "Paper Preprint", href: "https://www.medrxiv.org/content/10.1101/2024.04.21.24306137v1" }
+    source_code: "https://github.com/timwoelfle/Evidence-Appraisal-AI/"
     mathjax: NULL
     self_contained: FALSE
     lib_dir: "html/lib/"
